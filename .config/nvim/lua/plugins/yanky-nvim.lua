@@ -1,0 +1,56 @@
+return {
+	-- "gbprod/yanky.nvim",
+	-- enabled = false,
+	-- keys = {
+	-- 	{
+	-- 		"<leader>yp",
+	-- 		function()
+	-- 			local tele_status_ok, telescope = pcall(require, "telescope")
+	-- 			if not tele_status_ok then
+	-- 				return
+	-- 			end
+	-- 			telescope.extensions.yank_history.yank_history({})
+	-- 		end,
+	-- 		desc = "Open Yank History",
+	-- 	},
+	-- 	{ "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
+	-- 	{ "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put yanked text after cursor" },
+	-- 	{ "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before cursor" },
+	-- 	{ "[y", "<Plug>(YankyCycleForward)", desc = "Cycle forward through yank history" },
+	-- 	{ "]y", "<Plug>(YankyCycleBackward)", desc = "Cycle backward through yank history" },
+	-- },
+	-- opts = {
+	-- 	-- system_clipboard = {
+	-- 	-- 	sync_with_ring = true,
+	-- 	-- },
+	-- 	highlight = {
+	-- 		on_put = true,
+	-- 		on_yank = false,
+	-- 		timer = 300,
+	-- 	},
+	-- },
+	-- config = function()
+	-- 	vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+	-- 	vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+	-- 	vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+	-- 	vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+	--
+	-- 	vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
+	-- 	vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
+	--
+	-- 	vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)")
+	-- 	vim.keymap.set("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)")
+	-- 	vim.keymap.set("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)")
+	-- 	vim.keymap.set("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)")
+	--
+	-- 	vim.keymap.set("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)")
+	-- 	vim.keymap.set("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)")
+	-- 	vim.keymap.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)")
+	-- 	vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)")
+	--
+	-- 	vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)")
+	-- 	vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)")
+	--
+	-- 	require("yanky").setup()
+	-- end,
+}
