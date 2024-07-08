@@ -1,16 +1,16 @@
 #import = ["C:\\Users\\ChintanPatel\\AppData\\Roaming\\alacrity\\theme\\nord.toml"]
 # import = ["%APPDATA%\\alacritty\\theme\\catppuccin-mocha.toml"]
-import = ["~/.config/alacritty/themes/tokyonight_night.toml"]
+# import = ["/home/chintan-patel/.config/alacritty/tokyonight_night.toml"]
 live_config_reload = false
 
 [shell]
-program = "wsl"
+program = "bash"
 
 [window]
 decorations = "None"
 opacity = 0.8
 blur = true
-startup_mode = "FullScreen"
+# startup_mode = "FullScreen"
 decorations_theme_variant = "Dark"
 
 [scrolling]
@@ -24,16 +24,16 @@ save_to_clipboard = true
 hide_when_typing = true
 
 [font]
-size = 15
+size = 8
 
 [font.normal]
-family = "Operator Mono"
+family = "MesloLGMDZ Nerd Font"
 
 [font.bold]
-family = "Iosevka Custom"
+family = "MesloLGMDZ Nerd Font"
 
 [font.italic]
-family = "Operator Mono"
+family = "MesloLGMDZ Nerd Font"
 
 [window.padding]
 x = 2

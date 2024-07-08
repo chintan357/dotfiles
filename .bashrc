@@ -115,26 +115,23 @@ export EDITOR="$VISUAL"
 
 # Created by `pipx` on 2024-03-19 21:09:03
 . ~/.bash.d/cht.sh to ~/.bashrc
-export PATH="$PATH:/home/chintan357/.local/bin:/home/chintan357/bin:/home/chintan357/.config/.scripts:/home/chintan357/.cargo/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.cargo/bin"
 
-eval "$(thefuck --alias)"
-eval "$(starship init bash)"
 
 # export NVM_DIR="$HOME/.config/nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-# source '/home/chintan357/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
+# source '$HOME/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
-source /home/chintan357/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br
 alias idea="eureka"
-eval "$(navi widget bash)"
 
 # Source goto
 [[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
 
-source /home/chintan357/.oh-my-git/prompt.sh
+source $HOME/.oh-my-git/prompt.sh
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -188,10 +185,6 @@ _fzf_comprun() {
   esac
 }
 
-eval "$(fzf --bash)"
-eval "$(zoxide init bash)"
-
-
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
@@ -212,3 +205,9 @@ bind "set completion-ignore-case on"
 
 # c() { cd ~/code/$1; }
 # h() { cd ~/$1; }
+
+eval "$(navi widget bash)"
+eval "$(fzf --bash)"
+eval "$(zoxide init bash)"
+eval "$(starship init bash)"
+eval $(thefuck --alias fq)

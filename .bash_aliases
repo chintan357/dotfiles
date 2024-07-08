@@ -241,7 +241,7 @@ alias .3="cd ../../.."
 alias .4="cd ../../../.."
 
 alias mkcd='_mkcd() { mkdir -p "$1"; cd "$1"; }; _mkcd'
-alias md="mkdir -pv"
+alias mk="mkdir -pv"
 
 function cdl() {
   cd "$1" && ls
@@ -251,13 +251,15 @@ function cdl() {
 # alias twitter='xdg-open https://www.twitter.com'
 
 
-alias vaults='cd $HOME/vaults'
+alias vaults='cd ~/vaults'
 # c() { cd ~/code/$1; }
 # h() { cd ~/$1; }
-alias desk="cd /mnt/c/Users/ChintanPatel/Desktop"
+alias deskw="cd /mnt/c/Users/ChintanPatel/Desktop"
+alias desk="cd ~/Desktop"
 alias cdnvim='cd ~/.config/nvim'
 alias obsd='cd /mnt/c/saleenaa357/daily_notes'
 alias config='cd ~/.config'
+alias down='cd ~/Downloads'
 alias tmp='cd ~/trash'
 alias repo='cd ~/repo'
 alias work='cd ~/work'
@@ -266,7 +268,7 @@ alias idya='cd ~/idya'
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
 alias private='cd ~/private'
-alias downloads='cd ~/downloads'
+alias down='cd ~/Downloads'
 #-----------#
 
 alias ytdl='youtube-dl'

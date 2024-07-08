@@ -16,8 +16,12 @@ return {
 	opts = {
 		workspaces = {
 			{
-				name = "saleenaapatel357",
-				path = "/mnt/c/saleenaa357",
+				name = "saleenaa",
+				path = "~/vaults/saleenaa",
+			},
+			{
+				name = "work",
+				path = "~/vaults/work",
 			},
 		},
 		daily_notes = {

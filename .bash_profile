@@ -4,7 +4,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 # Created by `pipx` on 2024-03-19 21:09:03
-export PATH="$PATH:/home/chintan357/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # include .bashrc if it exists
 if [ -f "$HOME/.bashrc" ]; then
@@ -30,7 +30,6 @@ if [ -z "$XDG_CACHE_HOME" ] ; then
   export XDG_CACHE_HOME="$HOME/.cache"
 fi
 
-
 safesource() {
   [[ -s $1 ]] && source $1
 }
@@ -42,6 +41,6 @@ safesource "$HOME/.rvm/scripts/rvm"
 
 # source '/home/chintan357/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
-source /home/chintan357/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br
 
-if [ -e /home/chintan357/.nix-profile/etc/profile.d/nix.sh ]; then . /home/chintan357/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
