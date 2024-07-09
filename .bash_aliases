@@ -5,6 +5,9 @@ alias c=clear
 alias top=htop
 alias rm=trash
 alias cat=batcat
+alias df='df -h'
+alias du='du -hs'
+alias du1='du -hs --max-depth=1'
 alias bc="bc -l"
 alias dfm=pydf
 alias dum=ncdu
@@ -26,6 +29,16 @@ alias lt='eza --tree --level=2'
 alias findf='find . -type f -name'
 alias findd='find . -type d -name'
 alias count='find . -type f | wc -l'
+alias pyfind='find . -name "*.py"'
+# Grep among .py files
+alias pygrep='grep -nr --include="*.py"'
+# Run proper IPython regarding current virtualenv (if any)
+alias ipython='python3 -c "import IPython, sys; sys.exit(IPython.start_ipython())"'
+
+
+alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
+alias ps='ps -f'
+alias sortnr='sort -n -r'
 
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
@@ -112,6 +125,8 @@ alias usage='du -ch | grep total'
 alias totalusage='df -hl --total | grep total'
 alias partusage='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
 alias most='du -hsx * | sort -rh | head -10'
+alias bigfiles='du -ha . | sort -rh | head -20'
+alias dirssize="du -sch ./* 2> /dev/null"
 alias du1="du -d 1 -m"
 
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
@@ -327,6 +342,9 @@ alias drmf='sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo do
 
 alias lg=lazygit
 
+# alias git='cd `git rev-parse --show-toplevel` && git checkout master && git pull'
+alias cg='cd `git rev-parse --show-toplevel`'
+
 alias gadd='git add'
 alias gaa='git add .'
 alias gcl='git clone'
@@ -335,8 +353,10 @@ alias gcob='git checkout -b'
 alias gbr="git branch"
 alias gbrl="git branch -l"
 
+# alias gdh='git diff HEAD'
 alias gdiff='git diff'
 alias gdiffs="git diff --staged"
+alias gdc='git diff --cached'
 
 alias gst='git status'
 alias gsts='git status -sb'
@@ -359,6 +379,7 @@ alias gnah="git clean -df && git checkout -- ."
 alias grecent='git for-each-ref --sort="-committerdate" --format="%(committerdate:short) %(refname:short)" refs/heads'
 alias glast="git log -1 HEAD"
 alias gbrd='git branch -d'    # Delete a branch
+# alias gb='git branch --sort=committerdate'
 alias gbrD='git branch -D'
 alias gcb='git checkout -b'  # Create and checkout a new branch
 alias gll='git log --stat'
@@ -379,6 +400,10 @@ alias gfa='git fetch --all'
 alias grs='git reset'
 alias grsh='git reset --hard'
 alias grss='git reset --soft'
+# alias gpristine='git reset --hard && git clean --force -dfx'
+# alias groh='git reset origin/$(git_current_branch) --hard'
+# alias grst='git restore --staged'
+# alias gcan!='git commit --verbose --all --no-edit --amend'
 
 alias hcl="hub clone"
 alias hbr='hub browse'

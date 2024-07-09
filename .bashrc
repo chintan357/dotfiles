@@ -96,6 +96,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -125,13 +128,13 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.carg
 
 # source '$HOME/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
-source $HOME/.config/broot/launcher/bash/br
+source "$HOME"/.config/broot/launcher/bash/br
 alias idea="eureka"
 
 # Source goto
 [[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
 
-source $HOME/.oh-my-git/prompt.sh
+source "$HOME"/.oh-my-git/prompt.sh
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -145,6 +148,7 @@ export FZF_TMUX_OPTS='-p80%,60%'
 
 export FZF_COMPLETION_OPTS='--border --info=inline'
 export FZF_DEFAULT_OPTS=' --height 40% --layout=reverse --border --prompt="> "'
+# export FZF_DEFAULT_OPTS='--color=bg+:#292e42,bg:#16161e,border:#1f2335,hl:#ff9e64,fg:#a9b1d6,header:#292e42,pointer:#bb9af7,fg+:#a9b1d6,preview-bg:#24283b,prompt:#7dcfff,hl+:#7aa2f7,info:#e0af68'
 
 # fzf --preview 'fzf-preview.sh {}'
 # export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build,tmp}'
