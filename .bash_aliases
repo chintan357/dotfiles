@@ -1,4 +1,19 @@
 alias cls='clear;ls'
+alias e=exit
+alias c=clear
+
+alias top=htop
+alias rm=trash
+alias cat=batcat
+alias bc="bc -l"
+alias dfm=pydf
+alias dum=ncdu
+alias cal='ncal -y -M'
+alias fw='sudo ufw'
+
+alias wget='wget -c'
+alias diff='diff --color'
+alias whois='whois -H'
 
 alias ls="eza --icons=always --group-directories-first"
 alias la='eza -a --color=always --icons=always --group-directories-first'
@@ -18,9 +33,10 @@ alias chgrp='chgrp --preserve-root'
 alias chownr='sudo chown -R --preserve-root'
 alias chmodr='sudo chmod -R --preserve-root'
 
-alias memtop10='ps aux --sort=-%mem | head -11'
-alias cputop10='ps aux --sort=-%cpu | head -11'
+alias memtop='ps aux --sort=-%mem | head -11'
+alias cputop='ps aux --sort=-%cpu | head -11'
 alias psx="ps auxf"
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 alias disk='lsblk -f'
 alias mounts='mount | column -t'
@@ -39,19 +55,28 @@ alias ping='ping -c 5'
 #-----------#
 
 alias rp='realpath'
+alias myalias='sh -c '\''realpath "$1" | xclip -selection clipboard'\'' -'
 alias cpy="xclip -selection clipboard"
+alias CC='$(fc -l -n -1) | cpy'
 alias fpath="readlink -f"
-function realfzf() { find "$(ralias rp='realpath'ealpath "$*")" -iname "*" | fzf; }
+alias genpwd='openssl rand -base64 16 | cpy'
+alias cpwd='pwd|cpy'
+
+# realpath "$*")" -iname "*"
+function realfzf() {
+    find "$(realpath "$1")" -iname "*" | fzf
+}
+alias path='echo -e ${PATH//:/\\n} | fzf'
 
 #-----------#
 
 alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
-# alias please='sudo $(history -p !!)'  # Run last command as sudo
-# alias please='sudo $(fc -ln -1)'  # Re-run last command with sudo
+# $(history -p !!)'
+# 'sudo $(fc -ln -1)'
 
-# weather() { curl wttr.in/"$1"; }
-# alias weather='curl wttr.in'
+weather() { curl wttr.in/"$1"; }
 dict() { curl "dict.org/d:$1"; }
+
 alias fortune='/usr/games/fortune'
 alias tuxsay='cowsay -f tux '
 alias matrix='cmatrix'
@@ -61,11 +86,7 @@ alias vim="$EDITOR"
 alias lvi='$EDITOR -c "normal '\''0"'
 alias v.='$EDITOR .'
 
-alias e=exit
-alias c=clear
-
 alias tailf='tail -f'
-alias path='echo -e ${PATH//:/\\n} | fzf'
 
 # alias make1='make -j$(($(nproc) + 1))'  # Use all cores +1 for compilation
 alias hg='history | grep'
@@ -77,31 +98,24 @@ alias myip='curl http://ipecho.net/plain; echo'
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias flushdns='sudo systemd-resolve --flush-caches'
 
-alias CC='$(fc -l -n -1) | cpy'
-
 alias cp='cp -r'
-# alias rm='rm -r'
-alias rr='rm -rf'
+alias rmrf='rm -rf'
 
 alias chmx='chmod +x'
 
 alias tree='tree -a -I ".svn|.git|.hg|.idea"'
 
-# alias hx='hexdump -C'
-# alias w1='watch -n 1'
+alias hx='hexdump -C'
+alias w1='watch -n 1'
 
 alias usage='du -ch | grep total'
 alias totalusage='df -hl --total | grep total'
 alias partusage='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
 alias most='du -hsx * | sort -rh | head -10'
-# alias du1="du -d 1"
+alias du1="du -d 1 -m"
 
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
 alias gaadl='gcloud auth application-default login'
-
-# alias cp='rsync -ah — info=progress2'
-alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
-alias ps="ps auxf"
 
 
 alias py='function _py() { python3 $1; }; _py'
@@ -109,35 +123,20 @@ alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
 # alias tree='tree -C --dirsfirst'
 # alias to='function _to() { cd "$@" && tree; }; _to'
 alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _search'
-alias genpwd='openssl rand -base64 16 | cpy'
-alias cpwd='pwd|cpy'
 
-alias top=htop
-alias rm=trash
-alias cat=batcat
-alias rd=rmdir
-alias bc="bc -l"
-alias dfm=pydf
-alias dum=ncdu
-alias cal='ncal -y -M'
-alias fw='sudo ufw'
-
-alias wget='wget -c'
-alias diff='diff --color'
-alias whois='whois -H'
 
 alias update='sudo apt update && sudo apt upgrade'
 alias update-get='sudo apt-get update && sudo apt-get upgrade'
+alias clean='sudo apt autoremove && sudo apt autoclean'
+alias clean-get='sudo apt-get autoremove && sudo apt-get autoclean'
 alias distup='sudo apt-get dist-upgrade'
 alias fupdate='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
-alias clean-get='sudo apt-get autoremove && sudo apt-get autoclean'
-alias clean='sudo apt autoremove && sudo apt autoclean'
-alias updateandclean='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt autoclean && sudo apt autoremove'
+alias updatenclean='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt autoclean && sudo apt autoremove'
 alias yupp='sudo apt install $1'
 alias show='sudo apt show $1'
 alias nope='sudo apt remove $1'
 
-alias sctl='systemctl'
+alias sysctl='systemctl'
 alias jou='sudo journalctl -b -n 200 -f'
 
 alias grepr='grep -r'
@@ -179,8 +178,8 @@ alias jupnb='jupyter notebook'
 
 alias cve='python3 -m venv .venv'
 alias act="source .venv/bin/activate"
-alias dact='deactivate'
 alias sopy='cve && act'
+alias dact='deactivate'
 alias rpy="uvicorn main:app --reload"
 
 # pyenv
@@ -193,8 +192,8 @@ alias pyl='pyenv local'
 alias pyU='pyenv uninstall'
 alias pyve='pyenv virtualenv'
 alias pyvels='pyenv virtualenvs'
-alias pya='pyenv activate'
-alias pyd='pyenv deactivate'
+alias pyact='pyenv activate'
+alias pydact='pyenv deactivate'
 
 alias pxi='pipx install'
 
@@ -221,6 +220,7 @@ alias tmkst='tmux kill-session -t'
 alias tmks='tmux kill-server'
 
 alias tmlk='tmux list-keys'               # List bound keys in tmux
+alias atomic='tmux new -s atomic'
 # alias tmlkb='tmux list-keys | grep -v "unbind" | grep'  # List only bound keys
 # alias tmlkB='tmux list-keys | grep "unbind" | grep'   # List only unbound keys
 
@@ -247,19 +247,16 @@ function cdl() {
   cd "$1" && ls
 }
 
-# alias docs='xdg-open ~/Documents'
 # alias twitter='xdg-open https://www.twitter.com'
 
-
-alias vaults='cd ~/vaults'
 # c() { cd ~/code/$1; }
 # h() { cd ~/$1; }
 alias deskw="cd /mnt/c/Users/ChintanPatel/Desktop"
-alias desk="cd ~/Desktop"
-alias cdnvim='cd ~/.config/nvim'
 alias obsd='cd /mnt/c/saleenaa357/daily_notes'
+
+alias vaults='cd ~/vaults'
+alias cdnvim='cd ~/.config/nvim'
 alias config='cd ~/.config'
-alias down='cd ~/Downloads'
 alias tmp='cd ~/trash'
 alias repo='cd ~/repo'
 alias work='cd ~/work'
@@ -268,6 +265,9 @@ alias idya='cd ~/idya'
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
 alias private='cd ~/private'
+
+alias desk="cd ~/Desktop"
+alias desk="cd ~/Documents"
 alias down='cd ~/Downloads'
 #-----------#
 
@@ -327,30 +327,27 @@ alias drmf='sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo do
 
 alias lg=lazygit
 
-alias g=git
-alias ga='git add'
+alias gadd='git add'
 alias gaa='git add .'
 alias gcl='git clone'
 alias gco='git checkout'
 alias gcob='git checkout -b'
-alias gb="git branch"
-alias gbl="git branch -l"
+alias gbr="git branch"
+alias gbrl="git branch -l"
 
-alias gd='git diff'
-alias gds="git diff --staged"
+alias gdiff='git diff'
+alias gdiffs="git diff --staged"
 
 alias gst='git status'
 alias gsts='git status -sb'
 
 alias glog='git log --oneline --decorate --all --graph'
 
-alias gc="git commit"
 alias gcm='git commit -m'
-alias gcam="git commit -am"
+alias gcma="git commit -am"
 alias amend='git commit --amend --no-edit'
-alias gcaa="git commit -a --amend"
 
-alias gp='git push'
+alias gpush='git push'
 alias gP='git pull'
 alias gpo='git push origin'
 
@@ -359,11 +356,10 @@ alias gwc='git whatchanged'
 alias glogp="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gnah="git clean -df && git checkout -- ."
 
-alias grv="git remote -v"
-alias gbD='git branch -D'
 alias grecent='git for-each-ref --sort="-committerdate" --format="%(committerdate:short) %(refname:short)" refs/heads'
 alias glast="git log -1 HEAD"
-alias gbd='git branch -d'    # Delete a branch
+alias gbrd='git branch -d'    # Delete a branch
+alias gbrD='git branch -D'
 alias gcb='git checkout -b'  # Create and checkout a new branch
 alias gll='git log --stat'
 alias grb='git rebase'
@@ -371,14 +367,14 @@ alias grbi='git rebase -i'
 alias grm='git remote'
 alias grmv='git remote -v'
 alias grma='git remote add'
-alias grmr='git remote remove'
+alias grmrm'git remote remove'
 alias grmu='git remote update'
 alias gtag='git tag'
 alias gtagd='git tag -d'
 alias gtags='git tag -l'
 alias gclean='git clean -fd'
 alias gcp='git cherry-pick'
-alias gf='git fetch'
+alias gfetch='git fetch'
 alias gfa='git fetch --all'
 alias grs='git reset'
 alias grsh='git reset --hard'
