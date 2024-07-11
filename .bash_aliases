@@ -235,7 +235,7 @@ alias tmkst='tmux kill-session -t'
 alias tmks='tmux kill-server'
 
 alias tmlk='tmux list-keys'               # List bound keys in tmux
-alias atomic='tmux new -s atomic'
+alias atomic='tmux new-session -A -s atomic'
 # alias tmlkb='tmux list-keys | grep -v "unbind" | grep'  # List only bound keys
 # alias tmlkB='tmux list-keys | grep "unbind" | grep'   # List only unbound keys
 
@@ -269,6 +269,7 @@ function cdl() {
 alias deskw="cd /mnt/c/Users/ChintanPatel/Desktop"
 alias obsd='cd /mnt/c/saleenaa357/daily_notes'
 
+alias i3="$EDITOR ~/.config/i3/config"
 alias vaults='cd ~/vaults'
 alias cdnvim='cd ~/.config/nvim'
 alias config='cd ~/.config'
@@ -281,9 +282,9 @@ alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
 alias private='cd ~/private'
 
-alias desk="cd ~/Desktop"
-alias desk="cd ~/Documents"
-alias down='cd ~/Downloads'
+alias desk="cd ~/desktop"
+alias docs="cd ~/documents"
+alias down='cd ~/downloads'
 #-----------#
 
 alias ytdl='youtube-dl'

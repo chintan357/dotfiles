@@ -1,23 +1,38 @@
+[user]
+	email = captain357@mail.com
+	name = chintan357
+
 [core]
-  editor = vi
+  editor = nvim
   excludesFile = ~/.gitignore
   ignorecase = false
-	pager = git-split-diffs --color | less -RFX
+	; pager = git-split-diffs --color | less -RFX
+	pager = delta
 
 [interactive]
   diffFilter = delta --color-only
 
+[init]
+	defaultBranch = master
+
 [delta]
   navigate = true
+	; syntax-theme = Coldark-Dark
+	plus-style = syntax 22
+	minus-style = syntax 52
 
 [merge]
   conflictstyle = diff3
 
 [diff]
   colorMoved = default
+  tool = vimdiff
 
 [push]
   default = simple
+
+[pull]
+	ff = only
 
 [color]
   status = auto
@@ -31,18 +46,16 @@
   a = "!git status --short | peco | awk '{print $2}' | xargs git add"
   d = diff
   co = checkout
-  ci = commit
-  ca = commit -a
+  cm = commit
+  cma = commit -a
   ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
   pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
   st = status
   br = branch
-  ba = branch -a
+  bra = branch -a
   bm = branch --merged
   bn = branch --no-merged
   df = "!git hist | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
-  hist = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
-  llog = log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
   open = "!hub browse"
   type = cat-file -t
   dump = cat-file -p
@@ -55,14 +68,8 @@
 [hub]
 	protocol = https
 
-[diff]
-  tool = vimdiff
-
-#[difftool "vimdiff"]
-#  cmd = vim -d \"$LOCAL\" \"$REMOTE\"
-
 [mergetool "vimdiff"]
-  cmd = vim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  cmd = "vim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\""
   trustExitCode = true
 
 [filter "lfs"]
@@ -74,9 +81,10 @@
 [ghq]
   root = ~/.ghq
 
-[user]
-	email = captain357@mail.com
-	name = chintan357
 [credential "https://github.com"]
 	helper =
 	helper = !/usr/bin/gh auth git-credential
+
+# [difftool "vimdiff"]
+# cmd = vim -d \"$LOCAL\" \"$REMOTE\"
+
