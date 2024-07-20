@@ -175,4 +175,4 @@ eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 eval $(thefuck --alias fq)
-. "$HOME/.cargo/env"
+# eval $(ssh-agent -s)

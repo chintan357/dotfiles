@@ -30,13 +30,12 @@ alias findf='find . -type f -name'
 alias findd='find . -type d -name'
 alias count='find . -type f | wc -l'
 alias pyfind='find . -name "*.py"'
-# Grep among .py files
 alias pygrep='grep -nr --include="*.py"'
+
 # Run proper IPython regarding current virtualenv (if any)
 # alias ipython='python3 -c "import IPython, sys; sys.exit(IPython.start_ipython())"'
 alias ipython='ipython3'
 alias ipy='ipython3'
-
 
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 alias ps='ps -f'

@@ -9,7 +9,7 @@ return {
 				"pylint",
 			},
 			markdown = { "markdownlint" }, -- { "vale" }
-			json = { "jsonlint" },
+			-- json = { "jsonlint" },
 		}
 
 		-- Automatically run linters after saving.  Use "InsertLeave" for more aggressive linting.

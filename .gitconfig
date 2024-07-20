@@ -87,4 +87,3 @@
 
 # [difftool "vimdiff"]
 # cmd = vim -d \"$LOCAL\" \"$REMOTE\"
-
