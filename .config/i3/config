@@ -13,9 +13,14 @@ exec_always ~/.config/i3/mi-notebook.sh
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 for_window [class="^.*"] border pixel 3
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
 # default_border pixel 0
 # default_border none
 # hide_edge_borders both
+# hide_edge_borders smart
 default_floating_border none
 # new_window pixel 1
 new_float normal
@@ -94,7 +99,9 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Mononoki Nerd Font 14"
+bindsym $mod+space exec rofi -combi-modi window#run -show combi -modi combi
+# bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Mononoki Nerd Font 14"
+# bindsym $mod+o exec rofimoji
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 
 # There also is i3-dmenu-desktop which only displays applications shipping a .desktop file. It is a wrapper around dmenu, so you need that installed.
@@ -213,8 +220,6 @@ for_window [class="Pavucontrol"] floating enable
 # for_window [class="Timeset-gui"] floating enable border normal
 # for_window [class="(?i)virtualbox"] floating enable border normal
 
-# # switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
 
 # # Autostart applications
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -275,14 +280,18 @@ bar {
                 separator_symbol "❰"
                 tray_output primary
                 colors {
-                        background #2f343f
-                        statusline #2f343f
-                        separator #ebcb8b
 
-                        #                  border             background         text
-                        focused_workspace  $bg-color          $bg-color          $text-color
-                        inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-                        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+                    focused_workspace #0088CC #0088CC #ffffff
+                    active_workspace #333333 #333333 #ffffff
+                    inactive_workspace #333333 #333333 #888888
+                    urgent_workspace #2f343a #900000 #ffffff
+                    background #2f343f
+                    statusline #2f343f
+                    separator #ebcb8b
+                #         #                  border             background         text
+                #         focused_workspace  $bg-color          $bg-color          $text-color
+                #         inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+                #         urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
                 }
 }
 bindsym $mod+m bar mode toggle

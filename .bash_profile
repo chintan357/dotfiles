@@ -11,15 +11,13 @@ if [ -f "$HOME/.bashrc" ]; then
   . "$HOME/.bashrc"
 fi
 
-# if [ -f "$HOME/.inputrc" ]; then
-#   . "$HOME/.inputrc"
-# fi
+if [ -f "$HOME/.inputrc" ]; then
+  . "$HOME/.inputrc"
+fi
 
-export HISTCONTROL=ignoredups
 export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 
-### SETTING OTHER ENVIRONMENT VARIABLES
 if [ -z "$XDG_CONFIG_HOME" ] ; then
   export XDG_CONFIG_HOME="$HOME/.config"
 fi
@@ -44,3 +42,4 @@ safesource "$HOME/.rvm/scripts/rvm"
 source $HOME/.config/broot/launcher/bash/br
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+. "$HOME/.cargo/env"

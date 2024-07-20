@@ -26,3 +26,4 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 source ~/.oh-my-git/prompt.sh
+. "$HOME/.cargo/env"

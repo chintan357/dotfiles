@@ -12,9 +12,7 @@ case $- in
 esac
 
 HISTCONTROL=ignoreboth
-
 shopt -s histappend
-
 HISTSIZE=9999
 HISTFILESIZE=9999
 
@@ -38,30 +36,6 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-force_color_prompt=yes
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -77,12 +51,6 @@ fi
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-
-# some more ls aliases
-# alias ll='ls -alF'
-# alias la='ls -A'
-# alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -125,11 +93,8 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.carg
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
 # source '$HOME/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
-source "$HOME"/.config/broot/launcher/bash/br
-alias idea="eureka"
 
 # Source goto
 [[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
@@ -141,7 +106,6 @@ source "$HOME"/.oh-my-git/prompt.sh
 
 export FZF_CTRL_T_OPTS=" --walker-skip .git,node_modules,target --preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
-
 export FZF_ALT_C_OPTS=" --walker-skip .git,node_modules,target --preview 'tree -C {}'"
 
 export FZF_TMUX_OPTS='-p80%,60%'
@@ -150,9 +114,6 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 export FZF_DEFAULT_OPTS=' --height 40% --layout=reverse --border --prompt="> "'
 # export FZF_DEFAULT_OPTS='--color=bg+:#292e42,bg:#16161e,border:#1f2335,hl:#ff9e64,fg:#a9b1d6,header:#292e42,pointer:#bb9af7,fg+:#a9b1d6,preview-bg:#24283b,prompt:#7dcfff,hl+:#7aa2f7,info:#e0af68'
 
-# fzf --preview 'fzf-preview.sh {}'
-# export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build,tmp}'
-# export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build,tmp}'
 
 # if type ag &> /dev/null; then
 #     export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
@@ -203,7 +164,6 @@ export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 if [ -f "$HOME"/.config/hub.bash_completion.sh ]; then
   . "$HOME"/.config/hub.bash_completion.sh
 fi
-alias lzd='lazydocker'
 
 bind "set completion-ignore-case on"
 
@@ -215,3 +175,4 @@ eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 eval $(thefuck --alias fq)
+. "$HOME/.cargo/env"

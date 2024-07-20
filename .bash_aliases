@@ -33,7 +33,9 @@ alias pyfind='find . -name "*.py"'
 # Grep among .py files
 alias pygrep='grep -nr --include="*.py"'
 # Run proper IPython regarding current virtualenv (if any)
-alias ipython='python3 -c "import IPython, sys; sys.exit(IPython.start_ipython())"'
+# alias ipython='python3 -c "import IPython, sys; sys.exit(IPython.start_ipython())"'
+alias ipython='ipython3'
+alias ipy='ipython3'
 
 
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
@@ -148,7 +150,7 @@ alias distup='sudo apt-get dist-upgrade'
 alias fupdate='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
 alias updatenclean='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt autoclean && sudo apt autoremove'
 alias yupp='sudo apt install $1'
-alias show='sudo apt show $1'
+alias show='apt show $1'
 alias nope='sudo apt remove $1'
 
 alias sysctl='systemctl'
@@ -246,7 +248,7 @@ alias cd..='cd ..'
 alias cdtmp='cd $(mktemp -d)'
 alias root='cd /'
 
-alias R=". ranger"
+alias R="yy"
 alias exp="Explorer.exe ."
 
 alias bk="cd -"
@@ -276,21 +278,24 @@ alias config='cd ~/.config'
 alias tmp='cd ~/trash'
 alias repo='cd ~/repo'
 alias work='cd ~/work'
-alias lab='cd ~/homelab'
+alias lab='cd ~/lab'
+alias hlab='cd ~/homelab'
 alias idya='cd ~/idya'
+alias idea="eureka"
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
 alias private='cd ~/private'
 
-alias desk="cd ~/desktop"
-alias docs="cd ~/documents"
-alias down='cd ~/downloads'
+alias desk="cd ~/Desktop"
+alias docs="cd ~/Documents"
+alias down='cd ~/Downloads'
 #-----------#
 
 alias ytdl='youtube-dl'
 
 #-----------#
 
+alias lzd='lazydocker'
 alias dk='docker'
 
 alias dkps='docker ps'
