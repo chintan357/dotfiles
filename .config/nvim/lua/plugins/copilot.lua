@@ -11,15 +11,15 @@ return {
 		local keymap = vim.keymap.set
 		local opts = { silent = true }
 
-		vim.keymap.set("i", "<C-i>", 'copilot#Accept("\\<CR>")', {
+		keymap("i", "<C-i>", 'copilot#Accept("\\<CR>")', {
 			expr = true,
 			replace_keycodes = false,
 		})
 
 		keymap("i", "<C-l>", "<Plug>(copilot-accept-line)", opts)
-		keymap("i", "<M-n>", "<Plug>(copilot-next)", opts)
-		keymap("i", "<M-p>", "<Plug>(copilot-previous)", opts)
-		-- keymap("i", "<M-k>", "<Plug>(copilot-suggest)", opts)
-		keymap("i", "<M-d>", "<Plug>(copilot-dismiss)", opts)
+		-- keymap("i", "<-n>", "<Plug>(copilot-next)", opts)
+		-- keymap("i", "<-p>", "<Plug>(copilot-previous)", opts)
+		-- keymap("i", "<-k>", "<Plug>(copilot-suggest)", opts)
+		-- keymap("i", "<-d>", "<Plug>(copilot-dismiss)", opts)
 	end,
 }

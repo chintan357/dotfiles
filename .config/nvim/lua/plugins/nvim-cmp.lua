@@ -80,7 +80,7 @@ return {
 					}),
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-Y"] = cmp.mapping.complete(),
+					["<C-y"] = cmp.mapping.complete(),
 					["<C-d>"] = cmp.mapping.abort(),
 					["<C-n>"] = cmp.mapping.select_next_item(),
 					["<C-p>"] = cmp.mapping.select_prev_item(),
