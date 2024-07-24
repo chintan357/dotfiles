@@ -165,8 +165,8 @@ if [ -f "$HOME"/.config/hub.bash_completion.sh ]; then
   . "$HOME"/.config/hub.bash_completion.sh
 fi
 
-bind "set completion-ignore-case on"
-
+bind 'TAB:menu-complete'
+bind '"\e[Z":menu-complete-backward'
 # c() { cd ~/code/$1; }
 # h() { cd ~/$1; }
 

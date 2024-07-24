@@ -11,9 +11,9 @@ if [ -f "$HOME/.bashrc" ]; then
   . "$HOME/.bashrc"
 fi
 
-if [ -f "$HOME/.inputrc" ]; then
-  . "$HOME/.inputrc"
-fi
+# if [ -f "$HOME/.inputrc" ]; then
+#   . "$HOME/.inputrc"
+# fi
 
 export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="less -R --use-color -Dd+r -Du+b"

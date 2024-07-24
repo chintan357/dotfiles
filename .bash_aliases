@@ -131,7 +131,19 @@ alias dirssize="du -sch ./* 2> /dev/null"
 alias du1="du -d 1 -m"
 
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
+
 alias gaadl='gcloud auth application-default login'
+alias gauth='gcloud auth login'
+alias gapat='gcloud auth print-access-token'
+alias ginit='gcloud init'
+alias ginstances='gcloud compute instances list'
+alias gstols='gcloud storage ls'
+alias gprols='gcloud projects list'
+alias gproset='gcloud config set project'
+alias gconfls='gcloud config configurations list'
+alias gconfa='gcloud config configurations activate'
+alias gbilling='gcloud beta billing accounts list'
+alias giam='gcloud iam list'
 
 
 alias py='function _py() { python3 $1; }; _py'
@@ -181,13 +193,16 @@ alias k15='kill -15'
 alias erc="$EDITOR ~/.bashrc"
 alias epro="$EDITOR ~/.bash_profile"
 alias ealias="$EDITOR ~/.bash_aliases"
-alias essh='$EDITOR ~/.ssh/config'
-alias evim="$EDITOR ~/.vimrc"
+alias essh="$EDITOR ~/.ssh/config"
+alias evim="$EDITOR ~/.config/nvim/init.lua"
 alias envim="$EDITOR ~/.config/nvim/init.lua"
 alias etmux="$EDITOR ~/.tmux.conf"
 alias eprompt="$EDITOR ~/.config/starship.toml"
-alias sopro="source ~/.bash_profile && echo 'refreshed bash_profile...'"
-alias sorc="source ~/.bashrc && echo 'refreshed bashrc...'"
+alias eipy="$EDITOR ~/.ipython/profile_default/ipython_config.py"
+alias einput="$EDITOR ~/.inputrc"
+alias soinput="source ~/.inputrc && echo 'refreshed .inputrc'"
+alias sopro="source ~/.bash_profile && echo 'refreshed .bash_profile'"
+alias sorc="source ~/.bashrc && echo 'refreshed .bashrc'"
 
 #-----------#
 alias jupnb='jupyter notebook'
@@ -501,11 +516,5 @@ alias kcignp='kubectl-istio-gateway-http-nodeport'
 # minikube
 alias mks='minikube start'
 alias mkt='minikube stop'
-
-#-----------#
-
-if [ -f ~/.config/action/sources ]; then
-	. ~/.config/action/sources
-fi
 
 #-----------#
