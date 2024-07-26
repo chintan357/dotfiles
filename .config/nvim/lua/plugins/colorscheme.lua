@@ -1,6 +1,5 @@
 return {
   "olimorris/onedarkpro.nvim",
-  lazy = false,
   priority = 1000,
   opts = {
     colors = {
@@ -22,19 +21,19 @@ return {
     highlights = {
       CodeCompanionTokens = { fg = "${gray}", italic = true },
       CodeCompanionVirtualText = { fg = "${gray}", italic = true },
-    --
+      --
       ["@markup.raw.block.markdown"] = { bg = "${codeblock}" },
       ["@markup.quote.markdown"] = { italic = true, extend = true },
-    --
+      --
       EdgyNormal = { bg = "${bg}" },
       EdgyTitle = { fg = "${purple}", bold = true },
-    --
+      --
       EyelinerPrimary = { fg = "${green}" },
       EyelinerSecondary = { fg = "${blue}" },
-    --
+      --
       NormalFloat = { bg = "${bg}" }, -- Set the terminal background to be the same as the editor
       FloatBorder = { fg = "${gray}", bg = "${bg}" },
-    --
+      --
       CursorLineNr = { bg = "${bg}", fg = "${fg}", italic = true },
       DiffChange = { underline = true }, -- diff mode: Changed line |diff.txt|
       LocalHighlight = { bg = "${local_highlight}" },
@@ -42,8 +41,8 @@ return {
       ModeMsg = { fg = "${gray}" }, -- Make command line text lighter
       Search = { bg = "${selection}", fg = "${yellow}", underline = true },
       VimLogo = { fg = { dark = "#81b766", light = "#029632" } },
-    --
-    --   -- Aerial plugin
+      --
+      --   -- Aerial plugin
       AerialClass = { fg = "${purple}", bold = true, italic = true },
       AerialClassIcon = { fg = "${purple}" },
       AerialConstructorIcon = { fg = "${yellow}" },
@@ -55,63 +54,63 @@ return {
       AerialPackageIcon = { fg = "${fg}" },
       AerialStructIcon = { fg = "${cyan}" },
       AerialVariableIcon = { fg = "${orange}" },
-    --
-    --   -- Alpha
-    --   AlphaHeader = {
-    --     fg = { dark = "${green}", light = "${red}" },
-    --   },
-    --   AlphaButtonText = {
-    --     fg = "${blue}",
-    --     bold = true,
-    --   },
-    --   AlphaButtonShortcut = {
-    --     fg = { dark = "${green}", light = "${yellow}" },
-    --     italic = true,
-    --   },
-    --   AlphaFooter = { fg = "${gray}", italic = true },
-    --
-    --   -- Cmp
+
+      -- Alpha
+      AlphaHeader = {
+        fg = { dark = "${green}", light = "${red}" },
+      },
+      AlphaButtonText = {
+        fg = "${blue}",
+        bold = true,
+      },
+      AlphaButtonShortcut = {
+        fg = { dark = "${green}", light = "${yellow}" },
+        italic = true,
+      },
+      AlphaFooter = { fg = "${gray}", italic = true },
+      --
+      --   -- Cmp
       CmpItemAbbrMatch = { fg = "${blue}", bold = true },
       CmpItemAbbrMatchFuzzy = { fg = "${blue}", underline = true },
-    --
-    --   -- Copilot
+      --
+      --   -- Copilot
       CopilotSuggestion = { fg = "${copilot}", italic = true },
-    --
-    --   -- DAP
+      --
+      --   -- DAP
       DebugBreakpoint = { fg = "${red}", italic = true },
       DebugHighlightLine = { fg = "${purple}", italic = true },
       NvimDapVirtualText = { fg = "${cyan}", italic = true },
-    --
-    --   -- DAP UI
+      --
+      --   -- DAP UI
       DapUIBreakpointsCurrentLine = { fg = "${yellow}", bold = true },
-    --
-    --   -- Diagflow.nvim
-    --   DiagnosticFloatingError = { fg = "${red}", italic = true },
-    --   DiagnosticFloatingWarn = { fg = "${yellow}", italic = true },
-    --   DiagnosticFloatingHint = { fg = "${cyan}", italic = true },
-    --   DiagnosticFloatingInfo = { fg = "${blue}", italic = true },
-    --
-    --   -- Heirline
-    --   Heirline = { bg = "${statusline_bg}" },
-    --   HeirlineStatusColumn = { fg = "${statuscolumn_border}" },
-    --   HeirlineBufferline = { fg = { dark = "#939aa3", light = "#6a6a6a" } },
-    --   HeirlineWinbar = { fg = "${breadcrumbs}", italic = true },
-    --   HeirlineWinbarEmphasis = { fg = "${fg}", italic = true },
-    --
+      --
+      --   -- Diagflow.nvim
+      --   DiagnosticFloatingError = { fg = "${red}", italic = true },
+      --   DiagnosticFloatingWarn = { fg = "${yellow}", italic = true },
+      --   DiagnosticFloatingHint = { fg = "${cyan}", italic = true },
+      --   DiagnosticFloatingInfo = { fg = "${blue}", italic = true },
+      --
+      --   -- Heirline
+      --   Heirline = { bg = "${statusline_bg}" },
+      --   HeirlineStatusColumn = { fg = "${statuscolumn_border}" },
+      --   HeirlineBufferline = { fg = { dark = "#939aa3", light = "#6a6a6a" } },
+      --   HeirlineWinbar = { fg = "${breadcrumbs}", italic = true },
+      --   HeirlineWinbarEmphasis = { fg = "${fg}", italic = true },
+      --
       -- Luasnip
       LuaSnipChoiceNode = { fg = "${yellow}" },
       LuaSnipInsertNode = { fg = "${yellow}" },
-    --
+      --
       ["@markup.list.unchecked.markdown"] = { fg = "${bg}", bg = "${fg}" },
-    --
-    --   -- Neotest
-    --   NeotestAdapterName = { fg = "${purple}", bold = true },
-    --   NeotestFocused = { bold = true },
-    --   NeotestNamespace = { fg = "${blue}", bold = true },
-    --
+      --
+      -- Neotest
+      NeotestAdapterName = { fg = "${purple}", bold = true },
+      NeotestFocused = { bold = true },
+      NeotestNamespace = { fg = "${blue}", bold = true },
+      --
       -- Nvim UFO
       UfoFoldedEllipsis = { fg = "${yellow}" },
-    --
+      --
       -- Telescope
       TelescopeBorder = {
         fg = "${telescope_results}",
@@ -143,10 +142,12 @@ return {
       TelescopeSelection = { bg = "${telescope_selection}" },
       TelescopePreviewNormal = { bg = "${telescope_preview}" },
       TelescopePreviewBorder = { fg = "${telescope_preview}", bg = "${telescope_preview}" },
-    --
+      --
       -- Virt Column
       VirtColumn = { fg = "${indentline}" },
     },
+    caching = false,
+    cache_path = vim.fn.expand(vim.fn.stdpath("cache") .. "/onedarkpro_dotfiles"),
     plugins = {
       barbar = false,
       lsp_saga = false,

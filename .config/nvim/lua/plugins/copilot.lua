@@ -16,10 +16,9 @@ return {
 			replace_keycodes = false,
 		})
 
-		keymap("i", "<C-l>", "<Plug>(copilot-accept-line)", opts)
-		-- keymap("i", "<-n>", "<Plug>(copilot-next)", opts)
-		-- keymap("i", "<-p>", "<Plug>(copilot-previous)", opts)
-		-- keymap("i", "<-k>", "<Plug>(copilot-suggest)", opts)
-		-- keymap("i", "<-d>", "<Plug>(copilot-dismiss)", opts)
+		keymap("i", "<C-o>", "<Plug>(copilot-accept-line)", opts)
+		-- keymap("i", "<C-S-p>", "<Plug>(copilot-previous)", opts)
+		-- keymap("i", "<C-S-n>", "<Plug>(copilot-next)", opts)
+		-- keymap("i", "<C-k>", "<Plug>(copilot-suggest)", opts)
 	end,
 }

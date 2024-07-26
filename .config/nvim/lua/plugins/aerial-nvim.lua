@@ -34,7 +34,6 @@ return {
 	end,
 }
 -- keymaps = {
---    ["g?"] = "actions.show_help",
 --
 --    ["<C-v>"] = "actions.jump_vsplit",
 --    ["<C-s>"] = "actions.jump_split",

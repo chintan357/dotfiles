@@ -87,3 +87,5 @@
 
 # [difftool "vimdiff"]
 # cmd = vim -d \"$LOCAL\" \"$REMOTE\"
+[github]
+	user = chintan357

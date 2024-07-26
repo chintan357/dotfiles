@@ -55,5 +55,6 @@ return {
 	config = function(_, opts)
 		require("chatgpt").setup(opts)
 		vim.keymap.set("n", "<leader>aa", ":ChatGPTActAs<CR>", { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>uc", "<cmd>ChatGPT<cr>", { noremap = true, silent = true })
 	end,
 }

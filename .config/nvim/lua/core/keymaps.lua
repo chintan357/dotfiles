@@ -7,22 +7,22 @@ function keymap(mode, lhs, rhs, opts)
 end
 
 keymap("n", "<C-c>", "<cmd>bd<CR>")
-keymap("v", "v", "<C-v>")
-keymap("v", "V", "gj")
-
-keymap("n", "+", "<C-a>")
-keymap("n", "-", "<C-x>")
-
+keymap("n", "<C-q>", "<cmd>q<CR>")
 keymap("n", "<leader>bd", ":bd<CR>")
 keymap("n", "<leader>qq", ":qa<CR>")
 keymap("n", "<leader>Q", ":qa!<CR>")
+
+keymap("v", "v", "<C-v>")
+
+keymap("n", "+", "<C-a>")
+keymap("n", "-", "<C-x>")
 
 keymap("n", "gx", ":!open <c-r><c-a><CR>")
 
 keymap("n", "<leader>_", "<c-W>s")
 keymap("n", "<leader>|", "<C-W>v")
 keymap("n", "<leader>ww", "<C-W>w")
-keymap("n", "<leader>wd", "<C-W>c")
+keymap("n", "<leader>we", "<C-W>c")
 keymap("n", "<leader>s-", ":close<CR>")
 keymap("n", "<leader>s=", "<C-w>=")
 
@@ -33,11 +33,9 @@ keymap("n", "<leader><tab>l", "<cmd>tabnext<cr>")
 keymap("n", "<leader><tab>h", "<cmd>tabprevious<cr>")
 keymap("n", "<leader><tab>d", "<cmd>tabclose<cr>")
 
-keymap("n", "==", "gg<S-v>G")
+-- keymap("n", "==", "gg<S-v>G")
 
 keymap("n", "J", "mzJ`z")
-
-keymap("n", "<M-o>", "<cmd>Oil<CR>")
 
 keymap("n", "<leader>qo", ":copen<CR>")
 
@@ -87,11 +85,11 @@ keymap("n", "<S-h>", ":bprevious<cr>")
 keymap("n", "<leader><Enter>", "!!bash<CR>")
 
 vim.keymap.set("n", ";", ":", { noremap = true })
--- vim.keymap.set("n", ";", ":")
 vim.keymap.set("n", ":", ";", { noremap = true })
+-- vim.keymap.set("n", ";", ":")
 -- vim.keymap.set("n", ":", ";")
 
-vim.cmd("command! W execute 'w !sudo tee % > /dev/null' <bar> edit!")
+-- vim.cmd("command! W execute 'w !sudo tee % > /dev/null' <bar> edit!")
 
 keymap("n", "<Esc>", ":nohls<CR>")
 
@@ -123,19 +121,7 @@ keymap({ "x", "v" }, ",", "$")
 
 -- stylua: ignore start
 keymap("n", "<leader>fe", "<cmd>Neotree toggle<cr>")
-keymap("n", "<leader>vo", ":MaximizerToggle<CR>")
 keymap("n", "<leader>gb", ":GitBlameToggle<CR>")
-keymap("n", "<leader>uc", "<cmd>ChatGPT<cr>")
-keymap("n", "<leader>uC", function() require("CopilotChat").toggle({window = {
-    layout = 'float',
-    title = '🚀',
-    width = 0.99, -- fractional width of parent, or absolute width in columns when > 1
-    height = 0.99, -- fractional height of parent, or absolute height in rows when > 1
-    border = 'none', -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
-    footer = nil, -- footer of chat window
-      zindex = 1, -- determines if window is on top or below other floating windows
-  }}
-) end)
 
 keymap("n", "yod", "<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.disable() else vim.diagnostic.enable() end<CR>")
 keymap("n", "yot", ":TagbarToggle<CR>")
@@ -144,14 +130,13 @@ keymap("n", "yoT", function() if vim.b.ts_highlight then vim.treesitter.stop() e
 keymap("n", "<leader>yF", function() local filename = vim.fn.expand("%") local lineno = vim.fn.line(".") vim.fn.setreg("+", filename .. ":" .. lineno) end)
 keymap("n", "<leader>yf", function() local filename = vim.fn.expand("%") vim.fn.setreg("+", filename) end)
 
-
 keymap("n", "N", [[v:searchforward ? 'Nzz' : 'nzz']], { expr = true })
 keymap("n", "n", [[v:searchforward ? 'nzz' : 'Nzz']], { expr = true })
 
-vim.keymap.set("n", "<M-,>", "<c-w>5<")
-vim.keymap.set("n", "<M-.>", "<c-w>5>")
--- vim.keymap.set("n", "<M-S-,>", "<C-W>5-")
--- vim.keymap.set("n", "<M-S-.>", "<C-W>5+")
+keymap("n", "<M-,>", "<c-w>5>")
+keymap("n", "<M-.>", "<c-w>5<")
+-- keymap("n", "<C-,>", "<C-W>5-")
+-- keymap("n", "<C-.>", "<C-W>5+")
 
 -- keymap("i", "", "<cmd>lua vim.lsp.buf.completion()<CR>")
 -- keymap("i", "<C-Y>", "<C-X><C-O>")

@@ -32,6 +32,16 @@ return {
 				desc = "CopilotChat - Prompt actions",
 			},
 			{
+				"<leader>ccq",
+				function()
+					local input = vim.fn.input("Quick Chat: ")
+					if input ~= "" then
+						require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+					end
+				end,
+				desc = "CopilotChat - Quick chat",
+			},
+			{
 				"<leader>cc",
 				function()
 					local input = vim.fn.input("Quick Chat: ")
@@ -76,6 +86,13 @@ return {
 
 		opts = {
 			prompts = prompts,
+			temperature = 0,
+			show_folds = false, -- Shows folds for sections in chat
+			highlight_selection = true, -- Highlight selection in the source buffer when in the chat window
+
+			context = nil, -- Default context to use, 'buffers', 'buffer' or none (can be specified manually in prompt via @).
+			history_path = vim.fn.stdpath("data") .. "/copilotchat_history", -- Default path to stored history
+			callback = nil, -- Callback to use when ask response is received
 
 			show_help = false,
 			auto_follow_cursor = false,
@@ -98,14 +115,39 @@ return {
 					normal = "<CR>",
 					insert = "<C-CR>",
 				},
+				complete = {
+					detail = "Use @<Tab> or /<Tab> for options.",
+					insert = "<Tab>",
+				},
+				close = {
+					normal = "q",
+					insert = "<C-c>",
+				},
+				accept_diff = {
+					normal = "<C-y>",
+					insert = "<C-y>",
+				},
+				yank_diff = {
+					normal = "gy",
+				},
+				show_diff = {
+					normal = "gd",
+				},
+				show_system_prompt = {
+					normal = "gp",
+				},
+				show_user_selection = {
+					normal = "gs",
+				},
 			},
 		},
 		config = function(_, opts)
 			require("CopilotChat.integrations.cmp").setup()
+
 			local chat = require("CopilotChat")
 			local select = require("CopilotChat.select")
-			opts.selection = select.unnamed
 
+			opts.selection = select.unnamed
 			opts.prompts.Commit = {
 				prompt = "Write commit message for the change with commitizen convention",
 				selection = select.gitdiff,
@@ -140,7 +182,7 @@ return {
 					selection = select.visual,
 					window = {
 						layout = "float",
-						relative = "cursor",
+						relative = "editor", -- cursor
 						width = 1,
 						height = 0.4,
 						row = 1,
@@ -151,6 +193,20 @@ return {
 			vim.api.nvim_create_user_command("CopilotChatBuffer", function(args)
 				chat.ask(args.args, { selection = select.buffer })
 			end, { nargs = "*", range = true })
+
+			vim.keymap.set("n", "<leader>ug", function()
+				require("CopilotChat").toggle({
+					window = {
+						layout = "float",
+						title = "🚀",
+						width = 0.99,
+						height = 0.99,
+						border = "rounded", -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
+						footer = nil, -- footer of chat window
+						zindex = 1,
+					},
+				})
+			end, { noremap = true, silent = true })
 		end,
 	},
 }
