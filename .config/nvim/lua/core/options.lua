@@ -2,7 +2,7 @@ local vb = vim.bo
 local vw = vim.wo
 local vo = vim.opt
 
-vim.g.loaded_perl_provider = 0 -- Do not load Perl
+-- vim.g.loaded_perl_provider = 0 -- Do not load Perl
 
 local opt = vim.opt
 
@@ -18,6 +18,7 @@ local opt = vim.opt
 -- 	diff = "╱",
 -- 	eob = " ",
 -- }
+-- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 opt.relativenumber = true
 opt.number = true
@@ -110,10 +111,8 @@ vim.cmd("filetype plugin indent on")
 -- opt.writebackup = false
 -- opt.swapfile = false
 
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-
-opt.foldcolumn = "1" -- '0' is not bad
+-- opt.foldcolumn = "auto:9"
+opt.foldcolumn = "0"
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
@@ -186,16 +185,15 @@ opt.infercase = true
 -- opt.fillchars = "eob: " -- Don't show `~` outside of buffer
 -- opt.breakindent = true
 -- opt.langnoremap = false
--- opt.foldlevelstart = 99
 -- opt.shortmess:append({ W = true, I = true, c = true, C = true })
 -- opt.spelllang = { "en" }
-vo.shortmess = {
-	A = true, -- ignore annoying swap file messages
-	c = true, -- Do not show completion messages in command line
-	F = true, -- Do not show file info when editing a file, in the command line
-	I = true, -- Do not show the intro message
-	W = true, -- Do not show "written" in command line when writing
-}
+-- vo.shortmess = {
+-- 	A = true, -- ignore annoying swap file messages
+-- 	c = true, -- Do not show completion messages in command line
+-- 	F = true, -- Do not show file info when editing a file, in the command line
+-- 	I = true, -- Do not show the intro message
+-- 	W = true, -- Do not show "written" in command line when writing
+-- }
 --
 -- Window options
 -- vw.colorcolumn = "80,120" -- Make a ruler at 80px and 120px
@@ -209,10 +207,10 @@ vo.shortmess = {
 -- vw.wrap = false -- Do not display text over multiple lines
 
 -- Create folders for our backups, undos, swaps and sessions if they don't exist
-vim.cmd("silent call mkdir(stdpath('data').'/backups', 'p', '0700')")
-vim.cmd("silent call mkdir(stdpath('data').'/undos', 'p', '0700')")
-vim.cmd("silent call mkdir(stdpath('data').'/swaps', 'p', '0700')")
-vim.cmd("silent call mkdir(stdpath('data').'/sessions', 'p', '0700')")
+-- vim.cmd("silent call mkdir(stdpath('data').'/backups', 'p', '0700')")
+-- vim.cmd("silent call mkdir(stdpath('data').'/undos', 'p', '0700')")
+-- vim.cmd("silent call mkdir(stdpath('data').'/swaps', 'p', '0700')")
+-- vim.cmd("silent call mkdir(stdpath('data').'/sessions', 'p', '0700')")
 
 -- Buffer options
 -- vb.autoindent = true

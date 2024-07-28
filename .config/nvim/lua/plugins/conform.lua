@@ -17,6 +17,7 @@ return {
 			-- local disable_filetypes = { c = true, cpp = true }
 			return {
 				timeout_ms = 500,
+				lsp_fallback = true,
 				-- lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
 			}
 		end,
@@ -28,7 +29,10 @@ return {
 			toml = { "taplo" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			bash = { "beautysh" },
-			sh = { "shellcheck" },
+			sh = { "beautysh" },
+			html = { "prettier" },
+			css = { "prettier" },
+			-- ruby = { "rubocop" },
 			-- yaml = { "yamlfix" },
 			-- proto = { "buf" },
 		},

@@ -1,18 +1,4 @@
 return {
-	-- {
-	-- 	"ghostbuster91/nvim-next",
-	-- 	config = function()
-	-- 		-- local functions = require("nvim-next.builtins.functions")
-	-- 		-- local f_backward, f_forward = next.make_repeatable_pair(functions.F, functions.f)
-	-- 		-- vim.keymap.set("n", "f", f_forward)
-	-- 		-- vim.keymap.set("n", "F", f_backward)
-	-- 		require("nvim-next").setup({
-	-- 			default_mappings = {
-	-- 				repeat_style = "original",
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		dependencies = {
@@ -43,6 +29,11 @@ return {
 		},
 		build = ":TSUpdate",
 		config = function()
+			-- :h vim.treesitter.foldexpr()
+			vim.wo.foldmethod = "expr"
+			vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+			-- This will respect your foldminlines and foldnestmax settings.
+
 			require("nvim-dap-repl-highlights").setup()
 			require("nvim-treesitter.configs").setup({
 				highlight = { enable = true },
@@ -55,6 +46,7 @@ return {
 					"python",
 					"javascript",
 					"json",
+					"query",
 					"vimdoc",
 					"vim",
 					"lua",
@@ -75,23 +67,24 @@ return {
 					},
 				},
 				textobjects = {
-					-- swap = {
-					-- 	enable = true,
-					-- 	swap_next = {
-					-- 		["<leader>a"] = "@parameter.inner",
-					-- 	},
-					-- 	swap_previous = {
-					-- 		["<leader>A"] = "@parameter.inner",
-					-- 	},
-					lsp_interop = {
+					swap = {
 						enable = true,
-						border = "none",
-						floating_preview_opts = {},
-						peek_definition_code = {
-							-- ["<leader>df"] = "@function.outer",
-							-- ["<leader>dF"] = "@class.outer",
+						swap_next = {
+							["<leader>a"] = "@parameter.inner",
 						},
-					}, -- },
+						swap_previous = {
+							["<leader>A"] = "@parameter.inner",
+						},
+					},
+					-- lsp_interop = {
+					-- 	enable = true,
+					-- 	border = "none",
+					-- 	floating_preview_opts = {},
+					-- 	peek_definition_code = {
+					-- 		-- ["<leader>df"] = "@function.outer",
+					-- 		-- ["<leader>dF"] = "@class.outer",
+					-- 	},
+					-- }, -- },
 					select = {
 						enable = true,
 						lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
@@ -134,12 +127,12 @@ return {
 								["[M"] = "@function.outer",
 								["[]"] = "@class.outer",
 							},
-							goto_next = {
-								["]d"] = "@conditional.outer",
-							},
-							goto_previous = {
-								["[d"] = "@conditional.outer",
-							},
+							-- goto_next = {
+							-- 	[""] = "@conditional.outer",
+							-- },
+							-- goto_previous = {
+							-- 	[""] = "@conditional.outer",
+							-- },
 						},
 					},
 				},

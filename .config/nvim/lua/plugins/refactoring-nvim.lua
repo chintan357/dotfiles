@@ -1,15 +1,31 @@
 -- TODO: how to use this plugin?
 return {
 	"ThePrimeagen/refactoring.nvim",
+	lazy = true,
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
 		{ "nvim-treesitter/nvim-treesitter" },
 	},
 	keys = {
 		{
+			"<LocalLeader>rd",
+			function()
+				require("refactoring").debug.printf({ below = false })
+			end,
+			description = "Insert Printf statement for debugging",
+		},
+		{
+			"<LocalLeader>re",
+			function()
+				require("telescope").extensions.refactoring.refactors()
+			end,
+			description = "Open Refactoring.nvim",
+			mode = { "n", "v", "x" },
+		},
+		{
 			"<leader>r",
 			function()
-				require("refactoring").select_refactor()
+				require("lua.plugins.refactoring-nvim").select_refactor()
 			end,
 			mode = "v",
 			noremap = true,
@@ -19,7 +35,7 @@ return {
 		{
 			"<leader>rm",
 			function()
-				require("refactoring").select_refactor()
+				require("lua.plugins.refactoring-nvim").select_refactor()
 			end,
 			mode = { "v" },
 			desc = "Refactoring menu",
@@ -28,7 +44,7 @@ return {
 		{
 			"<leader>dv",
 			function()
-				require("refactoring").debug.print_var({
+				require("lua.plugins.refactoring-nvim").debug.print_var({
 					below = true,
 				})
 			end,
@@ -36,9 +52,29 @@ return {
 			desc = "Print below variables",
 		},
 		{
+			"<LocalLeader>rv",
+			{
+				n = function()
+					require("refactoring").debug.print_var({ normal = true })
+				end,
+				x = function()
+					require("refactoring").debug.print_var({})
+				end,
+			},
+			description = "Insert Print_Var statement for debugging",
+			mode = { "n", "v" },
+		},
+		{
+			"<LocalLeader>rc",
+			function()
+				require("refactoring").debug.cleanup()
+			end,
+			description = "Cleanup debug statements",
+		},
+		{
 			"<leader>dV",
 			function()
-				require("refactoring").debug.print_var({
+				require("lua.plugins.refactoring-nvim").debug.print_var({
 					below = false,
 				})
 			end,
@@ -49,7 +85,7 @@ return {
 		{
 			"<leader>dc",
 			function()
-				require("refactoring").debug.cleanup({
+				require("lua.plugins.refactoring-nvim").debug.cleanup({
 					force = true,
 				})
 			end,
@@ -81,7 +117,7 @@ return {
 		print_var_statements = {},
 	},
 	config = function(_, options)
-		require("refactoring").setup(options)
+		require("lua.plugins.refactoring-nvim").setup(options)
 
 		local tele_status_ok, telescope = pcall(require, "telescope")
 		if not tele_status_ok then

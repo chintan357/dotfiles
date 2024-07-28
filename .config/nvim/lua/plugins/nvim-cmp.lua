@@ -19,6 +19,9 @@ return {
 			"rcarriga/cmp-dap",
 			"onsails/lspkind.nvim",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"hrsh7th/cmp-nvim-lua",
+			"zbirenbaum/copilot-cmp",
+			"lukas-reineke/cmp-under-comparator",
 			"ray-x/cmp-sql",
 			"chrisgrieser/cmp_yanky",
 			"SergioRibera/cmp-dotenv",
@@ -62,7 +65,12 @@ return {
 				completion = {
 					completeopt = "menu,menuone,noinsert",
 				},
+				-- window = {
+				-- 	completion = cmp.config.window.bordered(),
+				-- 	documentation = cmp.config.window.bordered(),
+				-- },
 				formatting = {
+					-- fields = { "abbr", "kind", "menu" },
 					format = lspkind.cmp_format({
 						mode = "symbol", -- show only symbol annotations
 						maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
@@ -105,16 +113,35 @@ return {
 							fallback()
 						end
 					end, { "i", "s" }),
+					-- go to next placeholder in the snippet
+					-- ["<C-l>"] = cmp.mapping(function(fallback)
+					-- 	if luasnip.jumpable(1) then
+					-- 		luasnip.jump(1)
+					-- 	else
+					-- 		fallback()
+					-- 	end
+					-- end, { "i", "s" }),
+					-- go to previous placeholder in the snippet
+					-- ["<C-h>"] = cmp.mapping(function(fallback)
+					-- 	if luasnip.jumpable(-1) then
+					-- 		luasnip.jump(-1)
+					-- 	else
+					-- 		fallback()
+					-- 	end
+					-- end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
+					{ name = "luasnip", priority = 100, max_item_count = 5 },
+					{ name = "nvim_lsp", priority = 90 },
+					{ name = "path", priority = 20 },
+					{ name = "buffer", priority = 10, keyword_length = 3, max_item_count = 8 },
+					{ name = "nvim_lua" },
 					{ name = "nvim_lsp_signature_help" },
-					{ name = "luasnip" },
 					{ name = "calc" },
 					{ name = "sql" },
 					{ name = "dotenv" },
-					{ name = "path" },
 					{ name = "buffer" },
+					-- { name = "copilot", priority = 90, max_item_count = 5 },
 					-- { name = "emoji" },
 					-- { name = "cmp_yanky" },
 					-- { name = "jupyter" },
@@ -142,8 +169,24 @@ return {
 							ignore_cmds = { "Man", "!" },
 						},
 					},
+					-- sorting = {
+					-- 	comparators = {
+					-- 		cmp.config.compare.offset,
+					-- 		cmp.config.compare.exact,
+					-- 		cmp.config.compare.score,
+					-- 		cmp.config.compare.recently_used,
+					-- 		require("cmp-under-comparator").under,
+					-- 		cmp.config.compare.kind,
+					-- 	},
+					-- },
 				}),
 			})
+			-- cmp.setup.cmdline("/", {
+			-- 	mapping = cmp.mapping.preset.cmdline(),
+			-- 	sources = {
+			-- 		{ name = "buffer" },
+			-- 	},
+			-- })
 		end,
 	},
 }

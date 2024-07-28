@@ -91,6 +91,11 @@ return {
 		vim.list_extend(ensure_installed, {
 			"pyright",
 			"lua_ls",
+			"bashls",
+			"cssls",
+			"dockerls",
+			"html",
+			"yamlls",
 			"jsonls",
 		})
 

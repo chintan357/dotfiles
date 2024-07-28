@@ -6,6 +6,9 @@ function keymap(mode, lhs, rhs, opts)
 	vim.keymap.set(mode, lhs, rhs, options)
 end
 
+vim.api.nvim_set_keymap("n", "<C-_>", "gcc", { silent = true })
+vim.api.nvim_set_keymap("v", "<C-_>", "gc", { silent = true })
+
 keymap("n", "<C-c>", "<cmd>bd<CR>")
 keymap("n", "<C-q>", "<cmd>q<CR>")
 keymap("n", "<leader>bd", ":bd<CR>")
@@ -133,8 +136,9 @@ keymap("n", "<leader>yf", function() local filename = vim.fn.expand("%") vim.fn.
 keymap("n", "N", [[v:searchforward ? 'Nzz' : 'nzz']], { expr = true })
 keymap("n", "n", [[v:searchforward ? 'nzz' : 'Nzz']], { expr = true })
 
-keymap("n", "<M-,>", "<c-w>5>")
-keymap("n", "<M-.>", "<c-w>5<")
+keymap("n", "<C-,>", "<c-w>5>")
+keymap("n", "<C-.>", "<c-w>5<")
+
 -- keymap("n", "<C-,>", "<C-W>5-")
 -- keymap("n", "<C-.>", "<C-W>5+")
 

@@ -1,6 +1,10 @@
+-- https://github.com/kevinhwang91/nvim-ufo/issues/4#issuecomment-1514537245
+
 return {
 	"kevinhwang91/nvim-ufo",
 	event = "VeryLazy",
+	enabled = false,
+
 	dependencies = {
 		"kevinhwang91/promise-async",
 	},

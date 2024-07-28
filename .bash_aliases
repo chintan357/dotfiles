@@ -275,7 +275,7 @@ alias mkcd='_mkcd() { mkdir -p "$1"; cd "$1"; }; _mkcd'
 alias mk="mkdir -pv"
 
 function cdl() {
-  cd "$1" && ls
+    cd "$1" && ls
 }
 
 # alias twitter='xdg-open https://www.twitter.com'
@@ -518,3 +518,5 @@ alias mks='minikube start'
 alias mkt='minikube stop'
 
 #-----------#
+
+alias gtypist='gtypist -c 0,2'

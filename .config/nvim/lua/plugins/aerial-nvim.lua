@@ -19,6 +19,41 @@ return {
 				vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
 				vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
 			end,
+			attach_mode = "global",
+			close_on_select = true,
+			layout = {
+				min_width = 30,
+				default_direction = "prefer_right",
+			},
+			-- Use nvim-navic icons
+			icons = {
+				File = "󰈙 ",
+				Module = " ",
+				Namespace = "󰌗 ",
+				Package = " ",
+				Class = "󰌗 ",
+				Method = "󰆧 ",
+				Property = " ",
+				Field = " ",
+				Constructor = " ",
+				Enum = "󰕘",
+				Interface = "󰕘",
+				Function = "󰊕 ",
+				Variable = "󰆧 ",
+				Constant = "󰏿 ",
+				String = "󰀬 ",
+				Number = "󰎠 ",
+				Boolean = "◩ ",
+				Array = "󰅪 ",
+				Object = "󰅩 ",
+				Key = "󰌋 ",
+				Null = "󰟢 ",
+				EnumMember = " ",
+				Struct = "󰌗 ",
+				Event = " ",
+				Operator = "󰆕 ",
+				TypeParameter = "󰊄 ",
+			},
 		})
 
 		local tele_status_ok, telescope = pcall(require, "telescope")

@@ -1,9 +1,7 @@
 $include /etc/inputrc
 
-set colored-stats On
 set enable-bracketed-paste On
 set expand-tilde On
-set completion-prefix-display-length 3
 set bell-style none
 set echo-control-characters off
 
@@ -13,24 +11,11 @@ set blink-matching-paren On
 
 set show-all-if-unmodified on
 set show-all-if-ambiguous on
+
+set completion-prefix-display-length 3
 set completion-ignore-case on
 set completion-map-case On
 set completion-display-width 0
-
-set editing-mode vi
-set keymap vi
-set editing-mode vi
-
-$if mode=vi
-set keymap vi-command
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-j: history-search-forward
-k: history-search-backward
-set keymap vi-insert
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-$endif
 
 set match-hidden-files off
 set page-completions off
@@ -38,12 +23,9 @@ set visible-stats on
 
 set horizontal-scroll-mode Off
 
-# Enable 8bit input
 set meta-flag On
 set input-meta On
-# Turns off 8th bit stripping
 set convert-meta Off
-# Keep the 8th bit for display
 set output-meta On
 
 # Use Alt/Meta + Delete to delete the preceding word
@@ -57,9 +39,21 @@ set output-meta On
 # set skip-completed-text on
 
 set colored-stats On
-# Append char to indicate type
 set visible-stats On
 set mark-symlinked-directories On
 set colored-completion-prefix On
 set menu-complete-display-prefix On
 
+set editing-mode vi
+set keymap vi
+
+$if mode=vi
+set keymap vi-command
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+j: history-search-forward
+k: history-search-backward
+set keymap vi-insert
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+$endif
