@@ -361,55 +361,58 @@ alias drmf='sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo do
 #-----------#
 
 alias lg=lazygit
+alias g=git
 
 # alias git='cd `git rev-parse --show-toplevel` && git checkout master && git pull'
 alias cg='cd `git rev-parse --show-toplevel`'
 
-alias gadd='git add'
 alias gaa='git add .'
+
 alias gcl='git clone'
+
 alias gco='git checkout'
 alias gcob='git checkout -b'
+
 alias gbr="git branch"
+alias gb='git branch --sort=committerdate'
 alias gbrl="git branch -l"
 
-# alias gdh='git diff HEAD'
-alias gdiff='git diff'
-alias gdiffs="git diff --staged"
+alias gdh='git diff HEAD'
+alias gd='git diff'
+alias gds="git diff --staged"
 alias gdc='git diff --cached'
 
 alias gst='git status'
 alias gsts='git status -sb'
 
-alias glog='git log --oneline --decorate --all --graph'
-
 alias gcm='git commit -m'
 alias gcma="git commit -am"
 alias amend='git commit --amend --no-edit'
 
-alias gpush='git push'
+alias gpu='git push'
+alias gpuo='git push origin'
 alias gP='git pull'
-alias gpo='git push origin'
 
 alias go="git push -u origin"
 alias gwc='git whatchanged'
+alias glog='git log --oneline --decorate --all --graph'
 alias glogp="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gnah="git clean -df && git checkout -- ."
 
 alias grecent='git for-each-ref --sort="-committerdate" --format="%(committerdate:short) %(refname:short)" refs/heads'
 alias glast="git log -1 HEAD"
-alias gbrd='git branch -d'    # Delete a branch
-# alias gb='git branch --sort=committerdate'
+
+alias gbrd='git branch -d'
 alias gbrD='git branch -D'
-alias gcb='git checkout -b'  # Create and checkout a new branch
+alias gcb='git checkout -b'
 alias gll='git log --stat'
 alias grb='git rebase'
 alias grbi='git rebase -i'
-alias grm='git remote'
-alias grmv='git remote -v'
-alias grma='git remote add'
-alias grmrm='git remote remove'
-alias grmu='git remote update'
+alias gre='git remote'
+alias grev='git remote -v'
+alias grea='git remote add'
+alias grerm='git remote remove'
+alias greu='git remote update'
 alias gtag='git tag'
 alias gtagd='git tag -d'
 alias gtags='git tag -l'
@@ -422,12 +425,11 @@ alias grsh='git reset --hard'
 alias grss='git reset --soft'
 # alias gpristine='git reset --hard && git clean --force -dfx'
 # alias groh='git reset origin/$(git_current_branch) --hard'
-# alias grst='git restore --staged'
+alias grst='git restore --staged'
 # alias gcan!='git commit --verbose --all --no-edit --amend'
 
 alias hcl="hub clone"
 alias hbr='hub browse'
-alias hrepo='hub repo'
 alias hfork='hub fork'
 alias hcreate='hub create'
 alias hprls='hub pr list'

@@ -126,12 +126,12 @@ return {
 		end,
 
 		-- Optional, customize how markdown links are formatted.
-		markdown_link_func = function(opts)
-			return require("obsidian.util").markdown_link(opts)
-		end,
+		-- markdown_link_func = function(opts)
+		-- 	return require("obsidian.util").markdown_link(opts)
+		-- end,
 
 		-- Either 'wiki' or 'markdown'.
-		preferred_link_style = "wiki",
+		-- preferred_link_style = "wiki",
 
 		-- Optional, boolean or a function that takes a filename and returns a boolean.
 		-- `true` indicates that you don't want obsidian.nvim to manage frontmatter.

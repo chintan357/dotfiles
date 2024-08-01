@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-vim.g.python3_host_prog = vim.fn.expand("~/.pyenv/versions/3.11.8/bin/python3.11")
+-- vim.g.python3_host_prog = vim.fn.expand("~/.pyenv/versions/3.11.8/bin/python3.11")
 vim.g.have_nerd_font = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

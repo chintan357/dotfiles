@@ -2,34 +2,34 @@ local is_inside_git_repo = function()
 	local git_dir = vim.fn.finddir(".git", vim.fn.expand("%:p:h") .. ";")
 	return vim.fn.isdirectory(git_dir) ~= 0
 end
--- {
--- 	"dinhhuy258/git.nvim",
--- 	event = "BufReadPre",
--- 	opts = {
--- 		keymaps = {
--- 			-- Open blame window
--- 			blame = "<Leader>gb",
--- 			-- Open file/folder in git repository
--- 			browse = "<Leader>go",
--- 		},
--- 	},
--- },
 
 return {
+	{
+		"mattn/vim-gist",
+		dependencies = {
+			"mattn/webapi-vim",
+		},
+	},
 	{
 		"tpope/vim-fugitive",
 		config = function()
 			vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Open Fugitive Panel" })
+			vim.keymap.set({ "n" }, "gy", function()
+				vim.cmd("GBrowse!")
+			end)
 		end,
 	},
 	{ "tpope/vim-rhubarb" },
 	{ "junegunn/gv.vim" },
 	{
 		"f-person/git-blame.nvim",
-		event = "VeryLazy",
+		cmd = "GitBlameToggle",
+		keys = {
+			-- { "", "<cmd>GitBlameToggle<cr>" },
+		},
 		opts = {
-			enabled = false,
-			date_format = "%m/%d/%y %H:%M:%S",
+			enabled = true,
+			date_format = "%m/%d/%y %H:%M:%S", -- "%m-%d-%Y %H:%M:%S"
 		},
 	},
 	{
@@ -42,21 +42,18 @@ return {
 		},
 		lazy = not is_inside_git_repo(),
 		keys = {
-			-- Chose conflict
-			-- { "", "<cmd>GitConflictChooseTheirs<cr>", desc = "Git Conflict Choose - Incoming changes" },
-			-- { "", "<cmd>GitConflictChooseOurs<cr>", desc = "Git Conflict Choose - Current changes" },
-			-- { "", "<cmd>GitConflictChooseBoth<cr>", desc = "Git Conflict Choose - Both changes" },
 			-- Navigate conflicts
 			-- { "", "<cmd>GitConflictListQf<cr>", desc = "Git Conflict Quicklist" },
-			-- { "", "<cmd>GitConflictPrevConflict<cr>", desc = "Git Conflict Previous" },
-			-- { "", "<cmd>GitConflictNextConflict<cr>", desc = "Git Conflict Next" },
 		},
 	},
 	{
 		"sindrets/diffview.nvim",
 		lazy = not is_inside_git_repo(),
 		cmd = "DiffviewOpen",
-		keys = { { "gco", "<cmd>DiffviewOpen<cr>", desc = "Open Git Diff" } },
+		keys = {
+			{ "dvo", "<cmd>DiffviewOpen<cr>" },
+			{ "dvc", "<cmd>DiffviewClose<cr>" },
+		},
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -70,95 +67,71 @@ return {
 				changedelete = { text = "▎" },
 				untracked = { text = "▎" },
 			},
-			on_attach = function(buffer)
-				local gs = package.loaded.gitsigns
+			on_attach = function(bufnr)
+				local gitsigns = require("gitsigns")
 
-				local function map(mode, l, r, desc)
-					vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+				local function map(mode, l, r, opts)
+					opts = opts or {}
+					opts.buffer = bufnr
+					vim.keymap.set(mode, l, r, opts)
 				end
-
-				map("n", "]h", gs.next_hunk, "Next Hunk")
-				map("n", "[h", gs.prev_hunk, "Prev Hunk")
-
-				-- map({ "n", "v" }, "gh", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-				-- map({ "n", "v" }, "gH", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-
-				map("n", "<leader>gS", gs.stage_buffer, "Stage Buffer")
-				map("n", "<leader>gR", gs.reset_buffer, "Reset Buffer")
-				map("n", "<leader>gU", gs.undo_stage_hunk, "Undo Stage Hunk")
-
-				map("n", "gct", gs.diffthis, "Diff This")
 
 				-- Navigation
 				-- map("n", "]c", function()
 				-- 	if vim.wo.diff then
-				-- 		return "]c"
+				-- 		vim.cmd.normal({ "]c", bang = true })
+				-- 	else
+				-- 		gitsigns.nav_hunk("next")
 				-- 	end
-				-- 	vim.schedule(function()
-				-- 		gs.next_hunk()
-				-- 	end)
-				-- 	return "<Ignore>"
-				-- end, { expr = true })
+				-- end)
 				--
 				-- map("n", "[c", function()
 				-- 	if vim.wo.diff then
-				-- 		return "[c"
+				-- 		vim.cmd.normal({ "[c", bang = true })
+				-- 	else
+				-- 		gitsigns.nav_hunk("prev")
 				-- 	end
-				-- 	vim.schedule(function()
-				-- 		gs.prev_hunk()
-				-- 	end)
-				-- 	return "<Ignore>"
-				-- end, { expr = true })
-				--
-				-- -- Actions
-				-- map("n", "<leader>hs", gs.stage_hunk, { desc = "GitSigns state hunk" })
-				-- map("n", "<leader>hr", gs.reset_hunk, { desc = "GitSigns reset hunk" })
-				-- map("v", "<leader>hs", function()
-				-- 	gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-				-- end, { desc = "GitSigns stage_hunk" })
-				-- map("v", "<leader>hr", function()
-				-- 	gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-				-- end, { desc = "GitSigns reset_hunk" })
-				-- map("n", "<leader>hS", gs.stage_buffer, { desc = "GitSigns stage_buffer" })
-				-- map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "GitSigns undo_stage_hunk" })
-				-- map("n", "<leader>hR", gs.reset_buffer, { desc = "GitSigns reset_buffer" })
-				-- map("n", "<leader>hp", gs.preview_hunk, { desc = "GitSigns preview_hunk" })
-				-- map("n", "<leader>hb", function()
-				-- 	gs.blame_line({ full = true })
-				-- end, { desc = "GitSigns blame line" })
-				-- map("n", "<leader>htb", gs.toggle_current_line_blame, { desc = "GitSigns toggle blame" })
-				-- map("n", "<leader>hd", gs.diffthis, { desc = "GitSigns diffthis" })
-				-- map("n", "<leader>hD", function()
-				-- 	gs.diffthis("~")
-				-- end, { desc = "GitSigns diffthis" })
-				-- map("n", "<leader>htd", gs.toggle_deleted, { desc = "GitSigns toggle_deleted" })
-				--
-				-- -- Text object
-				-- map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "GitSigns select hunk" })
+				-- end)
+
+				-- Actions
+				map("n", "<leader>hs", gitsigns.stage_hunk)
+				map("n", "<leader>hr", gitsigns.reset_hunk)
+				map("v", "<leader>hs", function()
+					gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+				end)
+				map("v", "<leader>hr", function()
+					gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+				end)
+				map("n", "<leader>hS", gitsigns.stage_buffer)
+				map("n", "<leader>hu", gitsigns.undo_stage_hunk)
+				map("n", "<leader>hR", gitsigns.reset_buffer)
+				map("n", "<leader>hp", gitsigns.preview_hunk)
+				map("n", "<leader>hb", function()
+					gitsigns.blame_line({ full = true })
+				end)
+				map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
+				map("n", "<leader>hd", gitsigns.diffthis)
+				map("n", "<leader>hD", function()
+					gitsigns.diffthis("~")
+				end)
+				map("n", "<leader>td", gitsigns.toggle_deleted)
+
+				-- Text object
+				map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 			end,
 		},
 	},
 }
 
--- -- fugitive
--- vim.keymap.set({ "n" }, "gw", function()
--- 	vim.cmd("Gwrite")
--- end)
--- vim.keymap.set({ "n" }, "gs", function()
--- 	vim.cmd("G status")
--- end)
--- vim.keymap.set({ "n" }, "gc", function()
--- 	vim.cmd("G commit -v")
--- end)
--- vim.keymap.set({ "n" }, "gp", function()
--- 	vim.cmd("G push")
--- end)
--- vim.keymap.set({ "n" }, "gfp", function()
--- 	vim.cmd("G push -f")
--- end)
--- vim.keymap.set({ "n" }, "gy", function()
--- 	vim.cmd("GBrowse!")
--- end)
--- vim.keymap.set({ "v" }, "gy", function()
--- 	vim.cmd("'<'>GBrowse!")
--- end)
+-- :GV to open commit browser You can pass git log options to the command, e.g. :GV -S foobar -- plugins.
+-- :GV! will only list commits that affected the current file
+-- :GV? fills the location list with the revisions of the current file
+-- :GV or :GV? can be used in visual mode to track the changes in the selected lines.
+
+-- o or <cr> on a commit to display the content of it
+-- o or <cr> on commits to display the diff in the range
+-- O opens a new tab instead
+-- gb for :GBrowse
+-- ]] and [[ to move between commits
+-- . to start command-line with :Git [CURSOR] SHA à la fugitive
+-- q or gq to close

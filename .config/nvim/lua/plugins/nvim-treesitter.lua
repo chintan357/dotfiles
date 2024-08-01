@@ -26,6 +26,22 @@ return {
 		-- event = "VeryLazy",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
+			{
+				"abecodes/tabout.nvim", -- Tab out from parenthesis, quotes, brackets...
+				opts = {
+					tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
+					backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
+					completion = true, -- We use tab for completion so set this to true
+				},
+			},
+			-- {
+			-- 	"JoosepAlviste/nvim-ts-context-commentstring", -- Smart commenting in multi language files - Enabled in Treesitter file
+			-- },
+			-- {
+			-- 	"windwp/nvim-ts-autotag", -- Autoclose and autorename HTML and Vue tags
+			-- 	config = true,
+			-- },
+			"RRethy/nvim-treesitter-endwise", -- Automatically add end keywords for Ruby, Lua, Python, and more
 		},
 		build = ":TSUpdate",
 		config = function()
@@ -64,8 +80,14 @@ return {
 						node_incremental = "<C-a>",
 						scope_incremental = "<C-S-a>", -- doesn't work
 						node_decremental = "<bs>",
+						-- init_selection = "<M-w>",
+						-- scope_incremental = "<CR>",
+						-- node_incremental = "<Tab>", -- increment to the upper named parent
+						-- node_decremental = "<S-Tab>", -- decrement to the previous node
 					},
 				},
+				-- nvim-treesitter-endwise plugin
+				endwise = { enable = true },
 				textobjects = {
 					swap = {
 						enable = true,

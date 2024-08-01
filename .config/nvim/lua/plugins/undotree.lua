@@ -4,6 +4,7 @@ return {
 		cmd = "UndotreeToggle",
 		keys = {
 			{ "you", "<cmd>UndotreeToggle<cr>" },
+			{ "<leader>tu", "<cmd>Telescope undo<cr>" },
 		},
 		init = function()
 			-- Persist undo, refer https://github.com/mbbill/undotree#usage

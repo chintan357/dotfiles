@@ -12,6 +12,12 @@ return {
 				return vim.fn.executable("make") == 1
 			end,
 		},
+		{
+			"nvim-telescope/telescope-frecency.nvim", -- Get frequently opened files
+			config = function()
+				require("telescope").load_extension("frecency")
+			end,
+		},
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 		"debugloop/telescope-undo.nvim",
@@ -21,6 +27,7 @@ return {
 	config = function()
 		local actions = require("telescope.actions")
 		local action_layout = require("telescope.actions.layout")
+		local action_state = require("telescope.actions.state")
 		local builtin = require("telescope.builtin")
 		local open_with_trouble = require("trouble.sources.telescope").open
 
@@ -68,6 +75,11 @@ return {
 		require("telescope").setup({
 			defaults = {
 				prompt_prefix = "  ",
+				entry_prefix = "  ",
+				color_devicons = true,
+				path_display = { "smart" },
+				dynamic_preview_title = true,
+				selection_caret = "  ",
 				preview = {
 					filesize_limit = 0.1, --MB
 				},
@@ -79,7 +91,41 @@ return {
 				-- selection_strategy = "reset",
 				-- layout_strategy = "horizontal",
 				vimgrep_arguments = vimgrep_arguments,
+				-- Searching
+				set_env = { COLORTERM = "truecolor" },
+				file_ignore_patterns = {
+					".git/",
+					"%.jpg",
+					"%.jpeg",
+					"%.png",
+					"%.svg",
+					"%.otf",
+					"%.ttf",
+					"%.lock",
+					"__pycache__",
+					"%.sqlite3",
+					"%.ipynb",
+					"vendor",
+					"node_modules",
+					"dotbot",
+				},
+				file_sorter = require("telescope.sorters").get_fuzzy_file,
 				mappings = {
+					-- i = {
+					-- 	["<esc>"] = require("telescope.actions").close,
+					-- 	["<C-e>"] = custom_actions.multi_select,
+					-- 	["<C-c>"] = require("telescope.actions").delete_buffer,
+					-- 	["<C-j>"] = require("telescope.actions").move_selection_next,
+					-- 	["<C-d>"] = require("telescope.actions").preview_scrolling_down,
+					-- 	["<C-f>"] = require("telescope.actions").preview_scrolling_up,
+					-- 	["<C-k>"] = require("telescope.actions").move_selection_previous,
+					-- 	["<C-q>"] = require("telescope.actions").send_selected_to_qflist,
+					-- },
+					-- n = {
+					-- 	["q"] = require("telescope.actions").close,
+					-- 	["<C-n>"] = require("telescope.actions").move_selection_next,
+					-- 	["<C-p>"] = require("telescope.actions").move_selection_previous,
+					-- },
 					i = {
 						["<c-t>"] = open_with_trouble,
 
@@ -123,10 +169,38 @@ return {
 				},
 			},
 			extensions = {
+				fzf = {
+					fuzzy = true,
+					override_generic_sorter = true,
+					override_file_sorter = true,
+					case_mode = "smart_case",
+				},
+				frecency = {
+					show_scores = false,
+					show_unindexed = false,
+					ignore_patterns = {
+						"*.git/*",
+						"*/tmp/*",
+						"*/node_modules/*",
+						"*/vendor/*",
+					},
+					-- workspaces = {
+					--   ["nvim"] = os.getenv("HOME_DIR") .. ".config/nvim",
+					--   ["dots"] = os.getenv("HOME_DIR") .. ".dotfiles",
+					--   ["project"] = os.getenv("PROJECT_DIR"),
+					-- },
+				},
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
 				},
 				undo = {
+					mappings = {
+						i = {
+							["<CR>"] = require("telescope-undo.actions").restore,
+							["<C-a>"] = require("telescope-undo.actions").yank_additions,
+							["<C-d>"] = require("telescope-undo.actions").yank_deletions,
+						},
+					},
 					use_delta = true,
 					side_by_side = false,
 				},
@@ -136,10 +210,21 @@ return {
 
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
-
 		require("telescope").load_extension("undo")
 		require("telescope").load_extension("zoxide")
-		vim.keymap.set("n", "<leader>tu", "<cmd>Telescope undo<cr>")
+		-- require("telescope").load_extension("refactoring")
+		-- telescope.load_extension("persisted")
+
+		keymap.set("n", "<leader>sg", function()
+			builtin.live_grep({ path_display = { "smart" } })
+		end)
+
+		keymap.set(
+			"n",
+			"<Leader><Leader>",
+			"<cmd>lua require('telescope').extensions.frecency.frecency({ prompt_title = 'Recent Files', workspace = 'CWD', path_display = { 'smart' } })<CR>",
+			{ desc = "Recent Files" }
+		)
 
 		-- stylua: ignore start
 		keymap.set("n", "<leader>sh", builtin.help_tags)
@@ -151,12 +236,12 @@ return {
 		keymap.set("n", "<leader>sm", builtin.marks)
 		keymap.set("n", "<leader>sq", builtin.quickfix)
 
-		keymap.set("n", "<leader>sf", builtin.find_files)
+		keymap.set("n", "<leader>sf", function() builtin.find_files({ hidden = true}) end)
 		keymap.set("n", "<leader>sF", function() builtin.find_files({ cwd = vim.fn.expand("~") }) end)
 		keymap.set("n", "<leader>sr", builtin.oldfiles)
 		keymap.set("n", "<leader>sc", function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end)
 
-		keymap.set("n", "<leader>sb", function() builtin.buffers({ sort_mru = true, sort_lastused = true }) end)
+		keymap.set("n", "<leader>sb", function() builtin.buffers({ path_display = "smart",  sort_mru = true, sort_lastused = true }) end)
 
 		keymap.set("n", "<leader>hf", builtin.git_files)
 		keymap.set("n", "<leader>hc", builtin.git_commits)
@@ -190,8 +275,9 @@ return {
 
 		keymap.set("n", "<leader>fw", builtin.grep_string)
 
-		keymap.set("n", "<leader>sg", builtin.live_grep)
-		keymap.set("n", "<leader>s/", function() builtin.live_grep({ grep_open_files = true, prompt_title = "Live Grep in Open Files" }) end, { desc = "[S]earch [/] in Open Files" })
+
+		keymap.set("n", "<leader>s/", function() builtin.live_grep({ path_display = {"shorten"} ,grep_open_files = true, prompt_title = "Live Grep in Open Files" }) end, { desc = "[S]earch [/] in Open Files" })
+
 		keymap.set("n", "<leader>/", function()
       builtin.current_buffer_fuzzy_find(
         require("telescope.themes").get_dropdown({ winblend = 0, previewer = false })

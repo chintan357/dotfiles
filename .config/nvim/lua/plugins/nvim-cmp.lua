@@ -143,7 +143,7 @@ return {
 					{ name = "buffer" },
 					-- { name = "copilot", priority = 90, max_item_count = 5 },
 					-- { name = "emoji" },
-					-- { name = "cmp_yanky" },
+					{ name = "cmp_yanky" },
 					-- { name = "jupyter" },
 				}),
 			})
@@ -169,24 +169,25 @@ return {
 							ignore_cmds = { "Man", "!" },
 						},
 					},
-					-- sorting = {
-					-- 	comparators = {
-					-- 		cmp.config.compare.offset,
-					-- 		cmp.config.compare.exact,
-					-- 		cmp.config.compare.score,
-					-- 		cmp.config.compare.recently_used,
-					-- 		require("cmp-under-comparator").under,
-					-- 		cmp.config.compare.kind,
-					-- 	},
-					-- },
+					sorting = {
+						comparators = {
+							cmp.config.compare.offset,
+							cmp.config.compare.exact,
+							cmp.config.compare.score,
+							cmp.config.compare.recently_used,
+							require("cmp-under-comparator").under,
+							cmp.config.compare.kind,
+						},
+					},
 				}),
+				matching = { disallow_symbol_nonprefix_matching = false },
 			})
-			-- cmp.setup.cmdline("/", {
-			-- 	mapping = cmp.mapping.preset.cmdline(),
-			-- 	sources = {
-			-- 		{ name = "buffer" },
-			-- 	},
-			-- })
+			cmp.setup.cmdline("/", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
+					{ name = "buffer" },
+				},
+			})
 		end,
 	},
 }

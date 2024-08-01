@@ -86,6 +86,8 @@ return {
 
 		opts = {
 			prompts = prompts,
+
+			model = "gpt-4o-2024-05-13",
 			temperature = 0,
 			show_folds = false, -- Shows folds for sections in chat
 			highlight_selection = true, -- Highlight selection in the source buffer when in the chat window

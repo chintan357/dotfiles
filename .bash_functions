@@ -1,3 +1,11 @@
+function gbmv() {
+  if [ $# -eq 1 ]; then
+    git branch -m "$1"
+  elif [ $# -eq 2 ]; then
+    git branch -m "$1" "$2"
+  fi
+}
+
 function countdown() {
 	total=$1
 	for ((i = total; i > 0; i--)); do

@@ -19,7 +19,7 @@ return {
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
 
-			group = vim.api.nvim_create_augroup("atomic-lsp-attach", { clear = true }),
+			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 
 			callback = function(event)
 				local map = function(keys, func, desc)
@@ -34,7 +34,7 @@ return {
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 
 				if client and client.server_capabilities.documentHighlightProvider then
-					local highlight_augroup = vim.api.nvim_create_augroup("atomic-lsp-highlight", { clear = false })
+					local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
 					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 						buffer = event.buf,
 						group = highlight_augroup,
@@ -56,10 +56,10 @@ return {
 		})
 
 		vim.api.nvim_create_autocmd("LspDetach", {
-			group = vim.api.nvim_create_augroup("atomic-lsp-detach", { clear = true }),
+			group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
 			callback = function(event)
 				vim.lsp.buf.clear_references()
-				vim.api.nvim_clear_autocmds({ group = "atomic-lsp-highlight", buffer = event.buf })
+				vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event.buf })
 			end,
 		})
 
@@ -103,24 +103,24 @@ return {
 
 		vim.api.nvim_command("MasonToolsInstall")
 
-		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
-				end,
-			},
+		-- require("mason-lspconfig").setup({
+		-- 	handlers = {
+		-- 		function(server_name)
+		-- 			local server = servers[server_name] or {}
+		-- 			server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+		-- 			require("lspconfig")[server_name].setup(server)
+		-- 		end,
+		-- 	},
+		-- })
+		require("mason-lspconfig").setup_handlers({
+			function(server_name)
+				require("lspconfig")[server_name].setup({
+					on_attach = lsp_attach,
+					capabilities = lsp_capabilities,
+				})
+			end,
 		})
 	end,
-	-- require("mason-lspconfig").setup_handlers({
-	--   function(server_name)
-	--     lspconfig[server_name].setup({
-	--       on_attach = lsp_attach,
-	--       capabilities = lsp_capabilities,
-	--     })
-	--   end,
-	-- })
 }
 -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
