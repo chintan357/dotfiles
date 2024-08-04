@@ -1,3 +1,13 @@
+function rpfzf() {
+    find "$(realpath "$1")" -iname "*" | fzf
+}
+weather() { curl wttr.in/"$1"; }
+dict() { curl "dict.org/d:$1"; }
+
+function cdl() {
+    cd "$1" && ls
+}
+
 function gbmv() {
   if [ $# -eq 1 ]; then
     git branch -m "$1"

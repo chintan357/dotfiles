@@ -3,34 +3,16 @@ return {
 	config = function()
 		require("codecompanion").setup({
 			adapters = {
-				-- anthropic = require("codecompanion.adapters").use("anthropic", {
-				-- 	env = {
-				-- 		api_key = "cmd:op read op://personal/Anthropic_API/credential --no-newline",
-				-- 	},
-				-- }),
 				openai = require("codecompanion.adapters").use("openai", {
 					env = {
 						api_key = "cmd:op read op://personal/OpenAI_API/credential --no-newline",
 					},
 				}),
-				-- llama3 = require("codecompanion.adapters").use("ollama", {
-				-- 	schema = {
-				-- 		model = {
-				-- 			default = "llama3:latest",
-				-- 		},
-				-- 		num_ctx = {
-				-- 			default = 16384,
-				-- 		},
-				-- 		num_predict = {
-				-- 			default = -1,
-				-- 		},
-				-- 	},
-				-- }),
 			},
 			strategies = {
-				-- chat = { adapter = "anthropic" },
-				-- inline = { adapter = "anthropic" },
-				-- agent = { adapter = "anthropic" },
+				chat = { adapter = "openai" },
+				inline = { adapter = "openai" },
+				agent = { adapter = "openai" },
 			},
 			display = {
 				chat = {

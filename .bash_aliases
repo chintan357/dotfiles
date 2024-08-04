@@ -7,7 +7,6 @@ alias rm=trash
 alias cat=batcat
 alias df='df -h'
 alias du='du -hs'
-alias du1='du -hs --max-depth=1'
 alias bc="bc -l"
 alias dfm=pydf
 alias dum=ncdu
@@ -24,7 +23,7 @@ alias l='eza -lhF --git --group-directories-first --color=always'
 alias ll='eza -Alah --git --color=always --group-directories-first'
 alias lh='eza -a | egrep "^\."'
 alias lsd='eza -d */ 2> /dev/null'
-alias lt='eza --tree --level=2'
+alias lt='eza -a --tree --level=2'
 
 alias findf='find . -type f -name'
 alias findd='find . -type d -name'
@@ -32,10 +31,6 @@ alias count='find . -type f | wc -l'
 alias pyfind='find . -name "*.py"'
 alias pygrep='grep -nr --include="*.py"'
 
-# Run proper IPython regarding current virtualenv (if any)
-# alias ipython='python3 -c "import IPython, sys; sys.exit(IPython.start_ipython())"'
-alias ipython='ipython3'
-alias ipy='ipython3'
 
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 alias ps='ps -f'
@@ -69,7 +64,7 @@ alias ping='ping -c 5'
 #-----------#
 
 alias rp='realpath'
-alias myalias='sh -c '\''realpath "$1" | xclip -selection clipboard'\'' -'
+alias cprp='sh -c '\''realpath "$1" | xclip -selection clipboard'\'' -'
 alias cpy="xclip -selection clipboard"
 alias CC='$(fc -l -n -1) | cpy'
 alias fpath="readlink -f"
@@ -77,9 +72,6 @@ alias genpwd='openssl rand -base64 16 | cpy'
 alias cpwd='pwd|cpy'
 
 # realpath "$*")" -iname "*"
-function realfzf() {
-    find "$(realpath "$1")" -iname "*" | fzf
-}
 alias path='echo -e ${PATH//:/\\n} | fzf'
 
 #-----------#
@@ -88,14 +80,11 @@ alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
 # $(history -p !!)'
 # 'sudo $(fc -ln -1)'
 
-weather() { curl wttr.in/"$1"; }
-dict() { curl "dict.org/d:$1"; }
 
 alias fortune='/usr/games/fortune'
 alias tuxsay='cowsay -f tux '
 alias matrix='cmatrix'
 
-alias vi="$EDITOR"
 alias vim="$EDITOR"
 alias lvi='$EDITOR -c "normal '\''0"'
 alias v.='$EDITOR .'
@@ -122,13 +111,14 @@ alias tree='tree -a -I ".svn|.git|.hg|.idea"'
 alias hx='hexdump -C'
 alias w1='watch -n 1'
 
-alias usage='du -ch | grep total'
-alias totalusage='df -hl --total | grep total'
-alias partusage='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
-alias most='du -hsx * | sort -rh | head -10'
-alias bigfiles='du -ha . | sort -rh | head -20'
-alias dirssize="du -sch ./* 2> /dev/null"
-alias du1="du -d 1 -m"
+alias usage='\du -ch | grep total'
+alias totalusage='\df -hl --total | grep total'
+alias partusage='\df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
+alias most='\du -hsx * | sort -rh | head -10'
+alias bigfiles='\du -ha . | sort -rh | head -20'
+alias dirssize="\du -sch ./* 2> /dev/null"
+alias du1='\du -hs --max-depth=1'
+# alias du1="\du -d 1 -m"
 
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
 
@@ -155,8 +145,8 @@ alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _s
 
 alias update='sudo apt update && sudo apt upgrade'
 alias update-get='sudo apt-get update && sudo apt-get upgrade'
-alias clean='sudo apt autoremove && sudo apt autoclean'
-alias clean-get='sudo apt-get autoremove && sudo apt-get autoclean'
+alias autoremove='sudo apt autoremove && sudo apt autoclean'
+alias autoremove-get='sudo apt-get autoremove && sudo apt-get autoclean'
 alias distup='sudo apt-get dist-upgrade'
 alias fupdate='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
 alias updatenclean='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt autoclean && sudo apt autoremove'
@@ -209,8 +199,8 @@ alias jupnb='jupyter notebook'
 
 alias cve='python3 -m venv .venv'
 alias act="source .venv/bin/activate"
-alias sopy='cve && act'
 alias dact='deactivate'
+alias sopy='cve && act'
 alias rpy="uvicorn main:app --reload"
 
 # pyenv
@@ -236,8 +226,10 @@ alias piplo="pip list -o"
 alias pipreq="pip freeze > requirements.txt"
 alias pipir="pip install -r requirements.txt"
 
-alias pygrep='grep -nr --include="*.py"'
+# Run proper IPython regarding current virtualenv (if any)
 # alias ipython='python3 -c "import IPython, sys; sys.exit(IPython.start_ipython())"'
+alias ipython='ipython3'
+alias ipy='ipython3'
 alias pyserver="python3 -m http.server"
 
 #-----------#
@@ -250,13 +242,12 @@ alias tmat='tmux attach -t'
 alias tmkst='tmux kill-session -t'
 alias tmks='tmux kill-server'
 
-alias tmlk='tmux list-keys'               # List bound keys in tmux
+alias tmlk='tmux list-keys'
 alias atomic='tmux new-session -A -s atomic'
 # alias tmlkb='tmux list-keys | grep -v "unbind" | grep'  # List only bound keys
 # alias tmlkB='tmux list-keys | grep "unbind" | grep'   # List only unbound keys
 
 #-----------#
-
 
 alias cd..='cd ..'
 alias cdtmp='cd $(mktemp -d)'
@@ -273,10 +264,6 @@ alias .4="cd ../../../.."
 
 alias mkcd='_mkcd() { mkdir -p "$1"; cd "$1"; }; _mkcd'
 alias mk="mkdir -pv"
-
-function cdl() {
-    cd "$1" && ls
-}
 
 # alias twitter='xdg-open https://www.twitter.com'
 
