@@ -1,7 +1,6 @@
 return {
 	{
 		"tpope/vim-dadbod",
-		-- keys = { { "n", "<leader>db", "<cmd>DB<cr>", desc = "Dadbod" } },
 	},
 	{
 		"kristijanhusak/vim-dadbod-ui",

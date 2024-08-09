@@ -3,13 +3,12 @@ return {
 	version = "*",
 	lazy = true,
 	event = "VeryLazy",
-	-- ft = "markdown",
-	-- event = {
-	--   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-	--   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-	--   "BufReadPre path/to/my-vault/**.md",
-	--   "BufNewFile path/to/my-vault/**.md",
-	-- },
+	ft = "markdown",
+	event = {
+		"BufReadPre " .. vim.fn.expand("~") .. "/vaults/**.md",
+		--   "BufReadPre path/to/my-vault/**.md",
+		--   "BufNewFile path/to/my-vault/**.md",
+	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
@@ -47,9 +46,7 @@ return {
 			-- template = nil
 		},
 		completion = {
-			-- Set to false to disable completion.
 			nvim_cmp = true,
-			-- Trigger completion at 2 chars.
 			min_chars = 2,
 		},
 		mappings = {

@@ -4,6 +4,8 @@ return {
 	lazy = true,
 	branch = "0.1.x",
 	dependencies = {
+		-- "nvim-telescope/telescope-smart-history.nvim",
+		-- "kkharji/sqlite.lua",
 		"nvim-lua/plenary.nvim",
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -12,12 +14,12 @@ return {
 				return vim.fn.executable("make") == 1
 			end,
 		},
-		{
-			"nvim-telescope/telescope-frecency.nvim", -- Get frequently opened files
-			config = function()
-				require("telescope").load_extension("frecency")
-			end,
-		},
+		-- {
+		-- 	"nvim-telescope/telescope-frecency.nvim", -- Get frequently opened files
+		-- 	config = function()
+		-- 		require("telescope").load_extension("frecency")
+		-- 	end,
+		-- },
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 		"debugloop/telescope-undo.nvim",
@@ -87,9 +89,8 @@ return {
 				layout_strategy = "horizontal",
 				layout_config = { prompt_position = "top" },
 				sorting_strategy = "ascending",
-				winblend = 0,
 				-- selection_strategy = "reset",
-				-- layout_strategy = "horizontal",
+				winblend = 0,
 				vimgrep_arguments = vimgrep_arguments,
 				-- Searching
 				set_env = { COLORTERM = "truecolor" },
@@ -101,13 +102,10 @@ return {
 					"%.svg",
 					"%.otf",
 					"%.ttf",
-					"%.lock",
 					"__pycache__",
 					"%.sqlite3",
 					"%.ipynb",
-					"vendor",
 					"node_modules",
-					"dotbot",
 				},
 				file_sorter = require("telescope.sorters").get_fuzzy_file,
 				mappings = {
@@ -205,6 +203,10 @@ return {
 					side_by_side = false,
 				},
 				zoxide = {},
+				-- history = {
+				-- 	path = vim.fs.joinpath(data, "telescope_history.sqlite3"),
+				-- 	limit = 100,
+				-- },
 			},
 		})
 
@@ -212,57 +214,48 @@ return {
 		pcall(require("telescope").load_extension, "ui-select")
 		require("telescope").load_extension("undo")
 		require("telescope").load_extension("zoxide")
+		-- pcall(require("telescope").load_extension, "smart_history")
 		-- require("telescope").load_extension("refactoring")
 		-- telescope.load_extension("persisted")
 
-		keymap.set("n", "<leader>sg", function()
-			builtin.live_grep({ path_display = { "smart" } })
-		end)
 
-		keymap.set(
-			"n",
-			"<Leader><Leader>",
-			"<cmd>lua require('telescope').extensions.frecency.frecency({ prompt_title = 'Recent Files', workspace = 'CWD', path_display = { 'smart' } })<CR>",
-			{ desc = "Recent Files" }
-		)
+		-- keymap.set(
+		-- 	"n",
+		-- 	"<Leader><Leader>",
+		-- 	"<cmd>lua require('telescope').extensions.frecency.frecency({ prompt_title = 'Recent Files', workspace = 'CWD', path_display = { 'smart' } })<CR>",
+		-- 	{ desc = "Recent Files" }
+		-- )
 
 		-- stylua: ignore start
 		keymap.set("n", "<leader>sh", builtin.help_tags)
 		keymap.set("n", "<leader>sk", builtin.keymaps)
 
+
 		keymap.set("n", "<leader>s:", builtin.command_history)
 		keymap.set("n", '<leader>s"', builtin.registers)
 		keymap.set("n", "<leader>sa", builtin.autocommands)
 		keymap.set("n", "<leader>sm", builtin.marks)
-		keymap.set("n", "<leader>sq", builtin.quickfix)
 
 		keymap.set("n", "<leader>sf", function() builtin.find_files({ hidden = true}) end)
 		keymap.set("n", "<leader>sF", function() builtin.find_files({ cwd = vim.fn.expand("~") }) end)
+
 		keymap.set("n", "<leader>sr", builtin.oldfiles)
 		keymap.set("n", "<leader>sc", function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end)
 
-		keymap.set("n", "<leader>sb", function() builtin.buffers({ path_display = "smart",  sort_mru = true, sort_lastused = true }) end)
+		keymap.set("n", "<leader>sb", function() builtin.buffers({ path_display = {"smart"},  sort_mru = true, sort_lastused = true }) end)
 
-		keymap.set("n", "<leader>hf", builtin.git_files)
-		keymap.set("n", "<leader>hc", builtin.git_commits)
-		keymap.set("n", "<leader>hs", builtin.git_status)
 
-		keymap.set("n", "<leader>sH", builtin.highlights)
-		keymap.set("n", "<leader>sM", builtin.man_pages)
-		keymap.set("n", "<leader>sC", builtin.commands)
+		keymap.set("n", "<leader>sq", builtin.quickfix)
+		-- keymap.set("n", "<leader>sd", function() builtin.diagnostics({ bufnr = 0 }) end)
+		-- keymap.set("n", "<leader>sD", require("telescope.builtin").diagnostics)
 
-		keymap.set("n", "<leader>sd", function() builtin.diagnostics({ bufnr = 0 }) end)
-		keymap.set("n", "<leader>sD", require("telescope.builtin").diagnostics)
-
-		keymap.set("n", "<leader>ic", require("telescope.builtin").lsp_incoming_calls)
-		keymap.set("n", "<leader>oc", require("telescope.builtin").lsp_outgoing_calls)
-		keymap.set("n", "gr", require("telescope.builtin").lsp_references)
-		keymap.set("n", "gws", require("telescope.builtin").lsp_workspace_symbols)
-		keymap.set("n", "gwS", require("telescope.builtin").lsp_dynamic_workspace_symbols)
-		keymap.set("n", "gs", require("telescope.builtin").lsp_document_symbols)
-		keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
+		-- keymap.set("n", "gr", require("telescope.builtin").lsp_references)
+		-- keymap.set("n", "gws", require("telescope.builtin").lsp_workspace_symbols)
+		-- keymap.set("n", "gwS", require("telescope.builtin").lsp_dynamic_workspace_symbols)
+		-- keymap.set("n", "gs", require("telescope.builtin").lsp_document_symbols)
+		-- keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
 		-- keymap.set("n", "", require("telescope.builtin").lsp_type_definitions)
-		keymap.set("n", "gI", require("telescope.builtin").lsp_implementations)
+		-- keymap.set("n", "gI", require("telescope.builtin").lsp_implementations)
 
 		-- builtin.git_bcommits
 		-- builtin.git_bcommits_range
@@ -270,12 +263,23 @@ return {
 		-- builtin.git_stash
 		-- builtin.vimoptions
 
+		keymap.set("n", "<leader>hf", builtin.git_files)
+		keymap.set("n", "<leader>hc", builtin.git_commits)
+		keymap.set("n", "<leader>hs", builtin.git_status)
+
+		keymap.set("n", "<leader>ic", require("telescope.builtin").lsp_incoming_calls)
+		keymap.set("n", "<leader>oc", require("telescope.builtin").lsp_outgoing_calls)
+
+		keymap.set("n", "<leader>sH", builtin.highlights)
+		keymap.set("n", "<leader>sM", builtin.man_pages)
+		keymap.set("n", "<leader>sC", builtin.commands)
+
 		keymap.set("n", "<leader>fs", require("telescope.builtin").treesitter)
 		keymap.set("n", "<leader>fm", function() require("telescope.builtin").treesitter({ default_text = ":method:" }) end)
-
 		keymap.set("n", "<leader>fw", builtin.grep_string)
 
 
+		keymap.set("n", "<leader>sg", function() builtin.live_grep({ path_display = { "smart" } }) end)
 		keymap.set("n", "<leader>s/", function() builtin.live_grep({ path_display = {"shorten"} ,grep_open_files = true, prompt_title = "Live Grep in Open Files" }) end, { desc = "[S]earch [/] in Open Files" })
 
 		keymap.set("n", "<leader>/", function()
@@ -284,6 +288,6 @@ return {
 			)
 		end)
 
-		keymap.set("n", "<leader>tb", builtin.builtin)
+		-- keymap.set("n", "<leader>tb", builtin.builtin)
 	end,
 }

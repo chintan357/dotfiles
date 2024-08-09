@@ -121,12 +121,19 @@ return {
 		-- vim.keymap.set({ "n", "v" }, "<Leader>dp", function() require("dap.ui.widgets").preview() end)
 		-- vim.keymap.set("n", "<Leader>d?", function() local widgets = require("dap.ui.widgets") widgets.centered_float(widgets.scopes) end)
 
+      -- vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
+      -- -- Eval var under cursor
+      -- vim.keymap.set("n", "<space>?", function()
+      --   require("dapui").eval(nil, { enter = true })
+      -- end)
 
     local function set_dap_keybindings()
       vim.keymap.set('n', ')', "<cmd>lua require'dap'.continue()<CR>", { noremap = true, silent = true })
       vim.keymap.set('n', 'q', "<cmd>lua require'dap'.step_over()<CR>", { noremap = true, silent = true })
       vim.keymap.set('n', 't', "<cmd>lua require'dap'.step_into()<CR>", { noremap = true, silent = true })
       vim.keymap.set('n', '(', "<cmd>lua require'dap'.step_out()<CR>", { noremap = true, silent = true })
+      -- vim.keymap.set("n", "<F5>", dap.step_back)
+      -- vim.keymap.set("n", "<F13>", dap.restart)
     end
     local function clear_dap_keybindings()
       vim.keymap.del('n', ')')

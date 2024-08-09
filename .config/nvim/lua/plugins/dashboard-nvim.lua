@@ -1,3 +1,4 @@
+-- NOTE: need to change...?
 return {
 	"nvimdev/dashboard-nvim",
 	event = "VimEnter",

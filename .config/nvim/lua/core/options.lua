@@ -2,23 +2,21 @@ local vb = vim.bo
 local vw = vim.wo
 local vo = vim.opt
 
--- vim.g.loaded_perl_provider = 0 -- Do not load Perl
-
 local opt = vim.opt
 
+-- vim.g.loaded_perl_provider = 0 -- Do not load Perl
 -- vo.background = "dark"
 -- vo.cursorlineopt = "screenline,number" -- Highlight the screen line of the cursor with CursorLine and the line number with CursorLineNr
 -- vo.emoji = false -- Turn off emojis
 -- vw.list = true -- Show some invisible characters like tabs etc
--- vo.fillchars = {
--- 	fold = " ",
--- 	foldopen = "",
--- 	foldclose = "",
--- 	foldsep = " ",
--- 	diff = "╱",
--- 	eob = " ",
--- }
 -- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
+-- vim.o.foldcolumn = "auto:9"
+-- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 opt.relativenumber = true
 opt.number = true
@@ -83,7 +81,8 @@ opt.grepprg = "rg --vimgrep --no-heading"
 opt.grepformat = "%f:%l:%c:%m"
 -- vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 
-opt.completeopt = "menu,menuone,noselect"
+opt.completeopt = { "menu", "menuone", "noselect" }
+opt.shortmess:append("c")
 opt.pumblend = 10
 opt.pumheight = 10
 opt.winblend = 0
@@ -110,12 +109,6 @@ vim.cmd("filetype plugin indent on")
 -- opt.backup = false
 -- opt.writebackup = false
 -- opt.swapfile = false
-
--- opt.foldcolumn = "auto:9"
-opt.foldcolumn = "0"
-opt.foldlevel = 99
-opt.foldlevelstart = 99
-opt.foldenable = true
 
 vim.cmd([[ set guicursor=n-v-c-i:block ]])
 vim.cmd("set whichwrap+=<,>,[,],h,l")

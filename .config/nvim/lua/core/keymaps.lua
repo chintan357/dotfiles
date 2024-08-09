@@ -127,8 +127,7 @@ keymap("n", "<leader>fe", "<cmd>Neotree toggle<cr>")
 keymap("n", "<leader>gb", ":GitBlameToggle<CR>")
 
 keymap("n", "yod", "<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.disable() else vim.diagnostic.enable() end<CR>")
-keymap("n", "yot", ":TagbarToggle<CR>")
-keymap("n", "yoT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, { desc = "Toggle Treesitter Highlight" })
+-- keymap("n", "yoT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, { desc = "Toggle Treesitter Highlight" })
 
 keymap("n", "<leader>yF", function() local filename = vim.fn.expand("%") local lineno = vim.fn.line(".") vim.fn.setreg("+", filename .. ":" .. lineno) end)
 keymap("n", "<leader>yf", function() local filename = vim.fn.expand("%") vim.fn.setreg("+", filename) end)

@@ -6,7 +6,9 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
+		lazy = false,
+		priority = 100,
+		-- event = "InsertEnter",
 		dependencies = {
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
@@ -32,6 +34,7 @@ return {
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
+			-- lspkind.init({})
 
 			-- gray
 			vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#808080" })
@@ -65,10 +68,6 @@ return {
 				completion = {
 					completeopt = "menu,menuone,noinsert",
 				},
-				-- window = {
-				-- 	completion = cmp.config.window.bordered(),
-				-- 	documentation = cmp.config.window.bordered(),
-				-- },
 				formatting = {
 					-- fields = { "abbr", "kind", "menu" },
 					format = lspkind.cmp_format({
@@ -87,11 +86,26 @@ return {
 						-- end
 					}),
 				},
+				-- Enable luasnip to handle snippet expansion for nvim-cmp
+				snippet = {
+					expand = function(args)
+						vim.snippet.expand(args.body)
+					end,
+				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-y"] = cmp.mapping.complete(),
+					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<C-y>"] = cmp.mapping(
+						cmp.mapping.confirm({
+							behavior = cmp.ConfirmBehavior.Insert,
+							select = true,
+						}),
+						{ "i", "c" }
+					),
 					["<C-d>"] = cmp.mapping.abort(),
-					["<C-n>"] = cmp.mapping.select_next_item(),
-					["<C-p>"] = cmp.mapping.select_prev_item(),
+					-- ["<C-y"] = cmp.mapping.complete(),
+					-- ["<C-n>"] = cmp.mapping.select_next_item(),
+					-- ["<C-p>"] = cmp.mapping.select_prev_item(),
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					-- ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false, }),
@@ -141,15 +155,17 @@ return {
 					{ name = "sql" },
 					{ name = "dotenv" },
 					{ name = "buffer" },
+					{ name = "cmp_yanky" },
+					-- { name = "cody" },
 					-- { name = "copilot", priority = 90, max_item_count = 5 },
 					-- { name = "emoji" },
-					{ name = "cmp_yanky" },
 					-- { name = "jupyter" },
 				}),
 			})
 			cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
 				sources = {
 					{ name = "vim-dadbod-completion" },
+					{ name = "buffer" },
 				},
 			})
 

@@ -14,10 +14,8 @@ return {
 	keys = {
 		{ ",v", "<cmd>VenvSelect<cr>" },
 		{ "<leader>vs", "<cmd>VenvSelect<cr>" },
-		{ "<leader>vc", "<cmd>VenvSelectCached<cr>" },
 	},
 	cmd = "VenvSelect",
-	event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
 	opts = function(_, opts)
 		opts.dap_enabled = true
 		return vim.tbl_deep_extend("force", opts, {

@@ -1,5 +1,7 @@
+-- NOTE: something is not working as expected...
 return {
 	"monaqa/dial.nvim",
+	enabled = false,
 	-- lazy-load on keys
 	-- mode is `n` by default. For more advanced options, check the section on key mappings
 	keys = { "+", { "-", mode = "n" } },

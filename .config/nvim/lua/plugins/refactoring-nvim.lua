@@ -1,129 +1,43 @@
--- TODO: how to use this plugin?
+-- TODO: how to use this?
 return {
 	"ThePrimeagen/refactoring.nvim",
-	lazy = true,
 	dependencies = {
-		{ "nvim-lua/plenary.nvim" },
-		{ "nvim-treesitter/nvim-treesitter" },
+		"nvim-lua/plenary.nvim",
+		"nvim-treesitter/nvim-treesitter",
 	},
-	keys = {
-		{
-			"<LocalLeader>rd",
-			function()
-				require("refactoring").debug.printf({ below = false })
-			end,
-			description = "Insert Printf statement for debugging",
-		},
-		{
-			"<LocalLeader>re",
-			function()
-				require("telescope").extensions.refactoring.refactors()
-			end,
-			description = "Open Refactoring.nvim",
-			mode = { "n", "v", "x" },
-		},
-		{
-			"<leader>r",
-			function()
-				require("lua.plugins.refactoring-nvim").select_refactor()
-			end,
-			mode = "v",
-			noremap = true,
-			silent = true,
-			expr = false,
-		},
-		{
-			"<leader>rm",
-			function()
-				require("lua.plugins.refactoring-nvim").select_refactor()
-			end,
-			mode = { "v" },
-			desc = "Refactoring menu",
-		},
-		-- Debug variable
-		{
-			"<leader>dv",
-			function()
-				require("lua.plugins.refactoring-nvim").debug.print_var({
-					below = true,
-				})
-			end,
-			mode = { "n", "x" },
-			desc = "Print below variables",
-		},
-		{
-			"<LocalLeader>rv",
-			{
-				n = function()
-					require("refactoring").debug.print_var({ normal = true })
-				end,
-				x = function()
-					require("refactoring").debug.print_var({})
-				end,
-			},
-			description = "Insert Print_Var statement for debugging",
-			mode = { "n", "v" },
-		},
-		{
-			"<LocalLeader>rc",
-			function()
-				require("refactoring").debug.cleanup()
-			end,
-			description = "Cleanup debug statements",
-		},
-		{
-			"<leader>dV",
-			function()
-				require("lua.plugins.refactoring-nvim").debug.print_var({
-					below = false,
-				})
-			end,
-			mode = { "n", "x" },
-			desc = "Print above variables",
-		},
-		-- Clean up debugging
-		{
-			"<leader>dc",
-			function()
-				require("lua.plugins.refactoring-nvim").debug.cleanup({
-					force = true,
-				})
-			end,
-			desc = "Clear debugging",
-		},
-	},
-	opts = {
-		prompt_func_return_type = {
-			go = false,
-			java = false,
+	config = function()
+		require("refactoring").setup()
+		vim.keymap.set("x", "<leader>re", ":Refactor extract ")
+		vim.keymap.set("x", "<leader>rf", ":Refactor extract_to_file ")
 
-			cpp = false,
-			c = false,
-			h = false,
-			hpp = false,
-			cxx = false,
-		},
-		prompt_func_param_type = {
-			go = false,
-			java = false,
+		vim.keymap.set("x", "<leader>rv", ":Refactor extract_var ")
 
-			cpp = false,
-			c = false,
-			h = false,
-			hpp = false,
-			cxx = false,
-		},
-		printf_statements = {},
-		print_var_statements = {},
-	},
-	config = function(_, options)
-		require("lua.plugins.refactoring-nvim").setup(options)
+		vim.keymap.set({ "n", "x" }, "<leader>ri", ":Refactor inline_var")
 
-		local tele_status_ok, telescope = pcall(require, "telescope")
-		if not tele_status_ok then
-			return
-		end
+		vim.keymap.set("n", "<leader>rI", ":Refactor inline_func")
 
-		telescope.load_extension("refactoring")
+		vim.keymap.set("n", "<leader>rb", ":Refactor extract_block")
+		vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file")
+
+		--     vim.keymap.set("x", "<leader>re", function() require('refactoring').refactor('Extract Function') end)
+		-- vim.keymap.set("x", "<leader>rf", function() require('refactoring').refactor('Extract Function To File') end)
+		-- -- Extract function supports only visual mode
+		-- vim.keymap.set("x", "<leader>rv", function() require('refactoring').refactor('Extract Variable') end)
+		-- -- Extract variable supports only visual mode
+		-- vim.keymap.set("n", "<leader>rI", function() require('refactoring').refactor('Inline Function') end)
+		-- -- Inline func supports only normal
+		-- vim.keymap.set({ "n", "x" }, "<leader>ri", function() require('refactoring').refactor('Inline Variable') end)
+		-- -- Inline var supports both normal and visual mode
+		--
+		-- vim.keymap.set("n", "<leader>rb", function() require('refactoring').refactor('Extract Block') end)
+		-- vim.keymap.set("n", "<leader>rbf", function() require('refactoring').refactor('Extract Block To File') end)
+		-- -- Extract block supports only normal mode
+		--
+		-- load refactoring Telescope extension
+		require("telescope").load_extension("refactoring")
+
+		vim.keymap.set({ "n", "x" }, "<leader>rr", function()
+			require("telescope").extensions.refactoring.refactors()
+		end)
 	end,
 }

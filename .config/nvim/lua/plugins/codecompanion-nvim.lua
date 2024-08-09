@@ -1,3 +1,4 @@
+-- NOTE: learn how to use this?
 return {
 	"olimorris/codecompanion.nvim",
 	config = function()
