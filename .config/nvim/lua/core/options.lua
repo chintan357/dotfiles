@@ -12,11 +12,15 @@ local opt = vim.opt
 -- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 -- vim.o.foldcolumn = "auto:9"
+vim.o.foldcolumn = "0"
 -- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-vim.o.foldcolumn = "1" -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
+vim.opt.foldnestmax = 4
+vim.o.foldlevelstart = 1
+vim.o.foldlevel = 99
+vim.o.foldenable = false
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
+vim.opt.foldmethod = "expr"
 
 opt.relativenumber = true
 opt.number = true

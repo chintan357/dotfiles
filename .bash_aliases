@@ -270,6 +270,7 @@ alias mk="mkdir -pv"
 # c() { cd ~/code/$1; }
 # h() { cd ~/$1; }
 alias deskw="cd /mnt/c/Users/ChintanPatel/Desktop"
+alias vaultsw="cd /mnt/c/vaults"
 alias obsd='cd /mnt/c/saleenaa357/daily_notes'
 
 alias i3="$EDITOR ~/.config/i3/config"
