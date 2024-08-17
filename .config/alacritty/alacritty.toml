@@ -35,15 +35,15 @@ hide_when_typing = true
 size = 8
 
 [font.normal]
-family = "MesloLGMDZ Nerd Font"
+family = "Mononoki Nerd Font"
 style = "Light"
 
 [font.bold]
-family = "MesloLGMDZ Nerd Font"
+family = "Mononoki Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "MesloLGMDZ Nerd Font"
+family = "Mononoki Nerd Font"
 style = "Italic"
 
 [window.padding]
