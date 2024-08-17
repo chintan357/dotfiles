@@ -1,0 +1,14 @@
+{
+  "accentColor": "#4ba1d2",
+  "interfaceFontFamily": "Comic Sans MS",
+  "monospaceFontFamily": "FiraCode Nerd Font Mono",
+  "textFontFamily": "Operator Mono Lig",
+  "baseFontSizeAction": true,
+  "showViewHeader": true,
+  "nativeMenus": false,
+  "translucency": false,
+  "cssTheme": "Tokyo Night",
+  "baseFontSize": 19,
+  "theme": "obsidian",
+  "enabledCssSnippets": []
+}
