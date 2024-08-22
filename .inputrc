@@ -1,3 +1,4 @@
+# bind -f ~/.inputrc
 $include /etc/inputrc
 
 set enable-bracketed-paste On
@@ -30,7 +31,8 @@ set output-meta On
 
 # Use Alt/Meta + Delete to delete the preceding word
 "\e[3;3~": kill-word
-
+"\e\C-l": alias-expand-line
+# "\e[Z": "\e\C-e "
 # Be more intelligent when autocompleting by also looking at the text after
 # the cursor. For example, when the current line is "cd ~/src/mozil", and
 # the cursor is on the "z", pressing Tab will not autocomplete it to "cd
@@ -53,7 +55,9 @@ set keymap vi-command
 "\e[B": history-search-forward
 j: history-search-forward
 k: history-search-backward
+"\C-x\C-r": re-read-init-file
 set keymap vi-insert
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+"\C-x\C-r": re-read-init-file
 $endif

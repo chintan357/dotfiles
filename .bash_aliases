@@ -59,7 +59,20 @@ alias ports='sudo netstat -tulanp'
 alias nmap='nmap -v'
 alias ping='ping -c 5'
 
+#-----------#
+
+alias ct='column -t'
+alias dfc='df -hPT | column -t'
+alias mount='mount | column -t'
 # alias secupdates='sudo unattended-upgrade -d'
+alias al='alias'
+alias osrelease='cat /etc/os-release'
+alias cpufino='cat /proc/cpuinfo'
+alias meminfo='cat /proc/meminfo'
+alias release='cat /etc/*-release'
+alias unamea='uname -a'
+alias unamer='uname -r'
+
 
 #-----------#
 
@@ -355,6 +368,8 @@ alias g=git
 alias cg='cd `git rev-parse --show-toplevel`'
 
 alias gaa='git add .'
+
+alias gdiff='git diff'
 
 alias gcl='git clone'
 
