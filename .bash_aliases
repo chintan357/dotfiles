@@ -9,7 +9,7 @@ alias df='df -h'
 alias du='du -hs'
 alias bc="bc -l"
 alias dfm=pydf
-alias dum=ncdu
+alias dum="ncdu --color off"
 alias cal='ncal -y -M'
 alias fw='sudo ufw'
 
@@ -31,7 +31,6 @@ alias count='find . -type f | wc -l'
 alias pyfind='find . -name "*.py"'
 alias pygrep='grep -nr --include="*.py"'
 
-
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 alias ps='ps -f'
 alias sortnr='sort -n -r'
@@ -42,10 +41,10 @@ alias chgrp='chgrp --preserve-root'
 alias chownr='sudo chown -R --preserve-root'
 alias chmodr='sudo chmod -R --preserve-root'
 
-alias memtop='ps aux --sort=-%mem | head -11'
-alias cputop='ps aux --sort=-%cpu | head -11'
-alias psx="ps auxf"
-alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias memtop='\ps aux --sort=-%mem | head -11'
+alias cputop='\ps aux --sort=-%cpu | head -11'
+alias psx="\ps auxf"
+alias psg="\ps aux | grep -v grep | grep -i -e VSZ -e"
 
 alias disk='lsblk -f'
 alias mounts='mount | column -t'
@@ -72,7 +71,6 @@ alias meminfo='cat /proc/meminfo'
 alias release='cat /etc/*-release'
 alias unamea='uname -a'
 alias unamer='uname -r'
-
 
 #-----------#
 
@@ -135,6 +133,8 @@ alias du1='\du -hs --max-depth=1'
 
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
 
+#--------------
+
 alias gaadl='gcloud auth application-default login'
 alias gauth='gcloud auth login'
 alias gapat='gcloud auth print-access-token'
@@ -148,6 +148,7 @@ alias gconfa='gcloud config configurations activate'
 alias gbilling='gcloud beta billing accounts list'
 alias giam='gcloud iam list'
 
+#--------------
 
 alias py='function _py() { python3 $1; }; _py'
 alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
@@ -192,6 +193,8 @@ alias clh5='curl localhost:5050'
 
 alias k9='kill -9'
 alias k15='kill -15'
+
+#--------------
 
 alias erc="$EDITOR ~/.bashrc"
 alias epro="$EDITOR ~/.bash_profile"
@@ -288,6 +291,7 @@ alias obsd='cd /mnt/c/saleenaa357/daily_notes'
 
 alias i3="$EDITOR ~/.config/i3/config"
 alias vaults='cd ~/vaults'
+alias obs='cd ~/Videos/obs'
 alias cdnvim='cd ~/.config/nvim'
 alias config='cd ~/.config'
 alias tmp='cd ~/trash'
