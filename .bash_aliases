@@ -1,29 +1,40 @@
 alias cls='clear;ls'
 alias e=exit
 alias c=clear
+alias al='alias'
+alias ct='column -t'
 
-alias top=htop
+#-----------#
+
 alias rm=trash
 alias cat=batcat
-alias df='df -h'
-alias du='du -hs'
-alias bc="bc -l"
-alias dfm=pydf
-alias dum=ncdu
 alias cal='ncal -y -M'
 alias fw='sudo ufw'
 
+#-----------#
+
+alias bc="bc -l"
 alias wget='wget -c'
 alias diff='diff --color'
 alias whois='whois -H'
+alias tailf='tail -f'
+alias hg='history | grep'
+alias cp='cp -r'
+alias rmrf='rm -rf'
+alias sortnr='sort -n -r'
 
-alias ls="eza --icons=always --group-directories-first"
-alias la='eza -a --color=always --icons=always --group-directories-first'
-alias l='eza -lhF --git --group-directories-first --color=always'
+#-----------#
+
+alias ls="eza --group-directories-first"
+alias l="eza -lh --git --color=always --icons=always --group-directories-first"
+alias la='eza -a --git --color=always --icons=always --group-directories-first'
 alias ll='eza -Alah --git --color=always --group-directories-first'
+
 alias lh='eza -a | egrep "^\."'
 alias lsd='eza -d */ 2> /dev/null'
 alias lt='eza -a --tree --level=2'
+
+#-----------#
 
 alias findf='find . -type f -name'
 alias findd='find . -type d -name'
@@ -31,57 +42,55 @@ alias count='find . -type f | wc -l'
 alias pyfind='find . -name "*.py"'
 alias pygrep='grep -nr --include="*.py"'
 
-
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
-alias ps='ps -f'
-alias sortnr='sort -n -r'
+
+#-----------#
 
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
 alias chownr='sudo chown -R --preserve-root'
 alias chmodr='sudo chmod -R --preserve-root'
+alias chmx='chmod +x'
 
-alias memtop='ps aux --sort=-%mem | head -11'
-alias cputop='ps aux --sort=-%cpu | head -11'
-alias psx="ps auxf"
-alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
+#-----------#
+
+alias top=htop
+alias memtop='\ps aux --sort=-%mem | head -11'
+alias cputop='\ps aux --sort=-%cpu | head -11'
+
+alias ps='ps -f'
+alias psx="\ps auxf"
+alias psg="\ps aux | grep -v grep | grep -i -e VSZ -e"
 
 alias disk='lsblk -f'
 alias mounts='mount | column -t'
 alias free='free -mh'
 
-alias hostinfo='hostname && ip addr show'
-
+alias ping='ping -c 5'
 alias sniff='sudo tcpdump -i any -c 1000 -nn'
 alias lsock='sudo lsof -i -P'
 alias ports='sudo netstat -tulanp'
 alias nmap='nmap -v'
-alias ping='ping -c 5'
 
 #-----------#
 
-alias ct='column -t'
 alias dfc='df -hPT | column -t'
 alias mount='mount | column -t'
-# alias secupdates='sudo unattended-upgrade -d'
-alias al='alias'
 alias osrelease='cat /etc/os-release'
-alias cpufino='cat /proc/cpuinfo'
+alias cpuinfo='cat /proc/cpuinfo'
 alias meminfo='cat /proc/meminfo'
 alias release='cat /etc/*-release'
 alias unamea='uname -a'
 alias unamer='uname -r'
 
-
 #-----------#
 
 alias rp='realpath'
+alias fpath="readlink -f"
 alias cprp='sh -c '\''realpath "$1" | xclip -selection clipboard'\'' -'
 alias cpy="xclip -selection clipboard"
 alias CC='$(fc -l -n -1) | cpy'
-alias fpath="readlink -f"
-alias genpwd='openssl rand -base64 16 | cpy'
 alias cpwd='pwd|cpy'
 
 # realpath "$*")" -iname "*"
@@ -89,51 +98,67 @@ alias path='echo -e ${PATH//:/\\n} | fzf'
 
 #-----------#
 
+alias genpwd='openssl rand -base64 16 | cpy'
 alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
 # $(history -p !!)'
 # 'sudo $(fc -ln -1)'
 
+#-----------#
 
 alias fortune='/usr/games/fortune'
 alias tuxsay='cowsay -f tux '
 alias matrix='cmatrix'
 
+#-----------#
+
 alias vim="$EDITOR"
 alias lvi='$EDITOR -c "normal '\''0"'
 alias v.='$EDITOR .'
 
-alias tailf='tail -f'
+#-----------#
 
 # alias make1='make -j$(($(nproc) + 1))'  # Use all cores +1 for compilation
-alias hg='history | grep'
 alias sha1='openssl sha1'
 
+alias hostinfo='hostname && ip addr show'
 alias whoami='who am i'
 
 alias myip='curl http://ipecho.net/plain; echo'
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias flushdns='sudo systemd-resolve --flush-caches'
 
-alias cp='cp -r'
-alias rmrf='rm -rf'
-
-alias chmx='chmod +x'
-
 alias tree='tree -a -I ".svn|.git|.hg|.idea"'
 
 alias hx='hexdump -C'
 alias w1='watch -n 1'
 
+#-----------#
+
+alias dfm=pydf
+alias dum=ncdu
+alias df='\df -h'
+alias du='\du -hs'
 alias usage='\du -ch | grep total'
 alias totalusage='\df -hl --total | grep total'
 alias partusage='\df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
 alias most='\du -hsx * | sort -rh | head -10'
 alias bigfiles='\du -ha . | sort -rh | head -20'
 alias dirssize="\du -sch ./* 2> /dev/null"
+
+#-----------#
+
 alias du1='\du -hs --max-depth=1'
 # alias du1="\du -d 1 -m"
+#-----------#
 
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
+alias py='function _py() { python3 $1; }; _py'
+alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
+# alias tree='tree -C --dirsfirst'
+# alias to='function _to() { cd "$@" && tree; }; _to'
+alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _search'
+
+#-----------#
 
 alias gaadl='gcloud auth application-default login'
 alias gauth='gcloud auth login'
@@ -142,20 +167,15 @@ alias ginit='gcloud init'
 alias ginstances='gcloud compute instances list'
 alias gstols='gcloud storage ls'
 alias gprols='gcloud projects list'
-alias gproset='gcloud config set project'
+alias gsetpro='gcloud config set project'
 alias gconfls='gcloud config configurations list'
 alias gconfa='gcloud config configurations activate'
 alias gbilling='gcloud beta billing accounts list'
 alias giam='gcloud iam list'
 
+#-----------#
 
-alias py='function _py() { python3 $1; }; _py'
-alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
-# alias tree='tree -C --dirsfirst'
-# alias to='function _to() { cd "$@" && tree; }; _to'
-alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _search'
-
-
+# alias secupdates='sudo unattended-upgrade -d'
 alias update='sudo apt update && sudo apt upgrade'
 alias update-get='sudo apt-get update && sudo apt-get upgrade'
 alias autoremove='sudo apt autoremove && sudo apt autoclean'
@@ -203,11 +223,15 @@ alias etmux="$EDITOR ~/.tmux.conf"
 alias eprompt="$EDITOR ~/.config/starship.toml"
 alias eipy="$EDITOR ~/.ipython/profile_default/ipython_config.py"
 alias einput="$EDITOR ~/.inputrc"
+
+#-----------#
+
 alias soinput="source ~/.inputrc && echo 'refreshed .inputrc'"
 alias sopro="source ~/.bash_profile && echo 'refreshed .bash_profile'"
 alias sorc="source ~/.bashrc && echo 'refreshed .bashrc'"
 
 #-----------#
+
 alias jupnb='jupyter notebook'
 
 alias cve='python3 -m venv .venv'
@@ -262,18 +286,18 @@ alias atomic='tmux new-session -A -s atomic'
 
 #-----------#
 
-alias cd..='cd ..'
-alias cdtmp='cd $(mktemp -d)'
-alias root='cd /'
-
 alias R="yy"
 alias exp="Explorer.exe ."
 
+alias cd..='cd ..'
 alias bk="cd -"
+alias root='cd /'
 alias ..="cd .."
 alias .2="cd ../.."
 alias .3="cd ../../.."
 alias .4="cd ../../../.."
+
+alias cdtmp='cd $(mktemp -d)'
 
 alias mkcd='_mkcd() { mkdir -p "$1"; cd "$1"; }; _mkcd'
 alias mk="mkdir -pv"
@@ -282,12 +306,14 @@ alias mk="mkdir -pv"
 
 # c() { cd ~/code/$1; }
 # h() { cd ~/$1; }
+
 alias deskw="cd /mnt/c/Users/ChintanPatel/Desktop"
 alias vaultsw="cd /mnt/c/vaults"
 alias obsd='cd /mnt/c/saleenaa357/daily_notes'
 
 alias i3="$EDITOR ~/.config/i3/config"
 alias vaults='cd ~/vaults'
+alias cdssh='cd ~/.ssh'
 alias cdnvim='cd ~/.config/nvim'
 alias config='cd ~/.config'
 alias tmp='cd ~/trash'
@@ -304,6 +330,7 @@ alias private='cd ~/private'
 alias desk="cd ~/Desktop"
 alias docs="cd ~/Documents"
 alias down='cd ~/Downloads'
+
 #-----------#
 
 alias ytdl='youtube-dl'
@@ -359,6 +386,7 @@ alias drmf='sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo do
 # for c in $(sudo docker ps -a | awk '{print $1}' | sed "1 d") do sudo docker $1 $c done }
 
 # alias dkclean='docker ps -q -a -f status=exited | xargs -r docker rm && docker images -q -f dangling=true | xargs -r docker rmi'
+
 #-----------#
 
 alias lg=lazygit
@@ -366,24 +394,21 @@ alias g=git
 
 # alias git='cd `git rev-parse --show-toplevel` && git checkout master && git pull'
 alias cg='cd `git rev-parse --show-toplevel`'
-
 alias gaa='git add .'
-
-alias gdiff='git diff'
-
 alias gcl='git clone'
 
 alias gco='git checkout'
 alias gcob='git checkout -b'
 
-alias gbr="git branch"
-alias gb='git branch --sort=committerdate'
+alias gbr='git branch --sort=committerdate'
 alias gbrl="git branch -l"
+alias gbrd='git branch -d'
+alias gbrD='git branch -D'
 
-alias gdh='git diff HEAD'
-alias gd='git diff'
-alias gds="git diff --staged"
-alias gdc='git diff --cached'
+alias gdiff='git diff'
+alias gdiffh='git diff HEAD'
+alias gdiffs="git diff --staged"
+alias gdffc='git diff --cached'
 
 alias gst='git status'
 alias gsts='git status -sb'
@@ -396,7 +421,6 @@ alias gpu='git push'
 alias gpuo='git push origin'
 alias gP='git pull'
 
-alias go="git push -u origin"
 alias gwc='git whatchanged'
 alias glog='git log --oneline --decorate --all --graph'
 alias glogp="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -405,24 +429,27 @@ alias gnah="git clean -df && git checkout -- ."
 alias grecent='git for-each-ref --sort="-committerdate" --format="%(committerdate:short) %(refname:short)" refs/heads'
 alias glast="git log -1 HEAD"
 
-alias gbrd='git branch -d'
-alias gbrD='git branch -D'
 alias gcb='git checkout -b'
 alias gll='git log --stat'
 alias grb='git rebase'
 alias grbi='git rebase -i'
+
 alias gre='git remote'
 alias grev='git remote -v'
 alias grea='git remote add'
 alias grerm='git remote remove'
 alias greu='git remote update'
+
 alias gtag='git tag'
 alias gtagd='git tag -d'
 alias gtags='git tag -l'
+
 alias gclean='git clean -fd'
 alias gcp='git cherry-pick'
+
 alias gfetch='git fetch'
 alias gfa='git fetch --all'
+
 alias grs='git reset'
 alias grsh='git reset --hard'
 alias grss='git reset --soft'
@@ -449,69 +476,30 @@ alias hprshow='hub pr show'
 #-----------#
 
 alias kc='kubectl'
+
 alias kcg='kubectl get'
 alias kcgn='kubectl get --namespace'
+
 alias kcd='kubectl describe'
 alias kcdn='kubectl describe --namespace'
+
 alias kcdl='kubectl delete'
 alias kcdln='kubectl delete --namespace'
 alias kcdlp='kubectl-delete-pod'
-alias kcgno='kubectl get nodes'
-alias kcgp='kubectl get pods'
-alias wkcgp='w1 kubectl get pods'
-alias kcgpn='kubectl get pods --namespace'
-alias kcgd='kubectl get deployments'
-alias kcgdn='kubectl get deployments --namespace'
-alias kcgs='kubectl get services'
-alias kcgsn='kubectl get services --namespace'
-alias kcgi='kubectl get ingresses'
-alias kcgin='kubectl get ingresses --namespace'
-alias kcgc='kubectl get configmaps'
-alias kcgv='kubectl get virtualservices'
-alias kcgvn='kubectl get virtualservices --namespace'
-alias kcgpp='kubectl get pods --all-namespaces'
-alias kcgdd='kubectl get deployments --all-namespaces'
-alias kcgss='kubectl get services --all-namespaces'
-alias kcgii='kubectl get ingresses --all-namespaces'
-alias kcgcn='kubectl get configmaps --namespace'
-alias kcgcc='kubectl get configmaps --all-namespaces'
-alias kcgvv='kubectl get virtualservices --all-namespaces'
-alias kcgdr='kubectl get destinationrules'
-alias kcgdrn='kubectl get destinationrules --namespace'
-alias kcgdrr='kubectl get destinationrules --all-namespaces'
-alias kcgg='kubectl get gateways'
-alias kcggn='kubectl get gateways --namespace'
-alias kcggg='kubectl get gateways --all-namespaces'
-alias kcgse='kubectl get serviceentries'
-alias kcgsen='kubectl get serviceentries --namespace'
-alias kcgsee='kubectl get serviceentries --all-namespaces'
-alias kcgr='kubectl get routerules'
-alias kcgrn='kubectl get routerules --namespace'
-alias kcgrr='kubectl get routerules --all-namespaces'
-alias kcgdp='kubectl get destinationpolicies'
-alias kcgdpn='kubectl get destinationpolicies --namespace'
-alias kcgdpp='kubectl get destinationpolicies --all-namespaces'
+
+alias wkcg='w1 kubectl get'
+alias kcg='kubectl get'
+alias kcgn='kubectl get --namespace'
+alias kcgan='kubectl get pods --all-namespaces'
+
 alias kcge='kubectl get events --sort-by=".lastTimestamp" --all-namespaces --watch'
-alias kcc='kubectl create'
-alias kccn='kubectl create --namespace'
+alias kcr='kubectl create'
 alias kca='kubectl apply -f'
-alias kcan='kubectl apply -f --namespace'
 alias kce='kubectl exec -t -i'
-alias kcen='kubectl exec -t -i --namespace'
-alias kcl='kubectl logs -f'
-alias kcll='kubectl-logs'
-alias kcln='kubectl logs -f --namespace'
-alias kcgx='kubectl config get-contexts'
-alias kcux='kubectl config use-context'
+alias kclf='kubectl logs -f'
+alias kccon='kubectl config'
 alias kcxsn='kubectl config set-context $(kubectl config current-context) --namespace'
 alias kcpf='kubectl port-forward'
-alias kcpfn='kubectl port-forward --namespace'
-alias kcpfg='kubectl-port-forward-grafana'
-alias kcpfj='kubectl-port-forward-jaeger'
-alias kcpfk='kubectl-port-forward-kiali'
-alias kcpfp='kubectl-port-forward-prometheus'
-alias kcpfpf='kubectl-port-forward-prometheus-federation'
-alias kcpfz='kubectl-port-forward-zipkin'
 alias kcdldr='kubectl-delete-default-resources'
 alias kcii='kubectl-ingress-ip-address'
 alias kcni='kubectl-nginx-ip-address'
