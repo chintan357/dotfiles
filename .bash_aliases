@@ -8,6 +8,11 @@ alias ct='column -t'
 
 alias rm=trash
 alias cat=batcat
+alias df='df -h'
+alias du='du -hs'
+alias bc="bc -l"
+alias dfm=pydf
+alias dum="ncdu --color off"
 alias cal='ncal -y -M'
 alias fw='sudo ufw'
 
@@ -56,10 +61,12 @@ alias chmx='chmod +x'
 #-----------#
 
 alias top=htop
+
+alias ps='\ps -f'
+alias psx="\ps auxf"
+alias psg="\ps aux | grep -v grep | grep -i -e VSZ -e"
 alias memtop='\ps aux --sort=-%mem | head -11'
 alias cputop='\ps aux --sort=-%cpu | head -11'
-
-alias ps='ps -f'
 alias psx="\ps auxf"
 alias psg="\ps aux | grep -v grep | grep -i -e VSZ -e"
 
@@ -160,6 +167,8 @@ alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _s
 
 #-----------#
 
+#--------------
+
 alias gaadl='gcloud auth application-default login'
 alias gauth='gcloud auth login'
 alias gapat='gcloud auth print-access-token'
@@ -212,6 +221,8 @@ alias clh5='curl localhost:5050'
 
 alias k9='kill -9'
 alias k15='kill -15'
+
+#--------------#
 
 alias erc="$EDITOR ~/.bashrc"
 alias epro="$EDITOR ~/.bash_profile"
@@ -314,6 +325,7 @@ alias obsd='cd /mnt/c/saleenaa357/daily_notes'
 alias i3="$EDITOR ~/.config/i3/config"
 alias vaults='cd ~/vaults'
 alias cdssh='cd ~/.ssh'
+alias obs='cd ~/Videos/obs'
 alias cdnvim='cd ~/.config/nvim'
 alias config='cd ~/.config'
 alias tmp='cd ~/trash'
