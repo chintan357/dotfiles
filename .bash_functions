@@ -1,7 +1,9 @@
 function rpfzf() {
     find "$(realpath "$1")" -iname "*" | fzf
 }
+
 weather() { curl wttr.in/"$1"; }
+
 dict() { curl "dict.org/d:$1"; }
 
 function cdl() {
@@ -24,6 +26,7 @@ function countdown() {
 	done
 	echo -e "\a"
 }
+
 alias countdown=countdown
 # alias countdown='echo "Enter duration (minutes): "; read duration; sleep $(($duration * 60)); notify-send "Time’s up!"'
 
@@ -94,7 +97,6 @@ function github() {
     xdg-open "https://www.github.com"
       fi
 }
-
 
 function hL() {
   if command -v "$1" &> /dev/null; then

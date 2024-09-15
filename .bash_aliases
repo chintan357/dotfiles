@@ -1,18 +1,16 @@
-alias cls='clear;ls'
+#-----------#
+
 alias e=exit
 alias c=clear
 alias al='alias'
+alias cls='clear;ls'
 alias ct='column -t'
 
 #-----------#
 
+alias top=htop
 alias rm=trash
 alias cat=batcat
-alias df='df -h'
-alias du='du -hs'
-alias bc="bc -l"
-alias dfm=pydf
-alias dum="ncdu --color off"
 alias cal='ncal -y -M'
 alias fw='sudo ufw'
 
@@ -20,34 +18,46 @@ alias fw='sudo ufw'
 
 alias bc="bc -l"
 alias wget='wget -c'
+alias cp='cp -r'
+alias rmf='rm -rf'
 alias diff='diff --color'
-alias whois='whois -H'
 alias tailf='tail -f'
 alias hg='history | grep'
-alias cp='cp -r'
-alias rmrf='rm -rf'
 alias sortnr='sort -n -r'
+alias whois='whois -H'
+
+alias hist="history"
+alias h1="history 10"
+alias h2="history 20"
+alias h3="history 30"
 
 #-----------#
 
-alias ls="eza --group-directories-first"
-alias l="eza -lh --git --color=always --icons=always --group-directories-first"
+alias ls='eza --group-directories-first'
+alias l='eza -lh --git --color=always --icons=always --group-directories-first'
 alias la='eza -a --git --color=always --icons=always --group-directories-first'
-alias ll='eza -Alah --git --color=always --group-directories-first'
+alias ll='eza -Alah --git --color=always --group-directories-first | less'
 
 alias lh='eza -a | egrep "^\."'
 alias lsd='eza -d */ 2> /dev/null'
-alias lt='eza -a --tree --level=2'
+alias lt='eza -a --tree --level=2 | less'
 
 #-----------#
 
 alias findf='find . -type f -name'
 alias findd='find . -type d -name'
+alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _search'
+
 alias count='find . -type f | wc -l'
+
 alias pyfind='find . -name "*.py"'
 alias pygrep='grep -nr --include="*.py"'
 
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
+
+alias grepr='grep -r'
+alias grepi='grep -i'
+alias grepri='grep -ri'
 
 #-----------#
 
@@ -60,19 +70,19 @@ alias chmx='chmod +x'
 
 #-----------#
 
-alias top=htop
-
 alias ps='\ps -f'
 alias psx="\ps auxf"
 alias psg="\ps aux | grep -v grep | grep -i -e VSZ -e"
+
+alias k9='kill -9'
+alias k15='kill -15'
+
 alias memtop='\ps aux --sort=-%mem | head -11'
 alias cputop='\ps aux --sort=-%cpu | head -11'
-alias psx="\ps auxf"
-alias psg="\ps aux | grep -v grep | grep -i -e VSZ -e"
 
 alias disk='lsblk -f'
-alias mounts='mount | column -t'
 alias free='free -mh'
+alias mount='mount | column -t'
 
 alias ping='ping -c 5'
 alias sniff='sudo tcpdump -i any -c 1000 -nn'
@@ -80,10 +90,16 @@ alias lsock='sudo lsof -i -P'
 alias ports='sudo netstat -tulanp'
 alias nmap='nmap -v'
 
+alias p1='ping 1.1.1.1'
+alias p8='ping 8.8.8.8'
+alias p9='ping 9.9.9.9'
+alias clh3='curl localhost:3000'
+alias clh8='curl localhost:8080'
+alias clh5='curl localhost:5050'
+
 #-----------#
 
 alias dfc='df -hPT | column -t'
-alias mount='mount | column -t'
 alias osrelease='cat /etc/os-release'
 alias cpuinfo='cat /proc/cpuinfo'
 alias meminfo='cat /proc/meminfo'
@@ -94,11 +110,14 @@ alias unamer='uname -r'
 #-----------#
 
 alias rp='realpath'
-alias fpath="readlink -f"
 alias cprp='sh -c '\''realpath "$1" | xclip -selection clipboard'\'' -'
+
+
 alias cpy="xclip -selection clipboard"
 alias CC='$(fc -l -n -1) | cpy'
 alias cpwd='pwd|cpy'
+
+alias fpath="readlink -f"
 
 # realpath "$*")" -iname "*"
 alias path='echo -e ${PATH//:/\\n} | fzf'
@@ -120,7 +139,7 @@ alias matrix='cmatrix'
 
 alias vim="$EDITOR"
 alias lvi='$EDITOR -c "normal '\''0"'
-alias v.='$EDITOR .'
+alias v.="$EDITOR ."
 
 #-----------#
 
@@ -130,7 +149,9 @@ alias sha1='openssl sha1'
 alias hostinfo='hostname && ip addr show'
 alias whoami='who am i'
 
+#NOTE: doesn't work
 alias myip='curl http://ipecho.net/plain; echo'
+
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias flushdns='sudo systemd-resolve --flush-caches'
 
@@ -141,21 +162,22 @@ alias w1='watch -n 1'
 
 #-----------#
 
-alias dfm=pydf
-alias dum=ncdu
 alias df='\df -h'
 alias du='\du -hs'
+alias dfm='pydf'
+alias dum="ncdu --color off"
+
 alias usage='\du -ch | grep total'
 alias totalusage='\df -hl --total | grep total'
 alias partusage='\df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
+
 alias most='\du -hsx * | sort -rh | head -10'
 alias bigfiles='\du -ha . | sort -rh | head -20'
 alias dirssize="\du -sch ./* 2> /dev/null"
 
-#-----------#
-
 alias du1='\du -hs --max-depth=1'
 # alias du1="\du -d 1 -m"
+
 #-----------#
 
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
@@ -163,77 +185,41 @@ alias py='function _py() { python3 $1; }; _py'
 alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
 # alias tree='tree -C --dirsfirst'
 # alias to='function _to() { cd "$@" && tree; }; _to'
-alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _search'
-
-#-----------#
-
-#--------------
-
-alias gaadl='gcloud auth application-default login'
-alias gauth='gcloud auth login'
-alias gapat='gcloud auth print-access-token'
-alias ginit='gcloud init'
-alias ginstances='gcloud compute instances list'
-alias gstols='gcloud storage ls'
-alias gprols='gcloud projects list'
-alias gsetpro='gcloud config set project'
-alias gconfls='gcloud config configurations list'
-alias gconfa='gcloud config configurations activate'
-alias gbilling='gcloud beta billing accounts list'
-alias giam='gcloud iam list'
 
 #-----------#
 
 # alias secupdates='sudo unattended-upgrade -d'
 alias update='sudo apt update && sudo apt upgrade'
 alias update-get='sudo apt-get update && sudo apt-get upgrade'
+
 alias autoremove='sudo apt autoremove && sudo apt autoclean'
 alias autoremove-get='sudo apt-get autoremove && sudo apt-get autoclean'
+
 alias distup='sudo apt-get dist-upgrade'
 alias fupdate='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
 alias updatenclean='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt autoclean && sudo apt autoremove'
-alias yupp='sudo apt install $1'
+
 alias show='apt show $1'
+alias yupp='sudo apt install $1'
 alias nope='sudo apt remove $1'
 
 alias sysctl='systemctl'
 alias jou='sudo journalctl -b -n 200 -f'
 
-alias grepr='grep -r'
-alias grepi='grep -i'
-alias grepri='grep -ri'
-
 alias tree1='tree -L 1'
 alias tree2='tree -L 2'
 alias tree3='tree -L 3'
-
-alias hist="history"
-alias h1="history 10"
-alias h2="history 20"
-alias h3="history 30"
-
-alias p1='ping 1.1.1.1'
-alias p8='ping 8.8.8.8'
-alias p9='ping 9.9.9.9'
-alias clh3='curl localhost:3000'
-alias clh8='curl localhost:8080'
-alias clh5='curl localhost:5050'
-
-alias k9='kill -9'
-alias k15='kill -15'
 
 #--------------#
 
 alias erc="$EDITOR ~/.bashrc"
 alias epro="$EDITOR ~/.bash_profile"
 alias ealias="$EDITOR ~/.bash_aliases"
+alias einput="$EDITOR ~/.inputrc"
 alias essh="$EDITOR ~/.ssh/config"
-alias evim="$EDITOR ~/.config/nvim/init.lua"
-alias envim="$EDITOR ~/.config/nvim/init.lua"
 alias etmux="$EDITOR ~/.tmux.conf"
 alias eprompt="$EDITOR ~/.config/starship.toml"
 alias eipy="$EDITOR ~/.ipython/profile_default/ipython_config.py"
-alias einput="$EDITOR ~/.inputrc"
 
 #-----------#
 
@@ -300,10 +286,11 @@ alias atomic='tmux new-session -A -s atomic'
 alias R="yy"
 alias exp="Explorer.exe ."
 
-alias cd..='cd ..'
 alias bk="cd -"
 alias root='cd /'
+alias cd..='cd ..'
 alias ..="cd .."
+alias .1="cd .."
 alias .2="cd ../.."
 alias .3="cd ../../.."
 alias .4="cd ../../../.."
@@ -430,8 +417,10 @@ alias gcma="git commit -am"
 alias amend='git commit --amend --no-edit'
 
 alias gpu='git push'
+alias gpush='git push'
 alias gpuo='git push origin'
 alias gP='git pull'
+alias gpull='git pull'
 
 alias gwc='git whatchanged'
 alias glog='git log --oneline --decorate --all --graph'
@@ -525,3 +514,18 @@ alias mkt='minikube stop'
 #-----------#
 
 alias gtypist='gtypist -c 0,2'
+
+#-----------#
+
+alias gaadl='gcloud auth application-default login'
+alias gauth='gcloud auth login'
+alias gapat='gcloud auth print-access-token'
+alias ginit='gcloud init'
+alias ginstances='gcloud compute instances list'
+alias gstols='gcloud storage ls'
+alias gprols='gcloud projects list'
+alias gsetpro='gcloud config set project'
+alias gconfls='gcloud config configurations list'
+alias gconfa='gcloud config configurations activate'
+alias gbilling='gcloud beta billing accounts list'
+alias giam='gcloud iam list'

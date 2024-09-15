@@ -6,28 +6,29 @@ function keymap(mode, lhs, rhs, opts)
 	vim.keymap.set(mode, lhs, rhs, options)
 end
 
-vim.api.nvim_set_keymap("n", "<C-_>", "gcc", { silent = true })
-vim.api.nvim_set_keymap("v", "<C-_>", "gc", { silent = true })
+keymap("n", "<Esc>", ":nohls<CR>")
 
-keymap("n", "<C-c>", "<cmd>bd<CR>")
-keymap("n", "<C-q>", "<cmd>q<CR>")
-keymap("n", "<leader>bd", ":bd<CR>")
-keymap("n", "<leader>qq", ":qa<CR>")
-keymap("n", "<leader>Q", ":qa!<CR>")
+keymap("n", "N", [[v:searchforward ? 'Nzz' : 'nzz']], { expr = true })
+keymap("n", "n", [[v:searchforward ? 'nzz' : 'Nzz']], { expr = true })
 
 keymap("v", "v", "<C-v>")
 
 keymap("n", "+", "<C-a>")
 keymap("n", "-", "<C-x>")
 
-keymap("n", "gx", ":!open <c-r><c-a><CR>")
-
 keymap("n", "<leader>_", "<c-W>s")
 keymap("n", "<leader>|", "<C-W>v")
+
 keymap("n", "<leader>ww", "<C-W>w")
 keymap("n", "<leader>we", "<C-W>c")
 keymap("n", "<leader>s-", ":close<CR>")
 keymap("n", "<leader>s=", "<C-w>=")
+
+keymap("n", "<C-c>", "<cmd>bd<CR>")
+keymap("n", "<C-q>", "<cmd>q<CR>")
+keymap("n", "<leader>bd", ":bd<CR>")
+keymap("n", "<leader>qq", ":qa<CR>")
+keymap("n", "<leader>Q", ":qa!<CR>")
 
 keymap("n", "<leader>`", "<cmd>e #<cr>")
 
@@ -42,6 +43,39 @@ keymap("n", "J", "mzJ`z")
 
 keymap("n", "<leader>qo", ":copen<CR>")
 
+keymap("n", "U", "<C-r>", {})
+
+keymap("v", "K", ":m '<-2<CR>gv=gv")
+keymap("v", "J", ":m '>+1<CR>gv=gv")
+
+keymap("v", "<", "<gv")
+keymap("v", ">", ">gv")
+
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")
+
+keymap("n", "<S-l>", ":bnext<cr>")
+keymap("n", "<S-h>", ":bprevious<cr>")
+
+-- vim.cmd("command! W execute 'w !sudo tee % > /dev/null' <bar> edit!")
+
+-- keymap("n", "<leader>mx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file executable" })
+
+keymap({ "n", "v" }, "gg", "gg0")
+keymap({ "n", "v" }, "G", "G$")
+keymap("n", "d,", "d$")
+keymap("n", "c,", "c$")
+keymap("n", "y,", "y$")
+keymap({ "x", "v" }, ",", "$")
+
+-- stylua: ignore start
+
+
+vim.api.nvim_set_keymap("n", "<C-_>", "gcc", { silent = true })
+vim.api.nvim_set_keymap("v", "<C-_>", "gc", { silent = true })
+
+keymap("n", "gx", ":!open <c-r><c-a><CR>")
+
 local opts = { buffer = 0 }
 vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
 vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
@@ -53,17 +87,6 @@ vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
 vim.keymap.set("c", "<C-a>", "<Home>")
 vim.keymap.set("c", "<C-h>", "<Up>")
 vim.keymap.set("c", "<C-l>", "<Down>")
-
-keymap("n", "U", "<C-r>", {})
-
-keymap("v", "K", ":m '<-2<CR>gv=gv")
-keymap("v", "J", ":m '>+1<CR>gv=gv")
-
-keymap("v", "<", "<gv")
-keymap("v", ">", ">gv")
-
-keymap("n", "<C-d>", "<C-d>zz")
-keymap("n", "<C-u>", "<C-u>zz")
 
 local diagnostic_goto = function(next, severity)
 	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
@@ -82,19 +105,12 @@ keymap("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 keymap("n", "gV", "`[V`]")
 keymap("n", "gl", "`.zz")
 
-keymap("n", "<S-l>", ":bnext<cr>")
-keymap("n", "<S-h>", ":bprevious<cr>")
-
 keymap("n", "<leader><Enter>", "!!bash<CR>")
 
 vim.keymap.set("n", ";", ":", { noremap = true })
 vim.keymap.set("n", ":", ";", { noremap = true })
 -- vim.keymap.set("n", ";", ":")
 -- vim.keymap.set("n", ":", ";")
-
--- vim.cmd("command! W execute 'w !sudo tee % > /dev/null' <bar> edit!")
-
-keymap("n", "<Esc>", ":nohls<CR>")
 
 keymap("n", "<leader>M", "mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm")
 
@@ -113,16 +129,6 @@ keymap("n", "<leader>so", function()
 	vim.cmd("so %")
 end)
 
--- keymap("n", "<leader>mx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file executable" })
-
-keymap({ "n", "v" }, "gg", "gg0")
-keymap({ "n", "v" }, "G", "G$")
-keymap("n", "d,", "d$")
-keymap("n", "c,", "c$")
-keymap("n", "y,", "y$")
-keymap({ "x", "v" }, ",", "$")
-
--- stylua: ignore start
 keymap("n", "<leader>fe", "<cmd>Neotree toggle<cr>")
 keymap("n", "<leader>gb", ":GitBlameToggle<CR>")
 
@@ -132,12 +138,8 @@ keymap("n", "yod", "<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.
 keymap("n", "<leader>yF", function() local filename = vim.fn.expand("%") local lineno = vim.fn.line(".") vim.fn.setreg("+", filename .. ":" .. lineno) end)
 keymap("n", "<leader>yf", function() local filename = vim.fn.expand("%") vim.fn.setreg("+", filename) end)
 
-keymap("n", "N", [[v:searchforward ? 'Nzz' : 'nzz']], { expr = true })
-keymap("n", "n", [[v:searchforward ? 'nzz' : 'Nzz']], { expr = true })
-
-keymap("n", "<C-,>", "<c-w>5>")
-keymap("n", "<C-.>", "<c-w>5<")
-
+-- keymap("n", "<C-,>", "<c-w>5>")
+-- keymap("n", "<C-.>", "<c-w>5<")
 -- keymap("n", "<C-,>", "<C-W>5-")
 -- keymap("n", "<C-.>", "<C-W>5+")
 
@@ -149,7 +151,7 @@ keymap("n", "<C-.>", "<c-w>5<")
 -- keymap.set("n", "<leader>sp", "[s", { noremap = true })
 -- keymap.set("n", "<leader>sa", "zg", { noremap = true })
 -- keymap.set("n", "<leader>s?", "z=", { noremap = true })
---
+
 -- keymap("n", "<leader>oc", "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>", { desc = "Obsidian Check Checkbox" })
 -- keymap("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Insert Obsidian Template" })
 -- keymap("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", { desc = "Open in Obsidian App" })

@@ -15,23 +15,6 @@ return {
 			question_sign = "Q:",
 			answer_sign = "A:",
 		},
-		popup_layout = {
-			center = {
-				width = "99%",
-				height = "99%",
-			},
-			right = {
-				width = "45%",
-				width_settings_open = "60%",
-			},
-		},
-		popup_window = {
-			border = {
-				text = {
-					top = "Atomic",
-				},
-			},
-		},
 		openai_params = {
 			model = "gpt-4o",
 			frequency_penalty = 0,
@@ -55,6 +38,6 @@ return {
 	config = function(_, opts)
 		require("chatgpt").setup(opts)
 		vim.keymap.set("n", "<leader>aa", ":ChatGPTActAs<CR>", { noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>uc", "<cmd>ChatGPT<cr>", { noremap = true, silent = true })
+		vim.keymap.set("n", ",c", "<cmd>ChatGPT<cr>", { noremap = true, silent = true })
 	end,
 }

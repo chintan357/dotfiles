@@ -3,10 +3,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# Created by `pipx` on 2024-03-19 21:09:03
-export PATH="$PATH:$HOME/.local/bin"
-
-# include .bashrc if it exists
 if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"
 fi
