@@ -34,6 +34,8 @@ local currentmode = {
 	t = "T",
 }
 
+-- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+
 BuildStatusline = function()
 	local vim_mode = currentmode[vim.fn.mode()] or "?"
 	local relative_path = vim.fn.expand("%:~:.")
@@ -48,7 +50,9 @@ BuildStatusline = function()
 		" ",
 		"%h", -- help text indicator
 		"%m",
-		-- "%{%v:lua.require'nvim-navic'.get_location()%}",
+		"  %#Normal#",
+		"%{%v:lua.require'nvim-navic'.get_location()%}",
+		" ",
 		"%r",
 		"%=", -- alignment break
 		"%y",

@@ -7,6 +7,6 @@ return {
 	end,
 	config = function()
 		vim.g.mkdp_auto_close = 1
-		vim.keymap.set("n", "<M-S-O>", "<Plug>MarkdownPreviewToggle")
+		vim.keymap.set("n", "yom", "<Plug>MarkdownPreviewToggle")
 	end,
 }

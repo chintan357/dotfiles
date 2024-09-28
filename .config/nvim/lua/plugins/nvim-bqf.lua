@@ -8,6 +8,7 @@ return {
 	},
 	{
 		"stevearc/qf_helper.nvim",
+		enabled = false,
 		opts = {},
 	},
 }

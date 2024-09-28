@@ -129,7 +129,6 @@ keymap("n", "<leader>so", function()
 	vim.cmd("so %")
 end)
 
-keymap("n", "<leader>fe", "<cmd>Neotree toggle<cr>")
 keymap("n", "<leader>gb", ":GitBlameToggle<CR>")
 
 keymap("n", "yod", "<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.disable() else vim.diagnostic.enable() end<CR>")

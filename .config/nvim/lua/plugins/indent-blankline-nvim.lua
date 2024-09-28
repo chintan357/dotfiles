@@ -2,7 +2,6 @@ local exclude_filetypes = {
 	"help",
 	"dashboard",
 	"neotree",
-	"Trouble",
 	"trouble",
 	"lazy",
 	"mason",

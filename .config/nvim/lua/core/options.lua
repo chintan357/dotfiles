@@ -2,6 +2,8 @@ local vb = vim.bo
 local vw = vim.wo
 local vo = vim.opt
 
+vo.termguicolors = true
+
 local opt = vim.opt
 
 -- vim.g.loaded_perl_provider = 0 -- Do not load Perl

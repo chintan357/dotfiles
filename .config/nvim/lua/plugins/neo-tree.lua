@@ -1,6 +1,7 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
+	enabled = false,
 	cmd = { "Neotree" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
@@ -8,6 +9,7 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	config = function()
+		vim.keymap.set("n", "<leader>fe", "<cmd>Neotree toggle<cr>", { noremap = true, silent = true })
 		require("neo-tree").setup({
 			close_if_last_window = true,
 			popup_border_style = "rounded",

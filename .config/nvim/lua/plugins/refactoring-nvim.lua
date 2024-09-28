@@ -1,6 +1,7 @@
 -- TODO: how to use this?
 return {
 	"ThePrimeagen/refactoring.nvim",
+	enabled = false,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",

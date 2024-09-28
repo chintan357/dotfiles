@@ -1,11 +1,12 @@
 return {
 	"b0o/incline.nvim",
+	enabled = false,
 	dependencies = {
 		"SmiteshP/nvim-navic",
 	},
 	-- event = "",
-	layz = false,
-	priority = 1200,
+	-- layz = false,
+	-- priority = 1200,
 	config = function()
 		local navic = require("nvim-navic")
 		local devicons = require("nvim-web-devicons")

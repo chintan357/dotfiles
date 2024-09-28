@@ -1,3 +1,4 @@
+-- TODO: Tmux Support
 return {
 	"ThePrimeagen/harpoon",
 	branch = "harpoon2",
@@ -5,6 +6,7 @@ return {
 	config = function()
 		local harpoon = require("harpoon")
 		harpoon.setup()
+
 		local conf = require("telescope.config").values
 		local function toggle_telescope(harpoon_files)
 			local file_paths = {}
@@ -43,7 +45,7 @@ return {
 		vim.keymap.set("n", "\tl", function()
 			harpoon:list():select(3)
 		end)
-		vim.keymap.set("n", "\t4", function()
+		vim.keymap.set("n", "\t;", function()
 			harpoon:list():select(4)
 		end)
 		vim.keymap.set("n", "<M-S-P>", function()

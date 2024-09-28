@@ -24,14 +24,14 @@ return {
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 		"debugloop/telescope-undo.nvim",
 		"jvgrootveld/telescope-zoxide",
-		"folke/trouble.nvim",
+		-- "folke/trouble.nvim",
 	},
 	config = function()
 		local actions = require("telescope.actions")
 		local action_layout = require("telescope.actions.layout")
 		local action_state = require("telescope.actions.state")
 		local builtin = require("telescope.builtin")
-		local open_with_trouble = require("trouble.sources.telescope").open
+		-- local open_with_trouble = require("trouble.sources.telescope").open
 
 		-- Use this to add more results without clearing the trouble list
 		-- local add_to_trouble = require("trouble.sources.telescope").add
@@ -108,40 +108,6 @@ return {
 					"node_modules",
 				},
 				file_sorter = require("telescope.sorters").get_fuzzy_file,
-				mappings = {
-					-- i = {
-					-- 	["<esc>"] = require("telescope.actions").close,
-					-- 	["<C-e>"] = custom_actions.multi_select,
-					-- 	["<C-c>"] = require("telescope.actions").delete_buffer,
-					-- 	["<C-j>"] = require("telescope.actions").move_selection_next,
-					-- 	["<C-d>"] = require("telescope.actions").preview_scrolling_down,
-					-- 	["<C-f>"] = require("telescope.actions").preview_scrolling_up,
-					-- 	["<C-k>"] = require("telescope.actions").move_selection_previous,
-					-- 	["<C-q>"] = require("telescope.actions").send_selected_to_qflist,
-					-- },
-					-- n = {
-					-- 	["q"] = require("telescope.actions").close,
-					-- 	["<C-n>"] = require("telescope.actions").move_selection_next,
-					-- 	["<C-p>"] = require("telescope.actions").move_selection_previous,
-					-- },
-					i = {
-						["<c-t>"] = open_with_trouble,
-
-						["<M-p>"] = action_layout.toggle_preview,
-						["<C-d>"] = actions.delete_buffer + actions.move_to_top,
-
-						["<C-c>"] = actions.close,
-						["<C-u>"] = false,
-
-						-- ["<C-s>"] = actions.cycle_previewers_next,
-						-- ["<C-a>"] = actions.cycle_previewers_prev,
-						-- ['<c-enter>'] = 'to_fuzzy_refine',
-					},
-					n = {
-						["<c-t>"] = open_with_trouble,
-						["<M-p>"] = action_layout.toggle_preview,
-					},
-				},
 			},
 			pickers = {
 				diagnostics = {
@@ -214,10 +180,10 @@ return {
 		pcall(require("telescope").load_extension, "ui-select")
 		require("telescope").load_extension("undo")
 		require("telescope").load_extension("zoxide")
+
 		-- pcall(require("telescope").load_extension, "smart_history")
 		-- require("telescope").load_extension("refactoring")
 		-- telescope.load_extension("persisted")
-
 
 		-- keymap.set(
 		-- 	"n",
@@ -227,9 +193,8 @@ return {
 		-- )
 
 		-- stylua: ignore start
-		keymap.set("n", "<leader>sh", builtin.help_tags)
 		keymap.set("n", "<leader>sk", builtin.keymaps)
-
+    keymap.set("n", "<leader>sh", builtin.help_tags)
 
 		keymap.set("n", "<leader>s:", builtin.command_history)
 		keymap.set("n", '<leader>s"', builtin.registers)
@@ -238,30 +203,11 @@ return {
 
 		keymap.set("n", "<leader>sf", function() builtin.find_files({ hidden = true}) end)
 		keymap.set("n", "<leader>sF", function() builtin.find_files({ cwd = vim.fn.expand("~") }) end)
-
 		keymap.set("n", "<leader>sr", builtin.oldfiles)
 		keymap.set("n", "<leader>sc", function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end)
-
 		keymap.set("n", "<leader>sb", function() builtin.buffers({ path_display = {"smart"},  sort_mru = true, sort_lastused = true }) end)
 
-
 		keymap.set("n", "<leader>sq", builtin.quickfix)
-		-- keymap.set("n", "<leader>sd", function() builtin.diagnostics({ bufnr = 0 }) end)
-		-- keymap.set("n", "<leader>sD", require("telescope.builtin").diagnostics)
-
-		-- keymap.set("n", "gr", require("telescope.builtin").lsp_references)
-		-- keymap.set("n", "gws", require("telescope.builtin").lsp_workspace_symbols)
-		-- keymap.set("n", "gwS", require("telescope.builtin").lsp_dynamic_workspace_symbols)
-		-- keymap.set("n", "gs", require("telescope.builtin").lsp_document_symbols)
-		-- keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
-		-- keymap.set("n", "", require("telescope.builtin").lsp_type_definitions)
-		-- keymap.set("n", "gI", require("telescope.builtin").lsp_implementations)
-
-		-- builtin.git_bcommits
-		-- builtin.git_bcommits_range
-		-- builtin.git_branche
-		-- builtin.git_stash
-		-- builtin.vimoptions
 
 		keymap.set("n", "<leader>hf", builtin.git_files)
 		keymap.set("n", "<leader>hc", builtin.git_commits)
@@ -278,10 +224,8 @@ return {
 		keymap.set("n", "<leader>fm", function() require("telescope.builtin").treesitter({ default_text = ":method:" }) end)
 		keymap.set("n", "<leader>fw", builtin.grep_string)
 
-
 		keymap.set("n", "<leader>sg", function() builtin.live_grep({ path_display = { "smart" } }) end)
 		keymap.set("n", "<leader>s/", function() builtin.live_grep({ path_display = {"shorten"} ,grep_open_files = true, prompt_title = "Live Grep in Open Files" }) end, { desc = "[S]earch [/] in Open Files" })
-
 		keymap.set("n", "<leader>/", function()
       builtin.current_buffer_fuzzy_find(
         require("telescope.themes").get_dropdown({ winblend = 0, previewer = false })
@@ -289,5 +233,21 @@ return {
 		end)
 
 		-- keymap.set("n", "<leader>tb", builtin.builtin)
+		-- keymap.set("n", "<leader>sd", function() builtin.diagnostics({ bufnr = 0 }) end)
+		-- keymap.set("n", "<leader>sD", require("telescope.builtin").diagnostics)
+
+		-- keymap.set("n", "gr", require("telescope.builtin").lsp_references)
+		-- keymap.set("n", "gws", require("telescope.builtin").lsp_workspace_symbols)
+		-- keymap.set("n", "gwS", require("telescope.builtin").lsp_dynamic_workspace_symbols)
+		-- keymap.set("n", "gs", require("telescope.builtin").lsp_document_symbols)
+		-- keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
+		-- keymap.set("n", "", require("telescope.builtin").lsp_type_definitions)
+		-- keymap.set("n", "gI", require("telescope.builtin").lsp_implementations)
+
+		-- builtin.git_bcommits
+		-- builtin.git_bcommits_range
+		-- builtin.git_branche
+		-- builtin.git_stash
+		-- builtin.vimoptions
 	end,
 }

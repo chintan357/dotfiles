@@ -1,10 +1,11 @@
 return {
 	"LunarVim/bigfile.nvim",
 	event = "BufReadPre",
+	enabled = false,
 	opts = {
-		filesize = 2, -- size of the file in MiB, the plugin round file sizes to the closest MiB
+		filesize = 2,
 		pattern = { "*" }, -- autocmd pattern or function see <### Overriding the detection of big files>
-		features = { -- features to disable
+		features = {
 			-- "illuminate",
 			"indent_blankline",
 			"lsp",

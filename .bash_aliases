@@ -18,18 +18,20 @@ alias fw='sudo ufw'
 
 alias bc="bc -l"
 alias wget='wget -c'
-alias cp='cp -r'
-alias rmf='rm -rf'
-alias diff='diff --color'
-alias tailf='tail -f'
-alias hg='history | grep'
-alias sortnr='sort -n -r'
 alias whois='whois -H'
+alias cp='cp -r'
+alias diff='diff --color'
+
+alias rmf='rm -rf'
+alias sortnr='sort -n -r'
+alias tailf='tail -f'
 
 alias hist="history"
 alias h1="history 10"
 alias h2="history 20"
 alias h3="history 30"
+
+alias hg='history | grep'
 
 #-----------#
 
@@ -38,26 +40,26 @@ alias l='eza -lh --git --color=always --icons=always --group-directories-first'
 alias la='eza -a --git --color=always --icons=always --group-directories-first'
 alias ll='eza -Alah --git --color=always --group-directories-first | less'
 
-alias lh='eza -a | egrep "^\."'
 alias lsd='eza -d */ 2> /dev/null'
+alias lh='eza -a | egrep "^\."'
 alias lt='eza -a --tree --level=2 | less'
 
 #-----------#
 
 alias findf='find . -type f -name'
 alias findd='find . -type d -name'
-alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _search'
+# alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _search'
 
 alias count='find . -type f | wc -l'
-
-alias pyfind='find . -name "*.py"'
-alias pygrep='grep -nr --include="*.py"'
 
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 
 alias grepr='grep -r'
 alias grepi='grep -i'
 alias grepri='grep -ri'
+
+alias pyfind='find . -name "*.py"'
+alias pygrep='grep -nr --include="*.py"'
 
 #-----------#
 
@@ -112,12 +114,11 @@ alias unamer='uname -r'
 alias rp='realpath'
 alias cprp='sh -c '\''realpath "$1" | xclip -selection clipboard'\'' -'
 
-
 alias cpy="xclip -selection clipboard"
 alias CC='$(fc -l -n -1) | cpy'
 alias cpwd='pwd|cpy'
 
-alias fpath="readlink -f"
+alias rl="readlink -f"
 
 # realpath "$*")" -iname "*"
 alias path='echo -e ${PATH//:/\\n} | fzf'
@@ -126,6 +127,7 @@ alias path='echo -e ${PATH//:/\\n} | fzf'
 
 alias genpwd='openssl rand -base64 16 | cpy'
 alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
+
 # $(history -p !!)'
 # 'sudo $(fc -ln -1)'
 
@@ -150,12 +152,12 @@ alias hostinfo='hostname && ip addr show'
 alias whoami='who am i'
 
 #NOTE: doesn't work
-alias myip='curl http://ipecho.net/plain; echo'
+alias myip='curl https://ipecho.net/plain; echo'
 
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias flushdns='sudo systemd-resolve --flush-caches'
 
-alias tree='tree -a -I ".svn|.git|.hg|.idea"'
+alias tree='tree -a -I ".svn|.git|.hg|.idea" | less'
 
 alias hx='hexdump -C'
 alias w1='watch -n 1'
@@ -173,9 +175,9 @@ alias partusage='\df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
 
 alias most='\du -hsx * | sort -rh | head -10'
 alias bigfiles='\du -ha . | sort -rh | head -20'
-alias dirssize="\du -sch ./* 2> /dev/null"
+alias dirsize="\du -sch ./* 2> /dev/null"
 
-alias du1='\du -hs --max-depth=1'
+alias du1='\du -h --max-depth=1'
 # alias du1="\du -d 1 -m"
 
 #-----------#
@@ -206,9 +208,8 @@ alias nope='sudo apt remove $1'
 alias sysctl='systemctl'
 alias jou='sudo journalctl -b -n 200 -f'
 
-alias tree1='tree -L 1'
-alias tree2='tree -L 2'
-alias tree3='tree -L 3'
+alias tree2='\tree -L 2 | less'
+alias tree3='\tree -L 3 | less'
 
 #--------------#
 
@@ -220,6 +221,7 @@ alias essh="$EDITOR ~/.ssh/config"
 alias etmux="$EDITOR ~/.tmux.conf"
 alias eprompt="$EDITOR ~/.config/starship.toml"
 alias eipy="$EDITOR ~/.ipython/profile_default/ipython_config.py"
+alias ei3="$EDITOR ~/.config/i3/config"
 
 #-----------#
 
@@ -235,6 +237,7 @@ alias cve='python3 -m venv .venv'
 alias act="source .venv/bin/activate"
 alias dact='deactivate'
 alias sopy='cve && act'
+
 alias rpy="uvicorn main:app --reload"
 
 # pyenv
@@ -242,9 +245,9 @@ alias pyv='pyenv versions'
 alias pyls='pyenv install --list'
 alias pyi='pyenv install'
 alias pyu='pyenv update'
+alias pyU='pyenv uninstall'
 alias pyg='pyenv global'
 alias pyl='pyenv local'
-alias pyU='pyenv uninstall'
 alias pyve='pyenv virtualenv'
 alias pyvels='pyenv virtualenvs'
 alias pyact='pyenv activate'
@@ -255,6 +258,7 @@ alias pxi='pipx install'
 alias pipi="pip install"
 alias pipup="pip install --upgrade"
 alias pipun="pip uninstall"
+alias pipU="pip uninstall"
 alias pipg="pip freeze | grep"
 alias piplo="pip list -o"
 alias pipreq="pip freeze > requirements.txt"
@@ -264,6 +268,7 @@ alias pipir="pip install -r requirements.txt"
 # alias ipython='python3 -c "import IPython, sys; sys.exit(IPython.start_ipython())"'
 alias ipython='ipython3'
 alias ipy='ipython3'
+
 alias pyserver="python3 -m http.server"
 
 #-----------#
@@ -309,13 +314,13 @@ alias deskw="cd /mnt/c/Users/ChintanPatel/Desktop"
 alias vaultsw="cd /mnt/c/vaults"
 alias obsd='cd /mnt/c/saleenaa357/daily_notes'
 
-alias i3="$EDITOR ~/.config/i3/config"
-alias vaults='cd ~/vaults'
 alias cdssh='cd ~/.ssh'
-alias obs='cd ~/Videos/obs'
 alias cdnvim='cd ~/.config/nvim'
+
+alias vaults='cd ~/vaults'
+alias obs='cd ~/Videos/obs'
 alias config='cd ~/.config'
-alias tmp='cd ~/trash'
+alias tmp='cd ~/tmp'
 alias repo='cd ~/repo'
 alias work='cd ~/work'
 alias lab='cd ~/lab'
@@ -333,6 +338,98 @@ alias down='cd ~/Downloads'
 #-----------#
 
 alias ytdl='youtube-dl'
+
+#-----------#
+
+alias g=git
+
+alias lg=lazygit
+alias lzg=lazygit
+
+# alias git='cd `git rev-parse --show-toplevel` && git checkout master && git pull'
+alias cg='cd `git rev-parse --show-toplevel`'
+
+alias gaa='git add .'
+
+alias gcl='git clone'
+
+alias gco='git checkout'
+alias gcob='git checkout -b'
+
+alias gbr='git branch --sort=committerdate'
+alias gbrl="git branch -l"
+alias gbrd='git branch -d'
+alias gbrD='git branch -D'
+
+alias gdiff='git diff'
+alias gdiffh='git diff HEAD'
+alias gdiffs="git diff --staged"
+alias gdffc='git diff --cached'
+
+alias gst='git status'
+alias gsts='git status -sb'
+
+alias gcm='git commit -m'
+alias gcma="git commit -am"
+alias amend='git commit --amend --no-edit'
+
+alias gpu='git push'
+alias gpush='git push'
+alias gpuo='git push origin'
+alias gP='git pull'
+alias gpull='git pull'
+alias gfetch='git fetch'
+alias gfa='git fetch --all'
+
+alias gwc='git whatchanged'
+alias glog='git log --oneline --decorate --all --graph'
+alias glogp="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glogl='git log --stat'
+alias gll='git log --stat'
+
+alias grecent='git for-each-ref --sort="-committerdate" --format="%(committerdate:short) %(refname:short)" refs/heads'
+alias glast="git log -1 HEAD"
+
+alias grb='git rebase'
+alias grbi='git rebase -i'
+
+alias gre='git remote'
+alias grev='git remote -v'
+alias grea='git remote add'
+alias grerm='git remote remove'
+alias greu='git remote update'
+
+alias gtag='git tag'
+alias gtagd='git tag -d'
+alias gtagl='git tag -l'
+alias gtags='git tag -l'
+
+alias gcp='git cherry-pick'
+
+alias gnah="git clean -df && git checkout -- ."
+alias gclean='git clean -fd'
+alias grs='git reset'
+alias grsh='git reset --hard'
+alias grss='git reset --soft'
+alias grst='git restore --staged'
+# alias gpristine='git reset --hard && git clean --force -dfx'
+# alias groh='git reset origin/$(git_current_branch) --hard'
+# alias gcan!='git commit --verbose --all --no-edit --amend'
+
+alias hcl="hub clone"
+alias hbr='hub browse'
+alias hfork='hub fork'
+alias hcreate='hub create'
+alias hprls='hub pr list'
+alias hprshow='hub pr show'
+# alias hpr='hub pull-request'
+# alias hco='hub checkout'
+# alias hci='hub ci-status'
+# alias hsync='hub sync'
+# alias his='hub issue'
+# alias hnewissue='hub issue create'
+# alias hprmerge='hub pr merge'
+# alias hprco='hub pr checkout'
 
 #-----------#
 
@@ -388,93 +485,6 @@ alias drmf='sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo do
 
 #-----------#
 
-alias lg=lazygit
-alias g=git
-
-# alias git='cd `git rev-parse --show-toplevel` && git checkout master && git pull'
-alias cg='cd `git rev-parse --show-toplevel`'
-alias gaa='git add .'
-alias gcl='git clone'
-
-alias gco='git checkout'
-alias gcob='git checkout -b'
-
-alias gbr='git branch --sort=committerdate'
-alias gbrl="git branch -l"
-alias gbrd='git branch -d'
-alias gbrD='git branch -D'
-
-alias gdiff='git diff'
-alias gdiffh='git diff HEAD'
-alias gdiffs="git diff --staged"
-alias gdffc='git diff --cached'
-
-alias gst='git status'
-alias gsts='git status -sb'
-
-alias gcm='git commit -m'
-alias gcma="git commit -am"
-alias amend='git commit --amend --no-edit'
-
-alias gpu='git push'
-alias gpush='git push'
-alias gpuo='git push origin'
-alias gP='git pull'
-alias gpull='git pull'
-
-alias gwc='git whatchanged'
-alias glog='git log --oneline --decorate --all --graph'
-alias glogp="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gnah="git clean -df && git checkout -- ."
-
-alias grecent='git for-each-ref --sort="-committerdate" --format="%(committerdate:short) %(refname:short)" refs/heads'
-alias glast="git log -1 HEAD"
-
-alias gcb='git checkout -b'
-alias gll='git log --stat'
-alias grb='git rebase'
-alias grbi='git rebase -i'
-
-alias gre='git remote'
-alias grev='git remote -v'
-alias grea='git remote add'
-alias grerm='git remote remove'
-alias greu='git remote update'
-
-alias gtag='git tag'
-alias gtagd='git tag -d'
-alias gtags='git tag -l'
-
-alias gclean='git clean -fd'
-alias gcp='git cherry-pick'
-
-alias gfetch='git fetch'
-alias gfa='git fetch --all'
-
-alias grs='git reset'
-alias grsh='git reset --hard'
-alias grss='git reset --soft'
-# alias gpristine='git reset --hard && git clean --force -dfx'
-# alias groh='git reset origin/$(git_current_branch) --hard'
-alias grst='git restore --staged'
-# alias gcan!='git commit --verbose --all --no-edit --amend'
-
-alias hcl="hub clone"
-alias hbr='hub browse'
-alias hfork='hub fork'
-alias hcreate='hub create'
-alias hprls='hub pr list'
-alias hprshow='hub pr show'
-# alias hpr='hub pull-request'
-# alias hco='hub checkout'
-# alias hci='hub ci-status'
-# alias hsync='hub sync'
-# alias his='hub issue'
-# alias hnewissue='hub issue create'
-# alias hprmerge='hub pr merge'
-# alias hprco='hub pr checkout'
-
-#-----------#
 
 alias kc='kubectl'
 

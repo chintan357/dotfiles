@@ -1,7 +1,8 @@
 return {
 	"stevearc/conform.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	lazy = false,
+	event = { "BufWritePre" }, -- event = { "BufReadPre", "BufNewFile" },
+	cmd = { "ConformInfo" },
+	-- lazy = false,
 	keys = {
 		{
 			"<leader>fo",
@@ -12,7 +13,8 @@ return {
 		},
 	},
 	opts = {
-		notify_on_error = true,
+		notify_on_error = false,
+
 		format_on_save = function(bufnr)
 			-- local disable_filetypes = { c = true, cpp = true }
 			return {
@@ -24,7 +26,8 @@ return {
 
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "isort", "black" },
+			python = { "black" },
+			-- python = { "isort", "black" },
 			json = { "prettierd", "prettier", stop_after_first = true },
 			toml = { "taplo" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -39,21 +42,15 @@ return {
 	},
 	config = function(_, opts)
 		require("conform").setup(opts)
-		-- Autoformatting Setup
-		require("conform").setup({
-			formatters_by_ft = {
-				lua = { "stylua" },
-			},
-		})
 
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			callback = function(args)
-				require("conform").format({
-					bufnr = args.buf,
-					lsp_fallback = true,
-					quiet = true,
-				})
-			end,
-		})
+		-- vim.api.nvim_create_autocmd("BufWritePre", {
+		-- 	callback = function(args)
+		-- 		require("conform").format({
+		-- 			bufnr = args.buf,
+		-- 			lsp_fallback = true,
+		-- 			quiet = true,
+		-- 		})
+		-- 	end,
+		-- })
 	end,
 }

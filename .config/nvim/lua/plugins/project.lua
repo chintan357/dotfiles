@@ -3,6 +3,7 @@ return {
 	{
 		"ahmedkhalf/project.nvim",
 		event = "VeryLazy",
+		enabled = false,
 		opts = {
 			sync_root_with_cwd = true,
 			respect_buf_cwd = true,

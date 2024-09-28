@@ -1,5 +1,6 @@
 return {
 	"TobinPalmer/rayso.nvim",
+	enabled = false,
 	event = "VeryLazy",
 	config = function()
 		require("rayso").setup({
