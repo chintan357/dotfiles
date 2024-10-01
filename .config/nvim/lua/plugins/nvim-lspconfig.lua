@@ -1,271 +1,272 @@
 return {
-	"neovim/nvim-lspconfig",
-	-- event = "VeryLazy",
-	dependencies = {
-		{ "williamboman/mason.nvim", config = true },
-		{ "williamboman/mason-lspconfig.nvim" },
-		{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
-		{ "j-hui/fidget.nvim", opts = {} },
-		{
-			"folke/lazydev.nvim",
-			ft = "lua", -- only load on lua files
-			-- opts = {
-			--   library = {
-			--     -- See the configuration section for more details
-			--     -- Load luvit types when the `vim.uv` word is found
-			--     { path = "luvit-meta/library", words = { "vim%.uv" } },
-			--   },
-			-- },
-		},
-		-- { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
-		-- { -- optional completion source for require statements and module annotations
-		--   "hrsh7th/nvim-cmp",
-		--   opts = function(_, opts)
-		--     opts.sources = opts.sources or {}
-		--     table.insert(opts.sources, {
-		--       name = "lazydev",
-		--       group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-		--     })
-		--   end,
-		-- },
-		{
-			"SmiteshP/nvim-navic",
-			opts = {
-				lsp = {
-					auto_attach = true,
-					preference = nil,
-				},
-				lazy_update_context = true,
-			},
-			config = function(_, opts)
-				local navic = require("nvim-navic")
-				-- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-				navic.setup(opts)
-				vim.keymap.set("n", "<leader>no", ":Navbuddy<CR>")
-			end,
-		},
-		{
-			"SmiteshP/nvim-navbuddy",
-			dependencies = {
-				"SmiteshP/nvim-navic",
-				"MunifTanjim/nui.nvim",
-			},
-			opts = { lsp = { auto_attach = true } },
-		},
-		"stevearc/conform.nvim",
-		-- { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
-		-- Schema information
-		"b0o/SchemaStore.nvim",
-	},
-	config = function()
-		local lspconfig = require("lspconfig")
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+  "neovim/nvim-lspconfig",
+  -- event = "VeryLazy",
+  dependencies = {
+    { "williamboman/mason.nvim",                  config = true },
+    { "williamboman/mason-lspconfig.nvim" },
+    { "WhoIsSethDaniel/mason-tool-installer.nvim" },
+    { "j-hui/fidget.nvim",                        opts = {} },
+    {
+      "folke/lazydev.nvim",
+      ft = "lua", -- only load on lua files
+      -- opts = {
+      --   library = {
+      --     -- See the configuration section for more details
+      --     -- Load luvit types when the `vim.uv` word is found
+      --     { path = "luvit-meta/library", words = { "vim%.uv" } },
+      --   },
+      -- },
+    },
+    -- { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+    -- { -- optional completion source for require statements and module annotations
+    --   "hrsh7th/nvim-cmp",
+    --   opts = function(_, opts)
+    --     opts.sources = opts.sources or {}
+    --     table.insert(opts.sources, {
+    --       name = "lazydev",
+    --       group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+    --     })
+    --   end,
+    -- },
+    {
+      "SmiteshP/nvim-navic",
+      opts = {
+        lsp = {
+          auto_attach = true,
+          preference = nil,
+        },
+        lazy_update_context = true,
+      },
+      config = function(_, opts)
+        local navic = require("nvim-navic")
+        -- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+        navic.setup(opts)
+        vim.keymap.set("n", "<leader>no", ":Navbuddy<CR>")
+      end,
+    },
+    {
+      "SmiteshP/nvim-navbuddy",
+      dependencies = {
+        "SmiteshP/nvim-navic",
+        "MunifTanjim/nui.nvim",
+      },
+      opts = { lsp = { auto_attach = true } },
+    },
+    "stevearc/conform.nvim",
+    -- { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
+    -- Schema information
+    "b0o/SchemaStore.nvim",
+  },
+  config = function()
+    local lspconfig = require("lspconfig")
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-		local servers = {
-			marksman = {},
-			jsonls = {
-				settings = {
-					json = {
-						schemas = require("schemastore").json.schemas(),
-						validate = { enable = true },
-					},
-				},
-			},
-			yamlls = {
-				settings = {
-					yaml = {
-						-- schemaStore = {
-						-- 	enable = false,
-						-- 	url = "",
-						-- },
-						schemas = require("schemastore").yaml.schemas(),
-					},
-				},
-			},
-			bashls = true,
-			pyright = true,
-			lua_ls = {
-				settings = {
-					Lua = {
-						-- server_capabilities = {
-						-- 	semanticTokensProvider = vim.NIL,
-						-- },
-						completion = {
-							callSnippet = "Replace",
-						},
-						diagnostics = {
-							globals = { "vim" },
-						},
-						-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-						-- diagnostics = { disable = { 'missing-fields' } },
-					},
-				},
-			},
-			-- server_capabilities = {
-			-- 	semanticTokensProvider = false,
-			-- },
-		}
+    local servers = {
+      marksman = {},
+      jsonls = {
+        settings = {
+          json = {
+            schemas = require("schemastore").json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      },
+      yamlls = {
+        settings = {
+          yaml = {
+            -- schemaStore = {
+            -- 	enable = false,
+            -- 	url = "",
+            -- },
+            schemas = require("schemastore").yaml.schemas(),
+          },
+        },
+      },
+      bashls = true,
+      pyright = true,
+      lua_ls = {
+        settings = {
+          Lua = {
+            -- server_capabilities = {
+            -- 	semanticTokensProvider = vim.NIL,
+            -- },
+            completion = {
+              callSnippet = "Replace",
+            },
+            diagnostics = {
+              globals = { "vim" },
+            },
+            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+            -- diagnostics = { disable = { 'missing-fields' } },
+          },
+        },
+      },
+      -- server_capabilities = {
+      -- 	semanticTokensProvider = false,
+      -- },
+    }
 
-		require("mason").setup()
+    require("mason").setup()
 
-		for name, config in pairs(servers) do
-			if config == true then
-				config = {}
-			end
-			config = vim.tbl_deep_extend("force", {}, {
-				capabilities = capabilities,
-			}, config)
+    for name, config in pairs(servers) do
+      if config == true then
+        config = {}
+      end
+      config = vim.tbl_deep_extend("force", {}, {
+        capabilities = capabilities,
+      }, config)
 
-			lspconfig[name].setup(config)
-		end
+      lspconfig[name].setup(config)
+    end
 
-		local disable_semantic_tokens = {
-			lua = true,
-		}
+    local disable_semantic_tokens = {
+      lua = true,
+    }
 
-		local ensure_installed = vim.tbl_filter(function(key)
-			local t = servers[key]
-			if type(t) == "table" then
-				return not t.manual_install
-			else
-				return t
-			end
-		end, vim.tbl_keys(servers))
+    -- local ensure_installed = vim.tbl_filter(function(key)
+    -- 	local t = servers[key]
+    -- 	if type(t) == "table" then
+    -- 		return not t.manual_install
+    -- 	else
+    -- 		return t
+    -- 	end
+    -- end, vim.tbl_keys(servers))
 
-		-- local ensure_installed = vim.tbl_keys(servers or {})
+    -- local ensure_installed = vim.tbl_keys(servers or {})
 
-		vim.list_extend(ensure_installed, {
-			"cssls",
-			"dockerls",
-			"html",
-		})
+    -- vim.list_extend(ensure_installed, {
+    -- 	"cssls",
+    -- 	"dockerls",
+    -- 	"html",
+    -- })
 
-		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+    -- require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+    require("mason-tool-installer").setup({})
 
-		vim.api.nvim_command("MasonToolsInstall")
+    vim.api.nvim_command("MasonToolsInstall")
 
-		-- require("mason-lspconfig").setup({
-		-- 	handlers = {
-		-- 		function(server_name)
-		-- 			local server = servers[server_name] or {}
-		-- 			server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-		-- 			require("lspconfig")[server_name].setup(server)
-		-- 		end,
-		-- 	},
-		-- })
-		--
-		require("mason-lspconfig").setup_handlers({
-			function(server_name)
-				require("lspconfig")[server_name].setup({
-					on_attach = lsp_attach,
-					capabilities = lsp_capabilities,
-				})
-			end,
-		})
-		vim.api.nvim_create_autocmd("LspAttach", {
+    -- require("mason-lspconfig").setup({
+    -- 	handlers = {
+    -- 		function(server_name)
+    -- 			local server = servers[server_name] or {}
+    -- 			server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+    -- 			require("lspconfig")[server_name].setup(server)
+    -- 		end,
+    -- 	},
+    -- })
+    --
+    require("mason-lspconfig").setup_handlers({
+      function(server_name)
+        require("lspconfig")[server_name].setup({
+          on_attach = lsp_attach,
+          capabilities = lsp_capabilities,
+        })
+      end,
+    })
+    vim.api.nvim_create_autocmd("LspAttach", {
 
-			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+      group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 
-			callback = function(event)
-				local bufnr = event.buf
-				local client = assert(vim.lsp.get_client_by_id(event.data.client_id), "must have valid client")
-				local settings = servers[client.name]
+      callback = function(event)
+        local bufnr = event.buf
+        local client = assert(vim.lsp.get_client_by_id(event.data.client_id), "must have valid client")
+        local settings = servers[client.name]
 
-				if type(settings) ~= "table" then
-					settings = {}
-				end
+        if type(settings) ~= "table" then
+          settings = {}
+        end
 
-				local map = function(keys, func, desc)
-					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-				end
+        local map = function(keys, func, desc)
+          vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+        end
 
-				-- local builtin = require("telescope.builtin")
-				--
-				-- vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
-				-- vim.keymap.set("n", "gd", builtin.lsp_definitions, { buffer = 0 })
-				-- vim.keymap.set("n", "gr", builtin.lsp_references, { buffer = 0 })
-				-- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
-				-- vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
-				-- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-				--
-				-- vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, { buffer = 0 })
-				-- vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = 0 })
+        -- local builtin = require("telescope.builtin")
+        --
+        -- vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+        -- vim.keymap.set("n", "gd", builtin.lsp_definitions, { buffer = 0 })
+        -- vim.keymap.set("n", "gr", builtin.lsp_references, { buffer = 0 })
+        -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
+        -- vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
+        -- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+        --
+        -- vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, { buffer = 0 })
+        -- vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = 0 })
 
-				-- map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-				-- map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-				-- map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-				-- map("K", vim.lsp.buf.hover, "Hover Documentation")
+        -- map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+        -- map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+        -- map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+        -- map("K", vim.lsp.buf.hover, "Hover Documentation")
 
-				local opts = { buffer = bufnr, noremap = true, silent = true }
-				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-				vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-				-- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-				-- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-				-- vim.keymap.set("n", "<space>wl", function()
-				-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-				-- end, opts)
-				vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
-				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-				vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-				vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
-				vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-				vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-				vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
+        local opts = { buffer = bufnr, noremap = true, silent = true }
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+        -- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
+        -- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
+        -- vim.keymap.set("n", "<space>wl", function()
+        -- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        -- end, opts)
+        vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
+        vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+        vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+        vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
-				local filetype = vim.bo[bufnr].filetype
-				if disable_semantic_tokens[filetype] then
-					client.server_capabilities.semanticTokensProvider = nil
-				end
+        local filetype = vim.bo[bufnr].filetype
+        if disable_semantic_tokens[filetype] then
+          client.server_capabilities.semanticTokensProvider = nil
+        end
 
-				-- Override server capabilities
-				if settings.server_capabilities then
-					for k, v in pairs(settings.server_capabilities) do
-						if v == vim.NIL then
-							---@diagnostic disable-next-line: cast-local-type
-							v = nil
-						end
+        -- Override server capabilities
+        if settings.server_capabilities then
+          for k, v in pairs(settings.server_capabilities) do
+            if v == vim.NIL then
+              ---@diagnostic disable-next-line: cast-local-type
+              v = nil
+            end
 
-						client.server_capabilities[k] = v
-					end
-				end
+            client.server_capabilities[k] = v
+          end
+        end
 
-				-- if client and client.server_capabilities.documentHighlightProvider then
-				-- 	local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
-				-- 	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-				-- 		buffer = event.buf,
-				-- 		group = highlight_augroup,
-				-- 		callback = vim.lsp.buf.document_highlight,
-				-- 	})
-				-- 	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-				-- 		buffer = event.buf,
-				-- 		group = highlight_augroup,
-				-- 		callback = vim.lsp.buf.clear_references,
-				-- 	})
-				-- end
+        -- if client and client.server_capabilities.documentHighlightProvider then
+        -- 	local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+        -- 	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        -- 		buffer = event.buf,
+        -- 		group = highlight_augroup,
+        -- 		callback = vim.lsp.buf.document_highlight,
+        -- 	})
+        -- 	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+        -- 		buffer = event.buf,
+        -- 		group = highlight_augroup,
+        -- 		callback = vim.lsp.buf.clear_references,
+        -- 	})
+        -- end
 
-				-- if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-				-- 	map("yoh", function()
-				-- 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-				-- 	end, "[T]oggle Inlay [H]ints")
-				-- end
-			end,
-		})
+        -- if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+        -- 	map("yoh", function()
+        -- 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        -- 	end, "[T]oggle Inlay [H]ints")
+        -- end
+      end,
+    })
 
-		vim.api.nvim_create_autocmd("LspDetach", {
-			group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
-			callback = function(event)
-				vim.lsp.buf.clear_references()
-				-- vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event.buf })
-			end,
-		})
+    vim.api.nvim_create_autocmd("LspDetach", {
+      group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+      callback = function(event)
+        vim.lsp.buf.clear_references()
+        -- vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event.buf })
+      end,
+    })
 
-		-- require("lsp_lines").setup()
-		-- vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
-	end,
+    -- require("lsp_lines").setup()
+    -- vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+  end,
 }
 
 -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs

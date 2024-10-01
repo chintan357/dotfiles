@@ -81,7 +81,7 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # Created by `pipx` on 2024-03-19 21:09:03
-. ~/.bash.d/cht.sh to ~/.bashrc
+# . ~/.bash.d/cht.sh to ~/.bashrc
 export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.cargo/bin"
 
 # export NVM_DIR="$HOME/.config/nvm"
@@ -91,12 +91,12 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.carg
 # source '$HOME/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
 # Source goto
-[[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
+# [[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
 
-source "$HOME"/.oh-my-git/prompt.sh
+# source "$HOME"/.oh-my-git/prompt.sh
 
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export FZF_CTRL_T_OPTS=" --walker-skip .git,node_modules,target --preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
@@ -153,9 +153,9 @@ function yy() {
     rm -f -- "$tmp"
 }
 
-if [ -f "$HOME"/.config/hub.bash_completion.sh ]; then
-    . "$HOME"/.config/hub.bash_completion.sh
-fi
+# if [ -f "$HOME"/.config/hub.bash_completion.sh ]; then
+#     . "$HOME"/.config/hub.bash_completion.sh
+# fi
 
 bind 'TAB:menu-complete'
 bind '"\e[Z":menu-complete-backward'
@@ -164,10 +164,20 @@ bind '"\e[Z":menu-complete-backward'
 # h() { cd ~/$1; }
 
 eval "$(navi widget bash)"
-eval "$(fzf --bash)"
+# eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 eval $(thefuck --alias fq)
+eval "$(pyenv virtualenv-init -)"
 # eval $(ssh-agent -s)
 
 # export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
+. "$HOME/.cargo/env"
+
+source /home/chintan357/.config/broot/launcher/bash/br
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'"

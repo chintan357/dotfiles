@@ -1,9 +1,9 @@
 function keymap(mode, lhs, rhs, opts)
-	local options = { noremap = true, silent = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	vim.keymap.set(mode, lhs, rhs, options)
+  local options = { noremap = true, silent = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.keymap.set(mode, lhs, rhs, options)
 end
 
 keymap("n", "<Esc>", ":nohls<CR>")
@@ -89,11 +89,11 @@ vim.keymap.set("c", "<C-h>", "<Up>")
 vim.keymap.set("c", "<C-l>", "<Down>")
 
 local diagnostic_goto = function(next, severity)
-	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-	severity = severity and vim.diagnostic.severity[severity] or nil
-	return function()
-		go({ severity = severity })
-	end
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go({ severity = severity })
+  end
 end
 -- keymap("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 -- [e is also mapped inside vim-unimpaired
@@ -126,16 +126,24 @@ keymap("n", "<leader>-", ":!")
 keymap("n", "<leader><leader>k", ":sp | hor resize 10 | term<CR> A")
 
 keymap("n", "<leader>so", function()
-	vim.cmd("so %")
+  vim.cmd("so %")
 end)
 
 keymap("n", "<leader>gb", ":GitBlameToggle<CR>")
 
-keymap("n", "yod", "<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.disable() else vim.diagnostic.enable() end<CR>")
+-- keymap("n", "yod", "<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.disable() else vim.diagnostic.enable() end<CR>")
 -- keymap("n", "yoT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, { desc = "Toggle Treesitter Highlight" })
 
-keymap("n", "<leader>yF", function() local filename = vim.fn.expand("%") local lineno = vim.fn.line(".") vim.fn.setreg("+", filename .. ":" .. lineno) end)
-keymap("n", "<leader>yf", function() local filename = vim.fn.expand("%") vim.fn.setreg("+", filename) end)
+keymap("n", "<leader>yF",
+  function()
+    local filename = vim.fn.expand("%")
+    local lineno = vim.fn.line(".")
+    vim.fn.setreg("+", filename .. ":" .. lineno)
+  end)
+keymap("n", "<leader>yf", function()
+  local filename = vim.fn.expand("%")
+  vim.fn.setreg("+", filename)
+end)
 
 -- keymap("n", "<C-,>", "<c-w>5>")
 -- keymap("n", "<C-.>", "<c-w>5<")

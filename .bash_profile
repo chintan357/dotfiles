@@ -35,7 +35,9 @@ safesource "$HOME/.rvm/scripts/rvm"
 
 # source '/home/chintan357/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
-source $HOME/.config/broot/launcher/bash/br
+# source $HOME/.config/broot/launcher/bash/br
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 # . "$HOME/.cargo/env"
+
+source /home/chintan357/.config/broot/launcher/bash/br
