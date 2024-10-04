@@ -1,11 +1,11 @@
 ```
-mkdir -p lab/dotfiles homelab dotfiles learning vaults/nsal private work tmp
+mkdir -p lab/dotfiles homelab dotfiles vaults/nsal private work tmp repo
 .config
 
 sudo apt update &&  sudo apt upgrade
 sudo apt-get update
 
-sudo apt install -y stow make tmux cargo fzf zoxide cmake urlview xclip neofetch  ripgrep fd-find bat eureka gh hub ncal  pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist
+sudo apt install -y stow make tmux cargo fzf zoxide cmake urlview xclip neofetch  ripgrep fd-find bat eureka gh hub ncal  pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat
 
 # glow
 sudo mkdir -p /etc/apt/keyrings
@@ -69,4 +69,6 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 
+sudo snap install thefuck --beta --classic (this works for now, it uses older
+python version)
 ```

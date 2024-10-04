@@ -5,6 +5,7 @@ return {
 			openai_api_key = { "cat", "/home/chintan357/private/oanvim" },
 
 			-- local shortcuts bound to the chat buffer
+			chat_shortcut_respond = { modes = { "n" }, shortcut = "\\" },
 			-- chat_shortcut_respond = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g><C-g>" },
 			-- chat_shortcut_delete = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>d" },
 			-- chat_shortcut_stop = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>s" },
