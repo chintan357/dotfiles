@@ -172,12 +172,12 @@ eval "$(pyenv virtualenv-init -)"
 # eval $(ssh-agent -s)
 
 # export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 source /home/chintan357/.config/broot/launcher/bash/br
 
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# export NVM_DIR="$HOME/.config/nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'"
