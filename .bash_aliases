@@ -152,7 +152,7 @@ alias hostinfo='hostname && ip addr show'
 alias whoami='who am i'
 
 #NOTE: doesn't work
-alias myip='curl https://ipecho.net/plain; echo'
+# alias myip='curl https://ipecho.net/plain; echo'
 
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias flushdns='sudo systemd-resolve --flush-caches'
@@ -311,7 +311,7 @@ alias mk="mkdir -pv"
 # h() { cd ~/$1; }
 
 alias deskw="cd /mnt/c/Users/ChintanPatel/Desktop"
-alias vaultsw="cd /mnt/c/vaults"
+alias vaultsw="cd /mnt/c/chintan357/vaults/"
 alias obsd='cd /mnt/c/saleenaa357/daily_notes'
 
 alias cdssh='cd ~/.ssh'
@@ -342,35 +342,28 @@ alias ytdl='youtube-dl'
 #-----------#
 
 alias g=git
-
 alias lg=lazygit
 alias lzg=lazygit
-
-# alias git='cd `git rev-parse --show-toplevel` && git checkout master && git pull'
 alias cg='cd `git rev-parse --show-toplevel`'
 
-alias gaa='git add .'
+alias gaa='git add --all'
+alias ga.='git add .'
 
 alias gcl='git clone'
 
 alias gco='git checkout'
 alias gcob='git checkout -b'
 
-alias gbr='git branch --sort=committerdate'
-alias gbrl="git branch -l"
-alias gbrd='git branch -d'
-alias gbrD='git branch -D'
+alias gbr='git branch'
+alias gbrl='git branch -l --sort=committerdate'
 
 alias gdiff='git diff'
-alias gdiffh='git diff HEAD'
 alias gdiffs="git diff --staged"
-alias gdffc='git diff --cached'
 
 alias gst='git status'
 alias gsts='git status -sb'
 
 alias gcm='git commit -m'
-alias gcma="git commit -am"
 alias amend='git commit --amend --no-edit'
 
 alias gpu='git push'
@@ -378,8 +371,6 @@ alias gpush='git push'
 alias gpuo='git push origin'
 alias gP='git pull'
 alias gpull='git pull'
-alias gfetch='git fetch'
-alias gfa='git fetch --all'
 
 alias gwc='git whatchanged'
 alias glog='git log --oneline --decorate --all --graph'
@@ -393,25 +384,22 @@ alias glast="git log -1 HEAD"
 alias grb='git rebase'
 alias grbi='git rebase -i'
 
-alias gre='git remote'
-alias grev='git remote -v'
+alias gre='git remote -v'
 alias grea='git remote add'
 alias grerm='git remote remove'
-alias greu='git remote update'
 
 alias gtag='git tag'
-alias gtagd='git tag -d'
-alias gtagl='git tag -l'
-alias gtags='git tag -l'
 
 alias gcp='git cherry-pick'
 
 alias gnah="git clean -df && git checkout -- ."
 alias gclean='git clean -fd'
+
 alias grs='git reset'
 alias grsh='git reset --hard'
 alias grss='git reset --soft'
-alias grst='git restore --staged'
+
+alias grsst='git restore --staged'
 # alias gpristine='git reset --hard && git clean --force -dfx'
 # alias groh='git reset origin/$(git_current_branch) --hard'
 # alias gcan!='git commit --verbose --all --no-edit --amend'
@@ -433,39 +421,39 @@ alias hprshow='hub pr show'
 
 #-----------#
 
-alias lzd='lazydocker'
-alias dk='docker'
-
-alias dkps='docker ps'
-alias dkpsa='docker ps -a'
-
-alias dkk='docker kill'
-alias dkka='docker kill $(docker ps -q)'
-alias dksa='docker stop $(docker ps -aq)'
-
-alias dkrmi='docker rmi'
-alias dkrmia='docker rmi $(docker images -q)'
-
-alias dkclean='docker system prune -af'
-
-alias dkx='docker exec -it'
-alias dkl='docker logs -f'
-alias dkc='docker-compose'
-alias dkpsaq='docker ps -a -q'
-alias dkb='docker build -t'
-alias dkrm='docker rm'
-alias dkrd='docker run -d'
-alias dkrrm='docker run --rm'
-alias dkrrmit='docker run --rm -ti'
-alias dkrrm8='docker run --rm -p 8080:8080'
-alias dkrrm9='docker run --rm -p 9080:9080'
-
-alias dklf='docker logs -f'
-alias dki='docker images'
-
-alias dkcls='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
-alias dip="sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-alias drmf='sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q)'
+# alias lzd='lazydocker'
+# alias dk='docker'
+#
+# alias dkps='docker ps'
+# alias dkpsa='docker ps -a'
+#
+# alias dkk='docker kill'
+# alias dkka='docker kill $(docker ps -q)'
+# alias dksa='docker stop $(docker ps -aq)'
+#
+# alias dkrmi='docker rmi'
+# alias dkrmia='docker rmi $(docker images -q)'
+#
+# alias dkclean='docker system prune -af'
+#
+# alias dkx='docker exec -it'
+# alias dkl='docker logs -f'
+# alias dkc='docker-compose'
+# alias dkpsaq='docker ps -a -q'
+# alias dkb='docker build -t'
+# alias dkrm='docker rm'
+# alias dkrd='docker run -d'
+# alias dkrrm='docker run --rm'
+# alias dkrrmit='docker run --rm -ti'
+# alias dkrrm8='docker run --rm -p 8080:8080'
+# alias dkrrm9='docker run --rm -p 9080:9080'
+#
+# alias dklf='docker logs -f'
+# alias dki='docker images'
+#
+# alias dkcls='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
+# alias dip="sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+# alias drmf='sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q)'
 
 # dock-run() { sudo docker run -i -t --privileged $@ ;}
 # dock-exec() { sudo docker exec -i -t $@ /bin/bash ;}
@@ -486,40 +474,40 @@ alias drmf='sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo do
 #-----------#
 
 
-alias kc='kubectl'
-
-alias kcg='kubectl get'
-alias kcgn='kubectl get --namespace'
-
-alias kcd='kubectl describe'
-alias kcdn='kubectl describe --namespace'
-
-alias kcdl='kubectl delete'
-alias kcdln='kubectl delete --namespace'
-alias kcdlp='kubectl-delete-pod'
-
-alias wkcg='w1 kubectl get'
-alias kcg='kubectl get'
-alias kcgn='kubectl get --namespace'
-alias kcgan='kubectl get pods --all-namespaces'
-
-alias kcge='kubectl get events --sort-by=".lastTimestamp" --all-namespaces --watch'
-alias kcr='kubectl create'
-alias kca='kubectl apply -f'
-alias kce='kubectl exec -t -i'
-alias kclf='kubectl logs -f'
-alias kccon='kubectl config'
-alias kcxsn='kubectl config set-context $(kubectl config current-context) --namespace'
-alias kcpf='kubectl port-forward'
-alias kcdldr='kubectl-delete-default-resources'
-alias kcii='kubectl-ingress-ip-address'
-alias kcni='kubectl-nginx-ip-address'
-alias kcigip='kubectl-istio-gateway-ip-address'
-alias kcignp='kubectl-istio-gateway-http-nodeport'
+# alias kc='kubectl'
+#
+# alias kcg='kubectl get'
+# alias kcgn='kubectl get --namespace'
+#
+# alias kcd='kubectl describe'
+# alias kcdn='kubectl describe --namespace'
+#
+# alias kcdl='kubectl delete'
+# alias kcdln='kubectl delete --namespace'
+# alias kcdlp='kubectl-delete-pod'
+#
+# alias wkcg='w1 kubectl get'
+# alias kcg='kubectl get'
+# alias kcgn='kubectl get --namespace'
+# alias kcgan='kubectl get pods --all-namespaces'
+#
+# alias kcge='kubectl get events --sort-by=".lastTimestamp" --all-namespaces --watch'
+# alias kcr='kubectl create'
+# alias kca='kubectl apply -f'
+# alias kce='kubectl exec -t -i'
+# alias kclf='kubectl logs -f'
+# alias kccon='kubectl config'
+# alias kcxsn='kubectl config set-context $(kubectl config current-context) --namespace'
+# alias kcpf='kubectl port-forward'
+# alias kcdldr='kubectl-delete-default-resources'
+# alias kcii='kubectl-ingress-ip-address'
+# alias kcni='kubectl-nginx-ip-address'
+# alias kcigip='kubectl-istio-gateway-ip-address'
+# alias kcignp='kubectl-istio-gateway-http-nodeport'
 
 # minikube
-alias mks='minikube start'
-alias mkt='minikube stop'
+# alias mks='minikube start'
+# alias mkt='minikube stop'
 
 #-----------#
 
@@ -530,12 +518,7 @@ alias gtypist='gtypist -c 0,2'
 alias gaadl='gcloud auth application-default login'
 alias gauth='gcloud auth login'
 alias gapat='gcloud auth print-access-token'
-alias ginit='gcloud init'
-alias ginstances='gcloud compute instances list'
-alias gstols='gcloud storage ls'
 alias gprols='gcloud projects list'
 alias gsetpro='gcloud config set project'
 alias gconfls='gcloud config configurations list'
 alias gconfa='gcloud config configurations activate'
-alias gbilling='gcloud beta billing accounts list'
-alias giam='gcloud iam list'

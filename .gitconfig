@@ -8,7 +8,7 @@
 
 [core]
   editor = nvim
-  excludesFile = ~/.gitignore
+  ; excludesFile = ~/.gitignore
   ignorecase = false
   pager = delta
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
@@ -27,13 +27,13 @@
   navigate = true    # use n and N to move between diff sections
   features = arctic-fox
   true-color = always
+  dark = true
 
   ; features = mellow-barbet
   ; syntax-theme = Coldark-Dark
   ; plus-style = syntax 22
   ; minus-style = syntax 52
   ; delta detects terminal colors automatically; set one of these to disable auto-detection
-  dark = true
 
 [diff]
   colorMoved = default

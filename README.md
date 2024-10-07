@@ -1,5 +1,5 @@
 ```
-mkdir -p lab/dotfiles homelab dotfiles vaults/nsal private work tmp repo
+mkdir -p lab/dotfiles homelab dotfiles vaults/nsal private work tmp repo learn
 .config
 
 sudo apt update &&  sudo apt upgrade
