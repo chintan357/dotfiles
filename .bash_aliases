@@ -151,8 +151,7 @@ alias sha1='openssl sha1'
 alias hostinfo='hostname && ip addr show'
 alias whoami='who am i'
 
-#NOTE: doesn't work
-# alias myip='curl https://ipecho.net/plain; echo'
+alias myip='curl -s https://checkip.amazonaws.com'
 
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias flushdns='sudo systemd-resolve --flush-caches'
@@ -344,7 +343,9 @@ alias ytdl='youtube-dl'
 alias g=git
 alias lg=lazygit
 alias lzg=lazygit
+
 alias cg='cd `git rev-parse --show-toplevel`'
+alias gatomic='gP && gaa && gcm atomic && gpu'
 
 alias gaa='git add --all'
 alias ga.='git add .'

@@ -2,15 +2,14 @@
 
 alt + r                 : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden # if shell is pwsh / powershell
 alt + shift + r         : komorebic reload-configuration
-alt + shift + q                : komorebic close
-alt + shift + p                 : komorebic toggle-pause
+alt + shift + q         : komorebic close
+alt + shift + p         : komorebic toggle-pause
 
 alt + b                 : start chrome
-# alt + f                 : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
-# alt + c                 : start "C:\Users\amn\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+# alt + f               : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
+# alt + c               : start "C:\Users\amn\AppData\Local\Programs\Microsoft VS Code\Code.exe"
 # alt + t					: start wt
 # alt + a					: start arc
-
 
 alt + h                 : komorebic focus left
 alt + j                 : komorebic focus down

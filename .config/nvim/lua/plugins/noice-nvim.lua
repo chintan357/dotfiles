@@ -1,15 +1,16 @@
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
+	enabled = false,
 	-- opts = { },
 	dependencies = {
 		"MunifTanjim/nui.nvim",
-		"rcarriga/nvim-notify",
+		-- "rcarriga/nvim-notify",
 	},
 	config = function()
-		require("notify").setup({
-			background_colour = "#000000",
-		})
+		-- require("notify").setup({
+		-- 	background_colour = "#000000",
+		-- })
 		require("noice").setup({
 			views = {
 				cmdline_popup = {
@@ -62,10 +63,10 @@ return {
 				view_history = "messages", -- view for :messages
 				view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
 			},
-			notify = {
-				enabled = false,
-				view = "notify",
-			},
+			-- notify = {
+			-- 	enabled = false,
+			-- 	view = "notify",
+			-- },
 		})
 	end,
 
