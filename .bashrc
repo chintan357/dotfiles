@@ -96,7 +96,7 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.carg
 # source "$HOME"/.oh-my-git/prompt.sh
 
 
-# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export FZF_CTRL_T_OPTS=" --walker-skip .git,node_modules,target --preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
@@ -164,7 +164,7 @@ bind '"\e[Z":menu-complete-backward'
 # h() { cd ~/$1; }
 
 eval "$(navi widget bash)"
-# eval "$(fzf --bash)"
+eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 eval $(thefuck --alias fq)

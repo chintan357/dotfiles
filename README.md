@@ -5,7 +5,7 @@ mkdir -p lab/dotfiles homelab dotfiles vaults/nsal private work tmp repo learn
 sudo apt update &&  sudo apt upgrade
 sudo apt-get update
 
-sudo apt install -y stow make tmux cargo fzf zoxide cmake urlview xclip neofetch  ripgrep fd-find bat eureka gh hub ncal  pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat
+sudo apt install -y stow make tmux cargo zoxide cmake urlview xclip neofetch  ripgrep fd-find bat eureka gh hub ncal  pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools
 
 # glow
 sudo mkdir -p /etc/apt/keyrings

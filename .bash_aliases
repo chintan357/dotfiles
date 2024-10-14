@@ -1,3 +1,6 @@
+alias rec='asciinema rec'
+alias play='asciinema play'
+
 #-----------#
 
 alias e=exit
@@ -72,7 +75,6 @@ alias chmx='chmod +x'
 
 #-----------#
 
-alias ps='\ps -f'
 alias psx="\ps auxf"
 alias psg="\ps aux | grep -v grep | grep -i -e VSZ -e"
 
