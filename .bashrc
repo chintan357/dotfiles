@@ -99,10 +99,10 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.carg
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export FZF_CTRL_T_OPTS=" --walker-skip .git,node_modules,target --preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
+export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -selection clipboard)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
 export FZF_ALT_C_OPTS=" --walker-skip .git,node_modules,target --preview 'tree -C {}'"
 
-export FZF_TMUX_OPTS='-p80%,60%'
+export FZF_TMUX_OPTS='-p80%,80%'
 
 export FZF_COMPLETION_OPTS='--border --info=inline'
 export FZF_DEFAULT_OPTS=' --height 40% --layout=reverse --border --prompt="> "'
@@ -144,14 +144,14 @@ _fzf_comprun() {
 }
 
 
-function yy() {
-    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-    yazi "$@" --cwd-file="$tmp"
-    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        cd -- "$cwd" || exit
-    fi
-    rm -f -- "$tmp"
-}
+# function yy() {
+#     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+#     yazi "$@" --cwd-file="$tmp"
+#     if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+#         cd -- "$cwd" || exit
+#     fi
+#     rm -f -- "$tmp"
+# }
 
 # if [ -f "$HOME"/.config/hub.bash_completion.sh ]; then
 #     . "$HOME"/.config/hub.bash_completion.sh
