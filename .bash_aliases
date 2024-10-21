@@ -367,7 +367,7 @@ alias gst='git status'
 alias gsts='git status -sb'
 
 alias gcm='git commit -m'
-alias amend='git commit --amend --no-edit'
+alias gamend='git commit --amend --no-edit'
 
 alias gpu='git push'
 alias gpush='git push'

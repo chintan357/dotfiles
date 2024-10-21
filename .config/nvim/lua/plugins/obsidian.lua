@@ -1,3 +1,19 @@
+-- keymap("n", "<leader>oc", "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>", { desc = "Obsidian Check Checkbox" })
+-- keymap("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Insert Obsidian Template" })
+-- keymap("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", { desc = "Open in Obsidian App" })
+-- keymap("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Show ObsidianBacklinks" })
+-- keymap("n", "<leader>ol", "<cmd>ObsidianLinks<CR>", { desc = "Show ObsidianLinks" })
+-- keymap("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "Create New Note" })
+-- keymap("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { desc = "Search Obsidian" })
+-- keymap("n", "<leader>oq", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Quick Switch" })
+-- keymap("n", "gf", function()
+-- 	if require("obsidian").util.cursor_on_markdown_link() then
+-- 		return "<cmd>ObsidianFollowLink<CR>"
+-- 	else
+-- 		return "gf"
+-- 	end
+-- end, { noremap = false, expr = true })
+
 return {
 	"epwalsh/obsidian.nvim",
 	enabled = false,

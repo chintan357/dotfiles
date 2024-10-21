@@ -11,18 +11,11 @@ local opt = vim.opt
 -- vo.cursorlineopt = "screenline,number" -- Highlight the screen line of the cursor with CursorLine and the line number with CursorLineNr
 -- vo.emoji = false -- Turn off emojis
 -- vw.list = true -- Show some invisible characters like tabs etc
--- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
--- vim.o.foldcolumn = "auto:9"
-vim.o.foldcolumn = "0"
--- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-vim.opt.foldnestmax = 4
-vim.o.foldlevelstart = 1
-vim.o.foldlevel = 99
+-- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
+-- vim.opt.foldmethod = "expr"
 vim.o.foldenable = false
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
-vim.opt.foldmethod = "expr"
 
 opt.relativenumber = true
 opt.number = true
@@ -230,3 +223,6 @@ opt.infercase = true
 -- vo.shiftround = true -- Round indent
 -- Homedir = os.getenv("HOME")
 -- Sessiondir = vim.fn.stdpath("data") .. "/sessions"
+
+-- Discovered it when using vim-forgit https://github.com/ray-x/forgit.nvim/issues/1
+-- vim.opt.shellcmdflag = "-ic"

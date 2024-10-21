@@ -50,6 +50,14 @@ return {
 			vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 			-- This will respect your foldminlines and foldnestmax settings.
 
+			keymap("n", "yoT", function()
+				if vim.b.ts_highlight then
+					vim.treesitter.stop()
+				else
+					vim.treesitter.start()
+				end
+			end, { desc = "Toggle Treesitter Highlight" })
+
 			require("nvim-dap-repl-highlights").setup()
 			require("nvim-treesitter.configs").setup({
 				highlight = { enable = true, disable = { "text" } },

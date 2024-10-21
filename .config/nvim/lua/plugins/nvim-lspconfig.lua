@@ -58,6 +58,25 @@ return {
 		"b0o/SchemaStore.nvim",
 	},
 	config = function()
+		keymap(
+			"n",
+			"yod",
+			"<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.enable(false) else vim.diagnostic.enable(true) end<CR>"
+		)
+		-- local diagnostic_goto = function(next, severity)
+		-- 	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+		-- 	severity = severity and vim.diagnostic.severity[severity] or nil
+		-- 	return function()
+		-- 		go({ severity = severity })
+		-- 	end
+		-- end
+		-- -- keymap("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+		-- -- [e is also mapped inside vim-unimpaired
+		-- keymap("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+		-- keymap("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+		-- keymap("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+		-- keymap("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+
 		local lspconfig = require("lspconfig")
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())

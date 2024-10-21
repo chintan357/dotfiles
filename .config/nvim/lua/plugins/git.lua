@@ -3,6 +3,20 @@ local is_inside_git_repo = function()
 	return vim.fn.isdirectory(git_dir) ~= 0
 end
 
+-- keymap("n", "<leader>gb", ":GitBlameToggle<CR>")
+-- Clear search, diff update and redraw
+-- map(
+--   "n",
+--   "<leader>ur",
+--   "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+--   { desc = "Redraw / Clear hlsearch / Diff Update" }
+-- )
+
+-- keymap("n", "<leader>cp", ":diffput<CR>") -- put diff from current to other during diff
+-- keymap("n", "<leader>ch", ":diffget 1<CR>") -- get diff from left (local) during merge
+-- keymap("n", "<leader>cl", ":diffget 3<CR>") -- get diff from right (remote) during merge
+-- keymap("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
+
 return {
 	{
 		"mattn/vim-gist",

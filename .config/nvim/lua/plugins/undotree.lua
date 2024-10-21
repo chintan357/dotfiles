@@ -1,3 +1,6 @@
+-- keymap("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+-- vim.g.undotree_SetFocusWhenToggle = 0
+
 return {
 	{
 		"mbbill/undotree",
