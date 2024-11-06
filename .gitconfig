@@ -18,7 +18,7 @@
   diffFilter = delta --color-only
 
 [init]
-  defaultBranch = master
+  defaultBranch = main
 
 [merge]
   conflictstyle = diff3
