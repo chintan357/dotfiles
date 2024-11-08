@@ -1,9 +1,7 @@
 ```
-mkdir -p lab/dotfiles homelab dotfiles vaults/nsal private work tmp repo learn
-.config
+mkdir -p lab/dotfiles projects homelab dotfiles vaults/nsal private work tmp repo learn .config
 
-sudo apt update &&  sudo apt upgrade
-sudo apt-get update
+sudo apt update && sudo apt upgrade
 
 sudo apt install -y stow make tmux cargo zoxide cmake urlview xclip neofetch  ripgrep fd-find bat eureka gh hub ncal  pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils
 
@@ -22,13 +20,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 nvm install --lts
 npm i -g open-cli
 
----
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
-sudo pipx ensurepath --global # optional to allow pipx actions with --global argument
----
-sudo apt install pipx (this got working somehow)
----
+sudo apt install pipx
 
 pxi ipython jupyterlab trash-cli black isort ipdb jupyter-console pudb pylint virtualenv tldr flake8 asciinema urlscan
 
@@ -37,9 +29,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install tree-sitter-cli
 cargo install --locked navi
 cargo install eza git-delta hackernews_tui  broot halp
-
-# clone the dotfiles
-# stow it
 
 curl -sS https://starship.rs/install.sh | sh
 
@@ -50,7 +39,7 @@ ls ../pathpicker_*_all.deb
 sudo dpkg -i ../pathpicker_*_all.deb
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-prefix + I
+# prefix + I
 
 sudo apt install gettext
 git clone --depth 1 https://github.com/neovim/neovim.git
@@ -69,6 +58,6 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 
-sudo snap install thefuck --beta --classic (this works for now, it uses older
-python version)
+# this uses older python version
+sudo snap install thefuck --beta --classic
 ```
