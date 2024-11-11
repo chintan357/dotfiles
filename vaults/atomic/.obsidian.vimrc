@@ -4,9 +4,8 @@ nmap ; :
 "nmap : ;
 
 nmap <esc> :nohl
-nmap j gj
-nmap k gk
-nmap L $
+"nmap j gj
+"nmap k gk
 
 set clipboard=unnamed
 set tabstop=2
@@ -15,11 +14,8 @@ nnoremap Y y$
 
 exmap goBack obcommand app:go-back
 exmap goForward obcommand app:go-forward
-nnoremap <BS> :goBack
-nnoremap <S-BS> :goForward
-"nmap <C-o> :back
-"nmap <C-i> :forward
-
+nnoremap <BS> :goBack<CR>
+nnoremap <S-BS> :goForward<CR>
 
 exmap surround_wiki surround [[ ]]
 exmap surround_double_quotes surround " "
@@ -29,16 +25,16 @@ exmap surround_brackets surround ( )
 exmap surround_square_brackets surround [ ]
 exmap surround_curly_brackets surround { }
 
-map [[ :surround_wiki
+map [[ :surround_wiki<CR>
 nunmap s
 vunmap s
-map s" :surround_double_quotes
-map s' :surround_single_quotes
-map s` :surround_backticks
-map sb :surround_brackets
-map s( :surround_brackets
-map s[ :surround_square_brackets
-map s{ :surround_curly_brackets
+map s" :surround_double_quotes<CR>
+map s' :surround_single_quotes<CR>
+map s` :surround_backticks<CR>
+map sb :surround_brackets<CR>
+map s( :surround_brackets<CR>
+map s[ :surround_square_brackets<CR>
+map s{ :surround_curly_brackets<CR>
 
 
 " Maps pasteinto to Alt-p
@@ -47,16 +43,14 @@ map s{ :surround_curly_brackets
 
 " Folding
 """"""""""""""""""""""
-exmap togglefold obcommand editor:toggle-fold
-nnoremap zo :togglefold
-
-exmap unfoldall obcommand editor:unfold-all
-nnoremap zr :unfoldall
-"nmap zR :unfoldall
+"exmap togglefold obcommand editor:toggle-fold
+"nnoremap zo :togglefold
 
 exmap foldall obcommand editor:fold-all
 nnoremap zm :foldall
-"nmap zM :foldall
+
+exmap unfoldall obcommand editor:unfold-all
+nnoremap zr :unfoldall
 
 
 " mapping next/previous heading
@@ -68,6 +62,12 @@ nnoremap zm :foldall
 "exmap prevHeading jsfile mdHelpers.js {jumpHeading(false)}
 "nmap ]] :nextHeading
 "nmap [[ :prevHeading
+
+" INFO doesn't work in reading mode: https://github.com/timhor/obsidian-editor-shortcuts/issues/20
+"exmap nextHeading obcommand obsidian-editor-shortcuts:goToNextHeading
+"exmap prevHeading obcommand obsidian-editor-shortcuts:goToPrevHeading
+"nnoremap <C-j> :nextHeading
+"nnoremap <C-k> :prevHeading
 
 
 " g; go to last change - https://vimhelp.org/motion.txt.html#g%3B
@@ -83,46 +83,47 @@ exmap vs obcommand workspace:split-vertical
 exmap sp obcommand workspace:split-vertical
 exmap hs obcommand workspace:split-horizontal
 
+
 " window controls
 exmap q obcommand workspace:close
 
 " focus
-exmap focusLeft obcommand editor:focus-left
-exmap focusRight obcommand editor:focus-right
-exmap focusBottom obcommand editor:focus-bottom
-exmap focusTop obcommand editor:focus-top
-nmap <C-h> :focusLeft
-nmap <C-l> :focusRight
-nmap <C-j> :focusBottom
-nmap <C-k> :focusTop
+"exmap focusLeft obcommand editor:focus-left
+"exmap focusRight obcommand editor:focus-right
+"exmap focusBottom obcommand editor:focus-bottom
+"exmap focusTop obcommand editor:focus-top
+"nmap <C-h> :focusLeft<CR>
+"nmap <C-l> :focusRight<CR>
+"nmap <C-j> :focusBottom<CR>
+"nmap <C-k> :focusTop<CR>
 
 " complete a Markdown task
 exmap toggleTask obcommand editor:toggle-checklist-status
-nmap ,x :toggleTask
+nmap ,x :toggleTask<CR>
 
 " Zoom in/out
-exmap zoomIn obcommand obsidian-zoom:zoom-in
-exmap zoomOut obcommand obsidian-zoom:zoom-out
+"exmap zoomIn obcommand obsidian-zoom:zoom-in
+"exmap zoomOut obcommand obsidian-zoom:zoom-out
 "nmap zi :zoomIn
 "nmap zo :zoomOut
 
 " Stille Mode
 exmap toggleStille obcommand obsidian-stille:toggleStille
-nmap zs :toggleStille
-nmap ,s :toggleStille
+nmap zs :toggleStille<CR>
+nmap ,s :toggleStille<CR>
 
 
 " don't pollute the register (HACK since we can't map to `"_x` or `"_C`)
 nnoremap C "_c$
-nnoremap x "_dl
-nnoremap c "_c " BUG not working with vimrc plugin
+"nnoremap x "_dl
+"nnoremap c "_c " BUG not working with vimrc plugin
 
 " Navigation
 """"""""""""""""""""""
 
 " HJKL behaves like hjkl, but bigger distance
-vnoremap J 6j
-vnoremap K 6k
+"vnoremap J 6j
+"vnoremap K 6k
 
 " dj = delete 2 lines, dJ = delete 3 lines
 onoremap J 2j
@@ -140,31 +141,23 @@ onoremap J 2j
 "nnoremap ge :nextSuggestion
 "vnoremap ge :nextSuggestion
 
-" INFO doesn't work in reading mode: https://github.com/timhor/obsidian-editor-shortcuts/issues/20
-exmap nextHeading obcommand obsidian-editor-shortcuts:goToNextHeading
-exmap prevHeading obcommand obsidian-editor-shortcuts:goToPrevHeading
-"nnoremap <C-j> :nextHeading
-"nnoremap <C-k> :prevHeading
-
 " INFO doesn't work in visual mode
-exmap lineUp obcommand editor:swap-line-up
-exmap lineDown obcommand editor:swap-line-down
-nnoremap <Up> :lineUp
-nnoremap <Down> :lineDown
-nnoremap <Right> dlp
-nnoremap <Left> dlhhp
+"exmap lineUp obcommand editor:swap-line-up
+"exmap lineDown obcommand editor:swap-line-down
+"nnoremap <Up> :lineUp<CR>
+"nnoremap <Down> :lineDown<CR>
 
 exmap openlink obcommand editor:open-link-in-new-leaf
-nmap go :openlink
-nmap gd :openlink
+nmap gd :openlink<CR>
+"nmap go
 
 " [g]oto [f]ile (= Follow Link under cursor)
 exmap followLinkUnderCursor obcommand editor:follow-link
-nmap gf :followLinkUnderCursor
+nmap gf :followLinkUnderCursor<CR>
 
 " Link Jump (similar to Vimium's f)
-exmap linkjump obcommand mrj-jump-to-link:activate-lightspeed-jump
-nmap ,f :linkjump
+"exmap linkjump obcommand mrj-jump-to-link:activate-lightspeed-jump
+"nmap ,f :linkjump<CR>
 
 " [g]oto [s]ymbol via "Another Quick Switcher" Plugin
 "exmap gotoHeading obcommand obsidian-another-quick-switcher:header-floating-search-in-file
@@ -181,16 +174,16 @@ nmap ,f :linkjump
 "nnoremap gd :followNextLink
 
 " [g]oto [o]pen file (= Quick Switcher)
-exmap quickSwitcher obcommand obsidian-another-quick-switcher:search-command_recent-search
-nnoremap go :quickSwitcher
-nnoremap gr :quickSwitcher
+"exmap quickSwitcher obcommand obsidian-another-quick-switcher:search-command_recent-search
+"nnoremap go :quickSwitcher<CR>
+"nnoremap gr
 
 " Search
 """"""""""""""""""""""
 " Another Quick Switcher ripgrep-search
 " somewhat close to Telescope's livegrep
-exmap liveGrep obcommand obsidian-another-quick-switcher:grep
-nnoremap gl :liveGrep
+"exmap liveGrep obcommand obsidian-another-quick-switcher:grep
+"nnoremap gl :liveGrep
 
 " Obsidian builtin Search & replace
 exmap searchReplace obcommand editor:open-search-replace
@@ -213,15 +206,15 @@ nnoremap U <C-r>
 nnoremap ,ur 1000<C-r>
 
 " do not move to the right on toggling case
-nnoremap ~ ~h
+"nnoremap ~ ~h
 
 " Change Word/Selection
-nnoremap <Space> "_ciw
-onoremap <Space> iw
-onoremap a<Space> iW
+"nnoremap <Space> "_ciw
+"onoremap <Space> iw
+"onoremap a<Space> iW
 
 " Delete Word/Selection
-nnoremap <S-Space> "_daw
+"nnoremap <S-Space> "_daw
 
 
 " Add Blank Line above/below
@@ -246,16 +239,16 @@ nnoremap ]<Space> mzo<Esc>`z
 
 " Blockquote
 exmap toggleBlockquote obcommand editor:toggle-blockquote
-nnoremap ,< :toggleBlockquote
-nnoremap ,> :toggleBlockquote
+nnoremap ,< :toggleBlockquote<CR>
+nnoremap ,> :toggleBlockquote<CR>
 
 " list
 exmap toggleList obcommand editor:toggle-bullet-list
-nnoremap ,- :toggleList
+nnoremap ,- :toggleList<CR>
 
 " markdown tasks
 exmap checkList obcommand editor:toggle-checklist-status
-nnoremap ,x :checkList
+nnoremap ,x :checkList<CR>
 
 
 " Visual Mode
@@ -342,28 +335,21 @@ nnoremap wac ya}p
 nnoremap wrg yGp
 
 
-" Tabs, Splits & Alt-file
-""""""""""""""""""""""
 " Close
 exmap closeWindow obcommand workspace:close-window
-nnoremap ZZ :closeWindow
-
-" Splits
-exmap splitVertical obcommand workspace:split-vertical
-nnoremap <M-|> :splitVertical
-
+nnoremap ZZ :closeWindow<CR>
 
 " Tabs
 """"""""""""""""""""""
 exmap nextTab obcommand workspace:next-tab
 exmap prevTab obcommand workspace:previous-tab
-nnoremap gt :nextTab
-nnoremap gT :prevTab
+nnoremap gt :nextTab<CR>
+nnoremap gT :prevTab<CR>
 
 
 " Alt Buffer (emulates `:buffer #`)
-exmap altBuffer obcommand grappling-hook:alternate-note
-nnoremap <CR> :altBuffer
+"exmap altBuffer obcommand grappling-hook:alternate-note
+"nnoremap <CR> :altBuffer
 
 
 " Critic Markup

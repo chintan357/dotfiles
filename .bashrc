@@ -84,9 +84,9 @@ export EDITOR="$VISUAL"
 # . ~/.bash.d/cht.sh to ~/.bashrc
 export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.cargo/bin"
 
-# export NVM_DIR="$HOME/.config/nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # source '$HOME/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
@@ -94,7 +94,6 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.carg
 # [[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
 
 # source "$HOME"/.oh-my-git/prompt.sh
-
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -169,15 +168,22 @@ eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 eval $(thefuck --alias fq)
 eval "$(pyenv virtualenv-init -)"
-# eval $(ssh-agent -s)
+
+# Start the SSH agent if it's not running
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)" > /dev/null
+fi
+# Add all SSH keys in ~/.ssh to the agent if not already added
+for key in ~/.ssh/*; do
+    # Check if the file is a private key (skip public keys and directories)
+    if [[ -f "$key" && "$key" != *.pub ]]; then
+        ssh-add -l | grep -q "$key" || ssh-add "$key" 2>/dev/null
+    fi
+done
 
 # export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 # . "$HOME/.cargo/env"
 
 source /home/chintan357/.config/broot/launcher/bash/br
-
-# export NVM_DIR="$HOME/.config/nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'"
