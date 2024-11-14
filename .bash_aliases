@@ -331,6 +331,7 @@ alias idea="eureka"
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
 alias private='cd ~/private'
+alias mntc='cd /mnt/c'
 
 alias desk="cd ~/Desktop"
 alias docs="cd ~/Documents"
