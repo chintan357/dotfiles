@@ -8,10 +8,10 @@
 
 [core]
   editor = nvim
-  ; excludesFile = ~/.gitignore
   ignorecase = false
   pager = delta
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  ; excludesFile = ~/.gitignore
   ; pager = git-split-diffs --color | less -RFX
 
 [interactive]
@@ -28,7 +28,6 @@
   features = arctic-fox
   true-color = always
   dark = true
-
   ; features = mellow-barbet
   ; syntax-theme = Coldark-Dark
   ; plus-style = syntax 22
@@ -47,8 +46,6 @@
 ; [alias]
 ;   ; a = "!git status --short | peco | awk '{print $2}' | xargs git add"
 ;   d = diff
-;   co = checkout
-;   cm = commit
 ;   cma = commit -a
 ;   ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
 ;   pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
@@ -67,12 +64,11 @@
 [hub]
   protocol = https
 
-[ghq]
-  root = ~/.ghq
+; [ghq]
+;   root = ~/.ghq
 
-[credential "https://github.com"]
-  helper =
-  helper = !/usr/bin/gh auth git-credential
+; [credential "https://github.com"]
+;   helper = !/usr/bin/gh auth git-credential
 
 ; [gergetool "vimdiff"]
 ;   cmd = "vim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\""

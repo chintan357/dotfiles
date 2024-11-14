@@ -3,7 +3,7 @@ mkdir -p lab/dotfiles projects homelab dotfiles vaults/nsal private work tmp rep
 
 sudo apt update && sudo apt -y upgrade
 
-sudo apt install -y stow make tmux cargo zoxide cmake urlview xclip neofetch  ripgrep fd-find bat gh hub ncal  pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw whois nmap
+sudo apt install -y stow make tmux cargo zoxide cmake urlview xclip neofetch  ripgrep fd-find bat gh hub ncal  pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw whois nmap libssl-dev
 
 # glow
 sudo mkdir -p /etc/apt/keyrings
@@ -28,7 +28,7 @@ sudo apt remove rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install tree-sitter-cli
 cargo install --locked navi
-cargo install eza git-delta hackernews_tui  broot halp
+cargo install eza git-delta hackernews_tui  broot halp eureka
 
 curl -sS https://starship.rs/install.sh | sh
 

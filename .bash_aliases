@@ -67,6 +67,7 @@ alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 alias grepr='grep -r'
 alias grepi='grep -i'
 alias grepri='grep -ri'
+alias grepir='grep -ri'
 
 alias pyfind='find . -name "*.py"'
 alias pygrep='grep -nr --include="*.py"'
@@ -336,6 +337,7 @@ alias lzg=lazygit
 
 alias cg='cd `git rev-parse --show-toplevel`'
 alias gatomic='gP && gaa && gcm atomic && gpu'
+alias ginit='git init'
 
 alias gaa='git add --all'
 alias ga.='git add .'
@@ -354,7 +356,9 @@ alias gdiffs="git diff --staged"
 alias gst='git status'
 alias gsts='git status -sb'
 
-alias gcm='git commit -m'
+alias gcm='git commit'
+alias gcmm='git commit -m'
+alias gcmam='git commit -am'
 alias gamend='git commit --amend --no-edit'
 
 alias gpu='git push'
