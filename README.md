@@ -1,9 +1,9 @@
 ```
-mkdir -p lab/dotfiles projects homelab dotfiles vaults/nsal private work tmp repo learn .config
+mkdir -p lab/dotfiles projects homelab dotfiles vaults/nsal private work tmp repo learn documents downloads .config
 
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt -y upgrade
 
-sudo apt install -y stow make tmux cargo zoxide cmake urlview xclip neofetch  ripgrep fd-find bat eureka gh hub ncal  pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils
+sudo apt install -y stow make tmux cargo zoxide cmake urlview xclip neofetch  ripgrep fd-find bat gh hub ncal  pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw whois nmap
 
 # glow
 sudo mkdir -p /etc/apt/keyrings

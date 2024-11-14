@@ -11,21 +11,20 @@ alias ct='column -t'
 
 #-----------#
 
-alias top=htop
-alias rm=trash
-alias cat=batcat
-alias cal='ncal -y -M'
+alias rmt=trash
+alias bcat=batcat
 alias fw='sudo ufw'
 
 #-----------#
 
-alias bc="bc -l"
-alias wget='wget -c'
+alias bcl="bc -l"
+alias wgetc='wget -c'
 alias whois='whois -H'
-alias cp='cp -r'
 alias diff='diff --color'
 
-alias rmf='rm -rf'
+alias cpr='cp -r'
+alias rmr='rm -r'
+alias rmrf='rm -rf'
 alias sortnr='sort -n -r'
 alias tailf='tail -f'
 
@@ -38,14 +37,22 @@ alias hg='history | grep'
 
 #-----------#
 
-alias ls='eza --group-directories-first'
-alias l='eza -lh --git --color=always --icons=always --group-directories-first'
-alias la='eza -a --git --color=always --icons=always --group-directories-first'
-alias ll='eza -Alah --git --color=always --group-directories-first | less'
+alias els='eza --group-directories-first'
+alias el='eza -lh --git --color=always --icons=always --group-directories-first'
+alias ela='eza -a --git --color=always --icons=always --group-directories-first'
+alias ell='eza -Alh --git --color=always --group-directories-first | less'
+alias elsd='eza -d */ 2> /dev/null'
+alias elh='eza -a | egrep "^\."'
+alias elt='eza -a --tree --level=2 | less'
 
-alias lsd='eza -d */ 2> /dev/null'
-alias lh='eza -a | egrep "^\."'
-alias lt='eza -a --tree --level=2 | less'
+alias ls='ls --group-directories-first --color=auto'
+alias l='ls -lh --group-directories-first --color=always'
+alias la='ls -A --group-directories-first --color=always'
+alias ll='ls -Alh --group-directories-first --color=always | less -R'
+alias lsd='ls -d */ 2> /dev/null'
+alias lh='ls -d .[^.]* 2> /dev/null'
+# alias lh='ls -A | grep "^\."'
+alias lt='tree -a -L2 | less'
 
 #-----------#
 
@@ -66,39 +73,34 @@ alias pygrep='grep -nr --include="*.py"'
 
 #-----------#
 
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
-alias chownr='sudo chown -R --preserve-root'
-alias chmodr='sudo chmod -R --preserve-root'
+alias chownr='chown -R'
+alias chmodr='chmod -R'
 alias chmx='chmod +x'
 
 #-----------#
 
-alias psx="\ps auxf"
-alias psg="\ps aux | grep -v grep | grep -i -e VSZ -e"
+alias psx="ps auxf"
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 alias k9='kill -9'
 alias k15='kill -15'
 
-alias memtop='\ps aux --sort=-%mem | head -11'
-alias cputop='\ps aux --sort=-%cpu | head -11'
+alias memtop='ps aux --sort=-%mem | head -11'
+alias cputop='ps aux --sort=-%cpu | head -11'
 
 alias disk='lsblk -f'
 alias free='free -mh'
-alias mount='mount | column -t'
+alias mountc='mount | column -t'
 
-alias ping='ping -c 5'
 alias sniff='sudo tcpdump -i any -c 1000 -nn'
 alias lsock='sudo lsof -i -P'
 alias ports='sudo netstat -tulanp'
-alias nmap='nmap -v'
 
 alias p1='ping 1.1.1.1'
 alias p8='ping 8.8.8.8'
-alias p9='ping 9.9.9.9'
 alias clh3='curl localhost:3000'
 alias clh8='curl localhost:8080'
+alias clh9='curl localhost:9090'
 alias clh5='curl localhost:5050'
 
 #-----------#
@@ -141,14 +143,14 @@ alias matrix='cmatrix'
 
 #-----------#
 
-alias vim="$EDITOR"
+alias vim='$EDITOR'
 alias lvi='$EDITOR -c "normal '\''0"'
-alias v.="$EDITOR ."
+alias v.='$EDITOR .'
 
 #-----------#
 
 # alias make1='make -j$(($(nproc) + 1))'  # Use all cores +1 for compilation
-alias sha1='openssl sha1'
+# alias sha1='openssl sha1'
 
 alias hostinfo='hostname && ip addr show'
 alias whoami='who am i'
@@ -158,15 +160,17 @@ alias myip='curl -s https://checkip.amazonaws.com'
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias flushdns='sudo systemd-resolve --flush-caches'
 
-alias tree='tree -a -I ".svn|.git|.hg|.idea" | less'
+# alias tree='tree -a -I ".svn|.git|.hg|.idea" | less'
+alias tree2='\tree -L 2 | less'
+alias tree3='\tree -L 3 | less'
 
 alias hx='hexdump -C'
 alias w1='watch -n 1'
 
 #-----------#
 
-alias df='\df -h'
-alias du='\du -hs'
+alias df='df -h'
+alias du='du -hs'
 alias dfm='pydf'
 alias dum="ncdu --color off"
 
@@ -192,15 +196,11 @@ alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
 #-----------#
 
 # alias secupdates='sudo unattended-upgrade -d'
-alias update='sudo apt update && sudo apt upgrade'
-alias update-get='sudo apt-get update && sudo apt-get upgrade'
-
-alias autoremove='sudo apt autoremove && sudo apt autoclean'
-alias autoremove-get='sudo apt-get autoremove && sudo apt-get autoclean'
-
+alias update='sudo apt update && sudo apt -y upgrade'
+alias autoremove='sudo apt -y autoremove && sudo apt autoclean'
 alias distup='sudo apt-get dist-upgrade'
 alias fupdate='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
-alias updatenclean='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt autoclean && sudo apt autoremove'
+alias updatenclean='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get dist-upgrade && sudo apt autoclean && sudo apt -y autoremove'
 
 alias show='apt show $1'
 alias yupp='sudo apt install $1'
@@ -208,9 +208,6 @@ alias nope='sudo apt remove $1'
 
 alias sysctl='systemctl'
 alias jou='sudo journalctl -b -n 200 -f'
-
-alias tree2='\tree -L 2 | less'
-alias tree3='\tree -L 3 | less'
 
 #--------------#
 
@@ -242,10 +239,8 @@ alias sopy='cve && act'
 alias rpy="uvicorn main:app --reload"
 
 # pyenv
-alias pyv='pyenv versions'
 alias pyls='pyenv install --list'
 alias pyi='pyenv install'
-alias pyu='pyenv update'
 alias pyU='pyenv uninstall'
 alias pyg='pyenv global'
 alias pyl='pyenv local'
@@ -257,11 +252,9 @@ alias pydact='pyenv deactivate'
 alias pxi='pipx install'
 
 alias pipi="pip install"
-alias pipup="pip install --upgrade"
 alias pipun="pip uninstall"
 alias pipU="pip uninstall"
 alias pipg="pip freeze | grep"
-alias piplo="pip list -o"
 alias pipreq="pip freeze > requirements.txt"
 alias pipir="pip install -r requirements.txt"
 
@@ -311,15 +304,9 @@ alias mk="mkdir -pv"
 # c() { cd ~/code/$1; }
 # h() { cd ~/$1; }
 
-alias deskw="cd /mnt/c/Users/ChintanPatel/Desktop"
-alias vaultsw="cd /mnt/c/chintan357/vaults/"
-alias obsd='cd /mnt/c/saleenaa357/daily_notes'
-
 alias cdssh='cd ~/.ssh'
 alias cdnvim='cd ~/.config/nvim'
-
 alias vaults='cd ~/vaults'
-alias obs='cd ~/Videos/obs'
 alias config='cd ~/.config'
 alias tmp='cd ~/tmp'
 alias repo='cd ~/repo'
@@ -327,18 +314,18 @@ alias work='cd ~/work'
 alias lab='cd ~/lab'
 alias hlab='cd ~/homelab'
 alias idya='cd ~/idya'
-alias idea="eureka"
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
 alias private='cd ~/private'
-alias mntc='cd /mnt/c'
+alias docs="cd ~/documents"
+alias down='cd ~/downloads'
 
-alias desk="cd ~/Desktop"
-alias docs="cd ~/Documents"
-alias down='cd ~/Downloads'
+alias mntc='cd /mnt/c'
+alias vaultsw='cd /mnt/c/chintan357/vaults/'
 
 #-----------#
 
+alias idea="eureka"
 alias ytdl='youtube-dl'
 
 #-----------#
@@ -372,7 +359,6 @@ alias gamend='git commit --amend --no-edit'
 
 alias gpu='git push'
 alias gpush='git push'
-alias gpuo='git push origin'
 alias gP='git pull'
 alias gpull='git pull'
 
@@ -396,65 +382,48 @@ alias gtag='git tag'
 
 alias gcp='git cherry-pick'
 
-alias gnah="git clean -df && git checkout -- ."
-alias gclean='git clean -fd'
-
 alias grs='git reset'
 alias grsh='git reset --hard'
 alias grss='git reset --soft'
 
-alias grsst='git restore --staged'
+# alias gnah="git clean -df && git checkout -- ."
+# alias gclean='git clean -fd'
 # alias gpristine='git reset --hard && git clean --force -dfx'
 # alias groh='git reset origin/$(git_current_branch) --hard'
 # alias gcan!='git commit --verbose --all --no-edit --amend'
 
-alias hcl="hub clone"
 alias hbr='hub browse'
-alias hfork='hub fork'
-alias hcreate='hub create'
-alias hprls='hub pr list'
-alias hprshow='hub pr show'
-# alias hpr='hub pull-request'
-# alias hco='hub checkout'
-# alias hci='hub ci-status'
-# alias hsync='hub sync'
-# alias his='hub issue'
-# alias hnewissue='hub issue create'
-# alias hprmerge='hub pr merge'
-# alias hprco='hub pr checkout'
 
 #-----------#
 
-# alias lzd='lazydocker'
-# alias dk='docker'
-#
-# alias dkps='docker ps'
-# alias dkpsa='docker ps -a'
-#
-# alias dkk='docker kill'
-# alias dkka='docker kill $(docker ps -q)'
-# alias dksa='docker stop $(docker ps -aq)'
-#
-# alias dkrmi='docker rmi'
-# alias dkrmia='docker rmi $(docker images -q)'
-#
-# alias dkclean='docker system prune -af'
-#
-# alias dkx='docker exec -it'
-# alias dkl='docker logs -f'
-# alias dkc='docker-compose'
-# alias dkpsaq='docker ps -a -q'
-# alias dkb='docker build -t'
-# alias dkrm='docker rm'
+alias lzd='lazydocker'
+alias dk='docker'
+
+alias dkps='docker ps'
+alias dkpsa='docker ps -a'
+
+alias dkk='docker kill'
+alias dkka='docker kill $(docker ps -q)'
+alias dksa='docker stop $(docker ps -aq)'
+
+alias dkrmi='docker rmi'
+alias dkrmia='docker rmi $(docker images -q)'
+
+alias dkclean='docker system prune -af'
+
+alias dkx='docker exec -it'
+alias dkl='docker logs'
+alias dkbt='docker build -t'
+alias dkrm='docker rm'
 # alias dkrd='docker run -d'
-# alias dkrrm='docker run --rm'
+alias dkrrm='docker run --rm'
 # alias dkrrmit='docker run --rm -ti'
 # alias dkrrm8='docker run --rm -p 8080:8080'
-# alias dkrrm9='docker run --rm -p 9080:9080'
-#
-# alias dklf='docker logs -f'
-# alias dki='docker images'
-#
+# alias dkrrm9='docker run --rm -p 9090:9090'
+
+alias dklf='docker logs -f'
+alias dki='docker images'
+
 # alias dkcls='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
 # alias dip="sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 # alias drmf='sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q)'
