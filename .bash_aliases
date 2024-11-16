@@ -221,6 +221,7 @@ alias etmux="$EDITOR ~/.tmux.conf"
 alias eprompt="$EDITOR ~/.config/starship.toml"
 alias eipy="$EDITOR ~/.ipython/profile_default/ipython_config.py"
 alias ei3="$EDITOR ~/.config/i3/config"
+alias egit="$EDITOR ~/.gitconfig"
 
 #-----------#
 
@@ -335,9 +336,10 @@ alias g=git
 alias lg=lazygit
 alias lzg=lazygit
 
-alias cg='cd `git rev-parse --show-toplevel`'
-alias gatomic='gP && gaa && gcm atomic && gpu'
+alias gatomic='gP && gaa && gcm -m atomic && gpu'
+
 alias ginit='git init'
+alias cg='cd `git rev-parse --show-toplevel`'
 
 alias gaa='git add --all'
 alias ga.='git add .'
@@ -349,9 +351,6 @@ alias gcob='git checkout -b'
 
 alias gbr='git branch'
 alias gbrl='git branch -l --sort=committerdate'
-
-alias gdiff='git diff'
-alias gdiffs="git diff --staged"
 
 alias gst='git status'
 alias gsts='git status -sb'
@@ -374,21 +373,6 @@ alias gll='git log --stat'
 
 alias grecent='git for-each-ref --sort="-committerdate" --format="%(committerdate:short) %(refname:short)" refs/heads'
 alias glast="git log -1 HEAD"
-
-alias grb='git rebase'
-alias grbi='git rebase -i'
-
-alias gre='git remote -v'
-alias grea='git remote add'
-alias grerm='git remote remove'
-
-alias gtag='git tag'
-
-alias gcp='git cherry-pick'
-
-alias grs='git reset'
-alias grsh='git reset --hard'
-alias grss='git reset --soft'
 
 # alias gnah="git clean -df && git checkout -- ."
 # alias gclean='git clean -fd'

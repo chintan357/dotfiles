@@ -107,15 +107,15 @@
 [alias]
 	; a = add --all
 	ai = add -i
-	#############
-	ap = apply
-	aps = apply --stat
-	apc = apply --check
-	#############
-	ama = am --abort
-	amr = am --resolved
-	ams = am --skip
-	#############
+
+	; ap = apply
+	; aps = apply --stat
+	; apc = apply --check
+
+	; ama = am --abort
+	; amr = am --resolved
+	; ams = am --skip
+
 	b = branch
 	ba = branch -a
 	bd = branch -d
@@ -123,24 +123,24 @@
 	br = branch -r
 	bc = rev-parse --abbrev-ref HEAD
 	bu = !git rev-parse --abbrev-ref --symbolic-full-name "@{u}"
-	bs = !git-branch-status
-	#############
+	; bs = !git-branch-status
+
 	c = commit
 	ca = commit -a
 	cm = commit -m
 	cam = commit -am
 	cem = commit --allow-empty -m
-	#############
+
 	cl = clone
 	cld = clone --depth 1
 	clg = !sh -c 'git clone https://github.com/$1 $(basename $1)' -
 	clgp = !sh -c 'git clone git@github.com:$1 $(basename $1)' -
 	clgu = !sh -c 'git clone git@github.com:$(git config --get user.username)/$1 $1' -
-	#############
+
 	cp = cherry-pick
 	cpa = cherry-pick --abort
 	cpc = cherry-pick --continue
-	#############
+
 	d = diff
 	dp = diff --patience
 	dc = diff --cached
@@ -148,41 +148,41 @@
 	dck = diff --cached --check
 	dt = difftool
 	dct = difftool --cached
-	#############
+
 	f = fetch
 	fo = fetch origin
 	fu = fetch upstream
-	#############
+
 	fp = format-patch
-	#############
+
 	fk = fsck
-	#############
+
 	g = grep -p
-	#############
+
 	l = log --oneline
 	lg = log --oneline --graph --decorate
-	#############
+
 	ls = ls-files
 	lsf = !git ls-files | grep -i
-	#############
+
 	m = merge
 	ma = merge --abort
 	mc = merge --continue
 	ms = merge --skip
-	#############
+
 	o = checkout
 	om = checkout master
 	ob = checkout -b
 	opr = !sh -c 'git fo pull/$1/head:pr-$1 && git o pr-$1'
-	#############
+
 	pr = prune -v
-	#############
+
   pu = push
 	puo = push origin
 	puao = push --all origin
 	pufo = push -f origin
 	puuo = push -u origin
-	#############
+
 	puom = push origin master
 	puaom = push --all origin master
 	pufom = push -f origin master
@@ -192,29 +192,29 @@
 	pufoc = !git push -f origin $(git bc)
 	puuoc = !git push -u origin $(git bc)
 	pudc = !git push origin :$(git bc)
-	#############
+
 	P = pull
 	Prb = pull --rebase
-	#############
+
 	Po = pull origin
 	Prbo = pull --rebase origin
 	Pom = pull origin master
 	Poc = !git pull origin $(git bc)
 	Prbom = pull --rebase origin master
 	Prboc = !git pull --rebase origin $(git bc)
-	#############
+
 	Pu = pull upstream
 	Pum = pull upstream master
 	Puc = !git pull upstream $(git bc)
 	Pum = pull --rebase upstream master
 	Puc = !git pull --rebase upstream $(git bc)
-	#############
+
 	rb = rebase
 	rba = rebase --abort
 	rbc = rebase --continue
 	rbi = rebase --interactive
 	rbs = rebase --skip
-	#############
+
 	re = reset
 	rh = reset HEAD
 	reh = reset --hard
@@ -224,7 +224,7 @@
 	remh = reset --mixed HEAD
 	resh = reset --soft HEAD
 	rehom = reset --hard origin/master
-	#############
+
 	r = remote
 	ra = remote add
 	rr = remote rm
@@ -240,13 +240,13 @@
 	rsu = remote show upstream
 	rpo = remote prune origin
 	rpu = remote prune upstream
-	#############
+
 	rmf = rm -f
 	rmrf = rm -r -f
-	#############
+
 	st = status
 	stb = status -s -b
-	#############
+
 	sa = stash apply
 	sc = stash clear
 	sd = stash drop
@@ -256,29 +256,29 @@
 	ssk = stash save -k
 	sw = stash show
 	st = !git stash list | wc -l 2>/dev/null | grep -oEi '[0-9][0-9]*'
-	#############
+
 	t = tag
 	td = tag -d
-	#############
+
 	w = show
 	wp = show -p
 	wr = show -p --no-color
-	#############
-	svnr = svn rebase
-	svnd = svn dcommit
-	svnl = svn log --oneline --show-commit
-	#############
+
+	; svnr = svn rebase
+	; svnd = svn dcommit
+	; svnl = svn log --oneline --show-commit
+
 	subadd = !sh -c 'git submodule add https://github.com/$1 $2/$(basename $1)' -
 	subrm = !sh -c 'git submodule deinit -f -- $1 && rm -rf .git/modules/$1 && git rm -f $1' -
 	subup = submodule update --init --recursive
 	subpull = submodule foreach 'git pull --tags -f origin master || git pull --tags -f origin main || git pull --tags -f origin development'
-	#############
+
 	assume = update-index --assume-unchanged
 	unassume = update-index --no-assume-unchanged
 	assumed = !git ls -v | grep ^h | cut -c 3-
 	unassumeall = !git assumed | xargs git unassume
 	assumeall = !git status -s | awk {'print $2'} | xargs git assume
-	#############
+
 	bump = !sh -c 'git commit -am \"Version bump v$1\" && git psuoc && git release $1' -
 	release = !sh -c 'git tag v$1 && git pst' -
 	unrelease = !sh -c 'git tag -d v$1 && git pso :v$1' -
@@ -288,10 +288,10 @@
 	bare = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
 	whois = !sh -c 'git log -i -1 --author=\"$1\" --pretty=\"format:%an <%ae>\"' -
 	serve = daemon --reuseaddr --verbose --base-path=. --export-all ./.git
-	#############
+
 	behind = !git rev-list --left-only --count $(git bu)...HEAD
 	ahead = !git rev-list --right-only --count $(git bu)...HEAD
-	#############
+
 	ours = "!f() { git checkout --ours $@ && git add $@; }; f"
 	theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
 	subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 master' -
