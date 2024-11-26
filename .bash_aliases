@@ -20,7 +20,7 @@ alias fw='sudo ufw'
 alias bcl="bc -l"
 alias wgetc='wget -c'
 alias whois='whois -H'
-alias diff='diff --color'
+alias diffc='diff --color'
 
 alias cpr='cp -r'
 alias rmr='rm -r'
@@ -45,10 +45,9 @@ alias elsd='eza -d */ 2> /dev/null'
 alias elh='eza -a | egrep "^\."'
 alias elt='eza -a --tree --level=2 | less'
 
-alias ls='ls --group-directories-first --color=auto'
-alias l='ls -lh --group-directories-first --color=always'
-alias la='ls -A --group-directories-first --color=always'
-alias ll='ls -Alh --group-directories-first --color=always | less -R'
+# alias ls='ls --group-directories-first --color=auto'
+alias la='ls -A --group-directories-first'
+alias ll='ls -Alh --group-directories-first | less -R'
 alias lsd='ls -d */ 2> /dev/null'
 alias lh='ls -d .[^.]* 2> /dev/null'
 # alias lh='ls -A | grep "^\."'
@@ -212,16 +211,16 @@ alias jou='sudo journalctl -b -n 200 -f'
 
 #--------------#
 
-alias erc="$EDITOR ~/.bashrc"
-alias epro="$EDITOR ~/.bash_profile"
-alias ealias="$EDITOR ~/.bash_aliases"
-alias einput="$EDITOR ~/.inputrc"
-alias essh="$EDITOR ~/.ssh/config"
-alias etmux="$EDITOR ~/.tmux.conf"
-alias eprompt="$EDITOR ~/.config/starship.toml"
-alias eipy="$EDITOR ~/.ipython/profile_default/ipython_config.py"
-alias ei3="$EDITOR ~/.config/i3/config"
-alias egit="$EDITOR ~/.gitconfig"
+alias erc='$EDITOR ~/.bashrc'
+alias epro='$EDITOR ~/.bash_profile'
+alias ealias='$EDITOR ~/.bash_aliases'
+alias einput='$EDITOR ~/.inputrc'
+alias essh='$EDITOR ~/.ssh/config'
+alias etmux='$EDITOR ~/.tmux.conf'
+alias eprompt='$EDITOR ~/.config/starship.toml'
+alias eipy='$EDITOR ~/.ipython/profile_default/ipython_config.py'
+alias ei3='$EDITOR ~/.config/i3/config'
+alias egit='$EDITOR ~/.gitconfig'
 
 #-----------#
 

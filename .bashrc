@@ -82,7 +82,7 @@ export EDITOR="$VISUAL"
 
 # Created by `pipx` on 2024-03-19 21:09:03
 # . ~/.bash.d/cht.sh to ~/.bashrc
-export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.cargo/bin:$HOME/.tmux/plugins/tmux-session-wizard/bin"
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
