@@ -1,5 +1,5 @@
 ```
-mkdir -p lab/dotfiles projects homelab dotfiles vaults/nsal private work tmp repo learn documents downloads .config
+mkdir -p lab/dotfiles homelab dotfiles vaults/nsal private work tmp documents downloads .config
 
 sudo apt update && sudo apt -y upgrade
 
@@ -28,7 +28,7 @@ sudo apt remove rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install tree-sitter-cli
 cargo install --locked navi
-cargo install eza git-delta hackernews_tui  broot halp eureka
+cargo install eza git-delta hackernews_tui  broot halp
 
 curl -sS https://starship.rs/install.sh | sh
 

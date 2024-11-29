@@ -310,14 +310,13 @@ alias cdnvim='cd ~/.config/nvim'
 alias vaults='cd ~/vaults'
 alias config='cd ~/.config'
 alias tmp='cd ~/tmp'
-alias repo='cd ~/repo'
 alias work='cd ~/work'
 alias lab='cd ~/lab'
 alias hlab='cd ~/homelab'
-alias idya='cd ~/idya'
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
 alias private='cd ~/private'
+alias scripts='cd ~/scripts'
 alias docs="cd ~/documents"
 alias down='cd ~/downloads'
 
@@ -340,6 +339,7 @@ alias gatomic='gP && gaa && gcm -m atomic && gpu'
 alias ginit='git init'
 alias cg='cd `git rev-parse --show-toplevel`'
 
+alias gad='git add'
 alias gaa='git add --all'
 alias ga.='git add .'
 
@@ -347,10 +347,12 @@ alias gcl='git clone'
 
 alias gco='git checkout'
 alias gcob='git checkout -b'
+alias gbk='git checkout -'
 
 alias gbr='git branch'
 alias gbrl='git branch -l --sort=committerdate'
 
+alias gs='git status -s'
 alias gst='git status'
 alias gsts='git status -sb'
 
