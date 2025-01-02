@@ -105,25 +105,17 @@
   process = git-lfs filter-process
 
 [alias]
-	; a = add --all
+	a = add
 	ai = add -i
-
-	; ap = apply
-	; aps = apply --stat
-	; apc = apply --check
-
-	; ama = am --abort
-	; amr = am --resolved
-	; ams = am --skip
 
 	b = branch
 	ba = branch -a
 	bd = branch -d
 	bdd = branch -D
+	bD = branch -D
 	br = branch -r
 	bc = rev-parse --abbrev-ref HEAD
 	bu = !git rev-parse --abbrev-ref --symbolic-full-name "@{u}"
-	; bs = !git-branch-status
 
 	c = commit
 	ca = commit -a
@@ -164,6 +156,7 @@
 
 	ls = ls-files
 	lsf = !git ls-files | grep -i
+	lsg = !git ls-files | grep -i
 
 	m = merge
 	ma = merge --abort
@@ -194,6 +187,7 @@
 	pudc = !git push origin :$(git bc)
 
 	P = pull
+	Pr = pull --rebase
 	Prb = pull --rebase
 
 	Po = pull origin
@@ -247,6 +241,7 @@
 	st = status
 	stb = status -s -b
 
+  s = stash
 	sa = stash apply
 	sc = stash clear
 	sd = stash drop
@@ -264,9 +259,6 @@
 	wp = show -p
 	wr = show -p --no-color
 
-	; svnr = svn rebase
-	; svnd = svn dcommit
-	; svnl = svn log --oneline --show-commit
 
 	subadd = !sh -c 'git submodule add https://github.com/$1 $2/$(basename $1)' -
 	subrm = !sh -c 'git submodule deinit -f -- $1 && rm -rf .git/modules/$1 && git rm -f $1' -
@@ -304,6 +296,20 @@
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
   ; Show the current branch name (useful for shell prompts)
   ; brname = !git branch | grep "^*" | awk '{ print $2 }'
+
+	; ap = apply
+	; aps = apply --stat
+	; apc = apply --check
+
+	; svnr = svn rebase
+	; svnd = svn dcommit
+	; svnl = svn log --oneline --show-commit
+
+	; ama = am --abort
+	; amr = am --resolved
+	; ams = am --skip
+
+	; bs = !git-branch-status
 
 [delta "arctic-fox"]
     # author: https://github.com/anthony-halim
