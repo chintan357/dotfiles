@@ -153,7 +153,6 @@ alias v.='$EDITOR .'
 # alias sha1='openssl sha1'
 
 alias hostinfo='hostname && ip addr show'
-alias whoami='who am i'
 
 alias myip='curl -s https://checkip.amazonaws.com'
 
@@ -169,8 +168,6 @@ alias w1='watch -n 1'
 
 #-----------#
 
-alias df='df -h'
-alias du='du -hs'
 alias dfm='pydf'
 alias dum="ncdu --color off"
 

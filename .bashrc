@@ -10,10 +10,11 @@ case $- in
     *) return ;;
 esac
 
-HISTCONTROL=ignoreboth
+# HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 HISTSIZE=9999
-HISTFILESIZE=9999
+HISTFILESIZE=19999
 
 # shopt -s cmdhist
 
