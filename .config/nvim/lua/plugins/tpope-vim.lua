@@ -2,7 +2,7 @@ return {
 	{
 		"tpope/vim-repeat",
 	},
-	{
-		"chintan357/vim-unimpaired",
-	},
+	-- {
+	-- 	"chintan357/vim-unimpaired",
+	-- },
 }

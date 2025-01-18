@@ -1,5 +1,5 @@
 ```
-mkdir -p lab/dotfiles homelab dotfiles vaults/nsal private work tmp documents downloads .config
+mkdir -p lab/{dotfiles,scripts,repo} homelab dotfiles vaults/nsal private learn work tmp docs downloads .config
 
 sudo apt update && sudo apt -y upgrade
 

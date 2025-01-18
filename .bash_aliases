@@ -308,14 +308,17 @@ alias vaults='cd ~/vaults'
 alias config='cd ~/.config'
 alias tmp='cd ~/tmp'
 alias work='cd ~/work'
+alias private='cd ~/private'
+alias scripts='cd ~/lab/scripts/'
+alias repo='cd ~/lab/repo'
+alias docs="cd ~/docs"
+alias down='cd ~/downloads'
+alias proj='cd ~/projects/'
+alias learn='cd ~/learn'
 alias lab='cd ~/lab'
 alias hlab='cd ~/homelab'
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
-alias private='cd ~/private'
-alias scripts='cd ~/scripts'
-alias docs="cd ~/documents"
-alias down='cd ~/downloads'
 
 alias mntc='cd /mnt/c'
 alias vaultsw='cd /mnt/c/chintan357/vaults/'
@@ -481,3 +484,7 @@ alias gprols='gcloud projects list'
 alias gsetpro='gcloud config set project'
 alias gconfls='gcloud config configurations list'
 alias gconfa='gcloud config configurations activate'
+
+#-----------#
+
+alias v='NVIM_APPNAME="tnvim" nvim'
