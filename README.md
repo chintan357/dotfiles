@@ -44,7 +44,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 sudo apt install gettext
 git clone --depth 1 https://github.com/neovim/neovim.git
 cd neovim
-make CMAKE_BUILD_TYPE=RelWithDebInfo
+make CMAKE_BUILD_TYPE=Release
 sudo make install
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf

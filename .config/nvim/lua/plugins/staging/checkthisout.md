@@ -154,3 +154,4 @@ end,
 
 { nvim-telescope/telescope-live-grep-args.nvim" },
 { "aaronhallaert/advanced-git-search.nvim", },
+https://github.com/stevearc/stickybuf.nvim

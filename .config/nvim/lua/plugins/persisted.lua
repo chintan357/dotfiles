@@ -3,6 +3,7 @@ return {
 	{
 
 		"folke/persistence.nvim",
+		enabled = false,
 		event = "BufReadPre",
 		opts = { options = vim.opt.sessionoptions:get() },
     -- stylua: ignore
@@ -14,6 +15,7 @@ return {
 	},
 	{
 		"olimorris/persisted.nvim",
+		enabled = false,
 		lazy = false,
 		opts = {
 			save_dir = vim.fn.expand(vim.fn.stdpath("data") .. "/persisted-session/"), -- Resolves to ~/.local/share/nvim/persisted-sessions/

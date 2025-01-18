@@ -1,6 +1,7 @@
 return {
 	"Wansmer/treesj",
 	event = "VeryLazy",
+	enabled = false,
 	dependencies = { "nvim-treesitter/nvim-treesitter" },
 	config = function()
 		vim.keymap.set("n", "yog", require("treesj").toggle)

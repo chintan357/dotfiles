@@ -1,8 +1,8 @@
+-- https://github.com/windwp/nvim-autopairs?tab=readme-ov-file#you-need-to-add-mapping-cr-on-nvim-cmp-setupcheck-readmemd-on-nvim-cmp-repo
 return {
 	"windwp/nvim-autopairs",
 	event = "InsertEnter",
 	opts = {
-		close_triple_quotes = true,
 		check_ts = true,
 		enable_moveright = true,
 		fast_wrap = {

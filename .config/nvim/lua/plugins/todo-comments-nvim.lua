@@ -1,9 +1,9 @@
 return {
 	"folke/todo-comments.nvim",
 	cmd = { "TodoTrouble", "TodoTelescope" },
-	-- event = "BufEnter",
-	event = "VeryLazy",
+	event = "VeryLazy", -- "VimEnter",
 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- opts = { signs = false },
 	config = true,
   -- stylua: ignore
   keys = {

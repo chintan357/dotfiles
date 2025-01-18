@@ -1,11 +1,10 @@
+-- See `:help telescope` and `:help telescope.setup()`
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VimEnter",
 	lazy = true,
 	branch = "0.1.x",
 	dependencies = {
-		-- "nvim-telescope/telescope-smart-history.nvim",
-		-- "kkharji/sqlite.lua",
 		"nvim-lua/plenary.nvim",
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -22,8 +21,8 @@ return {
 		-- },
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
-		"debugloop/telescope-undo.nvim",
 		"jvgrootveld/telescope-zoxide",
+		-- "debugloop/telescope-undo.nvim",
 		-- "folke/trouble.nvim",
 	},
 	config = function()
@@ -31,10 +30,6 @@ return {
 		local action_layout = require("telescope.actions.layout")
 		local action_state = require("telescope.actions.state")
 		local builtin = require("telescope.builtin")
-		-- local open_with_trouble = require("trouble.sources.telescope").open
-
-		-- Use this to add more results without clearing the trouble list
-		-- local add_to_trouble = require("trouble.sources.telescope").add
 
 		local keymap = vim.keymap
 
@@ -48,7 +43,6 @@ return {
 			"--smart-case",
 			"--trim",
 		}
-
 		table.insert(vimgrep_arguments, "--hidden")
 		table.insert(vimgrep_arguments, "--glob")
 		table.insert(vimgrep_arguments, "!**/.git/*")
@@ -69,6 +63,7 @@ return {
 				builtin.find_files(opts)
 			end
 		end
+
 		vim.keymap.set("n", "<leader><Space>", project_files)
 		vim.keymap.set("n", "<leader>cd", require("telescope").extensions.zoxide.list)
 
@@ -76,6 +71,9 @@ return {
 
 		require("telescope").setup({
 			defaults = {
+				--   mappings = {
+				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+				--   },
 				prompt_prefix = "  ",
 				entry_prefix = "  ",
 				color_devicons = true,
@@ -139,51 +137,34 @@ return {
 					override_file_sorter = true,
 					case_mode = "smart_case",
 				},
-				frecency = {
-					show_scores = false,
-					show_unindexed = false,
-					ignore_patterns = {
-						"*.git/*",
-						"*/tmp/*",
-						"*/node_modules/*",
-						"*/vendor/*",
-					},
-					-- workspaces = {
-					--   ["nvim"] = os.getenv("HOME_DIR") .. ".config/nvim",
-					--   ["dots"] = os.getenv("HOME_DIR") .. ".dotfiles",
-					--   ["project"] = os.getenv("PROJECT_DIR"),
-					-- },
-				},
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
 				},
-				undo = {
-					mappings = {
-						i = {
-							["<CR>"] = require("telescope-undo.actions").restore,
-							["<C-a>"] = require("telescope-undo.actions").yank_additions,
-							["<C-d>"] = require("telescope-undo.actions").yank_deletions,
-						},
-					},
-					use_delta = true,
-					side_by_side = false,
-				},
 				zoxide = {},
-				-- history = {
-				-- 	path = vim.fs.joinpath(data, "telescope_history.sqlite3"),
-				-- 	limit = 100,
+				-- frecency = {
+				-- 	show_scores = false,
+				-- 	show_unindexed = false,
+				-- 	ignore_patterns = {
+				-- 		"*.git/*",
+				-- 		"*/tmp/*",
+				-- 		"*/node_modules/*",
+				-- 		"*/vendor/*",
+				-- 	},
+				-- 	-- workspaces = {
+				-- 	--   ["nvim"] = os.getenv("HOME_DIR") .. ".config/nvim",
+				-- 	--   ["dots"] = os.getenv("HOME_DIR") .. ".dotfiles",
+				-- 	--   ["project"] = os.getenv("PROJECT_DIR"),
+				-- 	-- },
 				-- },
 			},
 		})
 
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
-		require("telescope").load_extension("undo")
 		require("telescope").load_extension("zoxide")
+		-- require("telescope").load_extension("undo")
 
     -- pcall(require("telescope").load_extension, "smart_history")
-    -- require("telescope").load_extension("refactoring")
-    -- telescope.load_extension("persisted")
 
     -- keymap.set(
     -- 	"n",
@@ -206,7 +187,7 @@ return {
     keymap.set("n", "<leader>sr", builtin.oldfiles)
     keymap.set("n", "<leader>sc", function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end)
     keymap.set("n", "<leader>sb", function() builtin.buffers({ path_display = { "smart" }, sort_mru = true, sort_lastused = true }) end)
-    keymap.set("n", "<C-p>", function() builtin.buffers({ path_display = { "smart" }, sort_mru = true, sort_lastused = true }) end)
+    -- keymap.set("n", "<C-p>", function() builtin.buffers({ path_display = { "smart" }, sort_mru = true, sort_lastused = true }) end)
 
     keymap.set("n", "<leader>sq", builtin.quickfix)
 
@@ -241,6 +222,7 @@ return {
       )
     end)
 
+		-- vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 		-- keymap.set("n", "<leader>tb", builtin.builtin)
 		-- keymap.set("n", "<leader>sd", function() builtin.diagnostics({ bufnr = 0 }) end)
 		-- keymap.set("n", "<leader>sD", require("telescope.builtin").diagnostics)

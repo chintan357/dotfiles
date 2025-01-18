@@ -1,6 +1,7 @@
 return {
 	"gbprod/yanky.nvim",
 	event = "VeryLazy",
+	enabled = false,
 	keys = {
 		{ "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
 

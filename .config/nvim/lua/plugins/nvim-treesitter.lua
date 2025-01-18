@@ -41,13 +41,14 @@ return {
 			-- 	"windwp/nvim-ts-autotag", -- Autoclose and autorename HTML and Vue tags
 			-- 	config = true,
 			-- },
-			"RRethy/nvim-treesitter-endwise", -- Automatically add end keywords for Ruby, Lua, Python, and more
+			-- "RRethy/nvim-treesitter-endwise", -- Automatically add end keywords for Ruby, Lua, Python, and more
 		},
 		build = ":TSUpdate",
+		-- main = "nvim-treesitter.configs", -- Sets main module to use for opts
 		config = function()
 			-- :h vim.treesitter.foldexpr()
-			vim.wo.foldmethod = "expr"
-			vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+			-- vim.wo.foldmethod = "expr"
+			-- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 			-- This will respect your foldminlines and foldnestmax settings.
 
 			keymap("n", "yoT", function()
@@ -58,7 +59,8 @@ return {
 				end
 			end, { desc = "Toggle Treesitter Highlight" })
 
-			require("nvim-dap-repl-highlights").setup()
+			-- require("nvim-dap-repl-highlights").setup()
+
 			require("nvim-treesitter.configs").setup({
 				highlight = { enable = true, disable = { "text" } },
 				indent = { enable = true },
@@ -70,16 +72,14 @@ return {
 					"python",
 					"javascript",
 					"json",
-					"query",
-					"vimdoc",
-					"vim",
+					"yaml",
+					"toml",
 					"lua",
 					"luadoc",
-					"regex",
 					"markdown",
 					"markdown_inline",
-					"toml",
-					"proto",
+					"vim",
+					"vimdoc",
 				},
 				incremental_selection = {
 					enable = true,
@@ -95,7 +95,8 @@ return {
 					},
 				},
 				-- nvim-treesitter-endwise plugin
-				endwise = { enable = true },
+				-- endwise = { enable = true },
+
 				textobjects = {
 					swap = {
 						enable = true,

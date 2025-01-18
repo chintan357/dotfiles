@@ -1,12 +1,14 @@
 return {
 	{
 		"ggandor/flit.nvim",
+		enabled = false,
 		config = function()
 			require("flit").setup()
 		end,
 	},
 	{
 		"ggandor/leap.nvim",
+		enabled = false,
 		config = function()
 			local leap = require("leap")
 			-- leap.add_default_mappings()

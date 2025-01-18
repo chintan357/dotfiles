@@ -1,3 +1,4 @@
+-- https://github.com/stevearc/quicker.nvim
 return {
 	{
 		"kevinhwang91/nvim-bqf",
@@ -5,10 +6,5 @@ return {
 		config = function()
 			require("bqf").setup()
 		end,
-	},
-	{
-		"stevearc/qf_helper.nvim",
-		enabled = false,
-		opts = {},
 	},
 }

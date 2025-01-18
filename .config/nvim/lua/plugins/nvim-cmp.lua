@@ -1,20 +1,31 @@
+-- No, but seriously. Please read `:help ins-completion`, it is really good!
 return {
 	{
-		"L3MON4D3/LuaSnip",
-		version = "v2.*",
-		build = "make install_jsregexp",
-	},
-	{
 		"hrsh7th/nvim-cmp",
-		lazy = false,
-		priority = 100,
-		-- event = "InsertEnter",
+		-- lazy = false,
+		-- priority = 100,
+		event = "InsertEnter",
 		dependencies = {
-			"L3MON4D3/LuaSnip",
+			{
+				"L3MON4D3/LuaSnip",
+				version = "v2.*",
+				build = (function()
+					if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+						return
+					end
+					return "make install_jsregexp"
+				end)(),
+				dependencies = {
+					{
+						"rafamadriz/friendly-snippets",
+						config = function()
+							require("luasnip.loaders.from_vscode").lazy_load()
+						end,
+					},
+				},
+			},
 			"saadparwaiz1/cmp_luasnip",
-			-- "hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-nvim-lsp",
-			"rafamadriz/friendly-snippets",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
@@ -22,44 +33,45 @@ return {
 			"onsails/lspkind.nvim",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-nvim-lua",
-			"zbirenbaum/copilot-cmp",
 			"lukas-reineke/cmp-under-comparator",
-			"ray-x/cmp-sql",
-			"chrisgrieser/cmp_yanky",
-			"SergioRibera/cmp-dotenv",
-			"hrsh7th/cmp-calc",
-			"kristijanhusak/vim-dadbod-completion",
+			-- "SergioRibera/cmp-dotenv",
+			-- "ray-x/cmp-sql",
+			-- "kristijanhusak/vim-dadbod-completion",
+			-- "hrsh7th/cmp-emoji",
+			-- "hrsh7th/cmp-calc",
+			-- "chrisgrieser/cmp_yanky",
+			-- "zbirenbaum/copilot-cmp",
 		},
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+			-- require("luasnip.loaders.from_vscode").lazy_load()
+			luasnip.config.setup({})
+
 			local lspkind = require("lspkind")
 			-- lspkind.init({})
 
-			-- gray
-			vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#808080" })
-			-- blue
-			vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = "#569CD6" })
-			vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpIntemAbbrMatch" })
-			-- light blue
-			vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#9CDCFE" })
-			vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CmpItemKindVariable" })
-			vim.api.nvim_set_hl(0, "CmpItemKindText", { link = "CmpItemKindVariable" })
-			-- pink
-			vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = "#C586C0" })
-			vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
-			-- front
-			vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = "#D4D4D4" })
-			vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
-			vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
-
-			require("luasnip.loaders.from_vscode").lazy_load()
-			luasnip.config.setup({})
+			-- -- gray
+			-- vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#808080" })
+			-- -- blue
+			-- vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = "#569CD6" })
+			-- vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpIntemAbbrMatch" })
+			-- -- light blue
+			-- vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#9CDCFE" })
+			-- vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CmpItemKindVariable" })
+			-- vim.api.nvim_set_hl(0, "CmpItemKindText", { link = "CmpItemKindVariable" })
+			-- -- pink
+			-- vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = "#C586C0" })
+			-- vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
+			-- -- front
+			-- vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = "#D4D4D4" })
+			-- vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
+			-- vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
 
 			cmp.setup({
-				enabled = function()
-					return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
-				end,
+				-- enabled = function()
+				-- 	return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+				-- end,
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
@@ -87,25 +99,17 @@ return {
 					}),
 				},
 				-- Enable luasnip to handle snippet expansion for nvim-cmp
-				snippet = {
-					expand = function(args)
-						vim.snippet.expand(args.body)
-					end,
-				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-					["<C-y>"] = cmp.mapping(
-						cmp.mapping.confirm({
-							behavior = cmp.ConfirmBehavior.Insert,
-							select = true,
-						}),
-						{ "i", "c" }
-					),
-					["<C-d>"] = cmp.mapping.abort(),
-					-- ["<C-y"] = cmp.mapping.complete(),
 					-- ["<C-n>"] = cmp.mapping.select_next_item(),
 					-- ["<C-p>"] = cmp.mapping.select_prev_item(),
+					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<C-y>"] = cmp.mapping.confirm({
+						behavior = cmp.ConfirmBehavior.Insert,
+						select = true,
+					}),
+					["<C-d>"] = cmp.mapping.abort(),
+					-- ["<C-a>"] = cmp.mapping.complete({}),
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					-- ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false, }),
@@ -127,47 +131,48 @@ return {
 							fallback()
 						end
 					end, { "i", "s" }),
-					-- go to next placeholder in the snippet
-					-- ["<C-l>"] = cmp.mapping(function(fallback)
-					-- 	if luasnip.jumpable(1) then
-					-- 		luasnip.jump(1)
-					-- 	else
-					-- 		fallback()
+					-- ["<C-l>"] = cmp.mapping(function()
+					-- 	if luasnip.expand_or_locally_jumpable() then
+					-- 		luasnip.expand_or_jump()
 					-- 	end
 					-- end, { "i", "s" }),
-					-- go to previous placeholder in the snippet
-					-- ["<C-h>"] = cmp.mapping(function(fallback)
-					-- 	if luasnip.jumpable(-1) then
+					-- ["<C-h>"] = cmp.mapping(function()
+					-- 	if luasnip.locally_jumpable(-1) then
 					-- 		luasnip.jump(-1)
-					-- 	else
-					-- 		fallback()
 					-- 	end
 					-- end, { "i", "s" }),
+
+					-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
+					--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 				}),
 				sources = cmp.config.sources({
-					{ name = "luasnip", priority = 100, max_item_count = 5 },
-					{ name = "nvim_lsp", priority = 90 },
-					{ name = "path", priority = 20 },
-					{ name = "buffer", priority = 10, keyword_length = 3, max_item_count = 8 },
+					{
+						name = "lazydev",
+						-- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
+						group_index = 0,
+					},
+					{ name = "luasnip" },
+					{ name = "nvim_lsp" },
+					{ name = "path" },
 					{ name = "nvim_lua" },
 					{ name = "nvim_lsp_signature_help" },
-					{ name = "calc" },
-					{ name = "sql" },
-					{ name = "dotenv" },
 					{ name = "buffer" },
-					{ name = "cmp_yanky" },
+					-- { name = "calc" },
+					-- { name = "sql" },
+					-- { name = "dotenv" },
+					-- { name = "cmp_yanky" },
 					-- { name = "cody" },
 					-- { name = "copilot", priority = 90, max_item_count = 5 },
 					-- { name = "emoji" },
 					-- { name = "jupyter" },
 				}),
 			})
-			cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
-				sources = {
-					{ name = "vim-dadbod-completion" },
-					{ name = "buffer" },
-				},
-			})
+			-- cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
+			-- 	sources = {
+			-- 		{ name = "vim-dadbod-completion" },
+			-- 		{ name = "buffer" },
+			-- 	},
+			-- })
 
 			cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 				sources = {
