@@ -151,11 +151,11 @@ return {
 						-- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
 						group_index = 0,
 					},
-					{ name = "luasnip" },
 					{ name = "nvim_lsp" },
-					{ name = "path" },
 					{ name = "nvim_lua" },
 					{ name = "nvim_lsp_signature_help" },
+					{ name = "luasnip" },
+					{ name = "path" },
 					{ name = "buffer" },
 					-- { name = "calc" },
 					-- { name = "sql" },

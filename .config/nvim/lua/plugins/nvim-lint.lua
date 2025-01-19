@@ -1,16 +1,14 @@
--- General purpose linters
 return {
 	"mfussenegger/nvim-lint",
-	event = "BufWritePost",
-	enabled = false,
-	-- event = { "BufReadPre", "BufNewFile" },
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
-		require("lint").linters_by_ft = {
+		local lint = require("lint")
+		lint.linters_by_ft = {
 			python = {
 				"pylint",
 			},
 			markdown = { "markdownlint" }, -- { "vale" }
-			-- json = { "jsonlint" },
+			json = { "jsonlint" },
 		}
 
 		-- Automatically run linters after saving.  Use "InsertLeave" for more aggressive linting.
@@ -18,19 +16,23 @@ return {
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
 			group = lint_augroup,
 			callback = function()
-				require("lint").try_lint()
+				-- Only run the linter in buffers that you can modify in order to
+				-- avoid superfluous noise, notably within the handy LSP pop-ups that
+				-- describe the hovered symbol using Markdown.
+				if vim.opt_local.modifiable:get() then
+					lint.try_lint()
+				end
 			end,
 		})
-		-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-		-- 	pattern = { "*.py" },
-		-- 	callback = function()
-		-- 		require("lint").try_lint()
-		-- 	end,
-		-- })
 	end,
 }
 
+-- {
+--   dockerfile = { "hadolint" },
+--   json = { "jsonlint" },
+--   markdown = { "vale" },
+--   terraform = { "tflint" },
+--   text = { "vale" }
+-- }
 -- You can disable the default linters by setting their filetypes to nil:
--- lint.linters_by_ft['json'] = nil
--- lint.linters_by_ft['markdown'] = nil
 -- lint.linters_by_ft['text'] = nil

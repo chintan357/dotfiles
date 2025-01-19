@@ -2,19 +2,14 @@ return {
 	"mfussenegger/nvim-dap",
 	lazy = true,
 	dependencies = {
-		{
-			"rcarriga/nvim-dap-ui",
-			"theHamsta/nvim-dap-virtual-text", -- help to find variable definitions in debug mode
-			"mfussenegger/nvim-dap-python", -- Debug Python
-			"nvim-neotest/nvim-nio",
-			config = function(_, opts)
-				local dapui = require("dapui")
-				dapui.setup(opts)
-			end,
-		},
+		"rcarriga/nvim-dap-ui",
+		"nvim-neotest/nvim-nio",
+		"theHamsta/nvim-dap-virtual-text",
+		"LiadOz/nvim-dap-repl-highlights",
+		"williamboman/mason.nvim",
 		{
 			"jay-babu/mason-nvim-dap.nvim",
-			dependencies = "mason.nvim",
+			dependencies = "williamboman/mason.nvim",
 			cmd = { "DapInstall", "DapUninstall" },
 			opts = {
 				automatic_installation = true,
@@ -23,34 +18,79 @@ return {
 			},
 		},
 		{ "jbyuki/one-small-step-for-vimkind", module = "osv" },
+		"mfussenegger/nvim-dap-python",
 	},
-	-- keys = {
-	-- 	{
-	-- 		"<F1>",
-	-- 		"<cmd>lua require('dap').toggle_breakpoint()<CR>",
-	-- 		description = "Set breakpoint",
-	-- 	},
-	-- 	{ "<F2>", "<cmd>lua require('dap').continue()<CR>", description = "Continue" },
-	-- 	{ "<F3>", "<cmd>lua require('dap').step_into()<CR>", description = "Step into" },
-	-- 	{ "<F4>", "<cmd>lua require('dap').step_over()<CR>", description = "Step over" },
-	-- 	{
-	-- 		"<F5>",
-	-- 		"<cmd>lua require('dap').repl.toggle({height = 6})<CR>",
-	-- 		description = "Toggle REPL",
-	-- 	},
-	-- 	{ "<F6>", "<cmd>lua require('dap').repl.run_last()<CR>", description = "Run last" },
-	-- 	{
-	-- 		"<F9>",
-	-- 		function()
-	-- 			local _, dap = require("dap")
-	-- 			dap.disconnect()
-	-- 			require("dapui").close()
-	-- 		end,
-	-- 		description = "Stop",
-	-- 	},
-	-- },
+	keys = {
+		{
+			"<F5>",
+			function()
+				require("dap").continue()
+			end,
+			desc = "Debug: Start/Continue",
+		},
+		{
+			"<F1>",
+			function()
+				require("dap").step_into()
+			end,
+			desc = "Debug: Step Into",
+		},
+		{
+			"<F2>",
+			function()
+				require("dap").step_over()
+			end,
+			desc = "Debug: Step Over",
+		},
+		{
+			"<F3>",
+			function()
+				require("dap").step_out()
+			end,
+			desc = "Debug: Step Out",
+		},
+		-- {
+		-- 	"<leader>b",
+		-- 	function()
+		-- 		require("dap").toggle_breakpoint()
+		-- 	end,
+		-- 	desc = "Debug: Toggle Breakpoint",
+		-- },
+		-- {
+		-- 	"<leader>B",
+		-- 	function()
+		-- 		require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+		-- 	end,
+		-- 	desc = "Debug: Set Breakpoint",
+		-- },
+		-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+		{
+			"<F7>",
+			function()
+				require("dapui").toggle()
+			end,
+			desc = "Debug: See last session result.",
+		},
+		-- 	{
+		-- 		"<F5>",
+		-- 		"<cmd>lua require('dap').repl.toggle({height = 6})<CR>",
+		-- 		description = "Toggle REPL",
+		-- 	},
+		-- 	{ "<F6>", "<cmd>lua require('dap').repl.run_last()<CR>", description = "Run last" },
+		-- 	{
+		-- 		"<F9>",
+		-- 		function()
+		-- 			local _, dap = require("dap")
+		-- 			dap.disconnect()
+		-- 			require("dapui").close()
+		-- 		end,
+		-- 		description = "Stop",
+		-- 	},
+	},
 	config = function()
 		local dap = require("dap")
+		local dapui = require("dapui")
+
 		-- require("dap-python").setup("~/.virtualenvs/debugpy/bin/python")
 		function Map(mode, lhs, rhs, opts)
 			local options = { noremap = true, silent = true }
@@ -60,49 +100,22 @@ return {
 			vim.keymap.set(mode, lhs, rhs, options)
 		end
 
-		vim.keymap.set("n", "yob", function()
-			require("dap").toggle_breakpoint()
-		end)
-		vim.keymap.set("n", "yoB", function()
-			require("dap").clear_breakpoints()
-		end)
+		-- vim.keymap.set("n", "yob", function()
+		-- 	require("dap").toggle_breakpoint()
+		-- end)
+		-- vim.keymap.set("n", "yoB", function()
+		-- 	require("dap").clear_breakpoints()
+		-- end)
 
-		---Show the nice virtual text when debugging
-		---@return nil|function
-		local function virtual_text_setup()
-			local ok, virtual_text = pcall(require, "nvim-dap-virtual-text")
-			if not ok then
-				return
-			end
-
-			return virtual_text.setup()
-		end
-
-		---Show custom virtual text when debugging
-		---@return nil
-		local function signs_setup()
-			vim.fn.sign_define("DapBreakpoint", {
-				text = "",
-				texthl = "DebugBreakpoint",
-				linehl = "",
-				numhl = "DebugBreakpoint",
-			})
-			vim.fn.sign_define("DapStopped", {
-				text = "",
-				texthl = "DebugHighlight",
-				linehl = "",
-				numhl = "DebugHighlight",
-			})
-		end
 		-- vim.keymap.set("n", "<Leader>b", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end)
 		-- vim.keymap.set("n", "<Leader>b", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end)
 		-- vim.keymap.set("n", "<Leader>b", function() require("dap").set_exception_breakpoints() end)
 
 		-- TODO: reposition the ui
 
-		vim.keymap.set("n", "<Leader>dl", function()
-			require("dap").run_last()
-		end)
+		-- vim.keymap.set("n", "<Leader>dl", function()
+		-- 	require("dap").run_last()
+		-- end)
 
 		-- vim.keymap.set("n", "<Leader>dr", function() require("dap").repl.toggle() end)
 
@@ -115,44 +128,25 @@ return {
 		-- Map("n", "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<CR>", { desc = "Toggle Test Summary" })
 		-- keymap.set("n", "<leader>go", function()
 
-		---Slick UI which is automatically triggered when debugging
-		---@param adapter table
-		---@return nil
-		local function ui_setup(adapter)
-			local ok, dapui = pcall(require, "dapui")
-			if not ok then
-				return
-			end
-
-			dapui.setup({
-				layouts = {
-					{
-						elements = {
-							"scopes",
-							"breakpoints",
-							"stacks",
-						},
-						size = 35,
-						position = "left",
-					},
-					{
-						elements = {
-							"repl",
-						},
-						size = 0.30,
-						position = "bottom",
-					},
-				},
-			})
-			adapter.listeners.after.event_initialized["dapui_config"] = dapui.open
-			adapter.listeners.before.event_terminated["dapui_config"] = dapui.close
-			adapter.listeners.before.event_exited["dapui_config"] = dapui.close
-		end
+		-- Change breakpoint icons
+		-- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
+		-- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+		-- local breakpoint_icons = vim.g.have_nerd_font
+		--     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+		--   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
+		-- for type, icon in pairs(breakpoint_icons) do
+		--   local tp = 'Dap' .. type
+		--   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+		--   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+		-- end
 
 		-- dap.set_log_level("TRACE")
 		--
 		-- virtual_text_setup()
 		-- signs_setup()
 		-- ui_setup(dap)
+		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
+		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
+		dap.listeners.before.event_exited["dapui_config"] = dapui.close
 	end,
 }

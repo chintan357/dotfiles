@@ -1,12 +1,16 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
+	-- version = "*",
 	enabled = false,
 	cmd = { "Neotree" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
+	},
+	keys = {
+		{ "\\", ":Neotree reveal<CR>", desc = "NeoTree reveal", silent = true },
 	},
 	config = function()
 		vim.keymap.set("n", "<leader>fe", "<cmd>Neotree toggle<cr>", { noremap = true, silent = true })
@@ -26,3 +30,12 @@ return {
 		})
 	end,
 }
+-- opts = {
+-- 	filesystem = {
+-- 		window = {
+-- 			mappings = {
+-- 				["\\"] = "close_window",
+-- 			},
+-- 		},
+-- 	},
+-- },
