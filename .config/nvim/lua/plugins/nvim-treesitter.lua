@@ -1,39 +1,21 @@
 return {
 	{
-		"nvim-treesitter/nvim-treesitter-context",
+		"nvim-treesitter/nvim-treesitter-textobjects",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
-		config = function()
-			require("treesitter-context").setup({
-				enable = true,
-				max_lines = 3, -- How many lines the window should span. Values <= 0 mean no limit.
-				min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
-				line_numbers = true,
-				multiline_threshold = 3, -- Maximum number of lines to show for a single context
-				trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-				mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
-				-- Separator between context and content. Should be a single character string, like '-'.
-				-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-				separator = nil,
-				zindex = 20, -- The Z-index of the context window
-				on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
-			})
-		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		-- event = "VeryLazy",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-			{
-				"abecodes/tabout.nvim", -- Tab out from parenthesis, quotes, brackets...
-				opts = {
-					tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
-					backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
-					completion = true, -- We use tab for completion so set this to true
-				},
-			},
+			-- {
+			-- 	"abecodes/tabout.nvim", -- Tab out from parenthesis, quotes, brackets...
+			-- 	opts = {
+			-- 		tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
+			-- 		backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
+			-- 		completion = true, -- We use tab for completion so set this to true
+			-- 	},
+			-- },
 			-- {
 			-- 	"JoosepAlviste/nvim-ts-context-commentstring", -- Smart commenting in multi language files - Enabled in Treesitter file
 			-- },
@@ -46,28 +28,26 @@ return {
 		build = ":TSUpdate",
 		-- main = "nvim-treesitter.configs", -- Sets main module to use for opts
 		config = function()
-			-- :h vim.treesitter.foldexpr()
-			-- vim.wo.foldmethod = "expr"
-			-- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-			-- This will respect your foldminlines and foldnestmax settings.
-
 			keymap("n", "yoT", function()
 				if vim.b.ts_highlight then
 					vim.treesitter.stop()
 				else
 					vim.treesitter.start()
 				end
-			end, { desc = "Toggle Treesitter Highlight" })
-
+			end)
 			-- require("nvim-dap-repl-highlights").setup()
 
+			vim.cmd([[
+          hi TreesitterContextBottom gui=underline guisp=Grey
+          hi TreesitterContextLineNumberBottom gui=underline guisp=Grey
+      ]])
 			require("nvim-treesitter.configs").setup({
-				highlight = { enable = true, disable = { "text" } },
+				highlight = { enable = true, disable = { "text" }, additional_vim_regex_highlighting = false },
 				indent = { enable = true },
 				auto_install = true,
-				auto_pairs = { enable = true },
-				autotag = { enable = true },
-				context_commentstring = { enable = true },
+				-- auto_pairs = { enable = true },
+				-- autotag = { enable = true },
+				-- context_commentstring = { enable = true },
 				ensure_installed = {
 					"python",
 					"javascript",
@@ -86,17 +66,15 @@ return {
 					keymaps = {
 						init_selection = "<C-a>",
 						node_incremental = "<C-a>",
-						scope_incremental = "<C-S-a>", -- doesn't work
 						node_decremental = "<bs>",
-						-- init_selection = "<M-w>",
-						-- scope_incremental = "<CR>",
-						-- node_incremental = "<Tab>", -- increment to the upper named parent
-						-- node_decremental = "<S-Tab>", -- decrement to the previous node
+						-- init_selection = "gnn",
+						-- node_incremental = "grn",
+						-- scope_incremental = "grc",
+						-- node_decremental = "grm",
 					},
 				},
 				-- nvim-treesitter-endwise plugin
 				-- endwise = { enable = true },
-
 				textobjects = {
 					swap = {
 						enable = true,
@@ -137,7 +115,7 @@ return {
 						--   ['@function.outer'] = 'V', -- linewise
 						--   ['@class.outer'] = '<c-v>', -- blockwise
 						-- },
-						include_surrounding_whitespace = false,
+						-- include_surrounding_whitespace = true,
 
 						move = {
 							enable = true,
@@ -169,6 +147,22 @@ return {
 				},
 			})
 		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {
+			-- enable = true,
+			max_lines = 3, -- How many lines the window should span. Values <= 0 mean no limit.
+			-- min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+			-- line_numbers = true,
+			-- multiline_threshold = 20, -- Maximum number of lines to show for a single context
+			-- trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+			-- mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
+			-- separator = "-",
+		},
 	},
 }
 

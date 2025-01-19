@@ -1,21 +1,19 @@
+local opt = vim.opt
 local vb = vim.bo
 local vw = vim.wo
-local vo = vim.opt
 
-vo.termguicolors = true
-
-local opt = vim.opt
+opt.termguicolors = true
 
 -- vim.g.loaded_perl_provider = 0 -- Do not load Perl
--- vo.background = "dark"
--- vo.cursorlineopt = "screenline,number" -- Highlight the screen line of the cursor with CursorLine and the line number with CursorLineNr
--- vo.emoji = false -- Turn off emojis
+-- opt.background = "dark"
+-- opt.cursorlineopt = "screenline,number" -- Highlight the screen line of the cursor with CursorLine and the line number with CursorLineNr
+-- opt.emoji = false -- Turn off emojis
 -- vw.list = true -- Show some invisible characters like tabs etc
 
--- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
--- vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
--- vim.opt.foldmethod = "expr"
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldenable = false
+-- This will respect your foldminlines and foldnestmax settings.
 
 opt.relativenumber = true
 opt.number = true
@@ -57,7 +55,7 @@ opt.colorcolumn = "80"
 opt.textwidth = 79
 opt.winwidth = 30
 -- opt.sidescrolloff = 3
-vo.sidescrolloff = 8 -- The minimal number of columns to keep to the left and to the right of the cursor if 'nowrap' is set
+opt.sidescrolloff = 8 -- The minimal number of columns to keep to the left and to the right of the cursor if 'nowrap' is set
 opt.scrolloff = 10
 opt.ruler = false
 
@@ -92,11 +90,11 @@ opt.numberwidth = 2
 opt.splitkeep = "screen"
 
 opt.undofile = true
-opt.undolevels = 666
+opt.undolevels = 999
 opt.undoreload = 3333
-opt.backupdir = vim.fn.stdpath("data") .. "/backups" -- Use backup files
-opt.directory = vim.fn.stdpath("data") .. "/swaps" -- Use Swap files
-opt.undodir = vim.fn.stdpath("data") .. "/undos" -- Set the undo directory
+opt.backupdir = vim.fn.stdpath("data") .. "/backups"
+opt.directory = vim.fn.stdpath("data") .. "/swaps"
+opt.undodir = vim.fn.stdpath("data") .. "/undos"
 
 opt.virtualedit = "block"
 opt.modeline = false -- opt.modelines = 1
@@ -179,7 +177,7 @@ opt.infercase = true
 -- opt.langnoremap = false
 -- opt.shortmess:append({ W = true, I = true, c = true, C = true })
 -- opt.spelllang = { "en" }
--- vo.shortmess = {
+-- opt.shortmess = {
 -- 	A = true, -- ignore annoying swap file messages
 -- 	c = true, -- Do not show completion messages in command line
 -- 	F = true, -- Do not show file info when editing a file, in the command line
@@ -213,14 +211,14 @@ opt.infercase = true
 -- vb.tabstop = 4 -- Number of spaces in a tab
 -- vb.wrapmargin = 1
 
--- vo.modelines = 1 -- Only use folding settings for this file
+-- opt.modelines = 1 -- Only use folding settings for this file
 --[[
   NOTE: don't store marks as they are currently broken in Neovim!
   @credit: wincent
 ]]
 
--- vo.shada = "!,'0,f0,<50,s10,h"
--- vo.shiftround = true -- Round indent
+-- opt.shada = "!,'0,f0,<50,s10,h"
+-- opt.shiftround = true -- Round indent
 -- Homedir = os.getenv("HOME")
 -- Sessiondir = vim.fn.stdpath("data") .. "/sessions"
 
