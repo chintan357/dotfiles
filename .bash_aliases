@@ -381,7 +381,7 @@ alias glast="git log -1 HEAD"
 # alias groh='git reset origin/$(git_current_branch) --hard'
 # alias gcan!='git commit --verbose --all --no-edit --amend'
 
-alias hbr='hub browse'
+alias hbr='gh browse'
 
 #-----------#
 

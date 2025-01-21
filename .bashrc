@@ -188,3 +188,4 @@ export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 source /home/chintan357/.config/broot/launcher/bash/br
 
 export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'"
+export XDG_RUNTIME_DIR="/tmp/"

@@ -24,46 +24,46 @@ require("lazy").setup("plugins", {
 	},
 })
 
-local currentmode = {
-	n = "N",
-	v = "V",
-	V = "VL",
-	[""] = "VB",
-	i = "I",
-	R = "R",
-	c = "C",
-	["r?"] = "Confirm",
-	t = "T",
-}
-
--- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-
-BuildStatusline = function()
-	local vim_mode = currentmode[vim.fn.mode()] or "?"
-	local relative_path = vim.fn.expand("%:~:.")
-	local parts = {
-		-- "%n",
-		"[",
-		vim_mode,
-		"]",
-		-- " ",
-		-- "%<", -- truncate here if too long
-		-- relative_path, -- filename
-		-- " ",
-		"%h", -- help text indicator
-		-- "%m",
-		"  %#Normal#",
-		"%{%v:lua.require'nvim-navic'.get_location()%}",
-		" ",
-		"%r",
-		"%=", -- alignment break
-		"%y",
-		" ",
-		"%P",
-	}
-	return table.concat(parts)
-end
--- set statusline +=%4*\ %<%f%*            "full path
--- set statusline +=%1*%v\ %*             "virtual column number
-
-vim.opt.statusline = "%!v:lua.BuildStatusline()"
+-- local currentmode = {
+-- 	n = "N",
+-- 	v = "V",
+-- 	V = "VL",
+-- 	[""] = "VB",
+-- 	i = "I",
+-- 	R = "R",
+-- 	c = "C",
+-- 	["r?"] = "Confirm",
+-- 	t = "T",
+-- }
+--
+-- -- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+--
+-- BuildStatusline = function()
+-- 	local vim_mode = currentmode[vim.fn.mode()] or "?"
+-- 	local relative_path = vim.fn.expand("%:~:.")
+-- 	local parts = {
+-- 		-- "%n",
+-- 		"[",
+-- 		vim_mode,
+-- 		"]",
+-- 		-- " ",
+-- 		-- "%<", -- truncate here if too long
+-- 		-- relative_path, -- filename
+-- 		-- " ",
+-- 		"%h", -- help text indicator
+-- 		-- "%m",
+-- 		"  %#Normal#",
+-- 		"%{%v:lua.require'nvim-navic'.get_location()%}",
+-- 		" ",
+-- 		"%r",
+-- 		"%=", -- alignment break
+-- 		"%y",
+-- 		" ",
+-- 		"%P",
+-- 	}
+-- 	return table.concat(parts)
+-- end
+-- -- set statusline +=%4*\ %<%f%*            "full path
+-- -- set statusline +=%1*%v\ %*             "virtual column number
+--
+-- vim.opt.statusline = "%!v:lua.BuildStatusline()"

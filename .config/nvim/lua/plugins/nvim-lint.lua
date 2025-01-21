@@ -7,7 +7,7 @@ return {
 			python = {
 				"pylint",
 			},
-			markdown = { "markdownlint" }, -- { "vale" }
+			-- markdown = { "markdownlint" }, -- { "vale" }
 			json = { "jsonlint" },
 		}
 

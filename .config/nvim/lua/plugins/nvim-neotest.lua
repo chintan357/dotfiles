@@ -5,13 +5,9 @@ return {
 		"nvim-neotest/nvim-nio",
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
-		"antoinemadec/FixCursorHold.nvim",
-
 		-- Adapters
 		"nvim-neotest/neotest-plenary",
 		"nvim-neotest/neotest-python",
-		"olimorris/neotest-rspec",
-		"olimorris/neotest-phpunit",
 	},
 	keys = {
 		-- Neotest plugin
@@ -96,8 +92,6 @@ return {
 				require("neotest-python")({
 					dap = { justMyCode = false },
 				}),
-				require("neotest-rspec"),
-				require("neotest-phpunit"),
 			},
 			consumers = {
 				overseer = require("neotest.consumers.overseer"),
@@ -138,5 +132,21 @@ return {
 				},
 			},
 		})
+
+		-- function Map(mode, lhs, rhs, opts)
+		-- 	local options = { noremap = true, silent = true }
+		-- 	if opts then
+		-- 		options = vim.tbl_extend("force", options, opts)
+		-- 	end
+		-- 	vim.keymap.set(mode, lhs, rhs, options)
+		-- end
+
+		-- Run Tests
+		-- Map("n", "<leader>t", "<cmd>lua require('neotest').run.run()<CR>", { desc = "Run Test" })
+		-- Map( "n", "<leader>tf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", { desc = "Run Test File" })
+		-- Map( "n", "<leader>td", "<cmd>lua require('neotest').run.run(vim.fn.getcwd())<CR>", { desc = "Run Current Test Directory" })
+		-- Map( "n", "<leader>tp", "<cmd>lua require('neotest').output_panel.toggle()<CR>", { desc = "Toggle Test Output Panel" })
+		-- Map("n", "<leader>tl", "<cmd>lua require('neotest').run.run_last()<CR>", { desc = "Run Last Test" })
+		-- Map("n", "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<CR>", { desc = "Toggle Test Summary" })
 	end,
 }

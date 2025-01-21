@@ -30,6 +30,7 @@ return {
 			},
 		},
 		force_buffers = true,
+		-- icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
 		icons = {
 			collapsed = "",
 			current_frame = "",
@@ -125,67 +126,10 @@ return {
 		-- vim.keymap.set("n", "<space>?", function()
 		--   require("dapui").eval(nil, { enter = true })
 		-- end)
-
-		-- local function set_dap_keybindings()
-		--   vim.keymap.set('n', ')', "<cmd>lua require'dap'.continue()<CR>", { noremap = true, silent = true })
-		--   vim.keymap.set('n', 'q', "<cmd>lua require'dap'.step_over()<CR>", { noremap = true, silent = true })
-		--   vim.keymap.set('n', 't', "<cmd>lua require'dap'.step_into()<CR>", { noremap = true, silent = true })
-		--   vim.keymap.set('n', '(', "<cmd>lua require'dap'.step_out()<CR>", { noremap = true, silent = true })
-		--   -- vim.keymap.set("n", "<F5>", dap.step_back)
-		--   -- vim.keymap.set("n", "<F13>", dap.restart)
-		-- end
-		-- local function clear_dap_keybindings()
-		--   vim.keymap.del('n', ')')
-		--   vim.keymap.del('n', 'q')
-		--   vim.keymap.del('n', 't')
-		--   vim.keymap.del('n', '(')
-		-- end
-
-		-- dap.listeners.after.event_initialized["dap_keybindings"] = function()
-		--   set_dap_keybindings()
-		-- end
-		-- dap.listeners.before.event_terminated["dap_keybindings"] = function()
-		--   clear_dap_keybindings()
-		-- end
-		-- dap.listeners.before.event_exited["dap_keybindings"] = function()
-		--   clear_dap_keybindings()
-		-- end
-		--
-		-- 	dap.listeners.before.attach.dapui_config = function()
-		-- 		dapui.open()
-		--      -- set_dap_keybindings()
-		-- 	end
-		-- 	dap.listeners.before.launch.dapui_config = function()
-		-- 		dapui.open()
-		--      set_dap_keybindings()
-		-- 	end
-		-- 	dap.listeners.before.event_terminated.dapui_config = function()
-		-- 		dapui.close()
-		--      clear_dap_keybindings()
-		-- 	end
-		-- 	dap.listeners.before.event_exited.dapui_config = function()
-		-- 		dapui.close()
-		--      clear_dap_keybindings()
-		-- 	end
-		-- end,
 	end,
 }
 
 -- dapui.setup({
--- icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
--- controls = {
--- 	icons = {
--- 		pause = "⏸",
--- 		play = "▶",
--- 		step_into = "⏎",
--- 		step_over = "⏭",
--- 		step_out = "⏮",
--- 		step_back = "b",
--- 		run_last = "▶▶",
--- 		terminate = "⏹",
--- 		disconnect = "⏏",
--- 	},
--- },
 -- 	layouts = {
 -- 		{
 -- 			elements = {
