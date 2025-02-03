@@ -42,7 +42,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # prefix + I
 
 sudo apt install gettext
-git clone --depth 1 https://github.com/neovim/neovim.git
+git clone --branch nightly --depth 1 https://github.com/neovim/neovim.git
 cd neovim
 make CMAKE_BUILD_TYPE=Release
 sudo make install

@@ -63,7 +63,7 @@ opt.scrolloff = 10
 opt.ruler = false
 
 if vim.fn.exists("syntax_on") ~= 1 then
-	vim.cmd([[syntax enable]])
+  vim.cmd([[syntax enable]])
 end
 
 opt.clipboard:append("unnamedplus")
@@ -81,7 +81,7 @@ opt.grepprg = "rg --vimgrep --no-heading"
 opt.grepformat = "%f:%l:%c:%m"
 -- vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 
-opt.completeopt = { "menu", "menuone", "noselect" }
+-- opt.completeopt = { "menu", "menuone", "noselect" }
 opt.shortmess:append("c")
 opt.pumblend = 10
 opt.pumheight = 10
@@ -118,19 +118,19 @@ opt.wildmode = "list:longest" -- Command-line completion mode
 
 opt.wildignorecase = true
 opt.wildignore:append({
-	"*~",
-	"*/.git/*",
-	"*/node_modules/*",
-	"*.pyc",
-	"*/.git/*",
-	"*.o",
-	"*.obj",
-	"*.rbc",
-	"__pycache__",
-	"*swp",
-	"*.class",
-	"*.so",
-	"*.exe",
+  "*~",
+  "*/.git/*",
+  "*/node_modules/*",
+  "*.pyc",
+  "*/.git/*",
+  "*.o",
+  "*.obj",
+  "*.rbc",
+  "__pycache__",
+  "*swp",
+  "*.class",
+  "*.so",
+  "*.exe",
 })
 
 opt.redrawtime = 1500

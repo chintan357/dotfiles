@@ -1,8 +1,7 @@
 return {
 	"nvim-neorg/neorg",
-	lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-	version = "*", -- Pin Neorg to the latest stable release
-	enabled = false,
+	lazy = false,
+	version = "*",
 	config = function()
 		require("neorg").setup({
 			load = {
@@ -23,7 +22,6 @@ return {
 				},
 			},
 		})
-
 		vim.wo.foldlevel = 99
 		vim.wo.conceallevel = 2
 	end,

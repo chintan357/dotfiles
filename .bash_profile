@@ -41,3 +41,5 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 # . "$HOME/.cargo/env"
 
 source /home/chintan357/.config/broot/launcher/bash/br
+
+stty -ixon

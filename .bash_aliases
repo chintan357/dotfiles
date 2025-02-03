@@ -143,9 +143,9 @@ alias matrix='cmatrix'
 
 #-----------#
 
-alias vim='$EDITOR'
-alias lvi='$EDITOR -c "normal '\''0"'
-alias v.='$EDITOR .'
+alias vim='nvim'
+alias lvi='nvim -c "normal '\''0"'
+alias v.='nvim .'
 
 #-----------#
 
@@ -280,7 +280,6 @@ alias atomic='tmux new-session -A -s atomic'
 
 #-----------#
 
-alias R="yy"
 alias exp="Explorer.exe ."
 
 alias bk="cd -"
