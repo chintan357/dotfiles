@@ -5,7 +5,7 @@ local vw = vim.wo
 opt.termguicolors = true
 
 -- vim.g.loaded_perl_provider = 0 -- Do not load Perl
--- opt.background = "dark"
+opt.background = "dark"
 -- opt.cursorlineopt = "screenline,number" -- Highlight the screen line of the cursor with CursorLine and the line number with CursorLineNr
 -- opt.emoji = false -- Turn off emojis
 -- vw.list = true -- Show some invisible characters like tabs etc
@@ -18,29 +18,37 @@ opt.foldenable = false
 -- This will respect your foldminlines and foldnestmax settings.
 -- g.markdown_folding = 1 -- enable markdown folding
 
-opt.relativenumber = true
 opt.number = true
+opt.relativenumber = true
+-- opt.backspace = "indent,eol,start"
+
 opt.timeout = true
 opt.timeoutlen = 333
 opt.ttimeoutlen = 10 -- Time in milliseconds to wait for a key code sequence to complete
 opt.updatetime = 100 -- If in this many milliseconds nothing is typed, the swap file will be written to disk. Also used for CursorHold autocommand and set to 100 as per https://github.com/antoinemadec/FixCursorHold.nvim
+
 opt.history = 9999
 opt.inccommand = "split"
 opt.shell = "/bin/bash"
 opt.sessionoptions = "buffers,curdir,folds,resize,tabpages,winpos,winsize" -- Session options to store in the session
 
-opt.shiftwidth = 2
 opt.tabstop = 2
 opt.softtabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.autoindent = true
+opt.smartindent = true
 
 opt.autowrite = true
-opt.expandtab = true
+
 opt.ignorecase = true
 opt.smartcase = true
-opt.smartindent = true
+
 opt.scrollbind = false
 opt.cursorbind = false
+
 opt.cursorline = true
+
 opt.wrap = false
 
 opt.title = false
@@ -133,8 +141,8 @@ opt.wildignore:append({
   "*.exe",
 })
 
-opt.redrawtime = 1500
-opt.infercase = true
+-- opt.redrawtime = 1500
+-- opt.infercase = true
 
 --eol:¬
 -- opt.spelloptions = "camel"

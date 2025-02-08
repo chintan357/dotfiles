@@ -1,5 +1,5 @@
-alias rec='asciinema rec'
-alias play='asciinema play'
+# alias rec='asciinema rec'
+# alias play='asciinema play'
 
 #-----------#
 
@@ -7,13 +7,12 @@ alias e=exit
 alias c=clear
 alias al='alias'
 alias cls='clear;ls'
-alias ct='column -t'
+# alias ct='column -t'
 
 #-----------#
 
-alias rmt=trash
-alias bcat=batcat
-alias fw='sudo ufw'
+# alias rmt=trash
+# alias fw='sudo ufw'
 
 #-----------#
 
@@ -51,7 +50,7 @@ alias ll='ls -Alh --group-directories-first | less -R'
 alias lsd='ls -d */ 2> /dev/null'
 alias lh='ls -d .[^.]* 2> /dev/null'
 # alias lh='ls -A | grep "^\."'
-alias lt='tree -a -L2 | less'
+alias lt='tree -a -L 2 | less'
 
 #-----------#
 
@@ -83,13 +82,12 @@ alias psx="ps auxf"
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 alias k9='kill -9'
-alias k15='kill -15'
 
 alias memtop='ps aux --sort=-%mem | head -11'
 alias cputop='ps aux --sort=-%cpu | head -11'
 
 alias disk='lsblk -f'
-alias free='free -mh'
+alias freeh='free -h'
 alias mountc='mount | column -t'
 
 alias sniff='sudo tcpdump -i any -c 1000 -nn'
@@ -106,7 +104,7 @@ alias clh5='curl localhost:5050'
 #-----------#
 
 alias dfc='df -hPT | column -t'
-alias osrelease='cat /etc/os-release'
+alias osrel='cat /etc/os-release'
 alias cpuinfo='cat /proc/cpuinfo'
 alias meminfo='cat /proc/meminfo'
 alias release='cat /etc/*-release'
@@ -160,8 +158,8 @@ alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo
 alias flushdns='sudo systemd-resolve --flush-caches'
 
 # alias tree='tree -a -I ".svn|.git|.hg|.idea" | less'
-alias tree2='\tree -L 2 | less'
 alias tree3='\tree -L 3 | less'
+alias tree2='\tree -L 2 | less'
 
 alias hx='hexdump -C'
 alias w1='watch -n 1'
@@ -204,7 +202,7 @@ alias yupp='sudo apt install $1'
 alias nope='sudo apt remove $1'
 
 alias sysctl='systemctl'
-alias jou='sudo journalctl -b -n 200 -f'
+# alias jou='sudo journalctl -b -n 200 -f'
 
 #--------------#
 
@@ -221,7 +219,7 @@ alias egit='$EDITOR ~/.gitconfig'
 
 #-----------#
 
-alias soinput="source ~/.inputrc && echo 'refreshed .inputrc'"
+alias soinput="bind -f ~/.inputrc"
 alias sopro="source ~/.bash_profile && echo 'refreshed .bash_profile'"
 alias sorc="source ~/.bashrc && echo 'refreshed .bashrc'"
 
@@ -338,7 +336,6 @@ alias gatomic='gP && gaa && gcm -m atomic && gpu'
 alias ginit='git init'
 alias cg='cd `git rev-parse --show-toplevel`'
 
-alias gad='git add'
 alias gaa='git add --all'
 alias ga.='git add .'
 
@@ -479,7 +476,6 @@ alias gtypist='gtypist -c 0,2'
 alias gaadl='gcloud auth application-default login'
 alias gauth='gcloud auth login'
 alias gapat='gcloud auth print-access-token'
-alias gprols='gcloud projects list'
 alias gsetpro='gcloud config set project'
 alias gconfls='gcloud config configurations list'
 alias gconfa='gcloud config configurations activate'

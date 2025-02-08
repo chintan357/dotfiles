@@ -78,8 +78,8 @@ fi
 
 
 # set nvim as default text editor
-export VISUAL=vim
-export EDITOR=vim
+export VISUAL=nvim
+export EDITOR=nvim
 
 # Created by `pipx` on 2024-03-19 21:09:03
 # . ~/.bash.d/cht.sh to ~/.bashrc
