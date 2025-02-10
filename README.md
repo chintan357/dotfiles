@@ -1,10 +1,9 @@
-```
+```sh
 mkdir -p lab/{dotfiles,scripts,repo} homelab dotfiles vaults/nsal private learn work tmp docs downloads .config
 
 sudo apt update && sudo apt -y upgrade
 
-sudo apt install -y stow make tmux cargo zoxide cmake urlview xclip neofetch  ripgrep fd-find bat gh hub ncal  pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw whois nmap libssl-dev
-
+sudo apt install -y stow make cargo zoxide cmake urlview xclip neofetch  ripgrep fd-find bat gh hub ncal  pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw whois nmap libssl-dev ffmpeg 7zip poppler-utils fd-find imagemagick
 # glow
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
@@ -26,6 +25,8 @@ pxi ipython jupyterlab trash-cli black isort ipdb jupyter-console pudb pylint vi
 
 sudo apt remove rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# rustup update
+cargo install --locked yazi-fm yazi-cli
 cargo install tree-sitter-cli
 cargo install --locked navi
 cargo install eza git-delta hackernews_tui  broot halp
@@ -38,9 +39,19 @@ cd PathPicker/debian
 ls ../pathpicker_*_all.deb
 sudo dpkg -i ../pathpicker_*_all.deb
 
+# tmux
+sudo apt remove tmux
+wget https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz
+tar -zxf tmux-*.tar.gz
+cd tmux-*/
+sudo apt-get install libevent-dev ncurses-dev build-essential bison pkg-config
+./configure
+make && sudo make install
+
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # prefix + I
 
+# nvim
 sudo apt install gettext
 git clone --branch nightly --depth 1 https://github.com/neovim/neovim.git
 cd neovim

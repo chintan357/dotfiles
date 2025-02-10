@@ -9,7 +9,8 @@ return {
   -- },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "codecompanion" }
+    ft = { "markdown", "codecompanion" },
+    enabled = false,
   },
   {
     "iamcco/markdown-preview.nvim",

@@ -1,4 +1,7 @@
 # vim:fileencoding=utf-8:foldmethod=marker
+# [flavor]
+# use = "everforest-medium"
+# use = "kanagawa-dragon"
 
 # : Manager {{{
 

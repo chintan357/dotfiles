@@ -1,41 +1,83 @@
 [user]
-  email = chintan357@mail.com
   name = chintan357
+  email = chintan357@mail.com
   username= chintan357
+
+[init]
+  defaultBranch = main
 
 [github]
   user = chintan357
 
 [core]
   editor = nvim
-  ignorecase = false
   pager = delta
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  ; ignorecase = false
   ; excludesFile = ~/.gitignore
-  ; pager = git-split-diffs --color | less -RFX
+
+[rerere]
+	enabled = 1
+	autoupdate = 1
+
+[color]
+  ui = auto
+;   interactive = auto
+;   grep = auto
+
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+
+[color "status"]
+  added = green bold
+  changed = yellow bold
+  untracked = red bold
+
+[diff]
+	tool = vimdiff
+
+[difftool]
+	prompt = false
 
 [interactive]
   diffFilter = delta --color-only
 
-[init]
-  defaultBranch = main
-
 [merge]
-  conflictstyle = diff3
+  conflictstyle = zdiff3
 
 [delta]
   navigate = true    # use n and N to move between diff sections
   features = arctic-fox
   true-color = always
   dark = true
-  ; features = mellow-barbet
+	line-numbers = true
+  side-by-side = true
+	; features = line-numbers decorations
   ; syntax-theme = Coldark-Dark
-  ; plus-style = syntax 22
-  ; minus-style = syntax 52
-  ; delta detects terminal colors automatically; set one of these to disable auto-detection
 
-[diff]
-  colorMoved = default
+; [delta "decorations"]
+; 	minus-style = red bold normal
+; 	plus-style = green bold normal
+; 	minus-emph-style = white bold red
+; 	minus-non-emph-style = red bold normal
+; 	plus-emph-style = white bold green
+; 	plus-non-emph-style = green bold normal
+; 	file-style = yellow bold none
+; 	file-decoration-style = yellow box
+; 	hunk-header-style = magenta bold
+; 	hunk-header-decoration-style = magenta box
+; 	minus-empty-line-marker-style = normal normal
+; 	plus-empty-line-marker-style = normal normal
+; 	line-numbers-right-format = "{np:^4}│ "
 
 [push]
   default = simple
@@ -45,62 +87,22 @@
 
 ; [alias]
 ;   ; a = "!git status --short | peco | awk '{print $2}' | xargs git add"
-;   d = diff
-;   cma = commit -a
 ;   ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
 ;   pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
-;   st = status
-;   br = branch -a
-;   brdel = branch -D
-;   brv = branch -av
-;   bm = branch --merged
-;   bn = branch --no-merged
 ;   df = "!git hist | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
-;   open = "!hub browse"
 ;   type = cat-file -t
 ;   dump = cat-file -p
 ;   find = "!f() { git log --pretty=format:\"%h %cd [%cn] %s%d\" --date=relative -S'pretty' -S\"$@\" | peco | awk '{print $1}' | xargs -I {} git diff {}^ {}; }; f"
 
-; [hub]
-; 	protocol = ssh
-
 ; [ghq]
 ;   root = ~/.ghq
 
-
-; [gergetool "vimdiff"]
+; [mergetool "vimdiff"]
 ;   cmd = "vim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\""
 ;   trustExitCode = true
 
-; [color]
-;   status = auto
-;   diff = auto
-;   branch = auto
-;   interactive = auto
-;   grep = auto
-;   ui = auto
-
-[color]
-  ui = auto
-
-[color "branch"]
-  current = yellow bold
-  local = green bold
-  remote = cyan bold
-
-[color "status"]
-  added = green bold
-  changed = yellow bold
-  untracked = red bold
-
 [sequence]
   editor = interactive-rebase-tool
-
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  required = true
-  process = git-lfs filter-process
 
 [alias]
 	a = add
@@ -114,12 +116,18 @@
 	br = branch -r
 	bc = rev-parse --abbrev-ref HEAD
 	bu = !git rev-parse --abbrev-ref --symbolic-full-name "@{u}"
+  bav = branch -av
+  bm = branch --merged
+  bn = branch --no-merged
 
 	c = commit
 	ca = commit -a
 	cm = commit -m
 	cam = commit -am
 	cem = commit --allow-empty -m
+	cd = commit --amend
+	cad = commit -a --amend
+	ced = commit --allow-empty --amend
 
 	cl = clone
 	cld = clone --depth 1
@@ -162,22 +170,25 @@
 	ms = merge --skip
 
 	o = checkout
-	om = checkout master
+	om = checkout main
 	ob = checkout -b
-	opr = !sh -c 'git fo pull/$1/head:pr-$1 && git o pr-$1'
+	; opr = !sh -c 'git fo pull/$1/head:pr-$1 && git o pr-$1'
 
 	pr = prune -v
 
   pu = push
+	puf = push -f
+	puu = push -u
+	put = push --tags
 	puo = push origin
 	puao = push --all origin
 	pufo = push -f origin
 	puuo = push -u origin
 
-	puom = push origin master
-	puaom = push --all origin master
-	pufom = push -f origin master
-	puuom = push -u origin master
+	puom = push origin main
+	puaom = push --all origin main
+	pufom = push -f origin main
+	puuom = push -u origin main
 	puoc = !git push origin $(git bc)
 	puaoc = !git push --all origin $(git bc)
 	pufoc = !git push -f origin $(git bc)
@@ -186,19 +197,18 @@
 
 	P = pull
 	Pr = pull --rebase
-	Prb = pull --rebase
 
 	Po = pull origin
-	Prbo = pull --rebase origin
-	Pom = pull origin master
+	Pro = pull --rebase origin
+	Pom = pull origin main
 	Poc = !git pull origin $(git bc)
-	Prbom = pull --rebase origin master
-	Prboc = !git pull --rebase origin $(git bc)
+	Prom = pull --rebase origin main
+	Proc = !git pull --rebase origin $(git bc)
 
 	Pu = pull upstream
-	Pum = pull upstream master
+	Pum = pull upstream main
 	Puc = !git pull upstream $(git bc)
-	Pum = pull --rebase upstream master
+	Prum = pull --rebase upstream main
 	Puc = !git pull --rebase upstream $(git bc)
 
 	rb = rebase
@@ -208,26 +218,22 @@
 	rbs = rebase --skip
 
 	re = reset
-	rh = reset HEAD
 	reh = reset --hard
 	rem = reset --mixed
 	res = reset --soft
-	rehh = reset --hard HEAD
-	remh = reset --mixed HEAD
-	resh = reset --soft HEAD
-	rehom = reset --hard origin/master
+	rehom = reset --hard origin/main
 
 	r = remote
 	ra = remote add
-	rr = remote rm
+	rrm = remote rm
 	rv = remote -v
-	rn = remote rename
+	rmv = remote rename
 	rp = remote prune
 	rs = remote show
 	rao = remote add origin
 	rau = remote add upstream
-	rro = remote remove origin
-	rru = remote remove upstream
+	rrmo = remote remove origin
+	rrmu = remote remove upstream
 	rso = remote show origin
 	rsu = remote show upstream
 	rpo = remote prune origin
@@ -237,7 +243,7 @@
 	rmrf = rm -r -f
 
 	st = status
-	stb = status -s -b
+	stsb = status -s -b
 
   s = stash
 	sa = stash apply
@@ -257,11 +263,10 @@
 	wp = show -p
 	wr = show -p --no-color
 
-
 	subadd = !sh -c 'git submodule add https://github.com/$1 $2/$(basename $1)' -
 	subrm = !sh -c 'git submodule deinit -f -- $1 && rm -rf .git/modules/$1 && git rm -f $1' -
 	subup = submodule update --init --recursive
-	subpull = submodule foreach 'git pull --tags -f origin master || git pull --tags -f origin main || git pull --tags -f origin development'
+	subpull = submodule foreach 'git pull --tags -f origin main || git pull --tags -f origin main || git pull --tags -f origin development'
 
 	assume = update-index --assume-unchanged
 	unassume = update-index --no-assume-unchanged
@@ -272,7 +277,7 @@
 	bump = !sh -c 'git commit -am \"Version bump v$1\" && git psuoc && git release $1' -
 	release = !sh -c 'git tag v$1 && git pst' -
 	unrelease = !sh -c 'git tag -d v$1 && git pso :v$1' -
-	merged = !sh -c 'git o master && git plom && git bd $1 && git rpo' -
+	merged = !sh -c 'git o main && git plom && git bd $1 && git rpo' -
 	aliases = !git config -l | grep alias | cut -c 7-
 	snap = !git stash save 'snapshot: $(date)' && git stash apply 'stash@{0}'
 	bare = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
@@ -284,14 +289,14 @@
 
 	ours = "!f() { git checkout --ours $@ && git add $@; }; f"
 	theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
-	subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 master' -
+	subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 main' -
 	human = name-rev --name-only --refs=refs/heads/*
 
   ; edit conflicted file on merge
-  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+  ; edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
 
   ; add conflicted file on merge
-  add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+  ; add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
   ; Show the current branch name (useful for shell prompts)
   ; brname = !git branch | grep "^*" | awk '{ print $2 }'
 
@@ -344,8 +349,21 @@
     merge-conflict-ours-diff-header-decoration-style = "#5E81AC" box
     merge-conflict-theirs-diff-header-style = yellow bold
     merge-conflict-theirs-diff-header-decoration-style = "#5E81AC" box
+
 [credential "https://github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true
+  process = git-lfs filter-process
+
+; [web]
+; 	browser = google-chrome
+
+; [instaweb]
+; 	httpd = apache2 -f

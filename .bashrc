@@ -183,7 +183,7 @@ for key in ~/.ssh/*; do
 done
 
 export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
-# . "$HOME/.cargo/env"
+. "$HOME/.cargo/env"
 
 source /home/chintan357/.config/broot/launcher/bash/br
 
