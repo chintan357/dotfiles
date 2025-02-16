@@ -52,7 +52,8 @@
   diffFilter = delta --color-only
 
 [merge]
-  conflictstyle = zdiff3
+  conflictstyle = diff3
+  ; conflictstyle = zdiff3
 
 [delta]
   navigate = true    # use n and N to move between diff sections
@@ -60,7 +61,7 @@
   true-color = always
   dark = true
 	line-numbers = true
-  side-by-side = true
+  ; side-by-side = true
 	; features = line-numbers decorations
   ; syntax-theme = Coldark-Dark
 

@@ -78,8 +78,8 @@ fi
 
 
 # set nvim as default text editor
-export VISUAL=nvim
-export EDITOR=nvim
+export VISUAL=vim
+export EDITOR=vim
 
 # Created by `pipx` on 2024-03-19 21:09:03
 # . ~/.bash.d/cht.sh to ~/.bashrc
@@ -189,3 +189,8 @@ source /home/chintan357/.config/broot/launcher/bash/br
 
 export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'"
 export XDG_RUNTIME_DIR="/tmp/"
+
+# export PAGER=$HOME/bin/vimpager
+# alias less=$PAGER
+# export MANPAGER='vimpager'
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""

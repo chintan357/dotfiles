@@ -6,6 +6,7 @@ vim.g.have_nerd_font = true
 require("core.keymaps")
 require("core.options")
 require("core.autocommands")
+require("custom.terminalpop")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -23,6 +24,17 @@ require("lazy").setup("plugins", {
     notify = false,
   },
 })
+-- require("lazy").setup(
+--     {
+--         { import = "x.y.z" },
+--     },
+--     {
+--         checker = {
+--             enabled = true,
+--             notify = false,
+--         },
+--     }
+-- )
 
 -- local currentmode = {
 -- 	n = "N",

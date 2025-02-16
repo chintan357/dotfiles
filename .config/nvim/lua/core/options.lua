@@ -2,10 +2,10 @@ local opt = vim.opt
 local vb = vim.bo
 local vw = vim.wo
 
-opt.termguicolors = true
 
 -- vim.g.loaded_perl_provider = 0 -- Do not load Perl
 opt.background = "dark"
+opt.termguicolors = true
 -- opt.cursorlineopt = "screenline,number" -- Highlight the screen line of the cursor with CursorLine and the line number with CursorLineNr
 -- opt.emoji = false -- Turn off emojis
 -- vw.list = true -- Show some invisible characters like tabs etc
@@ -20,7 +20,6 @@ opt.foldenable = false
 
 opt.number = true
 opt.relativenumber = true
--- opt.backspace = "indent,eol,start"
 
 opt.timeout = true
 opt.timeoutlen = 333
@@ -65,7 +64,6 @@ opt.linebreak = true
 opt.colorcolumn = "80"
 opt.textwidth = 79
 opt.winwidth = 30
--- opt.sidescrolloff = 3
 opt.sidescrolloff = 8 -- The minimal number of columns to keep to the left and to the right of the cursor if 'nowrap' is set
 opt.scrolloff = 10
 opt.ruler = false
@@ -103,9 +101,14 @@ opt.splitkeep = "screen"
 opt.undofile = true
 opt.undolevels = 999
 opt.undoreload = 3333
-opt.backupdir = vim.fn.stdpath("data") .. "/backups"
-opt.directory = vim.fn.stdpath("data") .. "/swaps"
 opt.undodir = vim.fn.stdpath("data") .. "/undos"
+
+-- opt.writebackup = false
+-- opt.backup = false
+-- opt.backupdir = vim.fn.stdpath("data") .. "/backups"
+
+-- opt.swapfile = false
+-- opt.directory = vim.fn.stdpath("data") .. "/swaps"
 
 opt.virtualedit = "block"
 opt.modeline = false -- opt.modelines = 1
@@ -114,11 +117,9 @@ opt.smoothscroll = true
 
 vim.cmd("filetype plugin indent on")
 
--- opt.backup = false
--- opt.writebackup = false
--- opt.swapfile = false
 
-vim.cmd([[ set guicursor=n-v-c-i:block ]])
+-- vim.cmd([[ set guicursor=n-v-c-i:block ]])
+vim.opt.guicursor = ""
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 
 -- opt.wildmode = "longest:full,full"
@@ -182,7 +183,9 @@ opt.wildignore:append({
 
 -- opt.shortmess = "aoOTIcF"
 -- vim.g.markdown_recommended_style = 0
+
 -- vim.opt.isfname:append("@-@")
+
 -- opt.fillchars = "eob: " -- Don't show `~` outside of buffer
 -- opt.breakindent = true
 -- opt.langnoremap = false
@@ -214,12 +217,7 @@ opt.wildignore:append({
 -- vim.cmd("silent call mkdir(stdpath('data').'/sessions', 'p', '0700')")
 
 -- Buffer options
--- vb.autoindent = true
--- vb.expandtab = true -- Use spaces instead of tabs
--- vb.shiftwidth = 4 -- Size of an indent
 -- vb.smartindent = true -- Insert indents automatically
--- vb.softtabstop = 4 -- Number of spaces tabs count for
--- vb.tabstop = 4 -- Number of spaces in a tab
 -- vb.wrapmargin = 1
 
 -- opt.modelines = 1 -- Only use folding settings for this file
@@ -235,3 +233,11 @@ opt.wildignore:append({
 
 -- Discovered it when using vim-forgit https://github.com/ray-x/forgit.nvim/issues/1
 -- vim.opt.shellcmdflag = "-ic"
+
+
+-- editorconfig
+--
+-- vim.g.loaded_netrw = 0
+-- vim.g.loaded_netrwPlugin = 0
+-- vim.cmd("let g:netrw_liststyle = 3")
+-- vim.cmd("let g:netrw_banner = 0 ")

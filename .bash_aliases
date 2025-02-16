@@ -1,11 +1,12 @@
 # alias rec='asciinema rec'
 # alias play='asciinema play'
+alias r=yazi
 
 #-----------#
 
 alias e=exit
 alias c=clear
-alias al='alias'
+alias al=alias
 alias cls='clear;ls'
 # alias ct='column -t'
 
@@ -211,6 +212,7 @@ alias epro='$EDITOR ~/.bash_profile'
 alias ealias='$EDITOR ~/.bash_aliases'
 alias einput='$EDITOR ~/.inputrc'
 alias essh='$EDITOR ~/.ssh/config'
+alias evi='$EDITOR ~/.vimrc'
 alias etmux='$EDITOR ~/.tmux.conf'
 alias eprompt='$EDITOR ~/.config/starship.toml'
 alias eipy='$EDITOR ~/.ipython/profile_default/ipython_config.py'

@@ -10,6 +10,8 @@ keymap("n", "<Esc>", ":nohls<CR>")
 
 keymap("n", "N", [[v:searchforward ? 'Nzz' : 'nzz']], { expr = true })
 keymap("n", "n", [[v:searchforward ? 'nzz' : 'Nzz']], { expr = true })
+-- vim.keymap.set("n", "n", "nzzzv")
+-- vim.keymap.set("n", "N", "Nzzzv")
 
 keymap("v", "v", "<C-v>")
 
@@ -18,11 +20,13 @@ keymap("n", "-", "<C-x>")
 
 keymap("n", "<leader>_", "<c-W>s")
 keymap("n", "<leader>|", "<C-W>v")
-
 keymap("n", "<leader>we", "<C-W>c")
 keymap("n", "<leader>s=", "<C-w>=")
+vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
+
 
 keymap("n", "<C-c>", "<cmd>bd<CR>")
+keymap("n", "Q", "<cmd>bd<CR>")
 keymap("n", "<leader>bd", ":bd<CR>")
 keymap("n", "<C-q>", "<cmd>q<CR>")
 keymap("n", "<leader>qq", ":qa<CR>")
@@ -31,8 +35,6 @@ keymap("n", "<leader>Q", ":qa!<CR>")
 keymap("n", "<leader>`", "<cmd>e #<cr>")
 
 keymap("n", "<leader><tab>o", ":tabnew<CR>")
-keymap("n", "<leader><tab>l", "<cmd>tabnext<cr>")
-keymap("n", "<leader><tab>h", "<cmd>tabprevious<cr>")
 -- keymap("n", "", "<cmd>tabclose<cr>")
 
 -- keymap("n", "==", "gg<S-v>G")
@@ -57,7 +59,7 @@ keymap("n", "<S-h>", ":bprevious<cr>")
 
 -- vim.cmd("command! W execute 'w !sudo tee % > /dev/null' <bar> edit!")
 
--- keymap("n", "<leader>mx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file executable" })
+vim.keymap.set("n", "<leader>mx", "<cmd>!chmod u+x %<CR>", { silent = true, desc = "makes file executable" })
 
 keymap({ "n", "v" }, "gg", "gg0")
 keymap({ "n", "v" }, "G", "G$")
@@ -85,6 +87,8 @@ vim.keymap.set("n", ";", ":", { noremap = true })
 vim.keymap.set("n", ":", ";", { noremap = true })
 
 keymap("n", "<leader>M", "mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm")
+-- :%s/^M//g
+-- :%s/\r//g
 
 keymap("n", "<leader>8", ":%s/")
 keymap("n", "<leader>*", "yiw :%s/<C-r>0/")
@@ -109,7 +113,25 @@ keymap("n", "<leader>yf", function()
   local filename = vim.fn.expand("%")
   vim.fn.setreg("+", filename)
 end)
+-- Copy filepath to the clipboard
+-- vim.keymap.set("n", "<leader>fp", function()
+--   local filePath = vim.fn.expand("%:~")                -- Gets the file path relative to the home directory
+--   vim.fn.setreg("+", filePath)                         -- Copy the file path to the clipboard register
+--   print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
+-- end, { desc = "Copy file path to clipboard" })
+-- Toggle LSP diagnostics visibility
+-- local isLspDiagnosticsVisible = true
+-- vim.keymap.set("n", "<leader>lx", function()
+--   isLspDiagnosticsVisible = not isLspDiagnosticsVisible
+--   vim.diagnostic.config({
+--     virtual_text = isLspDiagnosticsVisible,
+--     underline = isLspDiagnosticsVisible
+--   })
+-- end, { desc = "Toggle LSP diagnostics" })
 
+-- vim.keymap.set("v", "p", '"_dp', opts)
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+--   { desc = "Replace word cursor is on globally" })
 -- keymap("n", "<C-,>", "<c-w>5>")
 -- keymap("n", "<C-.>", "<c-w>5<")
 -- keymap("n", "<C-,>", "<C-W>5-")
@@ -134,6 +156,7 @@ end)
 --     map({ 'n', (']%s'):format(key), ('<cmd>%snext<cr>'):format(keymap) })
 -- end
 
+-- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- window management
 -- keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
