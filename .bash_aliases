@@ -321,6 +321,7 @@ alias dot='cd ~/dotfiles'
 
 alias mntc='cd /mnt/c'
 alias vaultsw='cd /mnt/c/chintan357/vaults/'
+alias vaultsa='cd /mnt/c/chintan357/vaults/atomic'
 
 #-----------#
 

@@ -8,14 +8,14 @@ endif
 " display settings
 set background=dark     " enable for dark terminals
 set nowrap              " dont wrap lines
-set scrolloff=8         " 2 lines above/below cursor when scrolling
+set scrolloff=8         " 8 lines above/below cursor when scrolling
 set number              " show line numbers
 set relativenumber
 set showmatch           " show matching bracket (briefly jump)
 set showmode            " show mode in status bar (insert/replace/...)
 set showcmd             " show typed command in status bar
 set ruler               " show cursor position in status bar
-set title               " show file in titlebar
+" set title               " show file in titlebar
 set wildmenu            " completion with menu
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
 set laststatus=2        " use 2 lines for the status bar
@@ -23,17 +23,19 @@ set matchtime=2         " show matching bracket for 0.2 seconds
 set matchpairs+=<:>     " specially for html
 
 " editor settings
-set esckeys             " map missed escape sequences (enables keypad keys)
+" set esckeys             " map missed escape sequences (enables keypad keys)
 set ignorecase          " case insensitive searching
 set smartcase           " but become case sensitive if you type uppercase characters
-set smartindent         " smart auto indenting
+" set smartindent         " smart auto indenting
 set smarttab            " smart tab handling for indenting
 set magic               " change the way backslashes are used in search patterns
 set bs=indent,eol,start " Allow backspacing over everything in insert mode
 
 set tabstop=4           " number of spaces a tab counts for
 set shiftwidth=4        " spaces for autoindents
-" set expandtab           " turn a tabs into spaces
+" set softtabstop=4
+set shiftround
+set expandtab           " turn a tabs into spaces
 
 set fileformat=unix     " file mode is unix
 "set fileformats=unix,dos    " only detect unix file format, displays that ^M with dos files
@@ -43,8 +45,8 @@ set lazyredraw          " no redraws in macros
 set confirm             " get a dialog when :q, :w, or :wq fails
 set nobackup            " no backup~ files.
 set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
-set hidden              " remember undo after quitting
-set history=50          " keep 50 lines of command history
+set hidden
+set history=100         " keep 50 lines of command history
 " set mouse=v             " use mouse in visual mode (not normal,insert,command,help mode
 set mouse=a             " use mouse in visual mode (not normal,insert,command,help mode
 
@@ -241,3 +243,53 @@ set clipboard=unnamedplus
 
 " https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim/38258720#38258720
 " git clone git@github.com:christoomey/vim-tmux-navigator.git ~/.vim/pack/plugins/start/vim-tmux-navigator
+
+
+hi Normal ctermbg=NONE
+hi LineNr guifg=#888888
+set cursorline
+" set colorcolumn=79
+" autocmd Colorscheme * highlight CursorLine cterm=underline ctermbg=NONE guibg=NONE
+hi CursorLine ctermbg=NONE cterm=underline
+
+set undodir=~/.vim/undo/
+set undofile " persistent undo (between saves)
+set undolevels=1000 " persistent undo
+set undoreload=10000 " to undo forced reload with :e!
+" set cmdheight=2 " Gets rid of all the press enter to continue
+"
+nnoremap ; :
+nnoremap : ;
+
+nnoremap <silent> <esc> :nohl<cr>
+
+" Autocomplete
+inoremap <silent> ;f <c-x><c-f>
+inoremap <silent> ;i <c-x><c-i>
+inoremap <silent> ;l <c-x><c-l>
+inoremap <silent> ;n <c-x><c-n>
+inoremap <silent> ;o <c-x><c-o>
+inoremap <silent> ;p <c-x><c-p>
+inoremap <silent> ;t <c-x><c-]>
+inoremap <silent> ;u <c-x><c-u>
+
+set breakindent " this is just awesome (best patch in a long time)
+set splitbelow " split below
+set splitright " split right
+" set cursorcolumn
+
+set viminfo+=<1000
+
+nnoremap ]q :cnext<cr>
+nnoremap q] :cprevious<cr>
+nnoremap [t gT
+nnoremap ]t gt
+
+" set grepprg=ag\ --vimgrep\ $*
+" set grepformat=%f:%l:%c:%m
+
+xnoremap il g_o^
+onoremap il :normal vil<CR>
+xnoremap al $o^
+onoremap al :normal val<CR>
+set autoread

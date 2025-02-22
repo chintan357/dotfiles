@@ -12,7 +12,7 @@ fi
 # fi
 
 export LESS='-R --use-color -Dd+r$Du+b'
-export MANPAGER="less -R --use-color -Dd+r -Du+b"
+# export MANPAGER="less -R --use-color -Dd+r -Du+b"
 
 if [ -z "$XDG_CONFIG_HOME" ] ; then
     export XDG_CONFIG_HOME="$HOME/.config"
@@ -23,6 +23,16 @@ fi
 if [ -z "$XDG_CACHE_HOME" ] ; then
     export XDG_CACHE_HOME="$HOME/.cache"
 fi
+
+export XDG_RUNTIME_DIR="/tmp/"
+
+# export PAGER=$HOME/bin/vimpager
+# alias less=$PAGER
+# export MANPAGER='vimpager'
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu nornu noma' -\""
+
+export VISUAL=vi
+export EDITOR=vi
 
 safesource() {
     [[ -s $1 ]] && source $1
@@ -43,4 +53,7 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 source /home/chintan357/.config/broot/launcher/bash/br
 
 stty -ixon
+export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 export PYTHONBREAKPOINT="ipdb.set_trace"
+
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.cargo/bin:$HOME/.tmux/plugins/tmux-session-wizard/bin"

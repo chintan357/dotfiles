@@ -77,13 +77,8 @@ fi
 # fi
 
 
-# set nvim as default text editor
-export VISUAL=vim
-export EDITOR=vim
-
 # Created by `pipx` on 2024-03-19 21:09:03
 # . ~/.bash.d/cht.sh to ~/.bashrc
-export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.cargo/bin:$HOME/.tmux/plugins/tmux-session-wizard/bin"
 
 # export NVM_DIR="$HOME/.config/nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -98,64 +93,50 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.carg
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# if type rg &> /dev/null; then
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
+# fi
+
+# export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
+export FZF_DEFAULT_OPTS=' --height 40% --layout=reverse --border --prompt="> "'
+
 export FZF_CTRL_T_OPTS=" --walker-skip .git,node_modules,target --preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -selection clipboard)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
 export FZF_ALT_C_OPTS=" --walker-skip .git,node_modules,target --preview 'tree -C {}'"
 
 export FZF_TMUX_OPTS='-p80%,80%'
 
-export FZF_COMPLETION_OPTS='--border --info=inline'
-export FZF_DEFAULT_OPTS=' --height 40% --layout=reverse --border --prompt="> "'
+# export FZF_COMPLETION_OPTS='--border --info=inline'
 # export FZF_DEFAULT_OPTS='--color=bg+:#292e42,bg:#16161e,border:#1f2335,hl:#ff9e64,fg:#a9b1d6,header:#292e42,pointer:#bb9af7,fg+:#a9b1d6,preview-bg:#24283b,prompt:#7dcfff,hl+:#7aa2f7,info:#e0af68'
 
-# if type ag &> /dev/null; then
-#     export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
-# fi
+# export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
 
-#refer rg over ag
-if type rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files --hidden'
-fi
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-_fzf_compgen_file() {
-    fd --type f --hidden --follow --exclude ".git" . "$1"
-}
-
-_fzf_compgen_path() {
-    fd --hidden --follow --exclude ".git" . "$1"
-}
-
-_fzf_compgen_dir() {
-    fd --type d --hidden --follow --exclude ".git" . "$1"
-}
-
-_fzf_comprun() {
-    local command=$1
-    shift
-
-    case "$command" in
-        cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
-        export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
-        ssh)          fzf --preview 'dig {}'                   "$@" ;;
-        *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
-    esac
-}
-
-
-# function yy() {
-#     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-#     yazi "$@" --cwd-file="$tmp"
-#     if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-#         cd -- "$cwd" || exit
-#     fi
-#     rm -f -- "$tmp"
+# _fzf_compgen_file() {
+#     fd --type f --hidden --follow --exclude ".git" . "$1"
+# }
+# 
+# _fzf_compgen_path() {
+#     fd --hidden --follow --exclude ".git" . "$1"
+# }
+# 
+# _fzf_compgen_dir() {
+#     fd --type d --hidden --follow --exclude ".git" . "$1"
+# }
+# 
+# _fzf_comprun() {
+#     local command=$1
+#     shift
+# 
+#     case "$command" in
+#         cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+#         export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+#         ssh)          fzf --preview 'dig {}'                   "$@" ;;
+#         *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+#     esac
 # }
 
-# if [ -f "$HOME"/.config/hub.bash_completion.sh ]; then
-#     . "$HOME"/.config/hub.bash_completion.sh
-# fi
 
 bind 'TAB:menu-complete'
 bind '"\e[Z":menu-complete-backward'
@@ -182,15 +163,8 @@ for key in ~/.ssh/*; do
     fi
 done
 
-export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 . "$HOME/.cargo/env"
 
 source /home/chintan357/.config/broot/launcher/bash/br
 
 export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'"
-export XDG_RUNTIME_DIR="/tmp/"
-
-# export PAGER=$HOME/bin/vimpager
-# alias less=$PAGER
-# export MANPAGER='vimpager'
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""

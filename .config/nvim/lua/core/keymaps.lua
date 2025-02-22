@@ -15,8 +15,8 @@ keymap("n", "n", [[v:searchforward ? 'nzz' : 'Nzz']], { expr = true })
 
 keymap("v", "v", "<C-v>")
 
-keymap("n", "+", "<C-a>")
-keymap("n", "-", "<C-x>")
+-- keymap("n", "+", "<C-a>")
+-- keymap("n", "-", "<C-x>")
 
 keymap("n", "<leader>_", "<c-W>s")
 keymap("n", "<leader>|", "<C-W>v")
