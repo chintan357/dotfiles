@@ -13,7 +13,8 @@ return {
       require("codecompanion").setup({
         strategies = {
           chat = {
-            adapter = "gemini",
+            adapter = "openai",
+            -- adapter = "gemini",
           },
           inline = {
             adapter = "openai",

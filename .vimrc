@@ -15,7 +15,6 @@ set showmatch           " show matching bracket (briefly jump)
 set showmode            " show mode in status bar (insert/replace/...)
 set showcmd             " show typed command in status bar
 set ruler               " show cursor position in status bar
-" set title               " show file in titlebar
 set wildmenu            " completion with menu
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
 set laststatus=2        " use 2 lines for the status bar
@@ -38,7 +37,7 @@ set shiftround
 set expandtab           " turn a tabs into spaces
 
 set fileformat=unix     " file mode is unix
-"set fileformats=unix,dos    " only detect unix file format, displays that ^M with dos files
+" set fileformats=unix,dos    " only detect unix file format, displays that ^M with dos files
 
 " system settings
 set lazyredraw          " no redraws in macros
@@ -47,19 +46,13 @@ set nobackup            " no backup~ files.
 set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
 set hidden
 set history=100         " keep 50 lines of command history
-" set mouse=v             " use mouse in visual mode (not normal,insert,command,help mode
-set mouse=a             " use mouse in visual mode (not normal,insert,command,help mode
-
+set mouse=a
 
 syntax on          " enable colors
 set hlsearch       " highlight search (very useful!)
 set incsearch      " search incremently (search while typing)
 
 " paste mode toggle (needed when using autoindent/smartindent)
-map <F10> :set paste<CR>
-map <F11> :set nopaste<CR>
-imap <F10> <C-O>:set paste<CR>
-imap <F11> <nop>
 set pastetoggle=<F11>
 
 " Use of the filetype plugins, auto completion and indentation support
@@ -245,9 +238,9 @@ set clipboard=unnamedplus
 " git clone git@github.com:christoomey/vim-tmux-navigator.git ~/.vim/pack/plugins/start/vim-tmux-navigator
 
 
+set cursorline
 hi Normal ctermbg=NONE
 hi LineNr guifg=#888888
-set cursorline
 " set colorcolumn=79
 " autocmd Colorscheme * highlight CursorLine cterm=underline ctermbg=NONE guibg=NONE
 hi CursorLine ctermbg=NONE cterm=underline
@@ -273,7 +266,7 @@ inoremap <silent> ;p <c-x><c-p>
 inoremap <silent> ;t <c-x><c-]>
 inoremap <silent> ;u <c-x><c-u>
 
-set breakindent " this is just awesome (best patch in a long time)
+set breakindent
 set splitbelow " split below
 set splitright " split right
 " set cursorcolumn
@@ -292,4 +285,5 @@ xnoremap il g_o^
 onoremap il :normal vil<CR>
 xnoremap al $o^
 onoremap al :normal val<CR>
+
 set autoread

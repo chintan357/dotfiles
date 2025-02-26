@@ -306,10 +306,11 @@ alias cdnvim='cd ~/.config/nvim'
 alias vaults='cd ~/vaults'
 alias config='cd ~/.config'
 alias tmp='cd ~/tmp'
-alias work='cd ~/work'
 alias private='cd ~/private'
 alias scripts='cd ~/lab/scripts/'
-alias repo='cd ~/lab/repo'
+alias repo='cd ~/repo'
+alias wrepo='cd ~/repo/work'
+alias prepo='cd ~/repo/personal'
 alias docs="cd ~/docs"
 alias down='cd ~/downloads'
 alias proj='cd ~/projects/'
@@ -318,10 +319,11 @@ alias lab='cd ~/lab'
 alias hlab='cd ~/homelab'
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
+# alias iam='cd ~/atomic'
+alias iam='cd /mnt/c/chintan357/vaults/atomic'
 
 alias mntc='cd /mnt/c'
 alias vaultsw='cd /mnt/c/chintan357/vaults/'
-alias vaultsa='cd /mnt/c/chintan357/vaults/atomic'
 
 #-----------#
 

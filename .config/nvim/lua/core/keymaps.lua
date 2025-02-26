@@ -8,6 +8,9 @@ end
 
 keymap("n", "<Esc>", ":nohls<CR>")
 
+vim.keymap.set("n", ":", ";", { noremap = true })
+vim.keymap.set("n", ";", ":", { noremap = true })
+
 keymap("n", "N", [[v:searchforward ? 'Nzz' : 'nzz']], { expr = true })
 keymap("n", "n", [[v:searchforward ? 'nzz' : 'Nzz']], { expr = true })
 -- vim.keymap.set("n", "n", "nzzzv")
@@ -21,16 +24,11 @@ keymap("v", "v", "<C-v>")
 keymap("n", "<leader>_", "<c-W>s")
 keymap("n", "<leader>|", "<C-W>v")
 keymap("n", "<leader>we", "<C-W>c")
-keymap("n", "<leader>s=", "<C-w>=")
-vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
+keymap("n", "<leader>se", "<C-w>=")
 
-
-keymap("n", "<C-c>", "<cmd>bd<CR>")
 keymap("n", "Q", "<cmd>bd<CR>")
-keymap("n", "<leader>bd", ":bd<CR>")
-keymap("n", "<C-q>", "<cmd>q<CR>")
-keymap("n", "<leader>qq", ":qa<CR>")
 keymap("n", "<leader>Q", ":qa!<CR>")
+keymap("n", "<leader>qq", ":qa<CR>")
 
 keymap("n", "<leader>`", "<cmd>e #<cr>")
 
@@ -58,15 +56,12 @@ keymap("n", "<S-l>", ":bnext<cr>")
 keymap("n", "<S-h>", ":bprevious<cr>")
 
 -- vim.cmd("command! W execute 'w !sudo tee % > /dev/null' <bar> edit!")
-
 vim.keymap.set("n", "<leader>mx", "<cmd>!chmod u+x %<CR>", { silent = true, desc = "makes file executable" })
 
 keymap({ "n", "v" }, "gg", "gg0")
 keymap({ "n", "v" }, "G", "G$")
-keymap("n", "d,", "d$")
-keymap("n", "c,", "c$")
-keymap("n", "y,", "y$")
-keymap({ "x", "v" }, ",", "$")
+
+keymap({ "x", "v" }, ",", "$") -- has delay
 
 -- stylua: ignore start
 
@@ -80,11 +75,10 @@ vim.api.nvim_set_keymap("v", "<C-_>", "gc", { silent = true })
 vim.keymap.set("c", "<C-h>", "<Up>")
 vim.keymap.set("c", "<C-l>", "<Down>")
 
-keymap("n", "gV", "`[V`]")
+keymap("n", "gV", "`[V`]") -- "`[v`]"
 keymap("n", "gl", "`.zz")
+keymap('x', 'g/', '<Esc>/\\%V')
 
-vim.keymap.set("n", ";", ":", { noremap = true })
-vim.keymap.set("n", ":", ";", { noremap = true })
 
 keymap("n", "<leader>M", "mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm")
 -- :%s/^M//g
@@ -113,6 +107,7 @@ keymap("n", "<leader>yf", function()
   local filename = vim.fn.expand("%")
   vim.fn.setreg("+", filename)
 end)
+
 -- Copy filepath to the clipboard
 -- vim.keymap.set("n", "<leader>fp", function()
 --   local filePath = vim.fn.expand("%:~")                -- Gets the file path relative to the home directory
