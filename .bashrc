@@ -52,10 +52,6 @@ esac
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 # Alias definitions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
@@ -91,14 +87,14 @@ fi
 
 # source "$HOME"/.oh-my-git/prompt.sh
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# if type rg &> /dev/null; then ... fi
+# export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# if type rg &> /dev/null; then
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
-# fi
-
-# export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
 export FZF_DEFAULT_OPTS=' --height 40% --layout=reverse --border --prompt="> "'
+# export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
+# export FZF_DEFAULT_OPTS='--color=bg+:#292e42,bg:#16161e,border:#1f2335,hl:#ff9e64,fg:#a9b1d6,header:#292e42,pointer:#bb9af7,fg+:#a9b1d6,preview-bg:#24283b,prompt:#7dcfff,hl+:#7aa2f7,info:#e0af68'
 
 export FZF_CTRL_T_OPTS=" --walker-skip .git,node_modules,target --preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -selection clipboard)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
@@ -106,50 +102,37 @@ export FZF_ALT_C_OPTS=" --walker-skip .git,node_modules,target --preview 'tree -
 
 export FZF_TMUX_OPTS='-p80%,80%'
 
-# export FZF_COMPLETION_OPTS='--border --info=inline'
-# export FZF_DEFAULT_OPTS='--color=bg+:#292e42,bg:#16161e,border:#1f2335,hl:#ff9e64,fg:#a9b1d6,header:#292e42,pointer:#bb9af7,fg+:#a9b1d6,preview-bg:#24283b,prompt:#7dcfff,hl+:#7aa2f7,info:#e0af68'
-
-# export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
-
-# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_COMPLETION_OPTS='--border --info=inline'
 
 # _fzf_compgen_file() {
 #     fd --type f --hidden --follow --exclude ".git" . "$1"
 # }
-# 
-# _fzf_compgen_path() {
-#     fd --hidden --follow --exclude ".git" . "$1"
-# }
-# 
-# _fzf_compgen_dir() {
-#     fd --type d --hidden --follow --exclude ".git" . "$1"
-# }
-# 
-# _fzf_comprun() {
-#     local command=$1
-#     shift
-# 
-#     case "$command" in
-#         cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
-#         export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
-#         ssh)          fzf --preview 'dig {}'                   "$@" ;;
-#         *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
-#     esac
-# }
 
+_fzf_compgen_path() {
+    fd --hidden --follow --exclude ".git" . "$1"
+}
+#
+_fzf_compgen_dir() {
+    fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+_fzf_comprun() {
+    local command=$1
+    shift
+
+    case "$command" in
+        cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+        export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+        ssh)          fzf --preview 'dig {}'                   "$@" ;;
+        *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+    esac
+}
 
 bind 'TAB:menu-complete'
 bind '"\e[Z":menu-complete-backward'
 
 # c() { cd ~/code/$1; }
 # h() { cd ~/$1; }
-
-eval "$(navi widget bash)"
-eval "$(fzf --bash)"
-eval "$(zoxide init bash)"
-eval "$(starship init bash)"
-eval $(thefuck --alias fq)
-eval "$(pyenv virtualenv-init -)"
 
 # Start the SSH agent if it's not running
 if [ -z "$SSH_AUTH_SOCK" ]; then

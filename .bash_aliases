@@ -1,3 +1,4 @@
+alias t='sesh connect $(sesh list | fzf)'
 # alias rec='asciinema rec'
 # alias play='asciinema play'
 alias r=yazi
@@ -210,6 +211,7 @@ alias sysctl='systemctl'
 alias erc='$EDITOR ~/.bashrc'
 alias epro='$EDITOR ~/.bash_profile'
 alias ealias='$EDITOR ~/.bash_aliases'
+alias efunc='$EDITOR ~/.bash_functions'
 alias einput='$EDITOR ~/.inputrc'
 alias essh='$EDITOR ~/.ssh/config'
 alias evi='$EDITOR ~/.vimrc'
@@ -488,3 +490,5 @@ alias gconfa='gcloud config configurations activate'
 #-----------#
 
 alias v='NVIM_APPNAME="tnvim" nvim'
+alias deep='ssh deep'
+alias dist='ssh dist'

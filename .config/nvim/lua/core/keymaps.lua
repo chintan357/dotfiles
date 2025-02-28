@@ -85,10 +85,11 @@ keymap("n", "<leader>M", "mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm")
 -- :%s/\r//g
 
 keymap("n", "<leader>8", ":%s/")
-keymap("n", "<leader>*", "yiw :%s/<C-r>0/")
+keymap("n", "<leader>*", ":%s/\\<<c-r><c-w>\\>/")
 keymap("n", "<leader>c8", ":.s/")
-keymap("n", "<leader>c*", "yiw :.s/<C-r>0/")
-keymap("n", "<leader>rw", ":%s/\\<<c-r><c-w>\\>/")
+keymap("n", "<leader>c*", ":.s/\\<<c-r><c-w>\\>/")
+-- keymap("n", "<leader>rw", ":%s/\\<<c-r><c-w>\\>/")
+-- keymap("n", "<leader>*", "yiw :%s/<C-r>0/")
 -- keymap("n", "<leader><leader>8", ":argdo %s/")
 -- keymap("n", "<leader><leader>*", "yiw :argdo %s/<C-r>0/")
 
@@ -107,6 +108,21 @@ keymap("n", "<leader>yf", function()
   local filename = vim.fn.expand("%")
   vim.fn.setreg("+", filename)
 end)
+
+--------
+
+keymap("n", "yow", function()
+  vim.wo.wrap = not vim.wo.wrap
+end)
+keymap("n", "]t", "gt")
+keymap("n", "[t", "gT")
+
+keymap("n", "yor", function()
+  vim.wo.number = not vim.wo.number
+  vim.wo.relativenumber = not vim.wo.relativenumber
+end)
+
+--------
 
 -- Copy filepath to the clipboard
 -- vim.keymap.set("n", "<leader>fp", function()

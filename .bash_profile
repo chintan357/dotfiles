@@ -1,3 +1,5 @@
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.cargo/bin"
+
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -56,4 +58,9 @@ stty -ixon
 export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 export PYTHONBREAKPOINT="ipdb.set_trace"
 
-export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/.scripts:$HOME/.cargo/bin:$HOME/.tmux/plugins/tmux-session-wizard/bin"
+eval "$(navi widget bash)"
+eval "$(fzf --bash)"
+eval "$(zoxide init bash)"
+eval "$(starship init bash)"
+eval $(thefuck --alias fq)
+eval "$(pyenv virtualenv-init -)"
