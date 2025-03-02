@@ -92,7 +92,8 @@ fi
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export FZF_DEFAULT_OPTS=' --height 40% --layout=reverse --border --prompt="> "'
+export FZF_DEFAULT_OPTS=' --height 40% --layout=reverse --border --prompt="> " --color=dark --color=fg:-1,hl:#c678dd,fg+:#ffffff,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
+
 # export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
 # export FZF_DEFAULT_OPTS='--color=bg+:#292e42,bg:#16161e,border:#1f2335,hl:#ff9e64,fg:#a9b1d6,header:#292e42,pointer:#bb9af7,fg+:#a9b1d6,preview-bg:#24283b,prompt:#7dcfff,hl+:#7aa2f7,info:#e0af68'
 
@@ -151,3 +152,17 @@ done
 source /home/chintan357/.config/broot/launcher/bash/br
 
 export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'"
+
+# bind -x '"\C-p": "vim $(fzf --height 40% --reverse)"'
+
+source ~/fzf-git.sh
+
+_fzf_git_fzf() {
+  fzf --height 50% --tmux 90%,70% \
+    --layout reverse --multi --min-height 20+ --border \
+    --no-separator --header-border horizontal \
+    --border-label-pos 2 \
+    --color 'label:blue' \
+    --preview-window 'right,50%' --preview-border line \
+    --bind 'ctrl-/:change-preview-window(down,50%|hidden|)' "$@"
+}

@@ -58,7 +58,7 @@ stty -ixon
 export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 export PYTHONBREAKPOINT="ipdb.set_trace"
 
-eval "$(navi widget bash)"
+# eval "$(navi widget bash)"
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"

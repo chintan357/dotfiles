@@ -60,6 +60,7 @@ sudo make install
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+cd && wget https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh
 
 # pyenv
 curl https://pyenv.run | bash
