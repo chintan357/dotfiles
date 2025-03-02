@@ -217,7 +217,7 @@ return {
     },
     config = function()
       require("telescope").load_extension("zoxide")
-      vim.keymap.set("n", "<leader>cd", require("telescope").extensions.zoxide.list)
+      vim.keymap.set("n", "<leader>cd", "<cmd>Telescope zoxide list<cr>")
     end
   },
   {
@@ -227,11 +227,8 @@ return {
     },
     config = function()
       require("telescope").load_extension("frecency")
-      vim.keymap.set(
-        "n",
-        "<leader>sr",
-        "<cmd>lua require('telescope').extensions.frecency.frecency({ prompt_title = 'Recent Files', workspace = 'CWD', path_display = { 'smart' } })<CR>"
-      )
+      vim.keymap.set("n", "<leader>sr", "<cmd>Telescope frecency<cr>")
     end
+    -- "<cmd>lua require('telescope').extensions.frecency.frecency({ prompt_title = 'Recent Files', workspace = 'CWD', path_display = { 'smart' } })<CR>"
   },
 }

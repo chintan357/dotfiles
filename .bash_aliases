@@ -305,19 +305,17 @@ alias mk="mkdir -pv"
 
 alias cdssh='cd ~/.ssh'
 alias cdnvim='cd ~/.config/nvim'
-alias vaults='cd ~/vaults'
 alias config='cd ~/.config'
 alias tmp='cd ~/tmp'
 alias private='cd ~/private'
-alias scripts='cd ~/lab/scripts/'
 alias repo='cd ~/repo'
-alias wrepo='cd ~/repo/work'
-alias prepo='cd ~/repo/personal'
-alias docs="cd ~/docs"
+alias wre='cd ~/repo/work'
+alias pre='cd ~/repo/personal'
 alias down='cd ~/downloads'
-alias proj='cd ~/projects/'
 alias learn='cd ~/learn'
 alias lab='cd ~/lab'
+alias scripts='cd ~/lab/scripts/'
+alias play='cd ~/lab/play'
 alias hlab='cd ~/homelab'
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
@@ -329,7 +327,6 @@ alias vaultsw='cd /mnt/c/chintan357/vaults/'
 
 #-----------#
 
-alias idea="eureka"
 alias ytdl='youtube-dl'
 
 #-----------#

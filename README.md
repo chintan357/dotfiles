@@ -1,5 +1,5 @@
 ```sh
-mkdir -p lab/{dotfiles,scripts} repo homelab dotfiles vaults/nsal private tmp docs downloads .config
+mkdir -p lab/{dotfiles,scripts,play} repo homelab dotfiles private learn tmp downloads .config
 
 sudo apt update && sudo apt -y upgrade
 
