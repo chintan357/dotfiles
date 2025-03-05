@@ -1,5 +1,5 @@
 function keymap(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
+  local options = { noremap = true, silent = true } -- is noremap default option while setting keymaps?
   if opts then
     options = vim.tbl_extend("force", options, opts)
   end

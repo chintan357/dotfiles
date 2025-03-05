@@ -1,8 +1,8 @@
 return {
-  {
-    "github/copilot.vim",
-    enabled = false,
-  },
+  -- {
+  --   "github/copilot.vim",
+  --   enabled = false,
+  -- },
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
@@ -46,7 +46,6 @@ return {
         { noremap = true, silent = true })
       vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
 
-      -- Expand 'cc' into 'CodeCompanion' in the command line
       vim.cmd([[cab cc CodeCompanion]])
     end,
   }

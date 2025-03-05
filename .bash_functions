@@ -17,14 +17,15 @@
 #       --query "$*"
 # )
 
-function R() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
+alias R='ranger .'
+# function R() {
+# 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+# 	yazi "$@" --cwd-file="$tmp"
+# 	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+# 		builtin cd -- "$cwd"
+# 	fi
+# 	rm -f -- "$tmp"
+# }
 
 # weather() { curl wttr.in/"$1"; }
 weather() { curl -s --connect-timeout 3 -m 5 http://wttr.in/$1; }

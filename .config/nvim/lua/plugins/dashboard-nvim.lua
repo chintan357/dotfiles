@@ -26,7 +26,7 @@ return {
       config = {
         header = logo,
         center = {
-          { action = "Telescope find_files", desc = " Find Files", icon = " ", key = "f" },
+          { action = "Telescope find_files", desc = " Find File", icon = " ", key = "f" },
           { action = "Telescope git_files", desc = " Git Files", icon = " ", key = "p" },
           { action = "ene", desc = " New File", icon = " ", key = "n" },
           -- { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },

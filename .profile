@@ -27,3 +27,5 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 source ~/.oh-my-git/prompt.sh
 . "$HOME/.cargo/env"
+
+. "$HOME/.local/share/../bin/env"

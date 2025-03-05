@@ -155,6 +155,8 @@ export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --pro
 
 # bind -x '"\C-p": "vim $(fzf --height 40% --reverse)"'
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 source ~/fzf-git.sh
 
 _fzf_git_fzf() {
@@ -166,3 +168,21 @@ _fzf_git_fzf() {
     --preview-window 'right,50%' --preview-border line \
     --bind 'ctrl-/:change-preview-window(down,50%|hidden|)' "$@"
 }
+
+fzf_to_nvim() {
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+# -C $(git rev-parse --show-toplevel) 
+    local file=$(git ls-files --cached --others --exclude-standard | fzf --tmux 90%,70% --preview 'bat -n --color=always {}')
+    # local file=$(git ls-files --cached --others --exclude-standard | fzf --preview 'cat {}' --preview-window=right:60%:wrap)
+  else
+    local file=$(find . -type f | fzf --preview 'cat {}' --preview-window=right:60%:wrap)
+  fi
+  
+  if [ -n "$file" ]; then
+    nvim "$file"
+  fi
+}
+
+bind -x '"\C-p": fzf_to_nvim'
+
+. "$HOME/.local/share/../bin/env"
