@@ -62,7 +62,7 @@ export PYTHONBREAKPOINT="ipdb.set_trace"
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
-eval $(thefuck --alias fq)
+# eval $(thefuck --alias fq)
 eval "$(pyenv virtualenv-init -)"
 
 . "$HOME/.local/share/../bin/env"

@@ -65,7 +65,7 @@ opt.colorcolumn = "80"
 opt.textwidth = 79
 opt.winwidth = 30
 opt.sidescrolloff = 8 -- The minimal number of columns to keep to the left and to the right of the cursor if 'nowrap' is set
-opt.scrolloff = 10
+opt.scrolloff = 999
 opt.ruler = false
 
 if vim.fn.exists("syntax_on") ~= 1 then

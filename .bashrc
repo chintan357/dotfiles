@@ -186,3 +186,5 @@ fzf_to_nvim() {
 bind -x '"\C-p": fzf_to_nvim'
 
 . "$HOME/.local/share/../bin/env"
+eval "$(uv generate-shell-completion bash)"
+eval "$(uvx --generate-shell-completion bash)"

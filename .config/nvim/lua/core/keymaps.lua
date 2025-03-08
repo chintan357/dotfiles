@@ -11,6 +11,10 @@ keymap("n", "<Esc>", ":nohls<CR>")
 vim.keymap.set("n", ":", ";", { noremap = true })
 vim.keymap.set("n", ";", ":", { noremap = true })
 
+-- keymap("n", "j", "jzz")
+-- keymap("n", "k", "kzz")
+-- vim.cmd([[nnoremap <leader>zz :let &l:scrolloff=999-&l:scrolloff<CR>]])
+
 keymap("n", "N", [[v:searchforward ? 'Nzz' : 'nzz']], { expr = true })
 keymap("n", "n", [[v:searchforward ? 'nzz' : 'Nzz']], { expr = true })
 -- vim.keymap.set("n", "n", "nzzzv")
