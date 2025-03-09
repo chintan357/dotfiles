@@ -17,15 +17,14 @@
 #       --query "$*"
 # )
 
-alias R='ranger .'
-# function R() {
-# 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-# 	yazi "$@" --cwd-file="$tmp"
-# 	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-# 		builtin cd -- "$cwd"
-# 	fi
-# 	rm -f -- "$tmp"
-# }
+function R() {
+    temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+    ranger --choosedir="$temp_file" "$@"
+    if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$(pwd)" ]; then
+        cd -- "$chosen_dir"
+    fi
+    rm -f -- "$temp_file"
+}
 
 # weather() { curl wttr.in/"$1"; }
 weather() { curl -s --connect-timeout 3 -m 5 http://wttr.in/$1; }

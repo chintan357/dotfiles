@@ -57,12 +57,13 @@ source /home/chintan357/.config/broot/launcher/bash/br
 stty -ixon
 export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 export PYTHONBREAKPOINT="ipdb.set_trace"
+export RANGER_LOAD_DEFAULT_RC=FALSE
 
 # eval "$(navi widget bash)"
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
-# eval $(thefuck --alias fq)
+eval $(thefuck --alias fq)
 eval "$(pyenv virtualenv-init -)"
 
 . "$HOME/.local/share/../bin/env"

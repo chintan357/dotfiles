@@ -19,14 +19,20 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 nvm install --lts
 npm i -g open-cli
 
-sudo apt install pipx
+# sudo apt install pipx
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-pxi ipython jupyterlab trash-cli black isort ipdb jupyter-console pudb pylint virtualenv tldr flake8 asciinema urlscan
+tools=(ipython trash-cli pudb asciinema aider-chat ranger-fm thefuck)
+#  jupyterlab jupyter-console urlscan
+for tool in "${tools[@]}"; do
+  uv tool install "$tool"
+done
 
 sudo apt remove rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # rustup update
 cargo install --locked yazi-fm yazi-cli
+cargo install tealdeer
 cargo install tree-sitter-cli
 cargo install --locked navi
 cargo install eza git-delta hackernews_tui  broot halp

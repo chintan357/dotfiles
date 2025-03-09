@@ -1,7 +1,6 @@
 alias t='sesh connect $(sesh list | fzf)'
 # alias rec='asciinema rec'
 # alias play='asciinema play'
-# alias r=yazi
 alias r=ranger
 
 #-----------#
