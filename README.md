@@ -1,9 +1,9 @@
 ```sh
-mkdir -p lab/{dotfiles,scripts,play} repo homelab dotfiles private learn tmp downloads .config
+mkdir -p lab/dotfiles repo/{work,personal} homelab dotfiles private learn tmp down docs .config
 
 sudo apt update && sudo apt -y upgrade
 
-sudo apt install -y stow make cargo zoxide cmake urlview xclip neofetch  ripgrep fd-find bat gh ncal pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw whois nmap libssl-dev ffmpeg 7zip poppler-utils fd-find imagemagick
+sudo apt install -y stow make cargo zoxide cmake urlview xclip neofetch ripgrep fd-find bat gh ncal pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw whois nmap libssl-dev ffmpeg 7zip poppler-utils fd-find imagemagick
 # glow
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
@@ -22,7 +22,7 @@ npm i -g open-cli
 # sudo apt install pipx
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-tools=(ipython trash-cli pudb asciinema aider-chat ranger-fm thefuck)
+tools=(ruff ipython trash-cli pudb asciinema aider-chat ranger-fm thefuck)
 #  jupyterlab jupyter-console urlscan
 for tool in "${tools[@]}"; do
   uv tool install "$tool"

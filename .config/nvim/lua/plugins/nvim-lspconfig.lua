@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    priority = 1000, -- Ensure it loads first
     dependencies = {
       { "williamboman/mason.nvim",                  opts = {} },
       { "williamboman/mason-lspconfig.nvim" },

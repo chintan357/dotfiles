@@ -17,9 +17,24 @@
 #       --query "$*"
 # )
 
+# function R() {
+#     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+#     ranger --choosedir="$temp_file" "$@"
+#     if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$(pwd)" ]; then
+#         cd -- "$chosen_dir"
+#     fi
+#     rm -f -- "$temp_file"
+# }
+
 function R() {
     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
-    ranger --choosedir="$temp_file" "$@"
+    if [ -n "$TMUX" ]; then
+        # If inside tmux, open ranger in a popup
+        tmux popup -w90% -h90% -E "ranger --choosedir='$temp_file' '$@'"
+    else
+        # If not in tmux, open ranger normally
+        ranger --choosedir="$temp_file" "$@"
+    fi
     if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$(pwd)" ]; then
         cd -- "$chosen_dir"
     fi
