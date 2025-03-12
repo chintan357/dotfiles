@@ -1,31 +1,3 @@
-# ripgrep->fzf->vim [QUERY]
-# rfv() (
-#   RELOAD='reload:rg --column --color=always --smart-case {q} || :'
-#   OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
-#             vim {1} +{2}     # No selection. Open the current line in Vim.
-#           else
-#             vim +cw -q {+f}  # Build quickfix list for the selected items.
-#           fi'
-#   fzf --disabled --ansi --multi \
-#       --bind "start:$RELOAD" --bind "change:$RELOAD" \
-#       --bind "enter:become:$OPENER" \
-#       --bind "ctrl-o:execute:$OPENER" \
-#       --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
-#       --delimiter : \
-#       --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
-#       --preview-window '~4,+{2}+4/3,<80(up)' \
-#       --query "$*"
-# )
-
-# function R() {
-#     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
-#     ranger --choosedir="$temp_file" "$@"
-#     if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$(pwd)" ]; then
-#         cd -- "$chosen_dir"
-#     fi
-#     rm -f -- "$temp_file"
-# }
-
 function R() {
     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
     if [ -n "$TMUX" ]; then
@@ -50,14 +22,6 @@ function cdl() {
     cd "$1" && ls
 }
 
-function gbmv() {
-  if [ $# -eq 1 ]; then
-    git branch -m "$1"
-  elif [ $# -eq 2 ]; then
-    git branch -m "$1" "$2"
-  fi
-}
-
 function countdown() {
 	total=$1
 	for ((i = total; i > 0; i--)); do
@@ -68,7 +32,6 @@ function countdown() {
 }
 
 alias countdown=countdown
-# alias countdown='echo "Enter duration (minutes): "; read duration; sleep $(($duration * 60)); notify-send "Time’s up!"'
 
 function extract() {
 	if [ -f $1 ]; then
@@ -138,7 +101,7 @@ function github() {
       fi
 }
 
-function hL() {
+function hl() {
   if command -v "$1" &> /dev/null; then
     if alias "$1" &>/dev/null; then
       echo "Cannot display help for alias: $1" >&2
@@ -202,28 +165,64 @@ function hL() {
 #   esac
 # }
 
-function pipupall {
-  # non-GNU xargs does not support nor need `--no-run-if-empty`
-  local xargs="xargs --no-run-if-empty"
-  xargs --version 2>/dev/null | grep -q GNU || xargs="xargs"
-  pip list --outdated | awk 'NR > 2 { print $1 }' | ${=xargs} pip install --upgrade
-}
+# function pipupall {
+#   # non-GNU xargs does not support nor need `--no-run-if-empty`
+#   local xargs="xargs --no-run-if-empty"
+#   xargs --version 2>/dev/null | grep -q GNU || xargs="xargs"
+#   pip list --outdated | awk 'NR > 2 { print $1 }' | ${=xargs} pip install --upgrade
+# }
+# 
+# function pipunall {
+#   # non-GNU xargs does not support nor need `--no-run-if-empty`
+#   local xargs="xargs --no-run-if-empty"
+#   xargs --version 2>/dev/null | grep -q GNU || xargs="xargs"
+#   pip list --format freeze | cut -d= -f1 | ${=xargs} pip uninstall
+# }
+# 
+# function pipig {
+#   pip install "git+https://github.com/$1.git"
+# }
+# 
+# function pipigb {
+#   pip install "git+https://github.com/$1.git@$2"
+# }
+# 
+# function pipigp {
+#   pip install "git+https://github.com/$1.git@refs/pull/$2/head"
+# }
+#
+# ripgrep->fzf->vim [QUERY]
+# rfv() (
+#   RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+#   OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+#             vim {1} +{2}     # No selection. Open the current line in Vim.
+#           else
+#             vim +cw -q {+f}  # Build quickfix list for the selected items.
+#           fi'
+#   fzf --disabled --ansi --multi \
+#       --bind "start:$RELOAD" --bind "change:$RELOAD" \
+#       --bind "enter:become:$OPENER" \
+#       --bind "ctrl-o:execute:$OPENER" \
+#       --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
+#       --delimiter : \
+#       --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
+#       --preview-window '~4,+{2}+4/3,<80(up)' \
+#       --query "$*"
+# )
 
-function pipunall {
-  # non-GNU xargs does not support nor need `--no-run-if-empty`
-  local xargs="xargs --no-run-if-empty"
-  xargs --version 2>/dev/null | grep -q GNU || xargs="xargs"
-  pip list --format freeze | cut -d= -f1 | ${=xargs} pip uninstall
-}
-
-function pipig {
-  pip install "git+https://github.com/$1.git"
-}
-
-function pipigb {
-  pip install "git+https://github.com/$1.git@$2"
-}
-
-function pipigp {
-  pip install "git+https://github.com/$1.git@refs/pull/$2/head"
-}
+# function R() {
+#     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+#     ranger --choosedir="$temp_file" "$@"
+#     if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$(pwd)" ]; then
+#         cd -- "$chosen_dir"
+#     fi
+#     rm -f -- "$temp_file"
+# }
+# function gbmv() {
+#   if [ $# -eq 1 ]; then
+#     git branch -m "$1"
+#   elif [ $# -eq 2 ]; then
+#     git branch -m "$1" "$2"
+#   fi
+# }
+# alias countdown='echo "Enter duration (minutes): "; read duration; sleep $(($duration * 60)); notify-send "Time’s up!"'
