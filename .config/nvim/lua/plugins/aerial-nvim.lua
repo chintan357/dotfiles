@@ -5,8 +5,7 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   keys = {
-    { "yoa",        "<cmd>AerialToggle!<cr>",    desc = "AerialToggle" },
-    { "<leader>ta", "<cmd>Telescope aerial<CR>", desc = "Telescope Aerial" },
+    { "yoa", "<cmd>AerialToggle!<cr>", desc = "AerialToggle" },
   },
   config = function()
     require("aerial").setup({
@@ -19,11 +18,5 @@ return {
       },
       filter_kind = false,
     })
-
-    local tele_status_ok, telescope = pcall(require, "telescope")
-
-    if tele_status_ok then
-      telescope.load_extension("aerial")
-    end
   end,
 }

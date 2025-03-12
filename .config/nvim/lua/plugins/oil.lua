@@ -2,28 +2,9 @@ return {
   "stevearc/oil.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
-    -- default_file_explorer = true,
-    -- -- See :help oil-columns
-    -- columns = {
-    --   "icon",
-    --   -- "permissions",
-    --   -- "size",
-    --   -- "mtime",
-    -- },
-    -- buf_options = {
-    --   buflisted = false,
-    --   bufhidden = "hide",
-    -- },
+    -- See :help oil-columns
     win_options = {
       winbar = "%!v:lua.get_oil_winbar()",
-      --   wrap = false,
-      --   signcolumn = "no",
-      --   cursorcolumn = false,
-      --   foldcolumn = "0",
-      --   spell = false,
-      --   list = false,
-      --   conceallevel = 3,
-      --   concealcursor = "nvic",
     },
     -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
     delete_to_trash = true,

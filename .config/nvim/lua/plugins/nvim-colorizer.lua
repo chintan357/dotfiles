@@ -1,7 +1,7 @@
 return {
   "norcalli/nvim-colorizer.lua",
   keys = {
-    { "yoC", "<cmd>ColorizerToggle<cr>" }
+    { "yoc", "<cmd>ColorizerToggle<cr>" }
   },
   opts = {}
 }

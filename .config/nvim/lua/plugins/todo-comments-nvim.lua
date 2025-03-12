@@ -1,10 +1,10 @@
 return {
-	"folke/todo-comments.nvim",
-	cmd = { "TodoTrouble", "TodoTelescope" },
-	-- event = "VeryLazy", -- "VimEnter",
-	dependencies = { "nvim-lua/plenary.nvim" },
-	-- opts = { signs = false },
-	config = true,
+  "folke/todo-comments.nvim",
+  -- cmd = { "TodoTrouble", "TodoTelescope" },
+  event = "VeryLazy", -- "VimEnter",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  opts = { signs = false },
+  config = true,
   -- stylua: ignore
   keys = {
     -- { "]T", function() require("todo-comments").jump_next() end, desc = "Next Todo Comment" },

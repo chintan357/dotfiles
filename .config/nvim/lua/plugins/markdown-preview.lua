@@ -1,5 +1,6 @@
 return {
   -- {
+  -- NOTE: is this needed?
   --   "OXY2DEV/markview.nvim",
   --   ft = { "markdown", "codecompanion" },
   --   opts = {
@@ -13,6 +14,7 @@ return {
     ft = { "markdown", "codecompanion" },
   },
   {
+    -- TODO: not working as expected?
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },

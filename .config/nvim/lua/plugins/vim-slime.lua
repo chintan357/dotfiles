@@ -13,7 +13,7 @@ return {
   config = function()
     -- vim.keymap.set("n", "<leader>al", "<Plug>SlimeLineSend")
     -- vim.keymap.set("n", "<leader>am", "<Plug>SlimeMotionSend<cr>")
-    vim.keymap.set("n", "<leader>ac", "<Plug>SlimeSendCell<cr>")
+    -- vim.keymap.set("n", "<leader>ac", "<Plug>SlimeSendCell<cr>")
     -- vim.keymap.set("n", "<leader>ap", "<Plug>SlimeParagraphSend")
     -- vim.keymap.set("n", "<leader>sl", "<Plug>SlimeConfig<cr>")
     -- nmap <leader>s <Plug>SlimeMotionSend

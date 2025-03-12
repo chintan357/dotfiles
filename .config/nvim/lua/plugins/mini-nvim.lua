@@ -1,19 +1,19 @@
+-- TODO: go over other utility plugin provided by mini
 return {
-	{
-		"echasnovski/mini.ai",
-		enabled = false,
-		version = false,
-		config = function()
-			require("mini.ai").setup({ n_lines = 500 })
-		end,
-	},
-	{
-		"echasnovski/mini.bufremove",
-		version = false,
-		config = function()
-			require("mini.bufremove").setup()
-		end,
-	},
+  {
+    "echasnovski/mini.ai",
+    version = false,
+    config = function()
+      require("mini.ai").setup({ n_lines = 500 })
+    end,
+  },
+  {
+    "echasnovski/mini.bufremove",
+    version = false,
+    config = function()
+      require("mini.bufremove").setup()
+    end,
+  },
 }
 -- { -- Collection of various small independent plugins/modules
 -- 	"echasnovski/mini.nvim",

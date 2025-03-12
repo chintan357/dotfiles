@@ -189,7 +189,7 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         "pyright"
-        -- "stylua", -- Used to format Lua code
+        -- "stylua",
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
       -- vim.api.nvim_command("MasonToolsInstall")
@@ -219,34 +219,34 @@ return {
       },
     },
   },
-  {
-    "SmiteshP/nvim-navic",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-    },
-    opts = {
-      lsp = {
-        auto_attach = true,
-        preference = nil,
-      },
-      lazy_update_context = true,
-    },
-    config = function(_, opts)
-      local navic = require("nvim-navic")
-      -- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-      navic.setup(opts)
-      vim.keymap.set("n", "<leader>no", ":Navbuddy<CR>")
-    end,
-  },
-  {
-    "SmiteshP/nvim-navbuddy",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "SmiteshP/nvim-navic",
-      "MunifTanjim/nui.nvim",
-    },
-    opts = { lsp = { auto_attach = true } },
-  },
+  -- {
+  --   "SmiteshP/nvim-navic",
+  --   dependencies = {
+  --     "neovim/nvim-lspconfig",
+  --   },
+  --   opts = {
+  --     lsp = {
+  --       auto_attach = true,
+  --       preference = nil,
+  --     },
+  --     lazy_update_context = true,
+  --   },
+  --   config = function(_, opts)
+  --     local navic = require("nvim-navic")
+  --     -- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+  --     navic.setup(opts)
+  --     vim.keymap.set("n", "<leader>no", ":Navbuddy<CR>")
+  --   end,
+  -- },
+  -- {
+  --   "SmiteshP/nvim-navbuddy",
+  --   dependencies = {
+  --     "neovim/nvim-lspconfig",
+  --     "SmiteshP/nvim-navic",
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  --   opts = { lsp = { auto_attach = true } },
+  -- },
   -- { -- optional completion source for require statements and module annotations
   --   "hrsh7th/nvim-cmp",
   --   opts = function(_, opts)

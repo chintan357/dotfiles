@@ -98,10 +98,8 @@ opt.numberwidth = 2
 
 opt.splitkeep = "screen"
 
-opt.undofile = true
 opt.undolevels = 999
 opt.undoreload = 3333
-opt.undodir = vim.fn.stdpath("data") .. "/undos"
 
 -- opt.writebackup = false
 -- opt.backup = false
