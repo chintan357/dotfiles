@@ -1,4 +1,7 @@
-export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$HOME/.fzf/bin"
+# if [[ ! "$PATH" == */home/chintan357/.fzf/bin* ]]; then
+#   PATH="${PATH:+${PATH}:}/home/chintan357/.fzf/bin"
+# fi
 
 # Pyenv
 # export PYENV_ROOT="$HOME/.pyenv"
@@ -30,8 +33,8 @@ fi
 export XDG_RUNTIME_DIR="/tmp/"
 
 # export PAGER=$HOME/bin/vimpager
-# alias less=$PAGER
 # export MANPAGER='vimpager'
+# alias less=$PAGER
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu nornu noma' -\""
 
 export VISUAL=vi
@@ -46,14 +49,13 @@ safesource /usr/local/etc/bash_completion.d/git-prompt.sh
 safesource ~/.bash_profile.local
 safesource "$HOME/.rvm/scripts/rvm"
 
-# source '/home/chintan357/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
+# source "$HOME/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh"
 
-# source $HOME/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 # . "$HOME/.cargo/env"
 
-source /home/chintan357/.config/broot/launcher/bash/br
 
 stty -ixon
 export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
@@ -61,9 +63,10 @@ export PYTHONBREAKPOINT="ipdb.set_trace"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
 # eval "$(navi widget bash)"
-eval "$(fzf --bash)"
+eval "$(fzf --bash)" # FZF_ALT_C_COMMAND= 
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 eval $(thefuck --alias fq)
 
-. "$HOME/.local/share/../bin/env"
+source ~/fzf-git.sh
+# . "$HOME/.local/share/../bin/env"

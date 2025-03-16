@@ -142,22 +142,21 @@ return {
           },
         },
         bashls = {},
-        -- pyright = {
-        --   settings = {
-        --     pyright = {
-        --       -- Using Ruff's import organizer
-        --       disableOrganizeImports = true,
-        --     },
-        --     python = {
-        --       analysis = {
-        --         -- Ignore all files for analysis to exclusively use Ruff for linting
-        --         ignore = { '*' },
-        --       },
-        --     },
-        --   },
-        -- },
-        -- ruff = {},
-        -- ["ruff-lsp"] = {},
+        pyright = {
+          settings = {
+            pyright = {
+              -- Using Ruff's import organizer
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                -- Ignore all files for analysis to exclusively use Ruff for linting
+                ignore = { '*' },
+              },
+            },
+          },
+        },
+        ruff = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -187,10 +186,9 @@ return {
       -- })
 
       local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        "pyright"
-        -- "stylua",
-      })
+      -- vim.list_extend(ensure_installed, {
+      --   -- "stylua",
+      -- })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
       -- vim.api.nvim_command("MasonToolsInstall")
 

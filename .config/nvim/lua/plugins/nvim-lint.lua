@@ -5,11 +5,10 @@ return {
   --   local lint = require("lint")
   --   lint.linters_by_ft = {
   --     python = {
-  --       -- "ruff"
-  --       -- "pylint"
+  --       "ruff"
   --     },
-  --     -- markdown = { "markdownlint" }, -- { "vale" }
-  --     -- json = { "jsonlint" },
+  --     --     -- markdown = { "markdownlint" }, -- { "vale" }
+  --     --     -- json = { "jsonlint" },
   --   }
   --
   --   -- Automatically run linters after saving.  Use "InsertLeave" for more aggressive linting.

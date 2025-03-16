@@ -132,9 +132,6 @@ _fzf_comprun() {
 bind 'TAB:menu-complete'
 bind '"\e[Z":menu-complete-backward'
 
-# c() { cd ~/code/$1; }
-# h() { cd ~/$1; }
-
 # Start the SSH agent if it's not running
 if [ -z "$SSH_AUTH_SOCK" ]; then
     eval "$(ssh-agent -s)" > /dev/null
@@ -147,17 +144,9 @@ for key in ~/.ssh/*; do
     fi
 done
 
-. "$HOME/.cargo/env"
+source $HOME/.config/broot/launcher/bash/br # TODO: is this needed?
 
-source /home/chintan357/.config/broot/launcher/bash/br
-
-export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'"
-
-# bind -x '"\C-p": "vim $(fzf --height 40% --reverse)"'
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-source ~/fzf-git.sh
+export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'" #TODO: is this workinng?
 
 _fzf_git_fzf() {
   fzf --height 50% --tmux 90%,70% \
@@ -175,7 +164,7 @@ fzf_to_nvim() {
     local file=$(git ls-files --cached --others --exclude-standard | fzf --tmux 90%,70% --preview 'bat -n --color=always {}')
     # local file=$(git ls-files --cached --others --exclude-standard | fzf --preview 'cat {}' --preview-window=right:60%:wrap)
   else
-    local file=$(find . -type f | fzf --preview 'cat {}' --preview-window=right:60%:wrap)
+    local file=$(find . -type f | fzf --tmux 90%,70% --preview 'cat {}' --preview-window=right:60%:wrap)
   fi
   
   if [ -n "$file" ]; then
@@ -184,7 +173,10 @@ fzf_to_nvim() {
 }
 
 bind -x '"\C-p": fzf_to_nvim'
+# bind -x '"\C-p": "vim $(fzf --height 40% --reverse)"'
 
-. "$HOME/.local/share/../bin/env"
+bind -m vi-command '"\eo": "\C-z\ec\C-z"'
+bind -m vi-insert '"\eo": "\C-z\ec\C-z"'
+
 eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"

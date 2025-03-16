@@ -381,13 +381,14 @@ alias gconfa='gcloud config configurations activate'
 
 #-----------#
 
-alias v='NVIM_APPNAME="tnvim" nvim'
+alias v='NVIM_APPNAME="tvim" nvim'
+alias lvim='NVIM_APPNAME="lvim" nvim'
 
 alias deep='ssh deep'
 alias dist='ssh dist'
 alias gtypist='gtypist -c 0,2'
 
-alias r=ranger
+alias R=ranger
 
 alias t='sesh connect $(sesh list | fzf)'
 

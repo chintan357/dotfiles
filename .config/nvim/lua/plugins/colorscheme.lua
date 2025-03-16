@@ -25,6 +25,7 @@ return {
   config = function(_, opts)
     require("onedarkpro").setup(opts)
     vim.cmd([[colorscheme onedark]])
+    -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#4d4b54", fg = "#d9d9d9" })
   end,
 }
 -- return { {
