@@ -31,11 +31,10 @@ done
 sudo apt remove rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # rustup update
-cargo install --locked yazi-fm yazi-cli
 cargo install tealdeer
 cargo install tree-sitter-cli
 cargo install --locked navi
-cargo install eza git-delta hackernews_tui  broot halp
+cargo install eza git-delta hackernews_tui broot halp
 
 curl -sS https://starship.rs/install.sh | sh
 
@@ -66,16 +65,12 @@ sudo make install
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
-cd && wget https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh
-
-# pyenv
-curl https://pyenv.run | bash
+wget -O ~/.local/bin/fzf-git.sh https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh
+wget -O ~/.local/bin/git-forgit https://raw.githubusercontent.com/wfxr/forgit/main/bin/git-forgit
+wget -O ~/.local/bin/forgit.plugin.sh https://raw.githubusercontent.com/wfxr/forgit/main/forgit.plugin.zsh
 
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
-
-# this uses older python version
-sudo snap install thefuck --beta --classic
 ```

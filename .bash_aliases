@@ -182,10 +182,12 @@ alias sorc="source ~/.bashrc && echo 'refreshed .bashrc'"
 
 alias jupnb='jupyter notebook'
 
-alias cve='python3 -m venv .venv'
+alias cve='uv venv'
 alias act="source .venv/bin/activate"
 alias dact='deactivate'
 alias sopy='cve && act'
+
+alias pip='uv pip'
 
 # alias rpy="uvicorn main:app --reload"
 

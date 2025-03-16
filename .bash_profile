@@ -3,22 +3,9 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$HOME/.fzf/bin"
 #   PATH="${PATH:+${PATH}:}/home/chintan357/.fzf/bin"
 # fi
 
-# Pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
 if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"
 fi
-
-# if [ -f "$HOME/.inputrc" ]; then
-#   . "$HOME/.inputrc"
-# fi
-
-export LESS='-R --use-color -Dd+r$Du+b'
-# export MANPAGER="less -R --use-color -Dd+r -Du+b"
 
 if [ -z "$XDG_CONFIG_HOME" ] ; then
     export XDG_CONFIG_HOME="$HOME/.config"
@@ -32,13 +19,19 @@ fi
 
 export XDG_RUNTIME_DIR="/tmp/"
 
+export LESS='-R --use-color -Dd+r$Du+b'
 # export PAGER=$HOME/bin/vimpager
-# export MANPAGER='vimpager'
 # alias less=$PAGER
+# export MANPAGER="less -R --use-color -Dd+r -Du+b"
+# export MANPAGER='vimpager'
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu nornu noma' -\""
 
 export VISUAL=vi
 export EDITOR=vi
+export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
+export PYTHONBREAKPOINT="ipdb.set_trace"
+export RANGER_LOAD_DEFAULT_RC=FALSE
+export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'" #TODO: is this workinng?
 
 safesource() {
     [[ -s $1 ]] && source $1
@@ -54,19 +47,17 @@ safesource "$HOME/.rvm/scripts/rvm"
 source $HOME/.config/broot/launcher/bash/br
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-# . "$HOME/.cargo/env"
-
 
 stty -ixon
-export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
-export PYTHONBREAKPOINT="ipdb.set_trace"
-export RANGER_LOAD_DEFAULT_RC=FALSE
 
-# eval "$(navi widget bash)"
+
 eval "$(fzf --bash)" # FZF_ALT_C_COMMAND= 
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 eval $(thefuck --alias fq)
 
-source ~/fzf-git.sh
-# . "$HOME/.local/share/../bin/env"
+source ~/.local/bin/fzf-git.sh
+source ~/.local/bin/forgit.plugin.sh
+
+eval "$(uv generate-shell-completion bash)"
+eval "$(uvx --generate-shell-completion bash)"

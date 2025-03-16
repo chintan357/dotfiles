@@ -1,4 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 
 # If not running interactively, don't do anything
@@ -10,7 +9,6 @@ case $- in
     *) return ;;
 esac
 
-# HISTCONTROL=ignoreboth
 HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 HISTSIZE=9999
@@ -37,26 +35,25 @@ case "$TERM" in
 esac
 
 
-# enable color support of ls and also add handy aliases
-# if [ -x /usr/bin/dircolors ]; then
-#     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-#     # alias ls='ls --color=auto'
-#     alias dir='dir --color=auto'
-#     alias vdir='vdir --color=auto'
-#
-#     alias grep='grep --color=auto'
-#     alias fgrep='fgrep --color=auto'
-#     alias egrep='egrep --color=auto'
-# fi
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Alias definitions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
@@ -73,8 +70,7 @@ fi
 # fi
 
 
-# Created by `pipx` on 2024-03-19 21:09:03
-# . ~/.bash.d/cht.sh to ~/.bashrc
+# . ~/.bash.d/cht.sh
 
 # export NVM_DIR="$HOME/.config/nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -146,8 +142,6 @@ done
 
 source $HOME/.config/broot/launcher/bash/br # TODO: is this needed?
 
-export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'" #TODO: is this workinng?
-
 _fzf_git_fzf() {
   fzf --height 50% --tmux 90%,70% \
     --layout reverse --multi --min-height 20+ --border \
@@ -177,6 +171,3 @@ bind -x '"\C-p": fzf_to_nvim'
 
 bind -m vi-command '"\eo": "\C-z\ec\C-z"'
 bind -m vi-insert '"\eo": "\C-z\ec\C-z"'
-
-eval "$(uv generate-shell-completion bash)"
-eval "$(uvx --generate-shell-completion bash)"
