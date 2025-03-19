@@ -12,7 +12,7 @@ return {
       -- "stevearc/conform.nvim",
       -- { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
       "b0o/SchemaStore.nvim",
-      "nvim-telescope/telescope.nvim"
+      "nvim-telescope/telescope.nvim",
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -27,8 +27,12 @@ return {
           map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
           map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
           map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-          map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")           --gs
-          map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols") --gwS
+          map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols") --gs
+          map(
+            "<leader>ws",
+            require("telescope.builtin").lsp_dynamic_workspace_symbols,
+            "[W]orkspace [S]ymbols"
+          ) --gwS
           -- vim.keymap.set("n", "<leader>ic", require("telescope.builtin").lsp_incoming_calls)
           -- vim.keymap.set("n", "<leader>oc", require("telescope.builtin").lsp_outgoing_calls)
           -- vim.keymap.set("n", "gws", require("telescope.builtin").lsp_workspace_symbols)
@@ -151,7 +155,7 @@ return {
             python = {
               analysis = {
                 -- Ignore all files for analysis to exclusively use Ruff for linting
-                ignore = { '*' },
+                ignore = { "*" },
               },
             },
           },
@@ -186,9 +190,11 @@ return {
       -- })
 
       local ensure_installed = vim.tbl_keys(servers or {})
-      -- vim.list_extend(ensure_installed, {
-      --   -- "stylua",
-      -- })
+      vim.list_extend(ensure_installed, {
+        -- "stylua",
+        "shellcheck",
+        "shfmt",
+      })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
       -- vim.api.nvim_command("MasonToolsInstall")
 

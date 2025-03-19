@@ -26,5 +26,6 @@ return {
     -- vim.keymap.set({ "x", "v" }, "<leader>", function() end)
 
     vim.keymap.set({ "x", "v" }, "<leader>s", "my<Plug>SlimeRegionSend<cr>`y", { noremap = true, silent = true })
+    vim.keymap.set({ "x", "v" }, "sl", "my<Plug>SlimeRegionSend<cr>`y", { noremap = true, silent = true })
   end,
 }

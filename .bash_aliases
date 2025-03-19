@@ -140,7 +140,6 @@ alias du1='du -h --max-depth=1'
 #-----------#
 
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
-py() { python3 $1; }
 alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
 
 #-----------#
@@ -187,13 +186,34 @@ alias act="source .venv/bin/activate"
 alias dact='deactivate'
 alias sopy='cve && act'
 
-alias pip='uv pip'
+# py() { uv run $1; }
+alias py='uv run $1'
 
+alias uvi='uv init'
+alias uvr='uv run'
+alias uva='uv add'
+alias uvrm='uv remove'
+alias uvs='uv sync'
+
+alias uvt='uv tool'
+
+alias uvup='uv look --upgrade-package $1'
+
+alias uvp='uv python'
+alias pyp='uv python pin'
+alias pyls='uv python list --only-installed'
+alias pyi='uv python install'
+alias pyU='uv python uninstall'
+
+alias cvet='uv venv --python $1'
+alias uvh='uv help'
 # alias rpy="uvicorn main:app --reload"
 
+alias pip='uv pip'
 alias pipi="pip install"
-alias pipun="pip uninstall"
 alias pipU="pip uninstall"
+alias pipls="pip list"
+alias pips="pip show"
 alias pipg="pip freeze | grep"
 alias pipreq="pip freeze > requirements.txt"
 alias pipir="pip install -r requirements.txt"
@@ -201,7 +221,7 @@ alias pipir="pip install -r requirements.txt"
 alias ipython='ipython3'
 alias ipy='ipython3'
 
-alias pyserver="python3 -m http.server"
+alias pyserver="uv run -m http.server"
 
 #-----------#
 
