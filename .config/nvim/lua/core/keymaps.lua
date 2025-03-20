@@ -1,4 +1,4 @@
-function keymap(mode, lhs, rhs, opts)
+local keymap = function(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true } -- is noremap default option while setting keymaps?
   if opts then
     options = vim.tbl_extend("force", options, opts)
@@ -11,12 +11,29 @@ keymap("n", "<Esc>", ":nohls<CR>")
 vim.keymap.set("n", ":", ";", { noremap = true })
 vim.keymap.set("n", ";", ":", { noremap = true })
 
+-- better up/down
+keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+
+-- Resize window using <ctrl> arrow keys
+keymap("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+keymap("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+keymap("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+keymap("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+
 -- keymap("n", "j", "jzz")
 -- keymap("n", "k", "kzz")
 -- vim.cmd([[nnoremap <leader>zz :let &l:scrolloff=999-&l:scrolloff<CR>]])
 
-keymap("n", "N", [[v:searchforward ? 'Nzz' : 'nzz']], { expr = true })
-keymap("n", "n", [[v:searchforward ? 'nzz' : 'Nzz']], { expr = true })
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+keymap("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
+keymap("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+keymap("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+keymap("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
+keymap("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+keymap("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+-- keymap("n", "N", [[v:searchforward ? 'Nzz' : 'nzz']], { expr = true })
+-- keymap("n", "n", [[v:searchforward ? 'nzz' : 'Nzz']], { expr = true })
 -- vim.keymap.set("n", "n", "nzzzv")
 -- vim.keymap.set("n", "N", "Nzzzv")
 
@@ -30,11 +47,17 @@ keymap("n", "<leader>|", "<C-W>v")
 keymap("n", "<leader>we", "<C-W>c")
 keymap("n", "<leader>se", "<C-w>=")
 
+-- keymap("n", "<leader>bd", function()
+--   Snacks.bufdelete()
+-- end, { desc = "Delete Buffer" })
+-- keymap("n", "<leader>bo", function()
+--   Snacks.bufdelete.other()
+-- end, { desc = "Delete Other Buffers" })
+
+-- keymap("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 keymap("n", "Q", "<cmd>bd<CR>")
 keymap("n", "<leader>Q", ":qa!<CR>")
 keymap("n", "<leader>qq", ":qa<CR>")
-
-keymap("n", "<leader>`", "<cmd>e #<cr>")
 
 keymap("n", "<leader><tab>o", ":tabnew<CR>")
 -- keymap("n", "", "<cmd>tabclose<cr>")
@@ -47,6 +70,13 @@ keymap("n", "<leader>qo", ":copen<CR>")
 
 keymap("n", "U", "<C-r>", {})
 
+-- Move Lines
+-- keymap("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+-- keymap("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+-- keymap("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+-- keymap("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+-- keymap("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+-- keymap("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 keymap("v", "K", ":m '<-2<CR>gv=gv")
 keymap("v", "J", ":m '>+1<CR>gv=gv")
 
@@ -58,6 +88,7 @@ keymap("n", "<C-u>", "<C-u>zz")
 
 keymap("n", "<S-l>", ":bnext<cr>")
 keymap("n", "<S-h>", ":bprevious<cr>")
+keymap("n", "<leader>`", "<cmd>e #<cr>")
 
 -- vim.cmd("command! W execute 'w !sudo tee % > /dev/null' <bar> edit!")
 vim.keymap.set("n", "<leader>mx", "<cmd>!chmod u+x %<CR>", { silent = true, desc = "makes file executable" })
@@ -69,8 +100,13 @@ keymap({ "x", "v" }, ",", "$") -- has delay
 
 -- stylua: ignore start
 
+--keywordprg
+keymap("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
+
 vim.api.nvim_set_keymap("n", "<C-_>", "gcc", { silent = true })
 vim.api.nvim_set_keymap("v", "<C-_>", "gc", { silent = true })
+keymap("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
+keymap("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 -- vim.keymap.set("n", "<C-_>", function() vim.cmd("normal! gcc") end, { silent = true })
 
 -- keymap("n", "gx", ":!open <c-r><c-a><CR>")
@@ -113,8 +149,6 @@ keymap("n", "<leader>yf", function()
   vim.fn.setreg("+", filename)
 end)
 
---------
-
 keymap("n", "yow", function()
   vim.wo.wrap = not vim.wo.wrap
 end)
@@ -126,7 +160,45 @@ keymap("n", "yor", function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end)
 
---------
+-- Clear search, diff update and redraw
+keymap(
+  "n",
+  "<leader>ur",
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  { desc = "Redraw / Clear hlsearch / Diff Update" }
+)
+
+-- lazy
+keymap("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
+-- new file
+keymap("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+
+-- location list
+keymap("n", "<leader>xl", function()
+  local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end, { desc = "Location List" })
+
+-- quickfix list
+keymap("n", "<leader>xq", function()
+  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end, { desc = "Quickfix List" })
+
+
+-- tabs
+-- keymap("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+-- keymap("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
+-- keymap("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+-- keymap("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+-- keymap("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+-- keymap("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+-- keymap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- Copy filepath to the clipboard
 -- vim.keymap.set("n", "<leader>fp", function()

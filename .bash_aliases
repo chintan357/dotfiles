@@ -1,6 +1,7 @@
 alias e=exit
 alias c=clear
 alias al=alias
+alias ual=unalias
 
 #-----------#
 
@@ -142,6 +143,9 @@ alias du1='du -h --max-depth=1'
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
 alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
 
+bak() { mv "$1" "$1.bak"; }
+# alias bak='xargs -I {} mv {} {}.bak'
+
 #-----------#
 
 alias update='sudo apt update && sudo apt -y upgrade'
@@ -197,7 +201,7 @@ alias uvs='uv sync'
 
 alias uvt='uv tool'
 
-alias uvup='uv look --upgrade-package $1'
+alias uvup='uv lock --upgrade-package $1'
 
 alias uvp='uv python'
 alias pyp='uv python pin'
@@ -275,10 +279,6 @@ alias vaultsw='cd /mnt/c/chintan357/vaults/'
 
 #-----------#
 
-alias ytdl='youtube-dl'
-
-#-----------#
-
 alias g=git
 alias lg=lazygit
 alias lzg=lazygit
@@ -353,45 +353,6 @@ alias dkrrm='docker run --rm'
 alias dklf='docker logs -f'
 alias dki='docker images'
 
-
-#-----------#
-
-
-# alias kc='kubectl'
-#
-# alias kcg='kubectl get'
-# alias kcgn='kubectl get --namespace'
-#
-# alias kcd='kubectl describe'
-# alias kcdn='kubectl describe --namespace'
-#
-# alias kcdl='kubectl delete'
-# alias kcdln='kubectl delete --namespace'
-# alias kcdlp='kubectl-delete-pod'
-#
-# alias wkcg='w1 kubectl get'
-# alias kcg='kubectl get'
-# alias kcgn='kubectl get --namespace'
-# alias kcgan='kubectl get pods --all-namespaces'
-#
-# alias kcge='kubectl get events --sort-by=".lastTimestamp" --all-namespaces --watch'
-# alias kcr='kubectl create'
-# alias kca='kubectl apply -f'
-# alias kce='kubectl exec -t -i'
-# alias kclf='kubectl logs -f'
-# alias kccon='kubectl config'
-# alias kcxsn='kubectl config set-context $(kubectl config current-context) --namespace'
-# alias kcpf='kubectl port-forward'
-# alias kcdldr='kubectl-delete-default-resources'
-# alias kcii='kubectl-ingress-ip-address'
-# alias kcni='kubectl-nginx-ip-address'
-# alias kcigip='kubectl-istio-gateway-ip-address'
-# alias kcignp='kubectl-istio-gateway-http-nodeport'
-
-# minikube
-# alias mks='minikube start'
-# alias mkt='minikube stop'
-
 #-----------#
 
 alias gaadl='gcloud auth application-default login'
@@ -413,6 +374,10 @@ alias gtypist='gtypist -c 0,2'
 alias R=ranger
 
 alias t='sesh connect $(sesh list | fzf)'
+
+alias smi='nvidia-smi'
+
+alias ytdl='youtube-dl'
 
 #-----------#
 
@@ -472,3 +437,38 @@ alias t='sesh connect $(sesh list | fzf)'
 # for c in $(sudo docker ps -a | awk '{print $1}' | sed "1 d") do sudo docker $1 $c done }
 
 # alias dkclean='docker ps -q -a -f status=exited | xargs -r docker rm && docker images -q -f dangling=true | xargs -r docker rmi'
+
+# alias kc='kubectl'
+#
+# alias kcg='kubectl get'
+# alias kcgn='kubectl get --namespace'
+#
+# alias kcd='kubectl describe'
+# alias kcdn='kubectl describe --namespace'
+#
+# alias kcdl='kubectl delete'
+# alias kcdln='kubectl delete --namespace'
+# alias kcdlp='kubectl-delete-pod'
+#
+# alias wkcg='w1 kubectl get'
+# alias kcg='kubectl get'
+# alias kcgn='kubectl get --namespace'
+# alias kcgan='kubectl get pods --all-namespaces'
+#
+# alias kcge='kubectl get events --sort-by=".lastTimestamp" --all-namespaces --watch'
+# alias kcr='kubectl create'
+# alias kca='kubectl apply -f'
+# alias kce='kubectl exec -t -i'
+# alias kclf='kubectl logs -f'
+# alias kccon='kubectl config'
+# alias kcxsn='kubectl config set-context $(kubectl config current-context) --namespace'
+# alias kcpf='kubectl port-forward'
+# alias kcdldr='kubectl-delete-default-resources'
+# alias kcii='kubectl-ingress-ip-address'
+# alias kcni='kubectl-nginx-ip-address'
+# alias kcigip='kubectl-istio-gateway-ip-address'
+# alias kcignp='kubectl-istio-gateway-http-nodeport'
+
+# minikube
+# alias mks='minikube start'
+# alias mkt='minikube stop'

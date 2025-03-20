@@ -22,8 +22,8 @@ npm i -g open-cli
 # sudo apt install pipx
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-tools=(ruff ipython trash-cli pudb asciinema aider-chat ranger-fm thefuck)
-#  jupyterlab jupyter-console urlscan
+tools=(ruff ipython trash-cli pudb asciinema aider-chat ranger-fm thefuck jupyterlab jupyter-console)
+# urlscan jupyter_client
 for tool in "${tools[@]}"; do
   uv tool install "$tool"
 done

@@ -28,7 +28,7 @@ return {
     build = ":TSUpdate",
     -- main = "nvim-treesitter.configs", -- Sets main module to use for opts
     config = function()
-      keymap("n", "yoT", function()
+      vim.keymap.set("n", "yoT", function()
         if vim.b.ts_highlight then
           vim.treesitter.stop()
         else
