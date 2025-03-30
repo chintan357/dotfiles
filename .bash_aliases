@@ -183,6 +183,8 @@ alias sorc="source ~/.bashrc && echo 'refreshed .bashrc'"
 
 #-----------#
 
+alias jup='jupyter'
+alias jupl='jupyter lab'
 alias jupnb='jupyter notebook'
 
 alias cve='uv venv'
@@ -194,7 +196,9 @@ alias sopy='cve && act'
 alias py='uv run $1'
 
 alias uvi='uv init'
+alias uvit='uv init --python $1'
 alias uvr='uv run'
+alias uvrp='uv run python'
 alias uva='uv add'
 alias uvrm='uv remove'
 alias uvs='uv sync'
@@ -205,9 +209,16 @@ alias uvup='uv lock --upgrade-package $1'
 
 alias uvp='uv python'
 alias pyp='uv python pin'
+alias pyf='uv python find'
 alias pyls='uv python list --only-installed'
 alias pyi='uv python install'
 alias pyU='uv python uninstall'
+
+# uv tree: View the dependency tree for the project.
+# uv build: Build the project into distribution archives.
+# uv publish: Publish the project to a package index.
+# uv add --script: Add a dependency to a script
+# uv remove --script: Remove a dependency from a script
 
 alias cvet='uv venv --python $1'
 alias uvh='uv help'
@@ -221,6 +232,8 @@ alias pips="pip show"
 alias pipg="pip freeze | grep"
 alias pipreq="pip freeze > requirements.txt"
 alias pipir="pip install -r requirements.txt"
+# uv pip check: Check that the current environment has compatible packages.
+# uv pip tree: View the dependency tree for the environment.
 
 alias ipython='ipython3'
 alias ipy='ipython3'

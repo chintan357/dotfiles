@@ -27,10 +27,6 @@ return {
       return {
         timeout_ms = 500,
         lsp_format = lsp_format_opt,
-        -- lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-        -- 			bufnr = args.buf,
-        -- 			lsp_fallback = true,
-        -- 			quiet = true,
       }
     end,
     formatters_by_ft = {
@@ -40,16 +36,14 @@ return {
         "ruff_format",
         "ruff_organize_imports",
       },
-      json = { "prettierd", "prettier", stop_after_first = true },
-      javascript = { "prettierd", "prettier", stop_after_first = true },
+      json = { "prettierd" },
+      javascript = { "prettierd" },
       toml = { "taplo" },
       bash = { "beautysh" },
       sh = { "beautysh" },
-      html = { "prettier" },
-      css = { "prettier" },
+      html = { "prettierd" },
+      css = { "prettierd" },
       yaml = { "yamlfix" },
-      -- rust = { "rustfmt", lsp_format = "fallback" },
-      -- ruby = { "rubocop" },
       -- proto = { "buf" },
     },
     default_format_opts = {

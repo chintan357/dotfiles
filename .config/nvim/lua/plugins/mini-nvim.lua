@@ -1,4 +1,3 @@
--- TODO: go over other utility plugin provided by mini
 return {
   {
     "echasnovski/mini.ai",

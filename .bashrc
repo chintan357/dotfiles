@@ -140,7 +140,7 @@ for key in ~/.ssh/*; do
     fi
 done
 
-source $HOME/.config/broot/launcher/bash/br # TODO: is this needed?
+# source $HOME/.config/broot/launcher/bash/br # TODO: is this needed?
 
 _fzf_git_fzf() {
   fzf --height 50% --tmux 90%,70% \
@@ -171,3 +171,5 @@ bind -x '"\C-p": fzf_to_nvim'
 
 bind -m vi-command '"\eo": "\C-z\ec\C-z"'
 bind -m vi-insert '"\eo": "\C-z\ec\C-z"'
+
+. "$HOME/.local/share/../bin/env"

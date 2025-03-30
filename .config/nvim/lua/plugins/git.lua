@@ -3,13 +3,11 @@
 -- 	return vim.fn.isdirectory(git_dir) ~= 0
 -- end
 -- lazy = not is_inside_git_repo(),
+-- vim.keymap.set({ "n" }, "gy", function() vim.cmd("GBrowse") end)
 
 return {
   { "tpope/vim-fugitive" },
-
   { "tpope/vim-rhubarb" },
-  -- vim.keymap.set({ "n" }, "gy", function() vim.cmd("GBrowse") end)
-
   { "junegunn/gv.vim" },
   { "akinsho/git-conflict.nvim" },
   {

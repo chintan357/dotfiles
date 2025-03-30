@@ -23,90 +23,90 @@
 
 -- fzf.vim configuration {{{
 vim.api.nvim_create_user_command("RgIgnoreFilename", function(opts)
-	local spec = vim.fn["fzf#vim#with_preview"]()
-	spec.options = { "--delimiter", ":", "--nth", 4, unpack(spec.options) }
-	vim.fn["fzf#vim#grep"](
-		"rg --column --line-number --no-heading --color=always --smart-case -- " .. vim.fn.shellescape(opts.args),
-		spec,
-		opts.bang and 1 or 0
-	)
+  local spec = vim.fn["fzf#vim#with_preview"]()
+  spec.options = { "--delimiter", ":", "--nth", 4, unpack(spec.options) }
+  vim.fn["fzf#vim#grep"](
+    "rg --column --line-number --no-heading --color=always --smart-case -- " .. vim.fn.shellescape(opts.args),
+    spec,
+    opts.bang and 1 or 0
+  )
 end, { nargs = "*", bang = true })
 vim.api.nvim_create_user_command("RgIgnoreTests", function(opts)
-	local spec = vim.fn["fzf#vim#with_preview"]()
-	spec.options = { "--delimiter", ":", "--nth", 4, unpack(spec.options) }
-	vim.fn["fzf#vim#grep"](
-		"rg --column --line-number --no-heading --color=always --smart-case --glob !test/ --glob !spec/ -- "
-			.. vim.fn.shellescape(opts.args),
-		spec,
-		opts.bang and 1 or 0
-	)
+  local spec = vim.fn["fzf#vim#with_preview"]()
+  spec.options = { "--delimiter", ":", "--nth", 4, unpack(spec.options) }
+  vim.fn["fzf#vim#grep"](
+    "rg --column --line-number --no-heading --color=always --smart-case --glob !test/ --glob !spec/ -- "
+    .. vim.fn.shellescape(opts.args),
+    spec,
+    opts.bang and 1 or 0
+  )
 end, { nargs = "*", bang = true })
 
 return {
-	"AckslD/nvim-neoclip.lua",
-	dependencies = {
-		{ "nvim-telescope/telescope.nvim" },
-	},
-	config = function()
-		require("neoclip").setup({
-			history = 1000,
-			enable_persistent_history = false,
-			length_limit = 1048576,
-			continuous_sync = false,
-			db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
-			filter = nil,
-			preview = true,
-			prompt = nil,
-			default_register = '"',
-			default_register_macros = "q",
-			enable_macro_history = true,
-			content_spec_column = false,
-			disable_keycodes_parsing = false,
-			on_select = {
-				move_to_front = false,
-				close_telescope = true,
-			},
-			on_paste = {
-				set_reg = false,
-				move_to_front = false,
-				close_telescope = true,
-			},
-			on_replay = {
-				set_reg = false,
-				move_to_front = false,
-				close_telescope = true,
-			},
-			on_custom_action = {
-				close_telescope = true,
-			},
-			keys = {
-				telescope = {
-					i = {
-						select = "<cr>",
-						paste = "<c-j>",
-						paste_behind = "<c-k>",
-						replay = "<c-q>", -- replay a macro
-						delete = "<c-d>", -- delete an entry
-						edit = "<c-e>", -- edit an entry
-						custom = {},
-					},
-					n = {
-						select = "<cr>",
-						paste = "p",
-						--- It is possible to map to more than one key.
-						-- paste = { 'p', '<c-p>' },
-						paste_behind = "P",
-						replay = "q",
-						delete = "d",
-						edit = "e",
-						custom = {},
-					},
-				},
-			},
-		})
+  "AckslD/nvim-neoclip.lua",
+  dependencies = {
+    { "nvim-telescope/telescope.nvim" },
+  },
+  config = function()
+    require("neoclip").setup({
+      history = 1000,
+      enable_persistent_history = false,
+      length_limit = 1048576,
+      continuous_sync = false,
+      db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
+      filter = nil,
+      preview = true,
+      prompt = nil,
+      default_register = '"',
+      default_register_macros = "q",
+      enable_macro_history = true,
+      content_spec_column = false,
+      disable_keycodes_parsing = false,
+      on_select = {
+        move_to_front = false,
+        close_telescope = true,
+      },
+      on_paste = {
+        set_reg = false,
+        move_to_front = false,
+        close_telescope = true,
+      },
+      on_replay = {
+        set_reg = false,
+        move_to_front = false,
+        close_telescope = true,
+      },
+      on_custom_action = {
+        close_telescope = true,
+      },
+      keys = {
+        telescope = {
+          i = {
+            select = "<cr>",
+            paste = "<c-j>",
+            paste_behind = "<c-k>",
+            replay = "<c-q>", -- replay a macro
+            delete = "<c-d>", -- delete an entry
+            edit = "<c-e>", -- edit an entry
+            custom = {},
+          },
+          n = {
+            select = "<cr>",
+            paste = "p",
+            --- It is possible to map to more than one key.
+            -- paste = { 'p', '<c-p>' },
+            paste_behind = "P",
+            replay = "q",
+            delete = "d",
+            edit = "e",
+            custom = {},
+          },
+        },
+      },
+    })
 
-		vim.keymap.set("n", "<leader>o", "<cmd>Telescope neoclip<CR>", { desc = "Telescope Neoclip" })
-	end,
+    vim.keymap.set("n", "<leader>o", "<cmd>Telescope neoclip<CR>", { desc = "Telescope Neoclip" })
+  end,
 }
 
 
@@ -115,7 +115,7 @@ return {
   dependencies = "kevinhwang91/promise-async",
   config = function()
     vim.o.foldcolumn = "1" -- '0' is not bad
-    vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+    vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true
 
@@ -197,26 +197,25 @@ return {
 
 vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n", "v" }, ":", ";")
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-  --
+--
 -- Lsp Lines
 vim.keymap.set("n", "<Leader>lt", function()
-	require("lsp_lines").toggle()
+  require("lsp_lines").toggle()
 end, { desc = "toggle `lsp_lines`" })
-  --
+--
 -- Toggleterm
 vim.keymap.set("n", "<Leader>t", function()
-	return "<cmd>" .. tostring(vim.v.count1) .. "ToggleTerm direction=float<CR>"
+  return "<cmd>" .. tostring(vim.v.count1) .. "ToggleTerm direction=float<CR>"
 end, { expr = true, silent = true })
 -- Neogen
 vim.keymap.set(
-	"n",
-	"<Leader>o",
-	"<cmd>Neogen<CR>",
-	{ desc = "generates documentation for the current item", silent = true }
+  "n",
+  "<Leader>o",
+  "<cmd>Neogen<CR>",
+  { desc = "generates documentation for the current item", silent = true }
 )
-

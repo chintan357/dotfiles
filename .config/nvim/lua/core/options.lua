@@ -200,7 +200,7 @@ opt.jumpoptions = "view"
 -- opt.fillchars = "eob: " -- Don't show `~` outside of buffer
 -- opt.breakindent = true
 -- opt.langnoremap = false
-opt.spelllang = { "en" }
+-- opt.spelllang = { "en" }
 --
 -- Window options
 -- vw.colorcolumn = "80,120" -- Make a ruler at 80px and 120px

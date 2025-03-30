@@ -44,7 +44,7 @@ return {
       ["gs"] = { "actions.change_sort", mode = "n" },
       ["gx"] = "actions.open_external",
       ["g."] = { "actions.toggle_hidden", mode = "n" },
-      ["q"] = { "actions.close", mode = "n" }, -- not working
+      -- ["q"] = { "actions.close", mode = "n" }, -- not working
       ["gd"] = {
         desc = "Toggle detail view",
         callback = function()
