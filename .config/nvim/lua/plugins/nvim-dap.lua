@@ -1,21 +1,26 @@
 -- TODO: test class, method & debug_selection
+--https://www.lazyvim.org/extras/dap/core
 return {
   {
     "mfussenegger/nvim-dap-python",
     ft = "python",
+    keys = {
+      { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
+      { "<leader>dPc", function() require('dap-python').test_class() end,  desc = "Debug Class",  ft = "python" },
+    },
+
     dependencies = {
       "mfussenegger/nvim-dap",
     },
     config = function()
       require("dap-python").setup("python3")
-      local keymap = vim.keymap
 
       -- if vim.bo.filetype == "python" then
-      keymap.set("n", "<leader>tc", function()
+      vim.keymap.set("n", "<leader>tc", function()
         require("dap-python").test_class()
       end)
 
-      keymap.set("n", "<leader>tm", function()
+      vim.keymap.set("n", "<leader>tm", function()
         require("dap-python").test_method()
       end)
       vim.cmd([[

@@ -26,8 +26,126 @@ return {
       -- "RRethy/nvim-treesitter-endwise", -- Automatically add end keywords for Ruby, Lua, Python, and more
     },
     build = ":TSUpdate",
+    opts = {
+      highlight = { enable = true, disable = { "text" }, additional_vim_regex_highlighting = false },
+      indent = { enable = true },
+      auto_install = true,
+      -- Install parsers synchronously (only applied to `ensure_installed`)
+      sync_install = false,
+      -- auto_pairs = { enable = true },
+      -- autotag = { enable = true },
+      -- context_commentstring = { enable = true },
+      ignore_install = {},
+      ensure_installed = {
+        "bash",
+        "diff",
+        "html",
+        "javascript",
+        "jsdoc",
+        "python",
+        "json",
+        "jsonc",
+        "yaml",
+        "regex",
+        "query",
+        "toml",
+        "lua",
+        "luadoc",
+        "markdown",
+        "markdown_inline",
+        "vim",
+        "vimdoc",
+        "lua",
+        "luadoc",
+        "luap",
+        "rst"
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "gnn",
+          node_incremental = "<C-a>",
+          node_decremental = "<bs>",
+          scope_incremental = "gn",
+          -- node_incremental = "grn",
+          -- node_decremental = "grm",
+        },
+      },
+      -- nvim-treesitter-endwise plugin
+      -- endwise = { enable = true },
+      textobjects = {
+        swap = {
+          enable = true,
+          swap_next = {
+            ["<leader>a"] = "@parameter.inner",
+          },
+          swap_previous = {
+            ["<leader>A"] = "@parameter.inner",
+          },
+        },
+        -- lsp_interop = {
+        -- 	enable = true,
+        -- 	border = "none",
+        -- 	floating_preview_opts = {},
+        -- 	peek_definition_code = {
+        -- 		-- ["<leader>df"] = "@function.outer",
+        -- 		-- ["<leader>dF"] = "@class.outer",
+        -- 	},
+        -- }, -- },
+        select = {
+          enable = true,
+          lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+          keymaps = {
+            ["ia"] = "@call.inner",
+            ["aa"] = "@call.outer",
+            ["iB"] = "@block.inner",
+            ["aB"] = "@block.outer",
+            ["if"] = "@function.inner",
+            ["af"] = "@function.outer",
+            ["iC"] = "@class.inner",
+            ["aC"] = "@class.outer",
+            ["ic"] = "@conditional.inner",
+            ["ac"] = "@conditional.outer",
+            -- ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+          },
+          --       selection_modes = {
+          --   ['@parameter.outer'] = 'v', -- charwise
+          --   ['@function.outer'] = 'V', -- linewise
+          --   ['@class.outer'] = '<c-v>', -- blockwise
+          -- },
+          -- include_surrounding_whitespace = true,
+
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+              ["]m"] = "@function.outer",
+              ["]]"] = "@class.outer",
+            },
+            goto_next_end = {
+              ["]M"] = "@function.outer",
+              ["]["] = "@class.outer",
+            },
+            goto_previous_start = {
+              ["[m"] = "@function.outer",
+              ["[["] = "@class.outer",
+            },
+            goto_previous_end = {
+              ["[M"] = "@function.outer",
+              ["[]"] = "@class.outer",
+            },
+            -- goto_next = {
+            -- 	[""] = "@conditional.outer",
+            -- },
+            -- goto_previous = {
+            -- 	[""] = "@conditional.outer",
+            -- },
+          },
+        },
+      },
+    },
     -- main = "nvim-treesitter.configs", -- Sets main module to use for opts
-    config = function()
+    config = function(_, opts)
       vim.keymap.set("n", "yoT", function()
         if vim.b.ts_highlight then
           vim.treesitter.stop()
@@ -41,121 +159,7 @@ return {
           hi TreesitterContextBottom gui=underline guisp=Grey
           hi TreesitterContextLineNumberBottom gui=underline guisp=Grey
       ]])
-      require("nvim-treesitter.configs").setup({
-        highlight = { enable = true, disable = { "text" }, additional_vim_regex_highlighting = false },
-        indent = { enable = true },
-        auto_install = true,
-        -- auto_pairs = { enable = true },
-        -- autotag = { enable = true },
-        -- context_commentstring = { enable = true },
-        ensure_installed = {
-          "bash",
-          "diff",
-          "html",
-          "javascript",
-          "jsdoc",
-          "python",
-          "json",
-          "jsonc",
-          "yaml",
-          "regex",
-          "query",
-          "toml",
-          "lua",
-          "luadoc",
-          "markdown",
-          "markdown_inline",
-          "vim",
-          "vimdoc",
-          "lua",
-          "luadoc",
-          "luap",
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<C-a>",
-            node_incremental = "<C-a>",
-            node_decremental = "<bs>",
-            -- init_selection = "gnn",
-            -- node_incremental = "grn",
-            -- scope_incremental = "grc",
-            -- node_decremental = "grm",
-          },
-        },
-        -- nvim-treesitter-endwise plugin
-        -- endwise = { enable = true },
-        textobjects = {
-          swap = {
-            enable = true,
-            swap_next = {
-              ["<leader>a"] = "@parameter.inner",
-            },
-            swap_previous = {
-              ["<leader>A"] = "@parameter.inner",
-            },
-          },
-          -- lsp_interop = {
-          -- 	enable = true,
-          -- 	border = "none",
-          -- 	floating_preview_opts = {},
-          -- 	peek_definition_code = {
-          -- 		-- ["<leader>df"] = "@function.outer",
-          -- 		-- ["<leader>dF"] = "@class.outer",
-          -- 	},
-          -- }, -- },
-          select = {
-            enable = true,
-            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-            keymaps = {
-              ["ia"] = "@call.inner",
-              ["aa"] = "@call.outer",
-              ["iB"] = "@block.inner",
-              ["aB"] = "@block.outer",
-              ["if"] = "@function.inner",
-              ["af"] = "@function.outer",
-              ["iC"] = "@class.inner",
-              ["aC"] = "@class.outer",
-              ["ic"] = "@conditional.inner",
-              ["ac"] = "@conditional.outer",
-              -- ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-            },
-            --       selection_modes = {
-            --   ['@parameter.outer'] = 'v', -- charwise
-            --   ['@function.outer'] = 'V', -- linewise
-            --   ['@class.outer'] = '<c-v>', -- blockwise
-            -- },
-            -- include_surrounding_whitespace = true,
-
-            move = {
-              enable = true,
-              set_jumps = true,
-              goto_next_start = {
-                ["]m"] = "@function.outer",
-                ["]]"] = "@class.outer",
-              },
-              goto_next_end = {
-                ["]M"] = "@function.outer",
-                ["]["] = "@class.outer",
-              },
-              goto_previous_start = {
-                ["[m"] = "@function.outer",
-                ["[["] = "@class.outer",
-              },
-              goto_previous_end = {
-                ["[M"] = "@function.outer",
-                ["[]"] = "@class.outer",
-              },
-              -- goto_next = {
-              -- 	[""] = "@conditional.outer",
-              -- },
-              -- goto_previous = {
-              -- 	[""] = "@conditional.outer",
-              -- },
-            },
-          },
-        },
-      })
+      require("nvim-treesitter.configs").setup(opts)
     end,
   },
   {
