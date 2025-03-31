@@ -7,7 +7,7 @@
 
 return {
   { "tpope/vim-fugitive" },
-  { "tpope/vim-rhubarb" },
+  -- { "tpope/vim-rhubarb" },
   { "junegunn/gv.vim" },
   { "akinsho/git-conflict.nvim" },
   {

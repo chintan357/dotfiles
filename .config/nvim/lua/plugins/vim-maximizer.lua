@@ -1,3 +1,4 @@
+-- TODO: could you find native alternative to this?
 return {
   "szw/vim-maximizer",
   event = "VeryLazy",

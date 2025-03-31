@@ -7,7 +7,7 @@ return {
       { "williamboman/mason-lspconfig.nvim" },
       { "WhoIsSethDaniel/mason-tool-installer.nvim" },
       { "j-hui/fidget.nvim",                        opts = {} },
-      "hrsh7th/cmp-nvim-lsp",
+      -- "hrsh7th/cmp-nvim-lsp",
       -- { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
       -- "stevearc/conform.nvim",
       -- { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
@@ -114,8 +114,8 @@ return {
       -- keymap("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
       -- keymap("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+      -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       --  - cmd (table): Override the default command used to start the server
       --  - filetypes (table): Override the default list of associated filetypes for the server
