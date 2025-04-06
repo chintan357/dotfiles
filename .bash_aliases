@@ -237,6 +237,7 @@ alias pipir="pip install -r requirements.txt"
 
 alias ipython='ipython3'
 alias ipy='ipython3'
+alias ipyt='ipython3 --profile=tmp'
 
 alias pyserver="uv run -m http.server"
 

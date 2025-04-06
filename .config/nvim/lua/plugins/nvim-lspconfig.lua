@@ -154,6 +154,7 @@ return {
           },
         },
         bashls = {},
+        marksman = {},
         pyright = {},
         -- pyright = {
         --     settings = {

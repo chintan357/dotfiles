@@ -33,14 +33,14 @@ export PYTHONBREAKPOINT="ipdb.set_trace"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'" #TODO: is this workinng?
 
-safesource() {
-    [[ -s $1 ]] && source $1
-}
+# safesource() {
+#     [[ -s $1 ]] && source $1
+# }
 
-safesource /usr/local/etc/bash_completion.d/git-completion.bash
-safesource /usr/local/etc/bash_completion.d/git-prompt.sh
-safesource ~/.bash_profile.local
-safesource "$HOME/.rvm/scripts/rvm"
+# safesource /usr/local/etc/bash_completion.d/git-completion.bash
+# safesource /usr/local/etc/bash_completion.d/git-prompt.sh
+# safesource ~/.bash_profile.local
+# safesource "$HOME/.rvm/scripts/rvm"
 
 # source "$HOME/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh"
 
@@ -61,5 +61,3 @@ source ~/.local/bin/forgit.plugin.sh
 
 eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"
-
-. "$HOME/.local/share/../bin/env"
