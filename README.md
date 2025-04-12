@@ -36,7 +36,7 @@ cargo install tree-sitter-cli
 cargo install --locked navi
 cargo install eza git-delta hackernews_tui broot halp
 
-curl -sS https://starship.rs/install.sh | sh
+# curl -sS https://starship.rs/install.sh | sh
 
 git clone https://github.com/facebook/PathPicker.git
 cd PathPicker/debian
@@ -63,12 +63,11 @@ cd neovim
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 
-
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
-wget -O ~/.local/bin/fzf-git.sh https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh
-wget -O ~/.local/bin/git-forgit https://raw.githubusercontent.com/wfxr/forgit/main/bin/git-forgit
-wget -O ~/.local/bin/forgit.plugin.sh https://raw.githubusercontent.com/wfxr/forgit/main/forgit.plugin.zsh
+# https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh
+# https://raw.githubusercontent.com/wfxr/forgit/main/bin/git-forgit
+# https://raw.githubusercontent.com/wfxr/forgit/main/forgit.plugin.zsh
 
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
@@ -89,5 +88,7 @@ gh extension install dlvhdr/gh-dash
 
 # windows utility
 cp /mnt/c/Windows/System32/cmd.exe ~/.local/bin
-cp /mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0//powershell.exe .local/bin/
+cp /mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe .local/bin/
+cp /mnt/c/WINDOWS/Explorer.exe /home/chintan357/.local/bin/
+
 ```

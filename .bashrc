@@ -58,6 +58,8 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
+PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s")'
+PS1='\[\e[36m\]\w\[\e[0m\]\[\e[33m\] ${PS1_GIT:+(${PS1_GIT})}\[\e[0m\] '
 
 # . ~/.bash.d/cht.sh
 

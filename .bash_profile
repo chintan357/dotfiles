@@ -19,11 +19,8 @@ fi
 
 export XDG_RUNTIME_DIR="/tmp/"
 
-export LESS='-R --use-color -Dd+r$Du+b'
+export LESS='-R --use-color -Dd+r Du+b'
 # export PAGER=$HOME/bin/vimpager
-# alias less=$PAGER
-# export MANPAGER="less -R --use-color -Dd+r -Du+b"
-# export MANPAGER='vimpager'
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu nornu noma' -\""
 
 export VISUAL=vi
@@ -39,22 +36,14 @@ export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --pro
 
 # safesource /usr/local/etc/bash_completion.d/git-completion.bash
 # safesource /usr/local/etc/bash_completion.d/git-prompt.sh
-# safesource ~/.bash_profile.local
-# safesource "$HOME/.rvm/scripts/rvm"
 
-# source "$HOME/.config/nvm/versions/node/v21.7.1/lib/node_modules/@hyperupcall/autoenv/activate.sh"
-
-source $HOME/.config/broot/launcher/bash/br
-
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# source $HOME/.config/broot/launcher/bash/br
 
 stty -ixon
 
-
 eval "$(fzf --bash)" # FZF_ALT_C_COMMAND= 
 eval "$(zoxide init bash)"
-eval "$(starship init bash)"
-eval $(thefuck --alias fq)
+# eval $(thefuck --alias fq)
 
 source ~/.local/bin/fzf-git.sh
 source ~/.local/bin/forgit.plugin.sh
