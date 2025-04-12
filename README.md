@@ -56,12 +56,13 @@ make && sudo make install
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # prefix + I
 
-# nvim
-sudo apt install gettext
+# build nvim from source
+sudo apt -y install gettext
 git clone --branch nightly --depth 1 https://github.com/neovim/neovim.git
 cd neovim
 make CMAKE_BUILD_TYPE=Release
 sudo make install
+
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
@@ -86,4 +87,7 @@ sudo install lazygit /usr/local/bin
 # gh-dash
 gh extension install dlvhdr/gh-dash
 
+# windows utility
+cp /mnt/c/Windows/System32/cmd.exe ~/.local/bin
+cp /mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0//powershell.exe .local/bin/
 ```
