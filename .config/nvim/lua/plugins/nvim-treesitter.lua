@@ -26,6 +26,16 @@ return {
       -- "RRethy/nvim-treesitter-endwise", -- Automatically add end keywords for Ruby, Lua, Python, and more
     },
     build = ":TSUpdate",
+    event = "VeryLazy",
+    init = function(plugin)
+      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
+      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
+      -- no longer trigger the **nvim-treesitter** module to be loaded in time.
+      -- Luckily, the only things that those plugins need are the custom queries, which we make available
+      -- during startup.
+      require("lazy.core.loader").add_to_rtp(plugin)
+      require("nvim-treesitter.query_predicates")
+    end,
     opts = {
       highlight = { enable = true, disable = { "text" }, additional_vim_regex_highlighting = false },
       indent = { enable = true },
@@ -49,8 +59,6 @@ return {
         "regex",
         "query",
         "toml",
-        "lua",
-        "luadoc",
         "markdown",
         "markdown_inline",
         "vim",
@@ -64,25 +72,23 @@ return {
         enable = true,
         keymaps = {
           init_selection = "gnn",
-          node_incremental = "<C-a>",
-          node_decremental = "<bs>",
-          scope_incremental = "gn",
-          -- node_incremental = "grn",
-          -- node_decremental = "grm",
+          node_incremental = "<C-a>", -- grn
+          node_decremental = "<bs>",  -- grm
+          scope_incremental = false,  -- gn
         },
       },
       -- nvim-treesitter-endwise plugin
       -- endwise = { enable = true },
       textobjects = {
-        swap = {
-          enable = true,
-          swap_next = {
-            ["<leader>a"] = "@parameter.inner",
-          },
-          swap_previous = {
-            ["<leader>A"] = "@parameter.inner",
-          },
-        },
+        -- swap = {
+        --   enable = true,
+        --   swap_next = {
+        --     ["<leader>a"] = "@parameter.inner",
+        --   },
+        --   swap_previous = {
+        --     ["<leader>A"] = "@parameter.inner",
+        --   },
+        -- },
         -- lsp_interop = {
         -- 	enable = true,
         -- 	border = "none",
@@ -118,28 +124,16 @@ return {
           move = {
             enable = true,
             set_jumps = true,
-            goto_next_start = {
-              ["]m"] = "@function.outer",
-              ["]]"] = "@class.outer",
-            },
-            goto_next_end = {
-              ["]M"] = "@function.outer",
-              ["]["] = "@class.outer",
-            },
-            goto_previous_start = {
-              ["[m"] = "@function.outer",
-              ["[["] = "@class.outer",
-            },
-            goto_previous_end = {
-              ["[M"] = "@function.outer",
-              ["[]"] = "@class.outer",
-            },
-            -- goto_next = {
-            -- 	[""] = "@conditional.outer",
-            -- },
-            -- goto_previous = {
-            -- 	[""] = "@conditional.outer",
-            -- },
+            -- goto_next_start = { ["]m"] = "@function.outer", ["]]"] = "@class.outer", },
+            -- goto_next_end = { ["]M"] = "@function.outer", ["]["] = "@class.outer", },
+            -- goto_previous_start = { ["[m"] = "@function.outer", ["[["] = "@class.outer", },
+            -- goto_previous_end = { ["[M"] = "@function.outer", ["[]"] = "@class.outer", },
+            goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
+            goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
+            goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
+            goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
+            -- goto_next = { [""] = "@conditional.outer", },
+            -- goto_previous = { [""] = "@conditional.outer", },
           },
         },
       },
@@ -153,6 +147,7 @@ return {
           vim.treesitter.start()
         end
       end)
+      require("nvim-treesitter.configs").setup(opts)
       -- require("nvim-dap-repl-highlights").setup()
 
       vim.cmd([[
