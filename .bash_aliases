@@ -274,6 +274,7 @@ alias mk="mkdir -pv"
 
 alias cdssh='cd ~/.ssh'
 alias cdnvim='cd ~/.config/nvim'
+alias cdipy='cd ~/.ipython/profile_default'
 alias config='cd ~/.config'
 alias tmp='cd ~/tmp'
 alias private='cd ~/private'

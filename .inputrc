@@ -1,4 +1,5 @@
 # bind -f ~/.inputrc
+#
 $include /etc/inputrc
 
 set enable-bracketed-paste on

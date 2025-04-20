@@ -10,17 +10,11 @@ case $- in
 esac
 
 HISTCONTROL=ignoreboth:erasedups
-shopt -s histappend
 HISTSIZE=9999
 HISTFILESIZE=19999
 
-# shopt -s cmdhist
-
-# check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
-# shopt -s checkwinsize
-
-# If set, the pattern "**" used in a pathname expansion context will match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s histappend
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -38,7 +32,6 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -56,6 +49,7 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
+# "history -a; history -n"
 PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s")'
 PS1='\[\e[36m\]\w\[\e[0m\]\[\e[33m\] ${PS1_GIT:+(${PS1_GIT})}\[\e[0m\] '
 
@@ -70,15 +64,12 @@ PS1='\[\e[36m\]\w\[\e[0m\]\[\e[33m\] ${PS1_GIT:+(${PS1_GIT})}\[\e[0m\] '
 # Source goto
 # [[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
 
-# source "$HOME"/.oh-my-git/prompt.sh
-
 # if type rg &> /dev/null; then ... fi
 # export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export FZF_DEFAULT_OPTS=' --height 40% --layout=reverse --border --prompt="> " --color=dark --color=fg:-1,hl:#c678dd,fg+:#ffffff,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
-
 # export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
 # export FZF_DEFAULT_OPTS='--color=bg+:#292e42,bg:#16161e,border:#1f2335,hl:#ff9e64,fg:#a9b1d6,header:#292e42,pointer:#bb9af7,fg+:#a9b1d6,preview-bg:#24283b,prompt:#7dcfff,hl+:#7aa2f7,info:#e0af68'
 
@@ -128,8 +119,6 @@ for key in ~/.ssh/*; do
         ssh-add -l | grep -q "$key" || ssh-add "$key" 2>/dev/null
     fi
 done
-
-# source $HOME/.config/broot/launcher/bash/br # TODO: is this needed?
 
 _fzf_git_fzf() {
   fzf --height 50% --tmux 90%,70% \
