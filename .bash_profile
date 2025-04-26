@@ -9,9 +9,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 # export XDG_RUNTIME_DIR="/tmp/"
 
-# export LESS='-R --use-color -Dd+r Du+b'
-export LESS='-R --use-color -Dd+r$Du+b'
-# export PAGER=$HOME/bin/vimpager
+export LESS='-R --use-color'
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu nornu noma' -\""
 
 export VISUAL=vi
@@ -22,14 +20,11 @@ export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 export PYTHONBREAKPOINT="ipdb.set_trace"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
-export BROWSER="/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory='Default'" #TODO: is this workinng?
+export BROWSER=wslview
 
 safesource() {
     [[ -s $1 ]] && source $1
 }
-
-# safesource /usr/local/etc/bash_completion.d/git-completion.bash
-# safesource /usr/local/etc/bash_completion.d/git-prompt.sh
 
 stty -ixon
 

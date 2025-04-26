@@ -5,15 +5,11 @@ alias ual=unalias
 
 #-----------#
 
-alias bcl="bc -l"
-alias wgetc='wget -c'
-alias whois='whois -H'
 alias diffc='diff --color'
 
 alias cpr='cp -r'
 alias rmr='rm -r'
 alias rmrf='rm -rf'
-alias sortnr='sort -n -r'
 alias tailf='tail -f'
 
 #-----------#
@@ -30,14 +26,14 @@ alias ela='eza -a --git --color=always --icons=always --group-directories-first'
 alias ell='eza -Alh --git --color=always --group-directories-first | less'
 alias elsd='eza -d */ 2> /dev/null'
 alias elh='eza -a | egrep "^\."'
-alias elt='eza -a --tree --level=2 | less' # TODO: doesn't pass color to less
+alias elt='eza -a --tree --level=2'
 
 #-----------#
 
 alias findf='find . -type f -name'
 alias findd='find . -type d -name'
 
-alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
+alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git}'
 
 alias grepi='grep -i'
 alias grepr='grep -r'
@@ -50,7 +46,7 @@ alias pygrep='grep -nr --include="*.py"'
 
 alias chownr='chown -R'
 alias chmodr='chmod -R'
-alias chmx='chmod +x'
+alias chmx='chmod u+x'
 
 #-----------#
 
@@ -66,7 +62,6 @@ alias ports='sudo netstat -tulanp'
 
 alias p1='ping 1.1.1.1'
 alias p8='ping 8.8.8.8'
-alias clh3='curl localhost:3000'
 alias clh8='curl localhost:8080'
 clh() { curl localhost:$1; }
 
@@ -115,10 +110,8 @@ alias hostinfo='hostname && ip addr show'
 alias myip='curl -s https://checkip.amazonaws.com'
 
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
-alias flushdns='sudo systemd-resolve --flush-caches'
 
-alias tree3='tree -L 3 | less'
-alias tree2='tree -L 2 | less'
+alias tree3='tree -a -L 3 | less'
 
 alias hx='hexdump -C'
 alias w1='watch -n 1'
@@ -132,27 +125,25 @@ alias usage='du -ch | grep total'
 alias totalusage='df -hl --total | grep total'
 alias partusage='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs | less'
 
-alias most='du -hsx * | sort -rh | head -10'
-alias bigfiles='du -ha . | sort -rh | head -20 | less'
-alias dirsize="du -sch ./* 2> /dev/null"
+alias most='du -hax | sort -rh | head -10'
 
 alias du1='du -h --max-depth=1'
 
 #-----------#
 
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
-alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
+# alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
 
 bak() { mv "$1" "$1.bak"; }
+ubak() { mv "${1}.bak" "$1"; }
 # alias bak='xargs -I {} mv {} {}.bak'
 
 #-----------#
 
 alias update='sudo apt update && sudo apt -y upgrade'
-alias autoremove='sudo apt -y autoremove && sudo apt autoclean'
-alias distup='sudo apt-get dist-upgrade'
-alias fupdate='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
-alias updatenclean='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get dist-upgrade && sudo apt autoclean && sudo apt -y autoremove'
+alias fullup='sudo apt full-upgrade'
+alias autorm='sudo apt -y autoremove && sudo apt autoclean'
+alias fupdate='update && fullup && autorm'
 
 alias show='apt show $1'
 alias yupp='sudo apt install $1'
@@ -170,16 +161,14 @@ alias einput='$EDITOR ~/.inputrc'
 alias essh='$EDITOR ~/.ssh/config'
 alias evi='$EDITOR ~/.vimrc'
 alias etmux='$EDITOR ~/.tmux.conf'
-alias eprompt='$EDITOR ~/.config/starship.toml'
 alias eipy='$EDITOR ~/.ipython/profile_default/ipython_config.py'
-alias ei3='$EDITOR ~/.config/i3/config'
 alias egit='$EDITOR ~/.gitconfig'
 
 #-----------#
 
 alias soinput="bind -f ~/.inputrc"
-alias sopro="source ~/.bash_profile && echo 'refreshed .bash_profile'"
-alias sorc="source ~/.bashrc && echo 'refreshed .bashrc'"
+alias sopro="source ~/.bash_profile"
+alias sorc="source ~/.bashrc"
 
 #-----------#
 
@@ -188,6 +177,7 @@ alias jupl='jupyter lab'
 alias jupnb='jupyter notebook'
 
 alias cve='uv venv'
+alias cvet='uv venv --python $1'
 alias act="source .venv/bin/activate"
 alias dact='deactivate'
 alias sopy='cve && act'
@@ -202,8 +192,13 @@ alias uvrp='uv run python'
 alias uva='uv add'
 alias uvrm='uv remove'
 alias uvs='uv sync'
+# uv add --script: Add a dependency to a script
+# uv remove --script: Remove a dependency from a script
+
+alias uvh='uv help'
 
 alias uvt='uv tool'
+# uv tree: View the dependency tree for the project.
 
 alias uvup='uv lock --upgrade-package $1'
 
@@ -214,14 +209,6 @@ alias pyls='uv python list --only-installed'
 alias pyi='uv python install'
 alias pyU='uv python uninstall'
 
-# uv tree: View the dependency tree for the project.
-# uv build: Build the project into distribution archives.
-# uv publish: Publish the project to a package index.
-# uv add --script: Add a dependency to a script
-# uv remove --script: Remove a dependency from a script
-
-alias cvet='uv venv --python $1'
-alias uvh='uv help'
 # alias rpy="uvicorn main:app --reload"
 
 alias pip='uv pip'
@@ -297,7 +284,6 @@ alias vaultsw='cd /mnt/c/chintan357/vaults/'
 
 alias g=git
 alias lg=lazygit
-alias lzg=lazygit
 
 alias gatomic='gP && gaa && gcm -m atomic && gpu'
 
@@ -326,9 +312,7 @@ alias gcmam='git commit -am'
 alias gamend='git commit --amend --no-edit'
 
 alias gpu='git push'
-alias gpush='git push'
 alias gP='git pull'
-alias gpull='git pull'
 alias gpr='git pull --rebase'
 
 alias gwc='git whatchanged'
