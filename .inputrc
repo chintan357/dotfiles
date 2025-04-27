@@ -30,6 +30,9 @@ set input-meta on
 set convert-meta off
 set output-meta on
 
+TAB:menu-complete
+"\e[Z":menu-complete-backward
+
 # Use Alt/Meta + Delete to delete the preceding word
 "\e[3;3~": kill-word
 "\e\C-l": alias-expand-line

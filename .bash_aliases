@@ -302,9 +302,8 @@ alias gbk='git checkout -'
 alias gbr='git branch'
 alias gbrl='git branch -l --sort=committerdate'
 
-alias gs='git status -s'
+alias gs='git status -sb'
 alias gst='git status'
-alias gsts='git status -sb'
 
 alias gcm='git commit'
 alias gcmm='git commit -m'
@@ -333,32 +332,35 @@ alias dk='docker'
 
 alias dkps='docker ps'
 alias dkpsa='docker ps -a'
+alias dkx='docker exec -it'
+
+alias dkbt='docker build -t'
+
+alias dki='docker images'
+alias dkrmi='docker rmi'
+alias dkrmia='docker rmi $(docker images -q)'
+
+alias dkr='docker run'
+alias dkrd='docker run -d'
+alias dkrrm='docker run --rm'
 
 alias dkk='docker kill'
 alias dkka='docker kill $(docker ps -q)'
 alias dksa='docker stop $(docker ps -aq)'
 
-alias dkrmi='docker rmi'
-alias dkrmia='docker rmi $(docker images -q)'
-
+alias dkrm='docker rm'
 alias dkclean='docker system prune -af'
 
-alias dkx='docker exec -it'
 alias dkl='docker logs'
-alias dkbt='docker build -t'
-alias dkrm='docker rm'
-alias dkrd='docker run -d'
-alias dkrrm='docker run --rm'
-
 alias dklf='docker logs -f'
-alias dki='docker images'
 
 #-----------#
 
 alias gaadl='gcloud auth application-default login'
-alias gauth='gcloud auth login'
+alias gal='gcloud auth login'
 alias gapat='gcloud auth print-access-token'
-alias gsetpro='gcloud config set project'
+alias gcs='gcloud config set project'
+alias gcsp='gcloud config set project'
 alias gconfls='gcloud config configurations list'
 alias gconfa='gcloud config configurations activate'
 
@@ -366,18 +368,15 @@ alias gconfa='gcloud config configurations activate'
 
 alias v='NVIM_APPNAME="tvim" nvim'
 alias lvim='NVIM_APPNAME="lvim" nvim'
+alias t='sesh connect $(sesh list | fzf)'
+alias R=ranger
 
 alias deep='ssh deep'
 alias dist='ssh dist'
-alias gtypist='gtypist -c 0,2'
-
-alias R=ranger
-
-alias t='sesh connect $(sesh list | fzf)'
-
 alias smi='nvidia-smi'
 
 alias ytdl='youtube-dl'
+alias gtypist='gtypist -c 0,2'
 
 #-----------#
 
