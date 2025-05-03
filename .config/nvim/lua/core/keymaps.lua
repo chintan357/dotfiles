@@ -15,14 +15,10 @@ vim.keymap.set("n", ";", ":", { noremap = true })
 keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
--- Resize window using <ctrl> arrow keys
-keymap("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-keymap("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-keymap("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-keymap("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
-
 -- keymap("n", "j", "jzz")
 -- keymap("n", "k", "kzz")
+keymap("n", "n", "nzz")
+keymap("n", "N", "Nzz")
 -- vim.cmd([[nnoremap <leader>zz :let &l:scrolloff=999-&l:scrolloff<CR>]])
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
@@ -32,10 +28,6 @@ keymap("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Res
 keymap("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
 keymap("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 keymap("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
--- keymap("n", "N", [[v:searchforward ? 'Nzz' : 'nzz']], { expr = true })
--- keymap("n", "n", [[v:searchforward ? 'nzz' : 'Nzz']], { expr = true })
--- vim.keymap.set("n", "n", "nzzzv")
--- vim.keymap.set("n", "N", "Nzzzv")
 
 keymap("v", "v", "<C-v>")
 
@@ -53,8 +45,8 @@ keymap("n", "<leader>se", "<C-w>=")
 -- keymap("n", "<leader>bo", function()
 --   Snacks.bufdelete.other()
 -- end, { desc = "Delete Other Buffers" })
-
 -- keymap("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
+
 keymap("n", "Q", "<cmd>bd<CR>")
 keymap("n", "<leader>Q", ":qa!<CR>")
 keymap("n", "<leader>qq", ":qa<CR>")
@@ -71,14 +63,14 @@ keymap("n", "<leader>qo", ":copen<CR>")
 keymap("n", "U", "<C-r>", {})
 
 -- Move Lines
--- keymap("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
--- keymap("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
--- keymap("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
--- keymap("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
--- keymap("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
--- keymap("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
-keymap("v", "K", ":m '<-2<CR>gv=gv")
-keymap("v", "J", ":m '>+1<CR>gv=gv")
+keymap("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+keymap("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+keymap("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+keymap("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+keymap("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+keymap("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
+-- keymap("v", "K", ":m '<-2<CR>gv=gv")
+-- keymap("v", "J", ":m '>+1<CR>gv=gv")
 
 keymap("v", "<", "<gv")
 keymap("v", ">", ">gv")
@@ -88,6 +80,7 @@ keymap("n", "<C-u>", "<C-u>zz")
 
 keymap("n", "<S-l>", ":bnext<cr>")
 keymap("n", "<S-h>", ":bprevious<cr>")
+
 keymap("n", "<leader>`", "<cmd>e #<cr>")
 
 -- vim.cmd("command! W execute 'w !sudo tee % > /dev/null' <bar> edit!")
@@ -126,8 +119,8 @@ keymap("n", "<leader>M", "mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm")
 
 keymap("n", "<leader>8", ":%s/")
 keymap("n", "<leader>*", ":%s/\\<<c-r><c-w>\\>/")
-keymap("n", "<leader>c8", ":.s/")
-keymap("n", "<leader>c*", ":.s/\\<<c-r><c-w>\\>/")
+-- keymap("n", "<leader>c8", ":.s/")
+-- keymap("n", "<leader>c*", ":.s/\\<<c-r><c-w>\\>/")
 -- keymap("n", "<leader>rw", ":%s/\\<<c-r><c-w>\\>/")
 -- keymap("n", "<leader>*", "yiw :%s/<C-r>0/")
 -- keymap("n", "<leader><leader>8", ":argdo %s/")
@@ -169,7 +162,7 @@ keymap(
 )
 
 -- lazy
-keymap("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+keymap("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- new file
 keymap("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -191,38 +184,15 @@ keymap("n", "<leader>xq", function()
 end, { desc = "Quickfix List" })
 
 
--- tabs
--- keymap("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
--- keymap("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
--- keymap("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
--- keymap("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
--- keymap("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
--- keymap("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
--- keymap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
 -- Copy filepath to the clipboard
 -- vim.keymap.set("n", "<leader>fp", function()
 --   local filePath = vim.fn.expand("%:~")                -- Gets the file path relative to the home directory
 --   vim.fn.setreg("+", filePath)                         -- Copy the file path to the clipboard register
 --   print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
 -- end, { desc = "Copy file path to clipboard" })
--- Toggle LSP diagnostics visibility
--- local isLspDiagnosticsVisible = true
--- vim.keymap.set("n", "<leader>lx", function()
---   isLspDiagnosticsVisible = not isLspDiagnosticsVisible
---   vim.diagnostic.config({
---     virtual_text = isLspDiagnosticsVisible,
---     underline = isLspDiagnosticsVisible
---   })
--- end, { desc = "Toggle LSP diagnostics" })
 
 -- vim.keymap.set("v", "p", '"_dp', opts)
--- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
---   { desc = "Replace word cursor is on globally" })
--- keymap("n", "<C-,>", "<c-w>5>")
--- keymap("n", "<C-.>", "<c-w>5<")
--- keymap("n", "<C-,>", "<C-W>5-")
--- keymap("n", "<C-.>", "<C-W>5+")
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word cursor is on globally" })
 
 -- keymap("i", "", "<cmd>lua vim.lsp.buf.completion()<CR>")
 -- keymap("i", "<C-Y>", "<C-X><C-O>")
@@ -244,15 +214,3 @@ end, { desc = "Quickfix List" })
 -- end
 
 -- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-
--- window management
--- keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
--- keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
--- keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
--- keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
---
--- keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
--- keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
--- keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
--- keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
--- keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab

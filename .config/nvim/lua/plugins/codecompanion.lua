@@ -9,11 +9,11 @@ return
     require("codecompanion").setup({
       strategies = {
         chat = {
-          adapter = "openai",
-          -- adapter = "gemini",
+          -- adapter = "openai",
+          adapter = "gemini",
         },
         inline = {
-          adapter = "openai",
+          adapter = "gemini",
         },
       },
       adapters = {
@@ -28,7 +28,9 @@ return
         gemini = function()
           return require("codecompanion.adapters").extend("gemini", {
             model = {
-              default = "gemini-2.0-flash"
+              default = "gemini-2.5-flash-preview-04-17"
+              -- "gemini-2.0-flash",
+              -- "gemini-2.5-pro-exp-03-25",
             },
             env = {
               api_key = "cmd:cat ~/private/gemini-nvim",
