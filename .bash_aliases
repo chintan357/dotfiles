@@ -388,7 +388,7 @@ alias gtypist='gtypist -c 0,2'
 # alias lh='ls -A | grep "^\."'
 # alias ls='ls --group-directories-first --color=auto'
 # alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _search'
-# alias sniff='sudo tcpdump -i any -c 1000 -nn'
+alias sniff='sudo tcpdump -i any -c 1000 -nn'
 # alias rl="readlink -f"
 # realpath "$*")" -iname "*"
 # $(history -p !!)'

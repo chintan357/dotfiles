@@ -1,4 +1,5 @@
 return {
+  -- nmap <leader>s <Plug>SlimeMotionSend
   "christoomey/vim-tmux-navigator",
   event = "BufEnter",
   cmd = {

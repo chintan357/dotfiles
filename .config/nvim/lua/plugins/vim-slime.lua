@@ -7,16 +7,15 @@ return {
     vim.g.slime_default_config = { socket_name = "default", target_pane = "1" }
     vim.g.slime_dont_ask_default = true
     vim.g.slime_bracketed_paste = 1
-    vim.g.slime_cell_delimiter = "#{{{"
+    -- vim.g.slime_cell_delimiter = ""
     -- vim.g.slime_python_ipython = true
   end,
   config = function()
-    -- vim.keymap.set("n", "<leader>al", "<Plug>SlimeLineSend")
-    -- vim.keymap.set("n", "<leader>am", "<Plug>SlimeMotionSend<cr>")
-    -- vim.keymap.set("n", "<leader>ac", "<Plug>SlimeSendCell<cr>")
-    -- vim.keymap.set("n", "<leader>ap", "<Plug>SlimeParagraphSend")
-    -- vim.keymap.set("n", "<leader>sl", "<Plug>SlimeConfig<cr>")
-    -- nmap <leader>s <Plug>SlimeMotionSend
+    -- "<Plug>SlimeLineSend"
+    -- "<Plug>SlimeMotionSend<cr>"
+    -- "<Plug>SlimeSendCell<cr>"
+    -- "<Plug>SlimeParagraphSend"
+    -- "<Plug>SlimeConfig<cr>"
 
     -- vim.cmd([[
     --     xmap <silent> <leader>sl :<C-U>exec 'let g:slime_default_config.target_pane = "1"'<cr><Plug>SlimeRegionSend

@@ -1,6 +1,6 @@
 return {
   "olimorris/onedarkpro.nvim",
-  priority = 1000, -- Ensure it loads first
+  priority = 1000,
   opts = {
     styles = {
       tags = "italic",
@@ -12,13 +12,7 @@ return {
       conditionals = "italic",
       Directory = { bold = true },
       ErrorMsg = { italic = true, bold = true },
-      -- virtual_text = "italic",
-      -- types = "NONE",     -- Style that is applied to types
-      -- numbers = "NONE",   -- Style that is applied to numbers
-      -- strings = "NONE",   -- Style that is applied to strings
-      -- constants = "NONE", -- Style that is applied to constants
-      -- operators = "NONE", -- Style that is applied to operators
-      -- variables = "NONE", -- Style that is applied to variables
+      virtual_text = "italic",
     },
     options = {
       cursorline = true,

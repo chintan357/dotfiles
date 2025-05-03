@@ -1,15 +1,15 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  dependencies = {{ 'rafamadriz/friendly-snippets'} ,
-      {
+  dependencies = { { 'rafamadriz/friendly-snippets' },
+    {
       "saghen/blink.compat",
       optional = true, -- make optional so it's only enabled if any extras need it
       opts = {},
       version = "*",
     },
-},
-    event = "InsertEnter",
+  },
+  event = "InsertEnter",
 
   -- use a release tag to download pre-built binaries
   version = '1.*',
@@ -42,7 +42,7 @@ return {
 
     -- (Default) Only show the documentation popup when manually triggered
     -- completion = { documentation = { auto_show = false } },
-        completion = {
+    completion = {
       accept = {
         -- experimental auto-brackets support
         auto_brackets = {
@@ -69,13 +69,13 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-            -- adding any nvim-cmp sources here will enable them
+      -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       compat = {},
 
       default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
-        cmdline = {
+    cmdline = {
       enabled = false,
     },
 
@@ -93,7 +93,7 @@ return {
     fuzzy = { implementation = "prefer_rust_with_warning" }
   },
   opts_extend = { "sources.default" },
-    ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
+  ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
   config = function(_, opts)
     -- setup compat sources
     local enabled = opts.sources.default
@@ -129,5 +129,4 @@ return {
 
     require("blink.cmp").setup(opts)
   end,
-
 }

@@ -2,13 +2,6 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("neo_" .. name, { clear = true })
 end
 
--- vim.api.nvim_create_autocmd("BufEnter", {
--- 	pattern = "*",
--- 	callback = function()
--- 		vim.diagnostic.enable(false)
--- 	end,
--- })
-
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
   callback = function()
@@ -59,22 +52,19 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
-    "PlenaryTestPopup",
     "checkhealth",
     "dbout",
     "gitsigns-blame",
     "help",
     "lspinfo",
-    "neotest-output",
-    "neotest-output-panel",
-    "neotest-summary",
     "notify",
     "qf",
     "startuptime",
-    -- "grug-far",
-    -- "spectre_panel",
+    "grug-far",
     -- "query",
-    -- "tsplayground",
+    -- "neotest-output",
+    -- "neotest-output-panel",
+    -- "neotest-summary",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -100,16 +90,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- -- wrap and check for spell in text filetypes
--- vim.api.nvim_create_autocmd("FileType", {
---   group = augroup("wrap_spell"),
---   pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
---   callback = function()
---     vim.opt_local.wrap = true
---     vim.opt_local.spell = true
---   end,
--- })
-
 -- Fix conceallevel for json files
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("json_conceal"),
@@ -119,11 +99,32 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*" },
-  command = [[%s/\s\+$//e]],
-})
 
+-- -- Auto create dir when saving a file, in case some intermediate directory does not exist
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--   group = augroup("auto_create_dir"),
+--   callback = function(event)
+--     if event.match:match("^%w%w+:[\\/][\\/]") then
+--       return
+--     end
+--     local file = vim.uv.fs_realpath(event.match) or event.match
+--     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--   pattern = { "*" },
+--   command = [[%s/\s\+$//e]],
+-- })
+
+-- vim.api.nvim_create_autocmd("BufEnter", {
+-- 	pattern = "*",
+-- 	callback = function()
+-- 		vim.diagnostic.enable(false)
+-- 	end,
+-- })
+
+-- FIX: oil.nvim
 -- vim.cmd([[
 --   augroup autochange_chdir
 --     autocmd!
@@ -132,33 +133,12 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 --   augroup END
 -- ]])
 
--- function change_directory_to_current_file()
--- 	vim.cmd("lcd " .. vim.fn.expand("%:p:h"))
--- end
--- vim.keymap.set("n", "", ":lua change_directory_to_current_file()<CR>", { silent = true, noremap = true })
-
--- vim.api.nvim_create_autocmd("TermOpen", {
--- 	desc = "Auto enter insert mode when opening a terminal",
--- 	group = augroup("term_enter_insert"),
--- 	pattern = "*",
--- 	callback = function()
--- 		-- Wait briefly just in case we immediately switch out of the buffer (e.g. Neotest)
--- 		vim.defer_fn(function()
--- 			if vim.api.nvim_buf_get_option(0, "buftype") == "terminal" then
--- 				vim.cmd([[startinsert]])
--- 			end
--- 		end, 100)
--- 	end,
+-- -- wrap and check for spell in text filetypes
+-- vim.api.nvim_create_autocmd("FileType", {
+--   group = augroup("wrap_spell"),
+--   pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
+--   callback = function()
+--     vim.opt_local.wrap = true
+--     -- vim.opt_local.spell = true
+--   end,
 -- })
-
--- Auto create dir when saving a file, in case some intermediate directory does not exist
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = augroup("auto_create_dir"),
-  callback = function(event)
-    if event.match:match("^%w%w+:[\\/][\\/]") then
-      return
-    end
-    local file = vim.uv.fs_realpath(event.match) or event.match
-    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-  end,
-})

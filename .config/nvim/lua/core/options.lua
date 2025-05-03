@@ -9,14 +9,14 @@ opt.termguicolors = true
 -- opt.emoji = false -- Turn off emojis
 -- vw.list = true -- Show some invisible characters like tabs etc
 
-opt.foldmethod = "indent"
+-- opt.foldmethod = "indent"
 opt.foldlevel = 99
 opt.foldenable = false
 -- vim.opt.fillchars = { fold = " " }
--- opt.foldmethod = "expr"
--- opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- This will respect your foldminlines and foldnestmax settings.
--- g.markdown_folding = 1 -- enable markdown folding
+vim.g.markdown_folding = 1 -- enable markdown folding
 
 opt.number = true
 opt.relativenumber = true
