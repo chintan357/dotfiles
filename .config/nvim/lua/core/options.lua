@@ -10,7 +10,6 @@ opt.termguicolors = true
 
 opt.timeoutlen = 300
 opt.ttimeoutlen = 10                                                       -- Time in milliseconds to wait for a key code sequence to complete
-opt.updatetime = 100                                                       -- If in this many milliseconds nothing is typed, the swap file will be written to disk. Also used for CursorHold autocommand and set to 100 as per https://github.com/antoinemadec/FixCursorHold.nvim
 
 opt.inccommand = "split"                                                   -- nosplit
 
@@ -95,7 +94,8 @@ opt.winblend = 0
 opt.splitkeep = "screen"
 
 opt.autowrite = true
-opt.swapfile = false
+-- opt.swapfile = false
+opt.updatetime = 300 -- If in this many milliseconds nothing is typed, the swap file will be written to disk. Also used for CursorHold autocommand and set to 100 as per https://github.com/antoinemadec/FixCursorHold.nvim
 opt.backup = false
 
 opt.undolevels = 3333

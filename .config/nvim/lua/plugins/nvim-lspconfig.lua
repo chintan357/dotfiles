@@ -8,10 +8,11 @@ return {
       { "j-hui/fidget.nvim",       opts = {} },
       "b0o/SchemaStore.nvim",
       { "williamboman/mason-lspconfig.nvim", opts = {} },
+      "nvim-telescope/telescope.nvim",
+
       -- "hrsh7th/cmp-nvim-lsp",
       -- { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
       -- { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
-      -- "nvim-telescope/telescope.nvim",
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -27,20 +28,19 @@ return {
           map("gD", vim.lsp.buf.declaration)
           map("<c-k>", function() return vim.lsp.buf.signature_help() end, "i")
           map("gK", function() return vim.lsp.buf.signature_help() end)
+          -- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+          -- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 
-          map("<leader>ds", require("telescope.builtin").lsp_document_symbols)          --gs
-          map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols) --gwS
+          map("gs", require("telescope.builtin").lsp_document_symbols) --gs
+          vim.keymap.set("n", "gws", require("telescope.builtin").lsp_workspace_symbols)
+          -- map("gws", require("telescope.builtin").lsp_dynamic_workspace_symbols) --gwS
+
           -- vim.keymap.set("n", "<leader>ic", require("telescope.builtin").lsp_incoming_calls)
           -- vim.keymap.set("n", "<leader>oc", require("telescope.builtin").lsp_outgoing_calls)
-          -- vim.keymap.set("n", "gws", require("telescope.builtin").lsp_workspace_symbols)
+
           -- vim.keymap.set("n", "<leader>sd", function() builtin.diagnostics({ bufnr = 0 }) end)
           -- vim.keymap.set("n", "<leader>sD", require("telescope.builtin").diagnostics)
 
-          -- map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-          -- map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
-          -- map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-          -- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-          -- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client

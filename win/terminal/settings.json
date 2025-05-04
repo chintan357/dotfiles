@@ -1,0 +1,194 @@
+{
+  "$help": "https://aka.ms/terminal-documentation",
+  "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+  "actions": [],
+  "alwaysShowNotificationIcon": true,
+  "alwaysShowTabs": true,
+  "autoHideWindow": false,
+  "centerOnLaunch": true,
+  "compatibility.enableUnfocusedAcrylic": false,
+  "copyFormatting": "none",
+  "copyOnSelect": true,
+  "defaultProfile": "profile-id",
+  "disableAnimations": true,
+  "firstWindowPreference": "persistedWindowLayout",
+  "focusFollowMouse": false,
+  "initialRows": 30,
+  "keybindings": [
+    {
+      "id": null,
+      "keys": "enter"
+    },
+    {
+      "id": "User.find",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "id": null,
+      "keys": "alt+left"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+insert"
+    },
+    {
+      "id": null,
+      "keys": "alt+f4"
+    },
+    {
+      "id": null,
+      "keys": "alt+shift+minus"
+    },
+    {
+      "id": null,
+      "keys": "alt+shift+plus"
+    },
+    {
+      "id": null,
+      "keys": "alt+space"
+    },
+    {
+      "id": null,
+      "keys": "alt+down"
+    },
+    {
+      "id": null,
+      "keys": "alt+right"
+    },
+    {
+      "id": null,
+      "keys": "alt+up"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+alt+left"
+    },
+    {
+      "id": null,
+      "keys": "alt+enter"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+up"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+pgdn"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+pgup"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+home"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+end"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+down"
+    },
+    {
+      "id": null,
+      "keys": "alt+shift+right"
+    },
+    {
+      "id": null,
+      "keys": "alt+shift+up"
+    },
+    {
+      "id": null,
+      "keys": "alt+shift+left"
+    },
+    {
+      "id": null,
+      "keys": "alt+shift+down"
+    }
+  ],
+  "launchMode": "focus",
+  "minimizeToNotificationArea": false,
+  "newTabMenu": [
+    {
+      "type": "remainingProfiles"
+    }
+  ],
+  "newTabPosition": "afterCurrentTab",
+  "profiles": {
+    "defaults": {
+      "backgroundImageOpacity": 0,
+      "bellStyle": "none",
+      "colorScheme": "One Half Dark",
+      "cursorShape": "filledBox",
+      "elevate": false,
+      "experimental.retroTerminalEffect": false,
+      "font": {
+        "face": "Mononoki Nerd Font",
+        "weight": "thin"
+      },
+      "historySize": 10000,
+      "icon": "none",
+      "intenseTextStyle": "all",
+      "opacity": 100,
+      "padding": "3",
+      "pathTranslationStyle": "wsl",
+      "rightClickContextMenu": false,
+      "scrollbarState": "hidden",
+      "startingDirectory": null,
+      "suppressApplicationTitle": true,
+      "useAcrylic": false
+    },
+    "list": [
+      {
+        "font": {
+          "face": "Mononoki Nerd Font"
+        },
+        "guid": "profile-id",
+        "hidden": false,
+        "icon": "\ud83d\udd25",
+        "name": "Ubuntu",
+        "source": "Microsoft.WSL"
+      }
+    ]
+  },
+  "schemes": [
+    {
+      "background": "#300A24",
+      "black": "#171421",
+      "blue": "#0037DA",
+      "brightBlack": "#767676",
+      "brightBlue": "#08458F",
+      "brightCyan": "#2C9FB3",
+      "brightGreen": "#26A269",
+      "brightPurple": "#A347BA",
+      "brightRed": "#C01C28",
+      "brightWhite": "#F2F2F2",
+      "brightYellow": "#A2734C",
+      "cursorColor": "#FFFFFF",
+      "cyan": "#3A96DD",
+      "foreground": "#FFFFFF",
+      "green": "#26A269",
+      "name": "Ubuntu-ColorScheme",
+      "purple": "#881798",
+      "red": "#C21A23",
+      "selectionBackground": "#FFFFFF",
+      "white": "#CCCCCC",
+      "yellow": "#A2734C"
+    }
+  ],
+  "searchWebDefaultQueryUrl": "https://www.google.com/search?q=%22%s%22",
+  "showTabsFullscreen": false,
+  "showTabsInTitlebar": true,
+  "showTerminalTitleInTitlebar": false,
+  "snapToGridOnResize": false,
+  "tabSwitcherMode": "mru",
+  "tabWidthMode": "compact",
+  "theme": "dark",
+  "themes": [],
+  "useAcrylicInTabRow": false,
+  "warning.confirmCloseAllTabs": false,
+  "warning.inputService": false,
+  "warning.largePaste": false
+}

@@ -3,16 +3,17 @@ mkdir -p lab/dotfiles repo/{work,personal} homelab dotfiles private learn tmp do
 
 sudo apt update && sudo apt -y upgrade
 
-sudo apt install -y stow make cargo zoxide cmake urlview xclip neofetch ripgrep fd-find bat ncal pydf ncdu silversearcher-ag ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils fd-find imagemagick
+sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu ranger luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils
+
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
+ln -s $(which fdfind) ~/.local/bin/fd
+
 # glow
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
 echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
 sudo apt update && sudo apt install glow
-
-mkdir -p ~/.local/bin
-ln -s /usr/bin/batcat ~/.local/bin/bat
-ln -s $(which fdfind) ~/.local/bin/fd
 
 # nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
@@ -36,13 +37,11 @@ cargo install tree-sitter-cli
 cargo install --locked navi
 cargo install eza git-delta hackernews_tui broot halp
 
-# curl -sS https://starship.rs/install.sh | sh
-
-git clone https://github.com/facebook/PathPicker.git
-cd PathPicker/debian
-./package.sh
-ls ../pathpicker_*_all.deb
-sudo dpkg -i ../pathpicker_*_all.deb
+# git clone https://github.com/facebook/PathPicker.git
+# cd PathPicker/debian
+# ./package.sh
+# ls ../pathpicker_*_all.deb
+# sudo dpkg -i ../pathpicker_*_all.deb
 
 # tmux
 sudo apt remove tmux
@@ -90,5 +89,4 @@ gh extension install dlvhdr/gh-dash
 cp /mnt/c/Windows/System32/cmd.exe ~/.local/bin
 cp /mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe .local/bin/
 cp /mnt/c/WINDOWS/Explorer.exe /home/chintan357/.local/bin/
-
 ```
