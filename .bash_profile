@@ -1,4 +1,4 @@
-export PATH="$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$HOME/.fzf/bin"
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$HOME/.fzf/bin:$PATH"
 
 if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"

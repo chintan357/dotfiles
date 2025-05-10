@@ -57,8 +57,9 @@ if vim.fn.exists("syntax_on") ~= 1 then
   vim.cmd([[syntax enable]])
 end
 
+opt.clipboard = "unnamedplus"
 -- only set clipboard if not in ssh, to make sure the OSC 52
-opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
+-- opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 -- opt.iskeyword:append("-")
 
 opt.splitright = true

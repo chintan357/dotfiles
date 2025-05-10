@@ -60,6 +60,7 @@ sudo apt -y install gettext
 git clone --branch nightly --depth 1 https://github.com/neovim/neovim.git
 cd neovim
 make CMAKE_BUILD_TYPE=Release
+# CMAKE_INSTALL_PREFIX=~/.local
 sudo make install
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -89,4 +90,7 @@ gh extension install dlvhdr/gh-dash
 cp /mnt/c/Windows/System32/cmd.exe ~/.local/bin
 cp /mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe .local/bin/
 cp /mnt/c/WINDOWS/Explorer.exe /home/chintan357/.local/bin/
+
+https://docs.docker.com/engine/install/ubuntu/
+https://cloud.google.com/sdk/docs/install#linux
 ```
