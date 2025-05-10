@@ -69,6 +69,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # https://raw.githubusercontent.com/wfxr/forgit/main/bin/git-forgit
 # https://raw.githubusercontent.com/wfxr/forgit/main/forgit.plugin.zsh
 
+curl -sfL https://direnv.net/install.sh | bash
+
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit

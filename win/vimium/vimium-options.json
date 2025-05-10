@@ -1,0 +1,37 @@
+{
+  "hideHud": true,
+  "keyMappings": "map * visitPreviousTab\nmap m Marks.activateCreateMode swap\nmap ' Marks.activateGotoMode swap\nmap <a-,> moveTabLeft count=99\nmap <a-.> moveTabRight count=99\nmap R reload hard",
+  "newTabUrl": "chrome://newtab",
+  "ignoreKeyboardLayout": true,
+  "scrollStepSize": 300,
+  "smoothScroll": false,
+  "grabBackFocus": true,
+  "searchEngines": "w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\nf: https://freedium.cfd/%s medium\ng: https://www.google.com/search?q=%s Google\ny: https://www.youtube.com/results?search_query=%s Youtube\ngm: https://www.google.com/maps?q=%s Google maps\nb: https://www.bing.com/search?q=%s Bing\nd: https://duckduckgo.com/?q=%s DuckDuckGo\nm: https://medium.com/search?q=%s Medium\naz: https://www.amazon.com/s/?field-keywords=%s Amazon\n# qw: https://www.qwant.com/?q=%s Qwant",
+  "settingsVersion": "2.2.1",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://speedtyper.dev/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://learngitbranching.js.org/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.speedtyper.dev/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://monkeytype.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.typing.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://excalidraw.com/*"
+    }
+  ]
+}
