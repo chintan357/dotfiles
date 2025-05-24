@@ -1,9 +1,9 @@
 ```sh
-mkdir -p lab/dotfiles repo/{work,personal} homelab dotfiles private learn tmp down docs .config
+mkdir -p lab/dotfiles repo/{work,personal} homelab dotfiles private tmp down docs .config
 
 sudo apt update && sudo apt -y upgrade
 
-sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu luarocks btop htop python3-pip trash-cli gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils universal-ctags
+sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu luarocks btop htop python3-pip gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils universal-ctags
 
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -23,7 +23,7 @@ npm i -g open-cli
 # sudo apt install pipx
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-tools=(ruff ipython trash-cli pudb asciinema aider-chat ranger-fm thefuck jupyterlab jupyter-console)
+tools=(ruff ipython pudb asciinema aider-chat ranger-fm thefuck jupyterlab jupyter-console)
 # urlscan jupyter_client
 for tool in "${tools[@]}"; do
   uv tool install "$tool"
@@ -32,10 +32,8 @@ done
 sudo apt remove rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # rustup update
-cargo install tealdeer
-cargo install tree-sitter-cli
+cargo install tealdeer tree-sitter-cli eza git-delta hackernews_tui broot halp
 cargo install --locked navi
-cargo install eza git-delta hackernews_tui broot halp
 
 # git clone https://github.com/facebook/PathPicker.git
 # cd PathPicker/debian
@@ -56,12 +54,16 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # prefix + I
 
 # build nvim from source
-sudo apt -y install gettext
-git clone --branch nightly --depth 1 https://github.com/neovim/neovim.git
-cd neovim
-make CMAKE_BUILD_TYPE=Release
+# sudo apt -y install gettext
+# cd neovim
+# git clone --branch nightly --depth 1 https://github.com/neovim/neovim.git
+# make CMAKE_BUILD_TYPE=Release
 # CMAKE_INSTALL_PREFIX=~/.local
-sudo make install
+# sudo make install
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-get update
+sudo apt-get install neovim
+
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install

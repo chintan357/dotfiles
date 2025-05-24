@@ -118,9 +118,9 @@ alias dum="ncdu --color off"
 
 alias du1='du -h --max-depth=1'
 alias usage='du -ch | grep total'
-alias most='du -hax | sort -rh | head -10'
-alias partusage='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs | less'
-alias totalusage='df -hl --total | grep total'
+alias most='du -hax --max-depth=1 | sort -rh | head -10'
+alias pusage='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs | less'
+alias tusage='df -hl --total | grep total'
 
 #-----------#
 
@@ -142,7 +142,7 @@ alias show='apt show $1'
 alias yupp='sudo apt install $1'
 alias nope='sudo apt remove $1'
 
-alias sysctl='systemctl'
+alias sctl='systemctl'
 
 #--------------#
 
@@ -199,6 +199,7 @@ alias uvp='uv python'
 alias pyp='uv python pin'
 alias pyf='uv python find'
 alias pyls='uv python list --only-installed'
+alias pyll='uv python list'
 alias pyi='uv python install'
 alias pyU='uv python uninstall'
 
@@ -231,8 +232,8 @@ alias tmat='tmux attach -t'
 alias tmkst='tmux kill-session -t'
 alias tmks='tmux kill-server'
 
-alias tmlk='tmux list-keys'
-alias atomic='tmux new-session -A -s atomic'
+# alias tmlk='tmux list-keys'
+alias atom='tmux new-session -A -s atomic'
 
 #-----------#
 
@@ -263,7 +264,6 @@ alias wre='cd ~/repo/work'
 alias pre='cd ~/repo/personal'
 alias mre='cd ~/repo/misc'
 alias down='cd ~/down'
-alias learn='cd ~/learn'
 alias lab='cd ~/lab'
 alias hlab='cd ~/homelab'
 alias dotfiles='cd ~/lab/dotfiles'
@@ -345,7 +345,7 @@ alias dkrm='docker rm'
 alias dkclean='docker system prune -af'
 
 alias dkl='docker logs'
-alias dklf='docker logs -f'
+# alias dklf='docker logs -f'
 
 #-----------#
 
