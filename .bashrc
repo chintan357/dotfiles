@@ -50,7 +50,8 @@ if [ -f ~/.bash_functions ]; then
 fi
 
 # "history -a; history -n"
-PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s")'
+# PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s")'
+PS1_GIT=$(__git_ps1 "%s")
 PS1='\[\e[36m\]\w\[\e[0m\]\[\e[33m\] ${PS1_GIT:+(${PS1_GIT})}\[\e[0m\] '
 
 # Source goto

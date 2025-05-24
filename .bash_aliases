@@ -5,12 +5,9 @@ alias ual=unalias
 
 #-----------#
 
-alias diffc='diff --color'
-
 alias cpr='cp -r'
 alias rmr='rm -r'
 alias rmrf='rm -rf'
-alias tailf='tail -f'
 
 #-----------#
 
@@ -21,7 +18,7 @@ alias lh='ls -d .[^.]* 2> /dev/null'
 alias lt='tree -a -L 2 | less'
 
 alias els='eza --group-directories-first'
-alias el='eza -lh --git --color=always --icons=always --group-directories-first'
+alias el='eza -lh --git --color=always --icons=always --group-directories-first | less'
 alias ela='eza -a --git --color=always --icons=always --group-directories-first'
 alias ell='eza -Alh --git --color=always --group-directories-first | less'
 alias elsd='eza -d */ 2> /dev/null'
@@ -94,7 +91,7 @@ alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
 #-----------#
 
 alias fortune='/usr/games/fortune'
-alias tuxsay='cowsay -f tux '
+alias tux='cowsay -f tux '
 alias matrix='cmatrix'
 
 #-----------#
@@ -106,14 +103,12 @@ alias v.='nvim .'
 #-----------#
 
 alias hostinfo='hostname && ip addr show'
-
 alias myip='curl -s https://checkip.amazonaws.com'
-
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 
 alias tree3='tree -a -L 3 | less'
 
-alias hx='hexdump -C'
+# alias hx='hexdump -C'
 alias w1='watch -n 1'
 
 #-----------#
@@ -121,13 +116,11 @@ alias w1='watch -n 1'
 alias dfm='pydf'
 alias dum="ncdu --color off"
 
-alias usage='du -ch | grep total'
-alias totalusage='df -hl --total | grep total'
-alias partusage='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs | less'
-
-alias most='du -hax | sort -rh | head -10'
-
 alias du1='du -h --max-depth=1'
+alias usage='du -ch | grep total'
+alias most='du -hax | sort -rh | head -10'
+alias partusage='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs | less'
+alias totalusage='df -hl --total | grep total'
 
 #-----------#
 
@@ -359,7 +352,7 @@ alias dklf='docker logs -f'
 alias gaadl='gcloud auth application-default login'
 alias gal='gcloud auth login'
 alias gapat='gcloud auth print-access-token'
-alias gcs='gcloud config set project'
+alias gcs='gcloud config set'
 alias gcsp='gcloud config set project'
 alias gconfls='gcloud config configurations list'
 alias gconfa='gcloud config configurations activate'

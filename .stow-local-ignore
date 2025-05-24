@@ -1,4 +1,5 @@
 .git
+win/
 
 ^/README.*
 ^/LICENSE.*
