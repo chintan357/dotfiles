@@ -38,3 +38,14 @@ return { -- Collection of various small independent plugins/modules
 -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
 -- - sd'   - [S]urround [D]elete [']quotes
 -- - sr)'  - [S]urround [R]eplace [)] [']
+
+-- {
+--   "echasnovski/mini.diff",
+--   config = function()
+--     local diff = require("mini.diff")
+--     diff.setup({
+--       -- Disabled by default
+--       source = diff.gen_source.none(),
+--     })
+--   end,
+-- },

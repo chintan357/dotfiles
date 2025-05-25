@@ -4,17 +4,20 @@ return
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    -- "ravitemer/mcphub.nvim",
   },
   config = function()
     require("codecompanion").setup({
       strategies = {
         chat = {
-          -- adapter = "openai",
           adapter = "gemini",
         },
         inline = {
           adapter = "gemini",
         },
+        -- cmd = {
+        --   adapter = "gemini",
+        -- }
       },
       adapters = {
         openai = function()
@@ -27,13 +30,9 @@ return
         end,
         gemini = function()
           return require("codecompanion.adapters").extend("gemini", {
-            model = {
-              default = "gemini-2.5-flash-preview-04-17"
-              -- "gemini-2.0-flash",
-              -- "gemini-2.5-pro-exp-03-25",
-            },
             env = {
               api_key = "cmd:cat ~/private/gemini-nvim",
+              -- api_key = "cmd:op read op://personal/XXX/credential --no-newline",
             },
           })
         end,

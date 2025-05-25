@@ -194,3 +194,12 @@ return {
 --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
 --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+
+-- Setup Tree-sitter
+-- local ts_status, treesitter = pcall(require, "nvim-treesitter.configs")
+-- if ts_status then
+--   treesitter.setup({
+--     ensure_installed = { "lua", "markdown", "markdown_inline", "yaml" },
+--     highlight = { enable = true },
+--   })
+-- end

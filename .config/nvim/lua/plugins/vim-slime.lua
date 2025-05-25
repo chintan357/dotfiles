@@ -16,6 +16,7 @@ return {
     -- "<Plug>SlimeSendCell<cr>"
     -- "<Plug>SlimeParagraphSend"
     -- "<Plug>SlimeConfig<cr>"
+    -- nmap <leader>s <Plug>SlimeMotionSend
 
     -- vim.cmd([[
     --     xmap <silent> <leader>sl :<C-U>exec 'let g:slime_default_config.target_pane = "1"'<cr><Plug>SlimeRegionSend
