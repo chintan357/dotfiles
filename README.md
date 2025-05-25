@@ -1,5 +1,5 @@
 ```sh
-mkdir -p lab/dotfiles repo/{work,personal} homelab dotfiles private tmp down docs .config
+mkdir -p lab/dotfiles wre pre homelab dotfiles private tmp down docs .config
 
 sudo apt update && sudo apt -y upgrade
 

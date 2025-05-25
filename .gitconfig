@@ -43,17 +43,30 @@
   untracked = red bold
 
 [diff]
-	tool = vimdiff
+  tool = nvimdiff
 
 [difftool]
 	prompt = false
 
-[interactive]
-  diffFilter = delta --color-only
+[difftool "nvimdiff"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 
 [merge]
+  tool = nvim
   conflictstyle = diff3
   ; conflictstyle = zdiff3
+
+[mergetool]
+  prompt = false
+
+[mergetool.nvim]
+  ; cmd = "... \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\""
+  ; cmd = nvim -d "$LOCAL" "$REMOTE" "$BASE" -c 'wincmd l' "$MERGED"
+  cmd = nvim -f -c 'Gvdiffsplit!' "$MERGED"
+  trustExitCode = true
+
+[interactive]
+  diffFilter = delta --color-only
 
 [delta]
   navigate = true    # use n and N to move between diff sections
@@ -65,35 +78,21 @@
 	; features = line-numbers decorations
   ; syntax-theme = Coldark-Dark
 
-
 [push]
   default = simple
 
 [pull]
   ff = only
 
-
 ; [ghq]
 ;   root = ~/.ghq
 
-[merge]
-    tool = nvim
-
-[mergetool]
-  prompt = false
-
-[mergetool.nvim]
-  ; cmd = "... \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\""
-  ; cmd = nvim -d "$LOCAL" "$REMOTE" "$BASE" -c 'wincmd l' "$MERGED"
-  cmd = nvim -f -c 'Gvdiffsplit!' "$MERGED"
-  trustExitCode = true
-
 [alias]
 	a = add
-	ai = add -i
 
 	b = branch
 	ba = branch -a
+  bl = branch -l --sort=committerdate
 	bd = branch -d
 	bdd = branch -D
 	bD = branch -D
@@ -109,9 +108,9 @@
 	cm = commit -m
 	cam = commit -am
 	cem = commit --allow-empty -m
-	cd = commit --amend
-	cad = commit -a --amend
-	ced = commit --allow-empty --amend
+	cu = commit --amend
+	cau = commit -a --amend
+	ceu = commit --allow-empty --amend
 
 	cl = clone
 	cld = clone --depth 1
@@ -124,10 +123,10 @@
 	cpc = cherry-pick --continue
 
 	d = diff
-	dp = diff --patience
 	dc = diff --cached
 	dk = diff --check
 	dck = diff --cached --check
+	dp = diff --patience
 	dt = difftool
 	dct = difftool --cached
 
@@ -135,7 +134,7 @@
 	fo = fetch origin
 	fu = fetch upstream
 
-	fp = format-patch
+  ; fp = format-patch
 
 	fk = fsck
 
@@ -160,7 +159,7 @@
 
 	pr = prune -v
 
-    pu = push
+  pu = push
 	puf = push -f
 	puu = push -u
 	put = push --tags
@@ -168,32 +167,18 @@
 	puao = push --all origin
 	pufo = push -f origin
 	puuo = push -u origin
-
-	puom = push origin main
-	puaom = push --all origin main
-	pufom = push -f origin main
-	puuom = push -u origin main
 	puoc = !git push origin $(git bc)
+	puuoc = !git push -u origin $(git bc)
 	puaoc = !git push --all origin $(git bc)
 	pufoc = !git push -f origin $(git bc)
-	puuoc = !git push -u origin $(git bc)
-	pudc = !git push origin :$(git bc)
-
-	P = pull
-	Pr = pull --rebase
 
 	Po = pull origin
-	Pro = pull --rebase origin
-	Pom = pull origin main
-	Poc = !git pull origin $(git bc)
-	Prom = pull --rebase origin main
-	Proc = !git pull --rebase origin $(git bc)
-
 	Pu = pull upstream
-	Pum = pull upstream main
+	Pro = pull --rebase origin
+	Poc = !git pull origin $(git bc)
+	Proc = !git pull --rebase origin $(git bc)
 	Puc = !git pull upstream $(git bc)
-	Prum = pull --rebase upstream main
-	Puc = !git pull --rebase upstream $(git bc)
+	Pruc = !git pull --rebase upstream $(git bc)
 
 	rb = rebase
 	rba = rebase --abort
@@ -203,7 +188,6 @@
 
 	re = reset
 	reh = reset --hard
-	rem = reset --mixed
 	res = reset --soft
 	rehom = reset --hard origin/main
 
@@ -226,17 +210,14 @@
 	rmf = rm -f
 	rmrf = rm -r -f
 
-	st = status
-	stsb = status -s -b
-
   s = stash
 	sa = stash apply
 	sc = stash clear
 	sd = stash drop
 	sl = stash list
 	sp = stash pop
-	ss = stash save
-	ssk = stash save -k
+	ss = stash push
+	ssk = stash push -k
 	sw = stash show
 	st = !git stash list | wc -l 2>/dev/null | grep -oEi '[0-9][0-9]*'
 
@@ -245,37 +226,21 @@
 
 	w = show
 	wp = show -p
-	wr = show -p --no-color
 
 	subadd = !sh -c 'git submodule add https://github.com/$1 $2/$(basename $1)' -
 	subrm = !sh -c 'git submodule deinit -f -- $1 && rm -rf .git/modules/$1 && git rm -f $1' -
 	subup = submodule update --init --recursive
-	subpull = submodule foreach 'git pull --tags -f origin main || git pull --tags -f origin main || git pull --tags -f origin development'
 
 	assume = update-index --assume-unchanged
 	unassume = update-index --no-assume-unchanged
 	assumed = !git ls -v | grep ^h | cut -c 3-
-	unassumeall = !git assumed | xargs git unassume
-	assumeall = !git status -s | awk {'print $2'} | xargs git assume
 
-	bump = !sh -c 'git commit -am \"Version bump v$1\" && git psuoc && git release $1' -
-	release = !sh -c 'git tag v$1 && git pst' -
-	unrelease = !sh -c 'git tag -d v$1 && git pso :v$1' -
-	merged = !sh -c 'git o main && git plom && git bd $1 && git rpo' -
-	aliases = !git config -l | grep alias | cut -c 7-
-	snap = !git stash save 'snapshot: $(date)' && git stash apply 'stash@{0}'
-	bare = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
-	whois = !sh -c 'git log -i -1 --author=\"$1\" --pretty=\"format:%an <%ae>\"' -
-	serve = daemon --reuseaddr --verbose --base-path=. --export-all ./.git
-
-	behind = !git rev-list --left-only --count $(git bu)...HEAD
-	ahead = !git rev-list --right-only --count $(git bu)...HEAD
+	release = !sh -c 'git tag v$1 && git put' -
+	unrelease = !sh -c 'git tag -d v$1 && git puo :v$1' -
+	merged = !sh -c 'git checkout main && git pull origin main && git branch -D $1 && git rpo' -
 
 	ours = "!f() { git checkout --ours $@ && git add $@; }; f"
 	theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
-	subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 main' -
-	human = name-rev --name-only --refs=refs/heads/*
-
 
 [delta "arctic-fox"]
   # author: https://github.com/anthony-halim
@@ -372,3 +337,25 @@
 	; ams = am --skip
 
 	; bs = !git-branch-status
+  ;	puom = push origin main
+  ;	puaom = push --all origin main
+  ;	pufom = push -f origin main
+  ;	puuom = push -u origin main
+  ; pudc = !git push origin :$(git bc)
+  ;	Pom = pull origin main
+  ;	Prom = pull --rebase origin main
+  ;	Pum = pull upstream main
+  ;	Prum = pull --rebase upstream main
+  ; subpull = submodule foreach 'git pull --tags -f origin main || git pull --tags -f origin main || git pull --tags -f origin development'
+  ; bump = !sh -c 'git commit -am \"Version bump v$1\" && git puoc && git release $1' -
+  ; aliases = !git config -l | grep alias | cut -c 7-
+  ; whois = !sh -c 'git log -i -1 --author=\"$1\" --pretty=\"format:%an <%ae>\"' -
+  ; bare = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
+  ; serve = daemon --reuseaddr --verbose --base-path=. --export-all ./.git
+  ; subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 main' -
+  ; human = name-rev --name-only --refs=refs/heads/*
+  ; behind = !git rev-list --left-only --count $(git bu)...HEAD
+  ; ahead = !git rev-list --right-only --count $(git bu)...HEAD
+  ; snap = !git stash save 'snapshot: $(date)' && git stash apply 'stash@{0}'
+  ; unassumeall = !git assumed | xargs git unassume
+  ; assumeall = !git status -s | awk {'print $2'} | xargs git assume
