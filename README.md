@@ -1,24 +1,17 @@
 ```sh
-mkdir -p lab/dotfiles wre pre homelab dotfiles private tmp down docs .config
-
 sudo apt update && sudo apt -y upgrade
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# prefix + I
+
+cd && mkdir -p lab/dotfiles wre pre homelab dotfiles private tmp down docs 
+# mkdir ~/.config
 
 sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu luarocks btop htop python3-pip gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils universal-ctags
+sudo apt install python3.12-venv
 
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 ln -s $(which fdfind) ~/.local/bin/fd
-
-# glow
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
-echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
-sudo apt update && sudo apt install glow
-
-# nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-nvm install --lts
-npm i -g open-cli
 
 # sudo apt install pipx
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -31,47 +24,28 @@ done
 
 sudo apt remove rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-# rustup update
-cargo install tealdeer tree-sitter-cli eza git-delta hackernews_tui broot halp
-cargo install --locked navi
+cargo install cargo-binstall
+# cargo binstall tealdeer --no-confirm
+cargo binstall tealdeer tree-sitter-cli eza git-delta hackernews_tui broot halp navi
 
-# git clone https://github.com/facebook/PathPicker.git
-# cd PathPicker/debian
-# ./package.sh
-# ls ../pathpicker_*_all.deb
-# sudo dpkg -i ../pathpicker_*_all.deb
-
-# tmux
-sudo apt remove tmux
-wget https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz
-tar -zxf tmux-*.tar.gz
-cd tmux-*/
-sudo apt-get install libevent-dev ncurses-dev build-essential bison pkg-config
-./configure
-make && sudo make install
-
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# prefix + I
-
-# build nvim from source
-# sudo apt -y install gettext
-# cd neovim
-# git clone --branch nightly --depth 1 https://github.com/neovim/neovim.git
-# make CMAKE_BUILD_TYPE=Release
-# CMAKE_INSTALL_PREFIX=~/.local
-# sudo make install
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-get update
 sudo apt-get install neovim
 
-
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
-# https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh
-# https://raw.githubusercontent.com/wfxr/forgit/main/bin/git-forgit
-# https://raw.githubusercontent.com/wfxr/forgit/main/forgit.plugin.zsh
-
 curl -sfL https://direnv.net/install.sh | bash
+
+# glow
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+sudo apt update && sudo apt install glow
+
+# nvm
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+# nvm install --lts
+npm i -g open-cli
 
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
@@ -88,6 +62,7 @@ sudo install lazygit /usr/local/bin
 	&& sudo apt update \
 	&& sudo apt install gh -y
 # gh-dash
+# gh auth login
 gh extension install dlvhdr/gh-dash
 
 # windows utility
@@ -97,4 +72,33 @@ cp /mnt/c/WINDOWS/Explorer.exe /home/chintan357/.local/bin/
 
 https://docs.docker.com/engine/install/ubuntu/
 https://cloud.google.com/sdk/docs/install#linux
+```
+
+```sh
+# build nvim from source
+# sudo apt -y install gettext
+# cd neovim
+# git clone --branch nightly --depth 1 https://github.com/neovim/neovim.git
+# make CMAKE_BUILD_TYPE=Release
+# CMAKE_INSTALL_PREFIX=~/.local
+# sudo make install
+
+# git clone https://github.com/facebook/PathPicker.git
+# cd PathPicker/debian
+# ./package.sh
+# ls ../pathpicker_*_all.deb
+# sudo dpkg -i ../pathpicker_*_all.deb
+
+# tmux
+# sudo apt remove tmux
+# wget https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz
+# tar -zxf tmux-*.tar.gz
+# cd tmux-*/
+# sudo apt-get install libevent-dev ncurses-dev build-essential bison pkg-config
+# ./configure
+# make && sudo make install
+
+# https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh
+# https://raw.githubusercontent.com/wfxr/forgit/main/bin/git-forgit
+# https://raw.githubusercontent.com/wfxr/forgit/main/forgit.plugin.zsh
 ```
