@@ -7,7 +7,7 @@ return { -- Collection of various small independent plugins/modules
     require("mini.surround").setup()
     require("mini.pairs").setup()
     require("mini.tabline").setup()
-    -- require("mini.statusline").setup()
+    require("mini.statusline").setup()
     require("mini.hipatterns").setup()
     -- require("mini.diff").setup()
     -- require("mini.jump").setup()

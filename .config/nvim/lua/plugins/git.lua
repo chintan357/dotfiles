@@ -10,7 +10,7 @@ return {
   { "tpope/vim-fugitive" },
   { "tpope/vim-rhubarb" },
   { "junegunn/gv.vim" },
-  { "akinsho/git-conflict.nvim" },
+  { 'akinsho/git-conflict.nvim', version = "*", config = true },
   {
     "sindrets/diffview.nvim",
     cmd = "DiffviewOpen",

@@ -8,7 +8,7 @@ return {
       { "j-hui/fidget.nvim",       opts = {} },
       "b0o/SchemaStore.nvim",
       { "williamboman/mason-lspconfig.nvim", opts = {} },
-      "nvim-telescope/telescope.nvim",
+      -- "nvim-telescope/telescope.nvim",
 
       -- "hrsh7th/cmp-nvim-lsp",
       -- { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
@@ -31,8 +31,8 @@ return {
           -- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
           -- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 
-          map("gs", require("telescope.builtin").lsp_document_symbols) --gs
-          vim.keymap.set("n", "gws", require("telescope.builtin").lsp_workspace_symbols)
+          -- map("gs", require("telescope.builtin").lsp_document_symbols) --gs
+          -- vim.keymap.set("n", "gws", require("telescope.builtin").lsp_workspace_symbols)
           -- map("gws", require("telescope.builtin").lsp_dynamic_workspace_symbols) --gwS
 
           -- vim.keymap.set("n", "<leader>ic", require("telescope.builtin").lsp_incoming_calls)

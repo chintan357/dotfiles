@@ -6,9 +6,7 @@ return {
     vim.g.slime_paste_file = vim.fn.expand("$HOME/.slime_paste")
     vim.g.slime_default_config = { socket_name = "default", target_pane = "1" }
     vim.g.slime_dont_ask_default = true
-    vim.g.slime_bracketed_paste = 1
-    -- vim.g.slime_cell_delimiter = ""
-    -- vim.g.slime_python_ipython = true
+    -- let g:slime_preserve_curpos = 0
   end,
   config = function()
     -- "<Plug>SlimeLineSend"

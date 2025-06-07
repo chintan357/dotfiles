@@ -39,14 +39,6 @@ keymap("n", "<leader>|", "<C-W>v")
 keymap("n", "<leader>we", "<C-W>c")
 keymap("n", "<leader>se", "<C-w>=")
 
--- keymap("n", "<leader>bd", function()
---   Snacks.bufdelete()
--- end, { desc = "Delete Buffer" })
--- keymap("n", "<leader>bo", function()
---   Snacks.bufdelete.other()
--- end, { desc = "Delete Other Buffers" })
--- keymap("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
-
 keymap("n", "Q", "<cmd>bd<CR>")
 keymap("n", "<leader>Q", ":qa!<CR>")
 keymap("n", "<leader>qq", ":qa<CR>")
@@ -60,7 +52,7 @@ keymap("n", "J", "myJ`y")
 
 keymap("n", "<leader>qo", ":copen<CR>")
 
-keymap("n", "U", "<C-r>", {})
+keymap("n", "U", "<C-r>")
 
 -- Move Lines
 keymap("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })

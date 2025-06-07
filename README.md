@@ -6,7 +6,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 cd && mkdir -p lab/dotfiles wre pre homelab dotfiles private tmp down docs 
 # mkdir ~/.config
 
-sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu luarocks btop htop python3-pip gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils universal-ctags
+sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu luarocks btop htop python3-pip gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils universal-ctags apt-transport-https
 sudo apt install python3.12-venv
 
 mkdir -p ~/.local/bin
@@ -35,6 +35,11 @@ sudo apt-get install neovim
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 curl -sfL https://direnv.net/install.sh | bash
+
+# gcloud
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+sudo apt-get update && sudo apt-get install google-cloud-cli
 
 # glow
 sudo mkdir -p /etc/apt/keyrings

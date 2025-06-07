@@ -91,7 +91,6 @@ opt.pumblend = 10  -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
 opt.winblend = 0
 
-
 opt.splitkeep = "screen"
 
 opt.autowrite = true
@@ -107,9 +106,9 @@ opt.undoreload = 3333
 -- opt.directory = vim.fn.stdpath("data") .. "/swaps"
 
 opt.virtualedit = "block"
-opt.modeline = false    -- opt.modelines = 1
+opt.modeline = false -- opt.modelines = 1
 opt.mouse = "a"
-opt.smoothscroll = true -- TODO: is this needed?
+-- opt.smoothscroll = true -- TODO: is this needed?
 
 vim.cmd("filetype plugin indent on")
 
@@ -184,9 +183,3 @@ opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -- Discovered it when using vim-forgit https://github.com/ray-x/forgit.nvim/issues/1
 -- vim.opt.shellcmdflag = "-ic"
-
--- editorconfig
--- vim.g.loaded_netrw = 0
--- vim.g.loaded_netrwPlugin = 0
--- vim.cmd("let g:netrw_liststyle = 3")
--- vim.cmd("let g:netrw_banner = 0 ")
