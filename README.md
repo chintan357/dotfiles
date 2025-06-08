@@ -26,11 +26,9 @@ sudo apt remove rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install cargo-binstall
 # cargo binstall tealdeer --no-confirm
-cargo binstall tealdeer tree-sitter-cli eza git-delta hackernews_tui broot halp navi
+cargo binstall tealdeer tree-sitter-cli eza git-delta hackernews_tui broot halp navi bob-nvim
 
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt-get update
-sudo apt-get install neovim
+bob use stable
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
@@ -84,6 +82,11 @@ https://cloud.google.com/sdk/docs/install#linux
 ```
 
 ```sh
+# nvim (package registry)
+# sudo add-apt-repository ppa:neovim-ppa/unstable
+# sudo apt-get update
+# sudo apt-get install neovim
+
 # build nvim from source
 # sudo apt -y install gettext
 # cd neovim

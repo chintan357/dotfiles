@@ -54,15 +54,26 @@ keymap("n", "<leader>qo", ":copen<CR>")
 
 keymap("n", "U", "<C-r>")
 
--- Move Lines
-keymap("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
-keymap("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
-keymap("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-keymap("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-keymap("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
-keymap("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
--- keymap("v", "K", ":m '<-2<CR>gv=gv")
--- keymap("v", "J", ":m '>+1<CR>gv=gv")
+-- Move Lines (in insert mode pressing esc then j -> moves line)
+-- keymap("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+-- keymap("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+-- keymap("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+-- keymap("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+-- keymap("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+-- keymap("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
+keymap("v", "K", ":m '<-2<CR>gv=gv")
+keymap("v", "J", ":m '>+1<CR>gv=gv")
+
+keymap("v", "p", '"_dp')
+keymap("v", "P", '"_dP')
+keymap({ "x", "o", "v" }, "H", "^")
+keymap({ "x", "o", "v" }, "L", "g_")
+
+-- Panes resizing
+keymap("n", "+", ":vertical resize +5<CR>")
+keymap("n", "_", ":vertical resize -5<CR>")
+keymap("n", "=", ":resize +5<CR>")
+keymap("n", "-", ":resize -5<CR>")
 
 keymap("v", "<", "<gv")
 keymap("v", ">", ">gv")
@@ -108,6 +119,9 @@ keymap('x', 'g/', '<Esc>/\\%V')
 keymap("n", "<leader>M", "mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm")
 -- :%s/^M//g
 -- :%s/\r//g
+
+-- vim.keymap.set("n", "<Right>")
+-- vim.keymap.set("n", "<Left>")
 
 keymap("n", "<leader>8", ":%s/")
 keymap("n", "<leader>*", ":%s/\\<<c-r><c-w>\\>/")

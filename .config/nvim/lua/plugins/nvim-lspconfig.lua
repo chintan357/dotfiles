@@ -1,18 +1,15 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    priority = 1000,
+    -- priority = 1000,
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "j-hui/fidget.nvim",       opts = {} },
       "b0o/SchemaStore.nvim",
+      { 'saghen/blink.cmp' },
       { "williamboman/mason-lspconfig.nvim", opts = {} },
-      -- "nvim-telescope/telescope.nvim",
-
-      -- "hrsh7th/cmp-nvim-lsp",
       -- { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
-      -- { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -26,21 +23,9 @@ return {
           map("gd", vim.lsp.buf.definition)
           map("gy", vim.lsp.buf.type_definition)
           map("gD", vim.lsp.buf.declaration)
-          map("<c-k>", function() return vim.lsp.buf.signature_help() end, "i")
+          map("<C-k>", function() return vim.lsp.buf.signature_help() end, "i")
           map("gK", function() return vim.lsp.buf.signature_help() end)
           -- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-          -- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-
-          -- map("gs", require("telescope.builtin").lsp_document_symbols) --gs
-          -- vim.keymap.set("n", "gws", require("telescope.builtin").lsp_workspace_symbols)
-          -- map("gws", require("telescope.builtin").lsp_dynamic_workspace_symbols) --gwS
-
-          -- vim.keymap.set("n", "<leader>ic", require("telescope.builtin").lsp_incoming_calls)
-          -- vim.keymap.set("n", "<leader>oc", require("telescope.builtin").lsp_outgoing_calls)
-
-          -- vim.keymap.set("n", "<leader>sd", function() builtin.diagnostics({ bufnr = 0 }) end)
-          -- vim.keymap.set("n", "<leader>sD", require("telescope.builtin").diagnostics)
-
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
@@ -104,9 +89,7 @@ return {
         "<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.enable(false) else vim.diagnostic.enable(true) end<CR>")
 
       -- local opts = { buffer = bufnr, noremap = true, silent = true }
-      -- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-      -- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-      -- vim.keymap.set("n", "<space>wl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
+
       -- vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
       -- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
       -- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
@@ -133,8 +116,6 @@ return {
       --  - filetypes (table): Override the default list of associated filetypes for the server
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
-      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
 
       local servers = {
         jsonls = {
@@ -170,27 +151,20 @@ return {
         --     },
         --   },
         -- },
-        ruff = {},
+        -- ruff = {},
         lua_ls = {
           settings = {
             Lua = {
-              -- server_capabilities = {
-              -- 	semanticTokensProvider = vim.NIL,
-              -- },
+              -- server_capabilities = { semanticTokensProvider = vim.NIL, },
               completion = {
                 callSnippet = "Replace",
               },
-              -- diagnostics = {
-              -- 	globals = { "vim" },
-              -- },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+              -- diagnostics = { globals = { "vim" }, },
               -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
-        -- server_capabilities = {
-        -- 	semanticTokensProvider = false,
-        -- },
+        -- server_capabilities = { semanticTokensProvider = false, },
       }
       local lspconfig = require('lspconfig')
       for server, config in pairs(servers) do
@@ -200,12 +174,6 @@ return {
         lspconfig[server].setup(config)
       end
 
-
-      -- lspconfig.tsserver.setup({
-      --   settings = { ... },
-      --   on_attach = on_attach,
-      --   capabilities = capabilities,
-      -- })
 
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
@@ -221,9 +189,6 @@ return {
       --   handlers = {
       --     function(server_name)
       --       local server = servers[server_name] or {}
-      --       -- This handles overriding only values explicitly passed
-      --       -- by the server configuration above. Useful when disabling
-      --       -- certain features of an LSP (for example, turning off formatting for ts_ls)
       --       server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
       --       require('lspconfig')[server_name].setup(server)
       --     end,
@@ -259,20 +224,8 @@ return {
   --   },
   --   opts = { lsp = { auto_attach = true } },
   -- },
-  -- { -- optional completion source for require statements and module annotations
-  --   "hrsh7th/nvim-cmp",
-  --   opts = function(_, opts)
-  --     opts.sources = opts.sources or {}
-  --     table.insert(opts.sources, {
-  --       name = "lazydev",
-  --       group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-  --     })
-  --   end,
-  -- },
 }
 
--- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
---        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
 -- local open_floating_preview = vim.lsp.util.open_floating_preview
 -- function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
@@ -280,12 +233,10 @@ return {
 -- 	opts.border = opts.border or "rounded" -- Set border to rounded
 -- 	return open_floating_preview(contents, syntax, opts, ...)
 -- end
--- There is an issue with mason-tools-installer running with VeryLazy, since it triggers on VimEnter which has already occurred prior to this plugin loading so we need to call install explicitly
--- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/issues/39
 
 --  - filetypes (table): Override the default list of associated filetypes for the server
 --  - settings (table): Override the default settings passed when initializing the server.
 --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 
 -- and elegantly composed help section, `:help lsp-vs-treesitter`
---  See `:help K` for why this keymap.
+-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs

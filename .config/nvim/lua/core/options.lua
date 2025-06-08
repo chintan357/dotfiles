@@ -47,9 +47,9 @@ opt.conceallevel = 2
 opt.colorcolumn = "80"
 opt.textwidth = 79
 opt.winwidth = 30
-opt.sidescrolloff = 8 -- The minimal number of columns to keep to the left and to the right of the cursor if 'nowrap' is set
+opt.sidescrolloff = 8
 opt.scrolloff = 999
-opt.ruler = false     --Disable the default ruler
+opt.ruler = false --Disable the default ruler
 
 -- opt.lazyredraw = true -- Improve performance during macros
 
@@ -159,8 +159,9 @@ opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- end
 
 -- vim.g.markdown_recommended_style = 0
+-- vim.g.editorconfig = true
 
--- vim.opt.isfname:append("@-@")
+vim.opt.isfname:append("@-@")
 
 -- opt.fillchars = "eob: " -- Don't show `~` outside of buffer
 -- opt.breakindent = true

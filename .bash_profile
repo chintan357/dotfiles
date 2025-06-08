@@ -1,4 +1,4 @@
-export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$HOME/.fzf/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$HOME/.fzf/bin:$HOME/.local/share/bob/nvim-bin:$PATH"
 
 if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"
@@ -69,3 +69,5 @@ export FZF_ALT_C_OPTS=" --walker-skip .git,node_modules,target --preview 'tree -
 export FZF_TMUX_OPTS='-p80%,80%'
 
 export FZF_COMPLETION_OPTS='--border --info=inline'
+
+. "/home/chintan357/.local/share/bob/env/env.sh"

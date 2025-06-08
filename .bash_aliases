@@ -367,6 +367,8 @@ alias smi='nvidia-smi'
 alias ytdl='youtube-dl'
 alias gtypist='gtypist -c 0,2'
 
+alias power='powershell.exe'
+
 #-----------#
 
 # alias rec='asciinema rec'
