@@ -49,7 +49,7 @@ opt.textwidth = 79
 opt.winwidth = 30
 opt.sidescrolloff = 8
 opt.scrolloff = 999
-opt.ruler = false --Disable the default ruler
+opt.ruler = false
 
 -- opt.lazyredraw = true -- Improve performance during macros
 
@@ -161,6 +161,8 @@ opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- vim.g.markdown_recommended_style = 0
 -- vim.g.editorconfig = true
 
+-- vim.opt.winborder = "rounded" -- solid
+vim.opt.winborder = "single" -- https://neovim.io/doc/user/options.html#'winborder'
 vim.opt.isfname:append("@-@")
 
 -- opt.fillchars = "eob: " -- Don't show `~` outside of buffer

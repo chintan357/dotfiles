@@ -2,6 +2,9 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("neo_" .. name, { clear = true })
 end
 
+-- don't auto comment new line
+-- vim.api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
   callback = function()
@@ -52,7 +55,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
+    "PlenaryTestPopup",
+    "man",
     "checkhealth",
+    "tsplayground",
     "dbout",
     "gitsigns-blame",
     "help",
@@ -61,6 +67,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "qf",
     "startuptime",
     -- "grug-far",
+    -- "spectre_panel",
     -- "codecompanion",
     -- "query",
     -- "neotest-output",

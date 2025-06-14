@@ -20,12 +20,17 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf })
           end
           --  To jump back, press <C-t>.
-          map("gd", vim.lsp.buf.definition)
-          map("gy", vim.lsp.buf.type_definition)
-          map("gD", vim.lsp.buf.declaration)
+          -- map("gd", vim.lsp.buf.definition)
+          -- map("gD", vim.lsp.buf.declaration)
+          -- map("gy", vim.lsp.buf.type_definition)
           map("<C-k>", function() return vim.lsp.buf.signature_help() end, "i")
           map("gK", function() return vim.lsp.buf.signature_help() end)
           -- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+          -- map("gl", vim.diagnostic.open_float, "Open Diagnostic Float")
+          -- map("K", vim.lsp.buf.hover, "Hover Documentation")
+          -- map("gs", vim.lsp.buf.signature_help, "Signature Documentation")
+          -- map("gD", vim.lsp.buf.declaration, "Goto Declaration")
+          -- map("<leader>v", "<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Goto Definition in Vertical Split")
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
