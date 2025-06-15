@@ -5,16 +5,14 @@ local opt = vim.opt
 opt.number = true
 opt.relativenumber = true
 
-opt.background = "dark"
 opt.termguicolors = true
 
 opt.timeoutlen = 300
-opt.ttimeoutlen = 10                                                       -- Time in milliseconds to wait for a key code sequence to complete
+opt.ttimeoutlen = 10
 
-opt.inccommand = "split"                                                   -- nosplit
+opt.inccommand = "split"
 
-opt.sessionoptions = "buffers,curdir,folds,resize,tabpages,winpos,winsize" -- Session options to store in the session
--- opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+opt.sessionoptions = "buffers,curdir,folds,resize,tabpages,winsize,help,skiprtp"
 
 opt.tabstop = 2
 opt.softtabstop = 2
@@ -23,7 +21,7 @@ opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
 
-opt.shiftround = true -- Round indent
+opt.shiftround = true
 opt.numberwidth = 2
 
 opt.ignorecase = true
@@ -32,7 +30,7 @@ opt.smartcase = true
 opt.cursorline = true
 
 opt.wrap = false
-opt.linebreak = true -- Wrap lines at convenient points
+opt.linebreak = true
 
 opt.title = false
 opt.showmode = false
@@ -51,15 +49,12 @@ opt.sidescrolloff = 8
 opt.scrolloff = 999
 opt.ruler = false
 
--- opt.lazyredraw = true -- Improve performance during macros
+vim.cmd.syntax("enable")
+-- vim.cmd([[syntax enable]])
 
-if vim.fn.exists("syntax_on") ~= 1 then
-  vim.cmd([[syntax enable]])
-end
-
-opt.clipboard = "unnamedplus"
 -- only set clipboard if not in ssh, to make sure the OSC 52
 -- opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
+opt.clipboard = "unnamedplus"
 -- opt.iskeyword:append("-")
 
 opt.splitright = true
@@ -67,35 +62,29 @@ opt.splitbelow = true
 
 opt.confirm = true
 
-opt.formatoptions = "jcroqlnt" -- tcqj
--- opt.formatoptions = "qjl1" -- Don't autoformat comments
+opt.formatoptions = "jcoqlnt" -- tr1
 vim.o.errorformat = vim.o.errorformat .. ",%f:%l"
 opt.grepprg = "rg --vimgrep --no-heading"
 opt.grepformat = "%f:%l:%c:%m"
--- vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 
 opt.completeopt = { "menu", "menuone", "noselect" }
 
-opt.shortmess:append("c")
--- opt.shortmess = "aoOTIcF"
--- opt.shortmess:append({ W = true, I = true, c = true, C = true })
--- opt.shortmess = {
--- 	A = true, -- ignore annoying swap file messages
--- 	c = true, -- Do not show completion messages in command line
--- 	F = true, -- Do not show file info when editing a file, in the command line
--- 	I = true, -- Do not show the intro message
--- 	W = true, -- Do not show "written" in command line when writing
--- }
+opt.shortmess:append({
+  -- 	A = true, -- ignore annoying swap file messages
+  c = true, -- Do not show completion messages in command line
+  I = true, -- Do not show the intro message
+  W = true, -- Do not show "written" in command line when writing
+})
 
-opt.pumblend = 10  -- Popup blend
-opt.pumheight = 10 -- Maximum number of entries in a popup
+opt.pumblend = 10
+opt.pumheight = 10
 opt.winblend = 0
 
 opt.splitkeep = "screen"
 
 opt.autowrite = true
 -- opt.swapfile = false
-opt.updatetime = 300 -- If in this many milliseconds nothing is typed, the swap file will be written to disk. Also used for CursorHold autocommand and set to 100 as per https://github.com/antoinemadec/FixCursorHold.nvim
+opt.updatetime = 300
 opt.backup = false
 
 opt.undolevels = 3333
@@ -108,16 +97,14 @@ opt.undoreload = 3333
 opt.virtualedit = "block"
 opt.modeline = false -- opt.modelines = 1
 opt.mouse = "a"
--- opt.smoothscroll = true -- TODO: is this needed?
 
 vim.cmd("filetype plugin indent on")
 
 -- vim.cmd([[ set guicursor=n-v-c-i:block ]])
-vim.opt.guicursor = ""
-vim.cmd("set whichwrap+=<,>,[,],h,l")
+opt.guicursor = ""
 
--- opt.wildmode = "list:longest" -- Command-line completion mode
 opt.wildmode = "longest:full,full" -- Command-line completion mode
+-- opt.wildmode = "list:longest"
 
 opt.wildignorecase = true
 opt.wildignore:append({
@@ -125,7 +112,6 @@ opt.wildignore:append({
   "*/.git/*",
   "*/node_modules/*",
   "*.pyc",
-  "*/.git/*",
   "*.o",
   "*.obj",
   "*.rbc",
@@ -143,10 +129,13 @@ opt.foldenable = false
 opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
+vim.opt.isfname:append("@-@")
+
 -- vim.g.markdown_folding = 1 -- enable markdown folding
 
 -- vim.opt.fillchars = { fold = " " }
 
+-- opt.lazyredraw = true -- Improve performance during macros
 -- opt.redrawtime = 1500
 -- opt.infercase = true
 
@@ -162,8 +151,7 @@ opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- vim.g.editorconfig = true
 
 -- vim.opt.winborder = "rounded" -- solid
-vim.opt.winborder = "single" -- https://neovim.io/doc/user/options.html#'winborder'
-vim.opt.isfname:append("@-@")
+-- vim.opt.winborder = "single" -- https://neovim.io/doc/user/options.html#'winborder'
 
 -- opt.fillchars = "eob: " -- Don't show `~` outside of buffer
 -- opt.breakindent = true
@@ -177,11 +165,9 @@ vim.opt.isfname:append("@-@")
 -- vim.cmd("silent call mkdir(stdpath('data').'/sessions', 'p', '0700')")
 
 -- Buffer options
-
 -- vb.wrapmargin = 1
 
 -- opt.modelines = 1 -- Only use folding settings for this file
-
 -- opt.shada = "!,'0,f0,<50,s10,h"
 
 -- Discovered it when using vim-forgit https://github.com/ray-x/forgit.nvim/issues/1

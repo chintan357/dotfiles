@@ -43,18 +43,17 @@
   untracked = red bold
 
 [diff]
-  tool = nvimdiff
+  tool = nvim
 
 [difftool]
 	prompt = false
 
-[difftool "nvimdiff"]
+[difftool "nvim"]
   cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 
 [merge]
   tool = nvim
   conflictstyle = diff3
-  ; conflictstyle = zdiff3
 
 [mergetool]
   prompt = false

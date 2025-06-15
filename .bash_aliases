@@ -17,13 +17,13 @@ alias lsd='ls -d */ 2> /dev/null'
 alias lh='ls -d .[^.]* 2> /dev/null'
 alias lt='tree -a -L 2 | less'
 
-alias els='eza --group-directories-first'
+alias es='eza --group-directories-first'
 alias el='eza -lh --git --color=always --icons=always --group-directories-first | less'
-alias ela='eza -a --git --color=always --icons=always --group-directories-first'
+alias ea='eza -a --git --color=always --icons=always --group-directories-first'
 alias ell='eza -Alh --git --color=always --group-directories-first | less'
-alias elsd='eza -d */ 2> /dev/null'
-alias elh='eza -a | egrep "^\."'
-alias elt='eza -a --tree --level=2'
+alias esd='eza -d */ 2> /dev/null'
+alias eh='eza -a | egrep "^\."'
+alias et='eza -a --tree --level=2'
 
 #-----------#
 
@@ -57,10 +57,11 @@ alias mountc='mount | column -t | less'
 alias lsock='sudo lsof -i -P'
 alias ports='sudo netstat -tulanp'
 
-alias p1='ping 1.1.1.1'
-alias p8='ping 8.8.8.8'
+alias p1='ping -c 3 1.1.1.1'
+alias p8='ping -c 3 8.8.8.8'
 alias clh8='curl localhost:8080'
 clh() { curl localhost:$1; }
+png() { ping -c 3 $1; }
 
 #-----------#
 
@@ -85,7 +86,8 @@ alias path='echo -e ${PATH//:/\\n} | fzf' # TODO: bind cd
 
 #-----------#
 
-alias genpwd='openssl rand -base64 16 | cpy'
+# alias genpwd='openssl rand -base64 16 | cpy'
+alias genpwd='< /dev/urandom tr -dc "A-Za-z0-9" | head -c 20 | cpy'
 alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
 
 #-----------#
@@ -379,7 +381,7 @@ alias power='powershell.exe'
 # alias lh='ls -A | grep "^\."'
 # alias ls='ls --group-directories-first --color=auto'
 # alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _search'
-alias sniff='sudo tcpdump -i any -c 1000 -nn'
+# alias sniff='sudo tcpdump -i any -c 1000 -nn'
 # alias rl="readlink -f"
 # realpath "$*")" -iname "*"
 # $(history -p !!)'
