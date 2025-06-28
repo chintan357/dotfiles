@@ -270,6 +270,7 @@ alias hlab='cd ~/homelab'
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
 alias iam='cd /mnt/c/chintan357/vaults/atomic'
+alias iamd='cd /mnt/c/chintan357/vaults/atomic/dailies'
 
 alias mntc='cd /mnt/c'
 alias vaultsw='cd /mnt/c/chintan357/vaults/'
@@ -287,7 +288,9 @@ alias cg='cd `git rev-parse --show-toplevel`'
 alias gaa='git add --all'
 alias ga.='git add .'
 
+alias gbr='git branch'
 alias gcl='git clone'
+alias gcld='git clone --depth 1'
 
 alias gco='git checkout'
 alias gcob='git checkout -b'

@@ -13,14 +13,6 @@ return {
   { "junegunn/gv.vim" },
   { 'akinsho/git-conflict.nvim', version = "*", config = true },
   {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-    keys = {
-      { "dvo", "<cmd>DiffviewOpen<cr>" },
-      { "dvc", "<cmd>DiffviewClose<cr>" },
-    },
-  },
-  {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
     opts = {
@@ -128,3 +120,11 @@ return {
 --   "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
 --   { desc = "Redraw / Clear hlsearch / Diff Update" }
 -- )
+-- {
+--   "sindrets/diffview.nvim",
+--   cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+--   keys = {
+--     { "dvo", "<cmd>DiffviewOpen<cr>" },
+--     { "dvc", "<cmd>DiffviewClose<cr>" },
+--   },
+-- },

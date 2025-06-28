@@ -13,12 +13,12 @@ return
     --     dependencies = { "nvim-lua/plenary.nvim" },
     -- },
   },
-  keys = {
-    -- { "<leader>ic", "<cmd>CodeCompanion<cr>",        desc = "CodeCompanion" },
-    -- { "<leader>iC", "<cmd>CodeCompanionChat<cr>",    desc = "CodeCompanion Chat" },
-    -- { "<leader>ia", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion Actions" },
-    -- { "<leader>id", "<cmd>CodeCompanionCmd<cr>",     desc = "CodeCompanion CMD" },
-  },
+  -- keys = {
+  -- { "<leader>ic", "<cmd>CodeCompanion<cr>",        desc = "CodeCompanion" },
+  -- { "<leader>iC", "<cmd>CodeCompanionChat<cr>",    desc = "CodeCompanion Chat" },
+  -- { "<leader>ia", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion Actions" },
+  -- { "<leader>id", "<cmd>CodeCompanionCmd<cr>",     desc = "CodeCompanion CMD" },
+  -- },
   -- opts = {
   -- mcphub = {
   --   callback = "mcphub.extensions.codecompanion",
@@ -65,13 +65,13 @@ return
       },
       strategies = {
         chat = {
-          adapter = "gemini",
+          adapter = "copilot",
         },
         inline = {
-          adapter = "gemini",
+          adapter = "copilot",
         },
         cmd = {
-          adapter = "gemini",
+          adapter = "copilot",
         }
       },
       display = {

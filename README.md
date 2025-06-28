@@ -16,7 +16,7 @@ ln -s $(which fdfind) ~/.local/bin/fd
 # sudo apt install pipx
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-tools=(ruff ipython pudb asciinema aider-chat ranger-fm thefuck jupyterlab jupyter-console)
+tools=(ruff llm datasette ipython pudb asciinema aider-chat ranger-fm thefuck jupyterlab jupyter-console)
 # urlscan jupyter_client
 for tool in "${tools[@]}"; do
   uv tool install "$tool"
@@ -71,6 +71,7 @@ sudo apt install wslu
 # gh-dash
 # gh auth login
 gh extension install dlvhdr/gh-dash
+gh extension install github/gh-copilot
 
 # windows utility
 cp /mnt/c/Windows/System32/cmd.exe ~/.local/bin
@@ -79,6 +80,14 @@ cp /mnt/c/WINDOWS/Explorer.exe /home/chintan357/.local/bin/
 
 https://docs.docker.com/engine/install/ubuntu/
 https://cloud.google.com/sdk/docs/install#linux
+
+# sqlite
+wget https://www.sqlite.org/2025/sqlite-autoconf-3500100.tar.gz
+tar xvfz sqlite-autoconf-3500100.tar.gz
+cd sqlite-autoconf-3500100
+./configure --prefix=/usr/local
+make
+sudo make install
 ```
 
 ```sh

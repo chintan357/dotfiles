@@ -49,10 +49,9 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-# "history -a; history -n"
-# PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s")'
-PS1_GIT=$(__git_ps1 "%s")
-PS1='\[\e[36m\]\w\[\e[0m\]\[\e[33m\] ${PS1_GIT:+(${PS1_GIT})}\[\e[0m\] '
+# export export PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s"); history -a; history -c; history -r;'
+export export PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s"); history -a; history -n;'
+export PS1='\[\e[36m\]\w\[\e[0m\]\[\e[33m\]${PS1_GIT:+ (${PS1_GIT})}\[\e[0m\] '
 
 # Source goto
 # [[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
@@ -111,3 +110,7 @@ bind -x '"\C-p": fzf_to_nvim'
 bind -m vi-command '"\eo": "\C-z\ec\C-z"'
 bind -m vi-insert '"\eo": "\C-z\ec\C-z"'
 eval "$(direnv hook bash)"
+
+# opencode
+# export PATH=/home/chintan357/.opencode/bin:$PATH
+eval "$(gh copilot alias -- bash)"

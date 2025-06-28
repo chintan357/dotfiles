@@ -40,7 +40,7 @@ opt.cmdheight = 1
 opt.showcmd = false
 opt.cmdwinheight = 1
 opt.signcolumn = "yes"
-opt.conceallevel = 2
+-- opt.conceallevel = 2
 
 opt.colorcolumn = "80"
 opt.textwidth = 79

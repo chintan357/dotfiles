@@ -15,7 +15,8 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 export VISUAL=vi
 export EDITOR=vi
 
-export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
+# export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
+export GOOGLE_API_KEY="$(head -1 ~/private/gemini-nvim)"
 
 export PYTHONBREAKPOINT="ipdb.set_trace"
 export RANGER_LOAD_DEFAULT_RC=FALSE
