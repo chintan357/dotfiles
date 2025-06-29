@@ -112,5 +112,5 @@ bind -m vi-insert '"\eo": "\C-z\ec\C-z"'
 eval "$(direnv hook bash)"
 
 # opencode
-# export PATH=/home/chintan357/.opencode/bin:$PATH
+export PATH=/home/chintan357/.opencode/bin:$PATH
 eval "$(gh copilot alias -- bash)"

@@ -17,11 +17,23 @@ export EDITOR=vi
 
 # export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 export GOOGLE_API_KEY="$(head -1 ~/private/gemini-nvim)"
+export GOOGLE_SEARCH_API_KEY="$(head -1 ~/private/google-search)"
+export GOOGLE_SEARCH_ENGINE_ID="$(head -1 ~/private/google-search-engine-id)"
 
 export PYTHONBREAKPOINT="ipdb.set_trace"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
 export BROWSER=wslview
+
+export FORGIT_COPY_CMD='xclip -selection clipboard'
+export FORGIT_FZF_DEFAULT_OPTS="
+--height 80% --tmux 90%,70%
+--exact
+--border
+--cycle
+--reverse
+"
+
 
 safesource() {
     [[ -s $1 ]] && source $1

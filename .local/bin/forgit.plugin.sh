@@ -17,7 +17,7 @@ else
     forgit::error "Only zsh and bash are supported"
 fi
 
-export FORGIT_INSTALL_DIR
+export FORGIT_INSTALL_DIR=$HOME/.local
 FORGIT="$FORGIT_INSTALL_DIR/bin/git-forgit"
 
 # backwards compatibility:

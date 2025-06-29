@@ -1,6 +1,12 @@
-return { {
-  "github/copilot.vim"
-},
+return {
+  -- {
+  --   "github/copilot.vim"
+  -- },
+  {
+    "zbirenbaum/copilot.lua",
+    events = { "InsertEnter" },
+    opts = {},
+  },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {

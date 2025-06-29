@@ -1,3 +1,11 @@
+# gco() {
+#   _fzf_git_each_ref --no-multi | xargs git checkout
+# }
+# 
+# gswt() {
+#   cd "$(_fzf_git_worktrees --no-multi)"
+# }
+
 weather() { curl -s --connect-timeout 3 -m 5 http://wttr.in/$1; }
 
 dict() { curl "dict.org/d:$1"; }
