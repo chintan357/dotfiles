@@ -15,10 +15,10 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 export VISUAL=vi
 export EDITOR=vi
 
-# export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 export GOOGLE_API_KEY="$(head -1 ~/private/gemini-nvim)"
-export GOOGLE_SEARCH_API_KEY="$(head -1 ~/private/google-search)"
-export GOOGLE_SEARCH_ENGINE_ID="$(head -1 ~/private/google-search-engine-id)"
+# export GOOGLE_SEARCH_API_KEY="$(head -1 ~/private/google-search)"
+# export GOOGLE_SEARCH_ENGINE_ID="$(head -1 ~/private/google-search-engine-id)"
+# export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
 
 export PYTHONBREAKPOINT="ipdb.set_trace"
 export RANGER_LOAD_DEFAULT_RC=FALSE
