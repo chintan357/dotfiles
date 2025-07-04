@@ -22,6 +22,9 @@ for tool in "${tools[@]}"; do
   uv tool install "$tool"
 done
 
+llm install llm-gemini
+# llm keys set gemini
+
 sudo apt remove rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install cargo-binstall

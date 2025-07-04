@@ -29,10 +29,7 @@ return
     --   },
     -- },
   },
-  opts = {
-
-
-  },
+  -- opts = {},
   -- keys = {
   -- { "<leader>ic", "<cmd>CodeCompanion<cr>",        desc = "CodeCompanion" },
   -- { "<leader>iC", "<cmd>CodeCompanionChat<cr>",    desc = "CodeCompanion Chat" },
@@ -96,66 +93,75 @@ return
       },
       strategies = {
         chat = {
-          adapter = {
-            name = "copilot",
-            -- model = "claude-sonnet-4",
-          },
-          roles = {
-            user = "chintan357",
-          },
-          -- keymaps = {
-          --   send = {
-          --     modes = {
-          --       i = { "<C-CR>", "<C-s>" },
-          --     },
-          --   },
-          --   completion = {
-          --     modes = {
-          --       i = "<C-x>",
-          --     },
-          --   },
-          -- },
-          -- slash_commands = {
-          --   ["buffer"] = {
-          --     keymaps = {
-          --       modes = {
-          --         i = "<C-b>",
-          --       },
-          --     },
-          --   },
-          --   ["fetch"] = {
-          --     keymaps = {
-          --       modes = {
-          --         i = "<C-f>",
-          --       },
-          --     },
-          --   },
-          --   ["help"] = {
-          --     opts = {
-          --       max_lines = 1000,
-          --     },
-          --   },
-          --   ["image"] = {
-          --     keymaps = {
-          --       modes = {
-          --         i = "<C-i>",
-          --       },
-          --     },
-          --     opts = {
-          --       dirs = { "~/Documents/Screenshots" },
-          --     },
-          --   },
-          -- },
+          adapter = "copilot",
         },
         inline = {
-          adapter = {
-            name = "copilot",
-            model = "gpt-4.1",
-          },
+          adapter = "copilot",
         },
         cmd = {
           adapter = "copilot",
         }
+        -- chat = {
+        --   adapter = {
+        --     name = "copilot",
+        --     -- model = "claude-sonnet-4",
+        --   },
+        --   roles = {
+        --     user = "chintan357",
+        --   },
+        --   -- keymaps = {
+        --   --   send = {
+        --   --     modes = {
+        --   --       i = { "<C-CR>", "<C-s>" },
+        --   --     },
+        --   --   },
+        --   --   completion = {
+        --   --     modes = {
+        --   --       i = "<C-x>",
+        --   --     },
+        --   --   },
+        --   -- },
+        --   -- slash_commands = {
+        --   --   ["buffer"] = {
+        --   --     keymaps = {
+        --   --       modes = {
+        --   --         i = "<C-b>",
+        --   --       },
+        --   --     },
+        --   --   },
+        --   --   ["fetch"] = {
+        --   --     keymaps = {
+        --   --       modes = {
+        --   --         i = "<C-f>",
+        --   --       },
+        --   --     },
+        --   --   },
+        --   --   ["help"] = {
+        --   --     opts = {
+        --   --       max_lines = 1000,
+        --   --     },
+        --   --   },
+        --   --   ["image"] = {
+        --   --     keymaps = {
+        --   --       modes = {
+        --   --         i = "<C-i>",
+        --   --       },
+        --   --     },
+        --   --     opts = {
+        --   --       dirs = { "~/Documents/Screenshots" },
+        --   --     },
+        --   --   },
+        --   -- },
+        -- },
+        -- inline = {
+        --   adapter = {
+        --     name = "copilot",
+        --     model = "gpt-4.1",
+        --   },
+        -- },
+        -- cmd = {
+        --   adapter = "copilot",
+        -- }
       },
       display = {
         action_palette = {

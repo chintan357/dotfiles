@@ -187,13 +187,14 @@ alias uvrp='uv run python'
 alias uva='uv add'
 alias uvrm='uv remove'
 alias uvs='uv sync'
+alias uvtr='uv tree'
 # uv add --script: Add a dependency to a script
 # uv remove --script: Remove a dependency from a script
 
 alias uvh='uv help'
 
 alias uvt='uv tool'
-# uv tree: View the dependency tree for the project.
+alias uvtup='uv tool upgrade'
 
 alias uvup='uv lock --upgrade-package $1'
 
@@ -361,6 +362,7 @@ alias gconfa='gcloud config configurations activate'
 #-----------#
 
 alias v='NVIM_APPNAME="tvim" nvim'
+alias n=nvim
 alias lvim='NVIM_APPNAME="lvim" nvim'
 alias t='sesh connect $(sesh list | fzf)'
 alias R=ranger
@@ -373,6 +375,10 @@ alias ytdl='youtube-dl'
 alias gtypist='gtypist -c 0,2'
 
 alias power='powershell.exe'
+
+alias llm='\llm -m gemini-2.5-flash-lite-preview-06-17'
+alias chat='\llm chat -m gemini-2.5-flash'
+alias chatf='\llm chat -m gemini-2.5-flash-lite-preview-06-17'
 
 #-----------#
 
