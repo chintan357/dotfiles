@@ -120,6 +120,8 @@ keymap("n", "<leader>M", "mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm")
 -- :%s/^M//g
 -- :%s/\r//g
 
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
 -- vim.keymap.set("n", "<Right>")
 -- vim.keymap.set("n", "<Left>")
 

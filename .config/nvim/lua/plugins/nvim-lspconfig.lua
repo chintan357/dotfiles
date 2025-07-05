@@ -23,7 +23,7 @@ return {
           -- map("gd", vim.lsp.buf.definition)
           -- map("gD", vim.lsp.buf.declaration)
           -- map("gy", vim.lsp.buf.type_definition)
-          map("<C-k>", function() return vim.lsp.buf.signature_help() end, "i")
+          -- map("<C-k>", function() return vim.lsp.buf.signature_help() end, "i")
           map("gK", function() return vim.lsp.buf.signature_help() end)
           -- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
           -- map("gl", vim.diagnostic.open_float, "Open Diagnostic Float")
@@ -100,20 +100,20 @@ return {
       -- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
       -- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
-      local diagnostic_goto = function(next, severity)
-        local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-        severity = severity and vim.diagnostic.severity[severity] or nil
-        return function()
-          go({ severity = severity })
-        end
-      end
+      -- local diagnostic_goto = function(next, severity)
+      --   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+      --   severity = severity and vim.diagnostic.severity[severity] or nil
+      --   return function()
+      --     go({ severity = severity })
+      --   end
+      -- end
       -- keymap("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
       -- [e is also mapped inside vim-unimpaired
 
-      vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
-      vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
-      vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
-      vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+      -- vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+      -- vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+      -- vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+      -- vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 
       -- local capabilities = vim.lsp.protocol.make_client_capabilities()
       -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())

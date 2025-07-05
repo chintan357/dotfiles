@@ -376,9 +376,9 @@ alias gtypist='gtypist -c 0,2'
 
 alias power='powershell.exe'
 
-alias llm='\llm -m gemini-2.5-flash-lite-preview-06-17'
-alias chat='\llm chat -m gemini-2.5-flash'
-alias chatf='\llm chat -m gemini-2.5-flash-lite-preview-06-17'
+alias l='llm -m gemini-2.5-flash-lite-preview-06-17'
+alias chat='llm chat'
+alias chatf='llm chat -m gemini-2.5-flash'
 
 #-----------#
 
