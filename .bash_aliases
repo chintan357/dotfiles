@@ -25,6 +25,8 @@ alias esd='eza -d */ 2> /dev/null'
 alias eh='eza -a | egrep "^\."'
 alias et='eza -a --tree --level=2'
 
+alias lnv="ln -v"
+
 #-----------#
 
 alias findf='find . -type f -name'
@@ -361,8 +363,8 @@ alias gconfa='gcloud config configurations activate'
 
 #-----------#
 
-alias v='NVIM_APPNAME="tvim" nvim'
-alias n=nvim
+# alias v='NVIM_APPNAME="tvim" nvim'
+alias v=nvim
 alias lvim='NVIM_APPNAME="lvim" nvim'
 alias t='sesh connect $(sesh list | fzf)'
 alias R=ranger

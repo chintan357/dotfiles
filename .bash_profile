@@ -16,6 +16,7 @@ export VISUAL=vi
 export EDITOR=vi
 
 export GOOGLE_API_KEY="$(head -1 ~/private/gemini-nvim)"
+export TAVILY_API_KEY="$(head -1 ~/private/tavily)"
 # export GOOGLE_SEARCH_API_KEY="$(head -1 ~/private/google-search)"
 # export GOOGLE_SEARCH_ENGINE_ID="$(head -1 ~/private/google-search-engine-id)"
 # export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"

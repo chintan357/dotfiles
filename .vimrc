@@ -1,23 +1,27 @@
+" Leader
+let mapleader = " "
+
 colorscheme habamax
 
-" reset to vim-defaults
-if &compatible          " only if not set before:
-  set nocompatible      " use vim-defaults instead of vi-defaults (easier, more user friendly)
-endif
+set encoding=utf-8
+set modelines=0
+set nomodeline
+
+set autowrite     " Automatically :write before running commands
 
 " display settings
-set background=dark     " enable for dark terminals
+set background=dark
 set nowrap              " dont wrap lines
 set scrolloff=8         " 8 lines above/below cursor when scrolling
-set number              " show line numbers
+set number
 set relativenumber
 set showmatch           " show matching bracket (briefly jump)
 set showmode            " show mode in status bar (insert/replace/...)
 set showcmd             " show typed command in status bar
-set ruler               " show cursor position in status bar
+set ruler
 set wildmenu            " completion with menu
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
-set laststatus=2        " use 2 lines for the status bar
+set laststatus=2
 set matchtime=2         " show matching bracket for 0.2 seconds
 set matchpairs+=<:>     " specially for html
 
@@ -40,17 +44,18 @@ set fileformat=unix     " file mode is unix
 " set fileformats=unix,dos    " only detect unix file format, displays that ^M with dos files
 
 " system settings
-set lazyredraw          " no redraws in macros
+" set lazyredraw          " no redraws in macros
 set confirm             " get a dialog when :q, :w, or :wq fails
-set nobackup            " no backup~ files.
+set nobackup
+set noswapfile
+set nowritebackup
 set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
 set hidden
-set history=100         " keep 50 lines of command history
+set history=100
 set mouse=a
 
-syntax on          " enable colors
-set hlsearch       " highlight search (very useful!)
-set incsearch      " search incremently (search while typing)
+set hlsearch
+set incsearch
 
 " paste mode toggle (needed when using autoindent/smartindent)
 set pastetoggle=<F11>
@@ -200,9 +205,8 @@ if has('langmap') && exists('+langremap') && &langremap && s:MaySet('langremap')
   set nolangremap
 endif
 
-if has('syntax') && !exists('g:syntax_on')
-  syntax enable
-endif
+syntax on
+" syntax enable
 
 if empty(mapcheck('<C-U>', 'i'))
   inoremap <C-U> <C-G>u<C-U>
@@ -244,6 +248,9 @@ hi LineNr guifg=#888888
 " set colorcolumn=79
 " autocmd Colorscheme * highlight CursorLine cterm=underline ctermbg=NONE guibg=NONE
 hi CursorLine ctermbg=NONE cterm=underline
+" Make it obvious where 80 characters is
+set textwidth=80
+set colorcolumn=+1
 
 set undodir=~/.vim/undo/
 set undofile " persistent undo (between saves)
@@ -267,9 +274,15 @@ inoremap <silent> ;t <c-x><c-]>
 inoremap <silent> ;u <c-x><c-u>
 
 set breakindent
-set splitbelow " split below
-set splitright " split right
+set splitbelow
+set splitright
 " set cursorcolumn
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 set viminfo+=<1000
 

@@ -5,9 +5,9 @@ return {
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      { "j-hui/fidget.nvim",       opts = {} },
+      { "j-hui/fidget.nvim", opts = {} },
       "b0o/SchemaStore.nvim",
-      { 'saghen/blink.cmp' },
+      { "saghen/blink.cmp" },
       { "williamboman/mason-lspconfig.nvim", opts = {} },
       -- { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
     },
@@ -24,7 +24,9 @@ return {
           -- map("gD", vim.lsp.buf.declaration)
           -- map("gy", vim.lsp.buf.type_definition)
           -- map("<C-k>", function() return vim.lsp.buf.signature_help() end, "i")
-          map("gK", function() return vim.lsp.buf.signature_help() end)
+          map("gK", function()
+            return vim.lsp.buf.signature_help()
+          end)
           -- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
           -- map("gl", vim.diagnostic.open_float, "Open Diagnostic Float")
           -- map("K", vim.lsp.buf.hover, "Hover Documentation")
@@ -38,7 +40,7 @@ return {
           ---@param bufnr? integer some lsp support methods only in specific files
           ---@return boolean
           local function client_supports_method(client, method, bufnr)
-            if vim.fn.has 'nvim-0.11' == 1 then
+            if vim.fn.has("nvim-0.11") == 1 then
               return client:supports_method(method, bufnr)
             else
               return client.supports_method(method, { bufnr = bufnr })
@@ -51,7 +53,10 @@ return {
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
+          if
+            client
+            and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
+          then
             local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
               buffer = event.buf,
@@ -75,7 +80,9 @@ return {
           end
 
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map("yoh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end)
+            map("yoh", function()
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+            end)
           end
         end,
       })
@@ -90,8 +97,11 @@ return {
         vim.diagnostic.config({ signs = { text = diagnostic_signs } })
       end
 
-      vim.keymap.set("n", "yod",
-        "<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.enable(false) else vim.diagnostic.enable(true) end<CR>")
+      vim.keymap.set(
+        "n",
+        "yod",
+        "<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.enable(false) else vim.diagnostic.enable(true) end<CR>"
+      )
 
       -- local opts = { buffer = bufnr, noremap = true, silent = true }
 
@@ -172,20 +182,19 @@ return {
         },
         -- server_capabilities = { semanticTokensProvider = false, },
       }
-      local lspconfig = require('lspconfig')
+      local lspconfig = require("lspconfig")
       for server, config in pairs(servers) do
         -- passing config.capabilities to blink.cmp merges with the capabilities in your
         -- `opts[server].capabilities, if you've defined it
-        config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
         lspconfig[server].setup(config)
       end
-
 
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         "shellcheck",
         "shfmt",
-        -- "stylua",
+        "stylua",
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

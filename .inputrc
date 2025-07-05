@@ -54,14 +54,22 @@ set editing-mode vi
 set keymap vi
 
 $if mode=vi
+
 set keymap vi-command
+
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
 j: history-search-forward
 k: history-search-backward
+
 "\C-x\C-r": re-read-init-file
+
 set keymap vi-insert
+
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
 "\C-x\C-r": re-read-init-file
+
 $endif

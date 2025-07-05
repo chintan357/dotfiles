@@ -5,12 +5,14 @@
 
 [init]
   defaultBranch = main
+  ; templatedir = ~/.git_template
 
 [github]
   user = chintan357
 
 [core]
   editor = nvim
+  autocrlf = input
   pager = delta
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   ; excludesFile = ~/.gitignore
@@ -52,6 +54,7 @@
   cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 
 [merge]
+  ff = only
   tool = nvim
   conflictstyle = diff3
 
@@ -63,6 +66,13 @@
   ; cmd = nvim -d "$LOCAL" "$REMOTE" "$BASE" -c 'wincmd l' "$MERGED"
   cmd = nvim -f -c 'Gvdiffsplit!' "$MERGED"
   trustExitCode = true
+
+[fetch]
+  prune = true
+
+[rebase]
+  autosquash = true
+
 
 [interactive]
   diffFilter = delta --color-only
@@ -78,7 +88,7 @@
   ; syntax-theme = Coldark-Dark
 
 [push]
-  default = simple
+  default = simple ; current
 
 [pull]
   ff = only
@@ -88,6 +98,7 @@
 
 [alias]
 	a = add
+  ; ap = add --patch
 
 	b = branch
 	ba = branch -a
@@ -104,6 +115,7 @@
 
 	c = commit
 	ca = commit -a
+  ci = commit -v
 	cm = commit -m
 	cam = commit -am
 	cem = commit --allow-empty -m
@@ -157,7 +169,7 @@
 	pr = prune -v
 
   pu = push
-	puf = push -f
+  puf = push --force-with-lease ; push -f
 	puu = push -u
 	put = push --tags
 	puo = push origin
