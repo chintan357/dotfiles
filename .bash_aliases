@@ -182,31 +182,37 @@ alias sopy='cve && act'
 # py() { uv run $1; }
 alias py='uv run $1'
 
-alias uvi='uv init'
-alias uvit='uv init --python $1'
 alias uvr='uv run'
 alias uvrp='uv run python'
+
+alias uvi='uv init'
+alias uvit='uv init --python $1'
 alias uva='uv add'
 alias uvrm='uv remove'
 alias uvs='uv sync'
 alias uvtr='uv tree'
 # uv add --script: Add a dependency to a script
 # uv remove --script: Remove a dependency from a script
+alias uvc='uv cache'
 
 alias uvh='uv help'
 
 alias uvt='uv tool'
+alias uvtls='uv tool list'
+alias uvti='uv tool install'
+alias uvtU='uv tool uninstall'
 alias uvtup='uv tool upgrade'
 
 alias uvup='uv lock --upgrade-package $1'
 
 alias uvp='uv python'
-alias pyp='uv python pin'
-alias pyf='uv python find'
-alias pyls='uv python list --only-installed'
-alias pyll='uv python list'
 alias pyi='uv python install'
+alias pyll='uv python list'
+alias pyls='uv python list --only-installed'
+alias pyf='uv python find'
+alias pyp='uv python pin'
 alias pyU='uv python uninstall'
+alias uvpd='uv python dir'
 
 # alias rpy="uvicorn main:app --reload"
 
@@ -214,7 +220,10 @@ alias pip='uv pip'
 alias pipi="pip install"
 alias pipU="pip uninstall"
 alias pipls="pip list"
-alias pips="pip show"
+alias piptr="pip tree"
+alias pipc='uv pip compile'
+alias pips='uv pip sync'
+alias pipsw="pip show"
 alias pipg="pip freeze | grep"
 alias pipreq="pip freeze > requirements.txt"
 alias pipir="pip install -r requirements.txt"

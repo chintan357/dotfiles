@@ -6,6 +6,7 @@ vim.g.have_nerd_font = true
 require("core.keymaps")
 require("core.options")
 require("core.autocommands")
+require("core.lsp")
 require("custom.lab")
 -- require("custom.terminalpop")
 

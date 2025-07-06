@@ -16,7 +16,7 @@ ln -s $(which fdfind) ~/.local/bin/fd
 # sudo apt install pipx
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-tools=(ruff llm datasette ipython pudb asciinema aider-chat ranger-fm thefuck jupyterlab jupyter-console)
+tools=(ruff ty llm datasette ipython pudb asciinema aider-chat ranger-fm thefuck jupyterlab jupyter-console)
 # urlscan jupyter_client
 for tool in "${tools[@]}"; do
   uv tool install "$tool"
@@ -29,7 +29,7 @@ sudo apt remove rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install cargo-binstall
 # cargo binstall tealdeer --no-confirm
-cargo binstall tealdeer tree-sitter-cli eza git-delta hackernews_tui broot halp navi bob-nvim
+cargo binstall stylua tealdeer tree-sitter-cli eza git-delta hackernews_tui broot halp navi bob-nvim
 
 bob use stable
 
