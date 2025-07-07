@@ -1,4 +1,5 @@
 -- credit to: [artemave](https://github.com/artemave/workspace-diagnostics.nvim)
+
 local M = {}
 local _loaded_clients = {}
 local _workspace_files

@@ -3,7 +3,7 @@ sudo apt update && sudo apt -y upgrade
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # prefix + I
 
-cd && mkdir -p lab/dotfiles wre pre homelab dotfiles private tmp down docs 
+cd && mkdir -p lab/dotfiles wre pre homelab dotfiles private tmp down extras
 # mkdir ~/.config
 
 sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu luarocks btop htop python3-pip gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils universal-ctags apt-transport-https
