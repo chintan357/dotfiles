@@ -18,10 +18,8 @@ alias lh='ls -d .[^.]* 2> /dev/null'
 alias lt='tree -a -L 2 | less'
 
 alias es='eza --group-directories-first'
-alias el='eza -lh --git --color=always --icons=always --group-directories-first | less'
 alias ea='eza -a --git --color=always --icons=always --group-directories-first'
-alias ell='eza -Alh --git --color=always --group-directories-first | less'
-alias esd='eza -d */ 2> /dev/null'
+alias el='eza -Alh --git --color=always --icons=always --group-directories-first | less'
 alias eh='eza -a | egrep "^\."'
 alias et='eza -a --tree --level=2'
 
@@ -29,17 +27,8 @@ alias lnv="ln -v"
 
 #-----------#
 
-alias findf='find . -type f -name'
-alias findd='find . -type d -name'
-
-alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git}'
-
-alias grepi='grep -i'
-alias grepr='grep -r'
+alias sgrep='grep -R -n -i -H -C 5 --exclude-dir={.git}'
 alias grepir='grep -ir'
-
-alias pyfind='find . -name "*.py"'
-alias pygrep='grep -nr --include="*.py"'
 
 #-----------#
 
@@ -61,13 +50,11 @@ alias ports='sudo netstat -tulanp'
 
 alias p1='ping -c 3 1.1.1.1'
 alias p8='ping -c 3 8.8.8.8'
-alias clh8='curl localhost:8080'
 clh() { curl localhost:$1; }
-png() { ping -c 3 $1; }
 
 #-----------#
 
-alias dfc='df -hPT | column -t'
+alias dfh='df -h | column -t'
 alias osrel='cat /etc/os-release'
 alias cpuinfo='cat /proc/cpuinfo | less'
 alias meminfo='cat /proc/meminfo | less'
@@ -100,17 +87,20 @@ alias matrix='cmatrix'
 
 #-----------#
 
+alias v=nvim
 alias vim='nvim'
 alias lvi='nvim -c "normal '\''0"'
 alias v.='nvim .'
+alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
+# alias v='NVIM_APPNAME="tvim" nvim'
+alias lvim='NVIM_APPNAME="lvim" nvim'
+
+alias bro='broot'
 
 #-----------#
 
 alias hostinfo='hostname && ip addr show'
 alias myip='curl -s https://checkip.amazonaws.com'
-alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
-
-alias tree3='tree -a -L 3 | less'
 
 # alias hx='hexdump -C'
 alias w1='watch -n 1'
@@ -128,7 +118,6 @@ alias tusage='df -hl --total | grep total'
 
 #-----------#
 
-alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
 # alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
 
 bak() { mv "$1" "$1.bak"; }
@@ -191,9 +180,9 @@ alias uva='uv add'
 alias uvrm='uv remove'
 alias uvs='uv sync'
 alias uvtr='uv tree'
-# uv add --script: Add a dependency to a script
-# uv remove --script: Remove a dependency from a script
 alias uvc='uv cache'
+
+alias uvup='uv lock --upgrade-package $1'
 
 alias uvh='uv help'
 
@@ -203,8 +192,6 @@ alias uvti='uv tool install'
 alias uvtU='uv tool uninstall'
 alias uvtup='uv tool upgrade'
 
-alias uvup='uv lock --upgrade-package $1'
-
 alias uvp='uv python'
 alias pyi='uv python install'
 alias pyll='uv python list'
@@ -212,7 +199,6 @@ alias pyls='uv python list --only-installed'
 alias pyf='uv python find'
 alias pyp='uv python pin'
 alias pyU='uv python uninstall'
-alias uvpd='uv python dir'
 
 # alias rpy="uvicorn main:app --reload"
 
@@ -251,8 +237,6 @@ alias atom='tmux new-session -A -s atomic'
 
 #-----------#
 
-alias exp="Explorer.exe ."
-
 alias bk="cd -"
 alias root='cd /'
 alias cd..='cd ..'
@@ -275,7 +259,6 @@ alias tmp='cd ~/tmp'
 alias private='cd ~/private'
 alias wre='cd ~/wre'
 alias pre='cd ~/pre'
-alias mre='cd ~/mreerepo/misc'
 alias down='cd ~/down'
 alias lab='cd ~/lab'
 alias hlab='cd ~/homelab'
@@ -284,6 +267,7 @@ alias dot='cd ~/dotfiles'
 alias iam='cd /mnt/c/chintan357/vaults/atomic'
 alias iamd='cd /mnt/c/chintan357/vaults/atomic/dailies'
 
+alias exp="Explorer.exe ."
 alias mntc='cd /mnt/c'
 alias vaultsw='cd /mnt/c/chintan357/vaults/'
 
@@ -304,7 +288,7 @@ alias gbr='git branch'
 alias gcl='git clone'
 alias gcld='git clone --depth 1'
 
-alias gco='git checkout'
+# alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gbk='git checkout -'
 
@@ -326,10 +310,15 @@ alias glogp="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese
 alias glogl='git log --stat'
 alias gll='git log --stat'
 
-alias grecent='git for-each-ref --sort="-committerdate" --format="%(committerdate:short) %(refname:short)" refs/heads'
 alias glast="git log -1 HEAD"
 
 alias hbr='gh browse'
+
+# alias gnah="git clean -df && git checkout -- ."
+# alias gclean='git clean -fd'
+# alias gpristine='git reset --hard && git clean --force -dfx'
+# alias groh='git reset origin/$(git_current_branch) --hard'
+# alias gcan!='git commit --verbose --all --no-edit --amend'
 
 #-----------#
 
@@ -372,9 +361,6 @@ alias gconfa='gcloud config configurations activate'
 
 #-----------#
 
-# alias v='NVIM_APPNAME="tvim" nvim'
-alias v=nvim
-alias lvim='NVIM_APPNAME="lvim" nvim'
 alias t='sesh connect $(sesh list | fzf)'
 alias R=ranger
 
@@ -382,7 +368,6 @@ alias deep='ssh deep'
 alias dist='ssh dist'
 alias smi='nvidia-smi'
 
-alias ytdl='youtube-dl'
 alias gtypist='gtypist -c 0,2'
 
 alias power='powershell.exe'
@@ -391,43 +376,31 @@ alias l='llm -m gemini-2.5-flash-lite-preview-06-17'
 alias chat='llm chat'
 alias chatf='llm chat -m gemini-2.5-flash'
 
+
 #-----------#
 
+# alias ytdl='youtube-dl'
 # alias rec='asciinema rec'
 # alias play='asciinema play'
+
 # alias ct='column -t'
-# alias rmt=trash
-# alias fw='sudo ufw'
-# alias lh='ls -A | grep "^\."'
-# alias ls='ls --group-directories-first --color=auto'
-# alias search='function _search() { grep -r --exclude-dir={.git,.svn} $1 *; }; _search'
 # alias sniff='sudo tcpdump -i any -c 1000 -nn'
 # alias rl="readlink -f"
+
 # realpath "$*")" -iname "*"
 # $(history -p !!)'
 # 'sudo $(fc -ln -1)'
+
 # alias make1='make -j$(($(nproc) + 1))'  # Use all cores +1 for compilation
 # alias sha1='openssl sha1'
-# alias tree='tree -a -I ".svn|.git|.hg|.idea" | less'
-# alias du1="\du -d 1 -m"
-# alias tree='tree -C --dirsfirst'
-# alias to='function _to() { cd "$@" && tree; }; _to'
+
 # alias secupdates='sudo unattended-upgrade -d'
 # alias jou='sudo journalctl -b -n 200 -f'
+
 # Run proper IPython regarding current virtualenv (if any)
 # alias ipython='python3 -c "import IPython, sys; sys.exit(IPython.start_ipython())"'
-# alias tmlkb='tmux list-keys | grep -v "unbind" | grep'  # List only bound keys
-# alias tmlkB='tmux list-keys | grep "unbind" | grep'   # List only unbound keys
 # alias twitter='xdg-open https://www.twitter.com'
 
-# c() { cd ~/code/$1; }
-# h() { cd ~/$1; }
-# alias iam='cd ~/atomic'
-# alias gnah="git clean -df && git checkout -- ."
-# alias gclean='git clean -fd'
-# alias gpristine='git reset --hard && git clean --force -dfx'
-# alias groh='git reset origin/$(git_current_branch) --hard'
-# alias gcan!='git commit --verbose --all --no-edit --amend'
 # alias dkcls='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
 # alias dip="sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 # alias drmf='sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q)'
@@ -447,26 +420,25 @@ alias chatf='llm chat -m gemini-2.5-flash'
 # dock-do() { if [ "$#" -ne 1 ]; then echo "Usage: $0 start|stop|pause|unpause|" fi
 
 # for c in $(sudo docker ps -a | awk '{print $1}' | sed "1 d") do sudo docker $1 $c done }
-
 # alias dkclean='docker ps -q -a -f status=exited | xargs -r docker rm && docker images -q -f dangling=true | xargs -r docker rmi'
 
 # alias kc='kubectl'
-#
+
 # alias kcg='kubectl get'
 # alias kcgn='kubectl get --namespace'
-#
+
 # alias kcd='kubectl describe'
 # alias kcdn='kubectl describe --namespace'
-#
+
 # alias kcdl='kubectl delete'
 # alias kcdln='kubectl delete --namespace'
 # alias kcdlp='kubectl-delete-pod'
-#
+
 # alias wkcg='w1 kubectl get'
 # alias kcg='kubectl get'
 # alias kcgn='kubectl get --namespace'
 # alias kcgan='kubectl get pods --all-namespaces'
-#
+
 # alias kcge='kubectl get events --sort-by=".lastTimestamp" --all-namespaces --watch'
 # alias kcr='kubectl create'
 # alias kca='kubectl apply -f'

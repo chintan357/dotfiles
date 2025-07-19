@@ -1,14 +1,4 @@
-# gco() {
-#   _fzf_git_each_ref --no-multi | xargs git checkout
-# }
-# 
-# gswt() {
-#   cd "$(_fzf_git_worktrees --no-multi)"
-# }
-
 weather() { curl -s --connect-timeout 3 -m 5 http://wttr.in/$1; }
-
-dict() { curl "dict.org/d:$1"; }
 
 function cdl() {
     cd "$1" && ls
@@ -82,19 +72,6 @@ function github() {
       fi
 }
 
-function hl() {
-  if command -v "$1" &> /dev/null; then
-    if alias "$1" &>/dev/null; then
-      echo "Cannot display help for alias: $1" >&2
-    else
-      "$@" --help | less
-        fi
-  else
-    echo "Invalid command: $1" >&2
-      fi
-}
-
-
 function r() {
     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
     ranger --choosedir="$temp_file" "$@"
@@ -103,14 +80,6 @@ function r() {
     fi
     rm -f -- "$temp_file"
 }
-
-# function gbmv() {
-#   if [ $# -eq 1 ]; then
-#     git branch -m "$1"
-#   elif [ $# -eq 2 ]; then
-#     git branch -m "$1" "$2"
-#   fi
-# }
 
 # function r() {
 #     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
