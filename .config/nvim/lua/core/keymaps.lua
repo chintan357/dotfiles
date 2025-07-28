@@ -150,6 +150,8 @@ keymap("n", "<leader>yf", function()
   vim.fn.setreg("+", filename)
 end)
 
+keymap( "n", "yod", "<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.enable(false) else vim.diagnostic.enable(true) end<CR>")
+
 keymap("n", "yow", function()
   vim.wo.wrap = not vim.wo.wrap
 end)
@@ -190,7 +192,6 @@ keymap("n", "<leader>xq", function()
     vim.notify(err, vim.log.levels.ERROR)
   end
 end, { desc = "Quickfix List" })
-
 
 -- Copy filepath to the clipboard
 -- vim.keymap.set("n", "<leader>fp", function()

@@ -57,17 +57,17 @@ eval "$(uvx --generate-shell-completion bash)"
 # eval $(thefuck --alias fq)
 # source $HOME/.config/broot/launcher/bash/br
 
-# Start the SSH agent if it's not running
-if [ -z "$SSH_AUTH_SOCK" ]; then
-    eval "$(ssh-agent -s)" > /dev/null
-fi
-# Add all SSH keys in ~/.ssh to the agent if not already added
-for key in ~/.ssh/*; do
-    # Check if the file is a private key (skip public keys and directories)
-    if [[ -f "$key" && "$key" != *.pub ]]; then
-        ssh-add -l | grep -q "$key" || ssh-add "$key" 2>/dev/null
-    fi
-done
+# # Start the SSH agent if it's not running
+# if [ -z "$SSH_AUTH_SOCK" ]; then
+#     eval "$(ssh-agent -s)" > /dev/null
+# fi
+# # Add all SSH keys in ~/.ssh to the agent if not already added
+# for key in ~/.ssh/*; do
+#     # Check if the file is a private key (skip public keys and directories)
+#     if [[ -f "$key" && "$key" != *.pub ]]; then
+#         ssh-add -l | grep -q "$key" || ssh-add "$key" 2>/dev/null
+#     fi
+# done
 
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'

@@ -202,23 +202,23 @@ alias pyU='uv python uninstall'
 
 # alias rpy="uvicorn main:app --reload"
 
-alias pip='uv pip'
-alias pipi="pip install"
-alias pipU="pip uninstall"
-alias pipls="pip list"
-alias piptr="pip tree"
-alias pipc='uv pip compile'
-alias pips='uv pip sync'
-alias pipsw="pip show"
-alias pipg="pip freeze | grep"
-alias pipreq="pip freeze > requirements.txt"
-alias pipir="pip install -r requirements.txt"
+alias pipi="uv pip install"
+alias pipU="uv pip uninstall"
+alias pipls="uv pip list"
+alias piptr="uv pip tree"
+alias pipc='uv uv pip compile'
+alias pips='uv uv pip sync'
+alias pipsw="uv pip show"
+alias pipg="uv pip freeze | grep"
+alias pipreq="uv pip freeze > requirements.txt"
+alias pipir="uv pip install -r requirements.txt"
 # uv pip check: Check that the current environment has compatible packages.
 # uv pip tree: View the dependency tree for the environment.
 
 alias ipython='ipython3'
 alias ipy='ipython3'
 alias ipyt='ipython3 --profile=tmp'
+alias uvipy='uv run ipython3'
 
 alias pyserver="uv run -m http.server"
 
@@ -375,7 +375,6 @@ alias power='powershell.exe'
 alias l='llm -m gemini-2.5-flash-lite-preview-06-17'
 alias chat='llm chat'
 alias chatf='llm chat -m gemini-2.5-flash'
-
 
 #-----------#
 

@@ -1,10 +1,10 @@
 weather() { curl -s --connect-timeout 3 -m 5 http://wttr.in/$1; }
 
-function cdl() {
+cdl() {
     cd "$1" && ls
 }
 
-function extract() {
+extract() {
 	if [ -f $1 ]; then
 		case $1 in
 		*.tar.bz2) tar xvjf $1 ;;
@@ -37,25 +37,21 @@ duckduckgo() {
 }
 alias ?='duckduckgo'
 
-function stack() {
+stack() {
   local query=$(echo "$@" | tr ' ' '+')
     xdg-open "https://stackoverflow.com/search?q=$query"
 }
 
-function open() {
-  if [[ -n "$1" ]]; then
-    xdg-open "https://$1"
-  else
-    echo "Usage: open <path or URL>"
-      fi
+pypi() {
+  xdg-open "https://pypi.org/project/$1/"
 }
 
-function google() {
+google() {
   local query=$(echo "$*" | tr ' ' '+')
     xdg-open "https://www.google.com/search?q=$query"
 }
 
-function yt() {
+yt() {
   local query=$(echo "$*" | tr ' ' '+')
     if [[ -n "$query" ]]; then
       xdg-open "https://www.youtube.com/results?search_query=$query"
@@ -64,7 +60,7 @@ function yt() {
         fi
 }
 
-function github() {
+github() {
   if [[ -n "$1" ]]; then
     xdg-open "https://github.com/search?q=$1"
   else
@@ -72,7 +68,7 @@ function github() {
       fi
 }
 
-function r() {
+r() {
     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
     ranger --choosedir="$temp_file" "$@"
     if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$(pwd)" ]; then
@@ -81,7 +77,7 @@ function r() {
     rm -f -- "$temp_file"
 }
 
-# function r() {
+# r() {
 #     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
 #     if [ -n "$TMUX" ]; then
 #         # If inside tmux, open ranger in a popup

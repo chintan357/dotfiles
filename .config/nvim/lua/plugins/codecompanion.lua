@@ -1,13 +1,26 @@
-return
-{
+-- return {
+-- "ravitemer/mcphub.nvim",
+-- cmd = "MCPHub",
+-- -- build = "npm install -g mcp-hub@latest",
+-- dependencies = {
+--   "nvim-lua/plenary.nvim",
+-- },
+-- opts = {}
+-- config = true,
+-- config = function()
+--   require("mcphub").setup()
+-- end
+-- }
+
+return {
   "olimorris/codecompanion.nvim",
   cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions" },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "j-hui/fidget.nvim",                    -- Display status
+    "j-hui/fidget.nvim", -- Display status
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/codecompanion-history.nvim", -- Save and load conversation history
-    "ravitemer/mcphub.nvim",
+    -- "ravitemer/mcphub.nvim",
     -- "zbirenbaum/copilot.lua",
     -- {
     --   "MeanderingProgrammer/render-markdown.nvim",
@@ -81,14 +94,14 @@ return
         --     add_tool = true,
         --   },
         -- },
-        mcphub = {
-          callback = "mcphub.extensions.codecompanion",
-          opts = {
-            make_vars = true,
-            make_slash_commands = true,
-            show_result_in_chat = true
-          }
-        }
+        -- mcphub = {
+        --   callback = "mcphub.extensions.codecompanion",
+        --   opts = {
+        --     make_vars = true,
+        --     make_slash_commands = true,
+        --     show_result_in_chat = true
+        --   }
+        -- }
       },
       strategies = {
         chat = {
@@ -99,7 +112,7 @@ return
         },
         cmd = {
           adapter = "copilot",
-        }
+        },
       },
       display = {
         chat = {
