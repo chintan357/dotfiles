@@ -9,7 +9,7 @@ end
 keymap("n", "<Esc>", ":nohls<CR>")
 
 vim.keymap.set("n", ":", ";", { noremap = true })
-vim.keymap.set("n", ";", ":", { noremap = true })
+vim.keymap.set({ "n", "v" }, ";", ":", { noremap = true })
 
 -- better up/down
 keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })

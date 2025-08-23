@@ -110,3 +110,4 @@ bind -m vi-insert '"\eo": "\C-z\ec\C-z"'
 # bind -x '"\C-p": "vim $(fzf --height 40% --reverse)"'
 
 . "$HOME/.local/share/../bin/env"
+source $HOME/.tenv.completion.bash

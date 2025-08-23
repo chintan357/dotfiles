@@ -19,7 +19,7 @@ return {
     "nvim-lua/plenary.nvim",
     "j-hui/fidget.nvim", -- Display status
     "nvim-treesitter/nvim-treesitter",
-    "ravitemer/codecompanion-history.nvim", -- Save and load conversation history
+    -- "ravitemer/codecompanion-history.nvim", -- Save and load conversation history
     -- "ravitemer/mcphub.nvim",
     -- "zbirenbaum/copilot.lua",
     -- {
@@ -75,20 +75,20 @@ return {
   config = function()
     require("codecompanion").setup({
       extensions = {
-        history = {
-          enabled = true,
-          opts = {
-            keymap = "gh",
-            save_chat_keymap = "sc",
-            auto_save = false,
-            auto_generate_title = true,
-            continue_last_chat = false,
-            delete_on_clearing_chat = false,
-            picker = "snacks",
-            enable_logging = false,
-            dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
-          },
-        },
+        -- history = {
+        --   enabled = true,
+        --   opts = {
+        --     keymap = "gh",
+        --     save_chat_keymap = "sc",
+        --     auto_save = false,
+        --     auto_generate_title = true,
+        --     continue_last_chat = false,
+        --     delete_on_clearing_chat = false,
+        --     picker = "snacks",
+        --     enable_logging = false,
+        --     dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
+        --   },
+        -- },
         -- vectorcode = {
         --   opts = {
         --     add_tool = true,

@@ -247,10 +247,10 @@ vim.lsp.enable("lua_ls")
 -- }
 -- vim.lsp.enable("ruff")
 
-vim.lsp.config.basedpyright = {
+vim.lsp.config.pyright = {
   name = "basedpyright",
   filetypes = { "python" },
-  cmd = { "basedpyright-langserver", "--stdio" },
+  cmd = { "pyright-langserver", "--stdio" },
   root_markers = {
     "pyproject.toml",
     "setup.py",
@@ -261,29 +261,38 @@ vim.lsp.config.basedpyright = {
     ".git",
   },
   settings = {
-    -- python = {
-    --   venvPath = vim.fn.expand("~") .. "/.virtualenvs",
-    -- },
-    basedpyright = {
-      disableOrganizeImports = true,
+    python = {
       analysis = {
         autoSearchPaths = true,
-        autoImportCompletions = true,
-        useLibraryCodeForTypes = true,
         diagnosticMode = "openFilesOnly",
-        typeCheckingMode = "strict",
-        inlayHints = {
-          variableTypes = true,
-          callArgumentNames = true,
-          functionReturnTypes = true,
-          genericTypes = false,
-        },
+        useLibraryCodeForTypes = true,
       },
     },
   },
+  -- settings = {
+  --   -- python = {
+  --   --   venvPath = vim.fn.expand("~") .. "/.virtualenvs",
+  --   -- },
+  --   basedpyright = {
+  --     disableOrganizeImports = true,
+  --     -- analysis = {
+  --     --   autoSearchPaths = true,
+  --     --   autoImportCompletions = true,
+  --     --   useLibraryCodeForTypes = true,
+  --     --   diagnosticMode = "openFilesOnly",
+  --     --   typeCheckingMode = "strict",
+  --     --   inlayHints = {
+  --     --     variableTypes = true,
+  --     --     callArgumentNames = true,
+  --     --     functionReturnTypes = true,
+  --     --     genericTypes = false,
+  --     --   },
+  --     -- },
+  --   },
+  -- },
 }
 
-vim.lsp.enable("basedpyright")
+vim.lsp.enable("pyright")
 
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "python",

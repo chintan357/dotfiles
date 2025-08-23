@@ -3,7 +3,7 @@ sudo apt update && sudo apt -y upgrade
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # prefix + I
 
-cd && mkdir -p lab/dotfiles wre pre homelab dotfiles private tmp down extras
+cd && mkdir -p lab/dotfiles wre pre lre homelab dotfiles private tmp down extras
 # mkdir ~/.config
 
 sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu luarocks btop htop python3-pip gtypist cowsay cmatrix lolcat net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils universal-ctags apt-transport-https
@@ -91,6 +91,11 @@ cd sqlite-autoconf-3500100
 ./configure --prefix=/usr/local
 make
 sudo make install
+
+# tenv
+LATEST_VERSION=$(curl --silent https://api.github.com/repos/tofuutils/tenv/releases/latest | jq -r .tag_name)
+curl -O -L "https://github.com/tofuutils/tenv/releases/latest/download/tenv_${LATEST_VERSION}_amd64.deb"
+sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
 ```
 
 ```sh

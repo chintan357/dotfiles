@@ -170,6 +170,7 @@ alias sopy='cve && act'
 
 # py() { uv run $1; }
 alias py='uv run $1'
+alias pymain="py main.py"
 
 alias uvr='uv run'
 alias uvrp='uv run python'
@@ -259,6 +260,7 @@ alias tmp='cd ~/tmp'
 alias private='cd ~/private'
 alias wre='cd ~/wre'
 alias pre='cd ~/pre'
+alias lre='cd ~/lre'
 alias down='cd ~/down'
 alias lab='cd ~/lab'
 alias hlab='cd ~/homelab'
@@ -283,6 +285,9 @@ alias cg='cd `git rev-parse --show-toplevel`'
 
 alias gaa='git add --all'
 alias ga.='git add .'
+
+alias gd='git diff'
+alias gdc='git diff --cached'
 
 alias gbr='git branch'
 alias gcl='git clone'
@@ -375,6 +380,9 @@ alias power='powershell.exe'
 alias l='llm -m gemini-2.5-flash-lite-preview-06-17'
 alias chat='llm chat'
 alias chatf='llm chat -m gemini-2.5-flash'
+
+alias dira='direnv allow'
+alias tfd='terraform-docs'
 
 #-----------#
 
