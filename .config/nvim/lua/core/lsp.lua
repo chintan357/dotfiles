@@ -3,6 +3,7 @@
 -- ~/.config/nvim/after/lsp/lua_ls.lua
 
 -- https://github.com/Rishabh672003/Neovim/blob/main/lua/rj/lsp.lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 
 local config = {
   signs = {
@@ -248,7 +249,6 @@ vim.lsp.enable("lua_ls")
 -- vim.lsp.enable("ruff")
 
 vim.lsp.config.pyright = {
-  name = "basedpyright",
   filetypes = { "python" },
   cmd = { "pyright-langserver", "--stdio" },
   root_markers = {
@@ -352,6 +352,57 @@ vim.lsp.enable("pyright")
 --   },
 -- }
 -- vim.lsp.enable("bashls")
+
+-- vim.lsp.config.eslint = {
+--   cmd = { "vscode-eslint-language-server", "--stdio" },
+--   filetypes = {
+--     "javascript",
+--     "javascriptreact",
+--     "javascript.jsx",
+--     "typescript",
+--     "typescriptreact",
+--     "typescript.tsx",
+--     "vue",
+--     "svelte",
+--     "astro",
+--     "htmlangular",
+--   },
+--   root_markers = { ".git", "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "bun.lockb", "bun.lock" },
+--   settings = {
+--     codeAction = {
+--       disableRuleComment = {
+--         enable = true,
+--         location = "separateLine",
+--       },
+--       showDocumentation = {
+--         enable = true,
+--       },
+--     },
+--     codeActionOnSave = {
+--       enable = false,
+--       mode = "all",
+--     },
+--     experimental = {
+--       useFlatConfig = false,
+--     },
+--     format = true,
+--     nodePath = "",
+--     onIgnoredFiles = "off",
+--     problems = {
+--       shortenToSingleLine = false,
+--     },
+--     quiet = false,
+--     rulesCustomizations = {},
+--     run = "onType",
+--     useESLintClass = false,
+--     validate = "on",
+--     workingDirectory = {
+--       mode = "auto",
+--     },
+--   },
+-- }
+
+-- vim.lsp.enable("eslint")
 
 vim.api.nvim_create_user_command("LspStart", function()
   vim.cmd.e()

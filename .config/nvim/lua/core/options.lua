@@ -125,7 +125,12 @@ opt.wildignore:append({
 opt.jumpoptions = "view"
 
 opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldnestmax = 3
 opt.foldenable = false
+
+-- vim.opt.foldcolumn = "0"
+-- vim.opt.foldtext = ""
 opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 

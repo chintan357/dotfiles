@@ -286,8 +286,8 @@ alias cg='cd `git rev-parse --show-toplevel`'
 alias gaa='git add --all'
 alias ga.='git add .'
 
-alias gd='git diff'
-alias gdc='git diff --cached'
+# alias gd='git diff'
+# alias gdc='git diff --cached'
 
 alias gbr='git branch'
 alias gcl='git clone'

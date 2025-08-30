@@ -2,6 +2,51 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("neo_" .. name, { clear = true })
 end
 
+-- Save and restore fold states
+-- vim.api.nvim_create_autocmd("BufWinLeave", {
+--   pattern = "*",
+--   group = augroup("mkview"),
+--   callback = function()
+--     if vim.bo.filetype ~= "" then
+--       vim.cmd("mkview")
+--     end
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("BufWinEnter", {
+--   pattern = "*",
+--   group = augroup("loadview"),
+--   callback = function()
+--     if vim.bo.filetype ~= "" then
+--       vim.cmd("silent! loadview")
+--     end
+--   end,
+-- })
+
+-- Remember folds between sessions
+-- vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
+--   pattern = "*",
+--   command = "mkview",
+-- })
+-- vim.api.nvim_create_autocmd("BufWinLeave", {
+--   callback = function()
+--     if vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
+--       vim.cmd("mkview")
+--     end
+--   end,
+-- })
+-- vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+--   pattern = "*",
+--   command = "silent! loadview",
+-- })
+-- vim.api.nvim_create_autocmd("BufWinEnter", {
+--   callback = function()
+--     if vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
+--       vim.cmd("silent! loadview")
+--     end
+--   end,
+-- })
+
 -- don't auto comment new line
 -- vim.api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
@@ -106,7 +151,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.conceallevel = 0
   end,
 })
-
 
 -- -- Auto create dir when saving a file, in case some intermediate directory does not exist
 -- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
