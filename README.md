@@ -130,4 +130,9 @@ sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
 # https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh
 # https://raw.githubusercontent.com/wfxr/forgit/main/bin/git-forgit
 # https://raw.githubusercontent.com/wfxr/forgit/main/forgit.plugin.zsh
+
+curl -o ~/.git-prompt.sh \
+    https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+# contrib/completion/git-completion.bash
+
 ```

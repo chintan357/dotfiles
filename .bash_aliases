@@ -223,6 +223,8 @@ alias uvipy='uv run ipython3'
 
 alias pyserver="uv run -m http.server"
 
+alias pkgpath='python3 -c "import sys; pkg=sys.argv[1]; import importlib; mod=importlib.import_module(pkg); print(getattr(mod, \"__path__\", [None])[0]) if getattr(mod, \"__path__\", None) else print(\"No __path__ attribute\")"'
+
 #-----------#
 
 alias tm='tmux'
