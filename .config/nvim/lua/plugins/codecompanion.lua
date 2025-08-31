@@ -1,28 +1,12 @@
--- return {
--- "ravitemer/mcphub.nvim",
--- cmd = "MCPHub",
--- -- build = "npm install -g mcp-hub@latest",
--- dependencies = {
---   "nvim-lua/plenary.nvim",
--- },
--- opts = {}
--- config = true,
--- config = function()
---   require("mcphub").setup()
--- end
--- }
-
-function table_to_string(tbl)
-  local result = "{"
-  for k, v in pairs(tbl) do
-    result = result .. tostring(k) .. " = " .. tostring(v) .. ", "
-  end
-  if result:sub(-2) == ", " then
-    result = result:sub(1, -3)
-  end
-  result = result .. "}"
-  return result
-end
+-- Auto-command to customize chat buffer behavior
+-- vim.api.nvim_create_autocmd('BufEnter', {
+--   pattern = 'copilot-*',
+--   callback = function()
+--     vim.opt_local.relativenumber = false
+--     vim.opt_local.number = false
+--     vim.opt_local.conceallevel = 0
+--   end,
+-- })
 
 return {
   "olimorris/codecompanion.nvim",
@@ -32,7 +16,7 @@ return {
     "j-hui/fidget.nvim", -- Display status
     "nvim-treesitter/nvim-treesitter",
     -- "ravitemer/codecompanion-history.nvim", -- Save and load conversation history
-    -- "ravitemer/mcphub.nvim",
+    "ravitemer/mcphub.nvim",
     -- "zbirenbaum/copilot.lua",
     -- {
     --   "MeanderingProgrammer/render-markdown.nvim",
@@ -104,20 +88,19 @@ return {
         --     add_tool = true,
         --   },
         -- },
-        -- mcphub = {
-        --   callback = "mcphub.extensions.codecompanion",
-        --   opts = {
-        --     make_vars = true,
-        --     make_slash_commands = true,
-        --     show_result_in_chat = true
-        --   }
-        -- }
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          },
+        },
       },
       strategies = {
         chat = {
           adapter = {
             name = "copilot",
-            -- model = "gpt-4.1",
             model = "gpt-4o",
           },
           roles = {
@@ -179,10 +162,7 @@ return {
           },
         },
         inline = {
-          adapter = {
-            name = "copilot",
-            model = "gpt-4.1",
-          },
+          adapter = "copilot",
         },
         cmd = {
           adapter = "copilot",
@@ -209,47 +189,50 @@ return {
         -- diff = { provider = "mini_diff", },
       },
       adapters = {
-        --   copilot = function()
-        --     return require("codecompanion.adapters").extend("copilot", {
-        --       schema = {
-        --         model = {
-        --           default = "gemini-2.5-pro",
-        --         },
-        --       },
-        --     })
-        --   end,
-        openai = function()
-          return require("codecompanion.adapters").extend("openai", {
-            opts = {
-              stream = true,
-            },
-            env = {
-              -- api_key = "cmd:op read op://personal/OpenAI/credential --no-newline",
-              api_key = "cmd:cat ~/private/oanvim",
-            },
-            -- schema = {
-            --   model = {
-            --     default = function()
-            --       return "gpt-4.1"
-            --     end,
-            --   },
-            -- },
-          })
-        end,
-        gemini = function()
-          return require("codecompanion.adapters").extend("gemini", {
-            env = {
-              api_key = "cmd:cat ~/private/gemini-nvim",
-            },
-          })
-        end,
-        -- tavily = function()
-        --   return require("codecompanion.adapters").extend("tavily", {
-        --     env = {
-        --       api_key = "cmd:op read op://personal/Tavily_API/credential --no-newline",
-        --     },
-        --   })
-        -- end,
+        http = {
+
+          --   copilot = function()
+          --     return require("codecompanion.adapters").extend("copilot", {
+          --       schema = {
+          --         model = {
+          --           default = "gemini-2.5-pro",
+          --         },
+          --       },
+          --     })
+          --   end,
+          openai = function()
+            return require("codecompanion.adapters").extend("openai", {
+              opts = {
+                stream = true,
+              },
+              env = {
+                -- api_key = "cmd:op read op://personal/OpenAI/credential --no-newline",
+                api_key = "cmd:cat ~/private/oanvim",
+              },
+              -- schema = {
+              --   model = {
+              --     default = function()
+              --       return "gpt-4.1"
+              --     end,
+              --   },
+              -- },
+            })
+          end,
+          gemini = function()
+            return require("codecompanion.adapters").extend("gemini", {
+              env = {
+                api_key = "cmd:cat ~/private/gemini-nvim",
+              },
+            })
+          end,
+          -- tavily = function()
+          --   return require("codecompanion.adapters").extend("tavily", {
+          --     env = {
+          --       api_key = "cmd:op read op://personal/Tavily_API/credential --no-newline",
+          --     },
+          --   })
+          -- end,
+        },
       },
     })
 

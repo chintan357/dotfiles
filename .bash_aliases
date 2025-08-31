@@ -380,11 +380,12 @@ alias gtypist='gtypist -c 0,2'
 alias power='powershell.exe'
 
 alias l='llm -m gemini-2.5-flash-lite-preview-06-17'
-alias chat='llm chat'
-alias chatf='llm chat -m gemini-2.5-flash'
+alias lchat='llm chat'
+alias lchatf='llm chat -m gemini-2.5-flash'
 
 alias dira='direnv allow'
 alias tfd='terraform-docs'
+alias chat='nvim -c ":CodeCompanionChat" -c ":only"'
 
 #-----------#
 
