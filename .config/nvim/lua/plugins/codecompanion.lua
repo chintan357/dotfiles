@@ -180,8 +180,6 @@ return {
           show_token_count = false,
           show_header_separator = true,
           -- show_references = true,
-          -- show_header_separator = false,
-          -- show_references = true,
           -- show_settings = false,
           icons = { tool_success = "󰸞" },
           fold_context = true,
@@ -190,38 +188,21 @@ return {
       },
       adapters = {
         http = {
-
-          --   copilot = function()
-          --     return require("codecompanion.adapters").extend("copilot", {
-          --       schema = {
-          --         model = {
-          --           default = "gemini-2.5-pro",
-          --         },
-          --       },
-          --     })
-          --   end,
-          openai = function()
-            return require("codecompanion.adapters").extend("openai", {
-              opts = {
-                stream = true,
-              },
-              env = {
-                -- api_key = "cmd:op read op://personal/OpenAI/credential --no-newline",
-                api_key = "cmd:cat ~/private/oanvim",
-              },
-              -- schema = {
-              --   model = {
-              --     default = function()
-              --       return "gpt-4.1"
-              --     end,
-              --   },
-              -- },
-            })
-          end,
+          opts = {
+            show_model_choices = false,
+            show_defaults = false,
+          },
           gemini = function()
             return require("codecompanion.adapters").extend("gemini", {
               env = {
                 api_key = "cmd:cat ~/private/gemini-nvim",
+              },
+              schema = {
+                model = {
+                  default = "gemini-2.5-flash",
+                  temperature = 0.1,
+                },
+                reasoning_effort = "none",
               },
             })
           end,

@@ -83,7 +83,6 @@ opt.winblend = 0
 opt.splitkeep = "screen"
 
 opt.autowrite = true
--- opt.swapfile = false
 opt.updatetime = 300
 opt.backup = false
 

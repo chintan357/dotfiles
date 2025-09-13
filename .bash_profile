@@ -2,6 +2,17 @@ if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"
 fi
 
+eval "$(direnv hook bash)"
+eval "$(fzf --bash)" # FZF_ALT_C_COMMAND= 
+eval "$(zoxide init bash)"
+# eval "$(gh copilot alias -- bash)"
+eval "$(uv generate-shell-completion bash)"
+eval "$(uvx --generate-shell-completion bash)"
+
+source ~/.local/bin/fzf-git.sh
+source ~/.local/bin/forgit.plugin.sh
+source ~/.local/bin/.git-prompt.sh
+
 # safesource() {
 #     [[ -s $1 ]] && source $1
 # }

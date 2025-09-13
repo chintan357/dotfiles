@@ -35,18 +35,6 @@ export FORGIT_FZF_DEFAULT_OPTS="
 --reverse
 "
 
-eval "$(fzf --bash)" # FZF_ALT_C_COMMAND= 
-eval "$(zoxide init bash)"
-eval "$(direnv hook bash)"
-eval "$(gh copilot alias -- bash)"
-
-source ~/.local/bin/fzf-git.sh
-source ~/.local/bin/forgit.plugin.sh
-source ~/.local/bin/.git-prompt.sh
-
-eval "$(uv generate-shell-completion bash)"
-eval "$(uvx --generate-shell-completion bash)"
-
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -169,4 +157,11 @@ bind -m vi-command '"\eo": "\C-z\ec\C-z"'
 bind -m vi-insert '"\eo": "\C-z\ec\C-z"'
 # bind -x '"\C-p": "vim $(fzf --height 40% --reverse)"'
 
-source $HOME/.tenv.completion.bash
+# source $HOME/.tenv.completion.bash
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+
+eval "$(pyenv virtualenv-init -)"
+
