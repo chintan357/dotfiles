@@ -15,7 +15,7 @@ return {
     "nvim-lua/plenary.nvim",
     "j-hui/fidget.nvim", -- Display status
     "nvim-treesitter/nvim-treesitter",
-    -- "ravitemer/codecompanion-history.nvim", -- Save and load conversation history
+    "ravitemer/codecompanion-history.nvim", -- Save and load conversation history
     "ravitemer/mcphub.nvim",
     -- "zbirenbaum/copilot.lua",
     -- {
@@ -69,20 +69,20 @@ return {
   config = function()
     require("codecompanion").setup({
       extensions = {
-        -- history = {
-        --   enabled = true,
-        --   opts = {
-        --     keymap = "gh",
-        --     save_chat_keymap = "sc",
-        --     auto_save = false,
-        --     auto_generate_title = true,
-        --     continue_last_chat = false,
-        --     delete_on_clearing_chat = false,
-        --     picker = "snacks",
-        --     enable_logging = false,
-        --     dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
-        --   },
-        -- },
+        history = {
+          enabled = true,
+          opts = {
+            keymap = "gh",
+            save_chat_keymap = "sc",
+            auto_save = false,
+            auto_generate_title = true,
+            continue_last_chat = false,
+            delete_on_clearing_chat = false,
+            picker = "snacks",
+            enable_logging = false,
+            dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
+          },
+        },
         -- vectorcode = {
         --   opts = {
         --     add_tool = true,
@@ -101,7 +101,9 @@ return {
         chat = {
           adapter = {
             name = "copilot",
-            model = "gpt-4o",
+            -- model = "gpt-5-mini",
+            model = "gpt-4.1",
+            -- model = "gpt-4o",
           },
           roles = {
             llm = function(adapter)
@@ -189,8 +191,8 @@ return {
       adapters = {
         http = {
           opts = {
-            show_model_choices = false,
-            show_defaults = false,
+            show_model_choices = true,
+            -- show_defaults = false,
           },
           gemini = function()
             return require("codecompanion.adapters").extend("gemini", {
@@ -203,6 +205,20 @@ return {
                   temperature = 0.1,
                 },
                 reasoning_effort = "none",
+              },
+            })
+          end,
+          openrouter = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://openrouter.ai/api",
+                api_key = "cmd:cat ~/private/openrouter",
+                chat_url = "/v1/chat/completions",
+              },
+              schema = {
+                model = {
+                  default = "anthropic/claude-3.7-sonnet",
+                },
               },
             })
           end,

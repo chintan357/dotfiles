@@ -1,5 +1,6 @@
 alias e=exit
 alias c=clear
+
 alias al=alias
 alias ual=unalias
 
@@ -11,6 +12,8 @@ alias rmrf='rm -rf'
 
 #-----------#
 
+alias bo='broot'
+
 alias la='ls -A --group-directories-first'
 alias ll='ls -Alh --group-directories-first | less -R'
 alias lsd='ls -d */ 2> /dev/null'
@@ -20,14 +23,14 @@ alias lt='tree -a -L 2 | less'
 alias es='eza --group-directories-first'
 alias ea='eza -a --git --color=always --icons=always --group-directories-first'
 alias el='eza -Alh --git --color=always --icons=always --group-directories-first | less'
-alias eh='eza -a | egrep "^\."'
 alias et='eza -a --tree --level=2'
-
-alias lnv="ln -v"
 
 #-----------#
 
-alias sgrep='grep -R -n -i -H -C 5 --exclude-dir={.git}'
+alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git}'
+alias sgrepi='grep -R -n -i -H -C 5 --exclude-dir={.git}'
+
+alias grepi='grep -i'
 alias grepir='grep -ir'
 
 #-----------#
@@ -38,15 +41,13 @@ alias chmx='chmod u+x'
 
 #-----------#
 
-alias psx="ps auxf | less"
+alias psx="ps auxf"
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
-alias disk='lsblk -f'
 alias freeh='free -h'
-alias mountc='mount | column -t | less'
 
-alias lsock='sudo lsof -i -P'
-alias ports='sudo netstat -tulanp'
+alias lsock='lsof -i -P'
+alias ports='netstat -tulanp'
 
 alias p1='ping -c 3 1.1.1.1'
 alias p8='ping -c 3 8.8.8.8'
@@ -54,13 +55,11 @@ clh() { curl localhost:$1; }
 
 #-----------#
 
-alias dfh='df -h | column -t'
+alias dfh='df -h'
 alias osrel='cat /etc/os-release'
 alias cpuinfo='cat /proc/cpuinfo | less'
 alias meminfo='cat /proc/meminfo | less'
 alias release='cat /etc/*-release'
-alias unamea='uname -a'
-alias unamer='uname -r'
 
 #-----------#
 
@@ -83,7 +82,6 @@ alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
 
 alias fortune='/usr/games/fortune'
 alias tux='cowsay -f tux '
-alias matrix='cmatrix'
 
 #-----------#
 
@@ -94,8 +92,6 @@ alias v.='nvim .'
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
 # alias v='NVIM_APPNAME="tvim" nvim'
 alias lvim='NVIM_APPNAME="lvim" nvim'
-
-alias bro='broot'
 
 #-----------#
 
@@ -168,12 +164,9 @@ alias act="source .venv/bin/activate"
 alias dact='deactivate'
 alias sopy='cve && act'
 
-# py() { uv run $1; }
-alias py='uv run $1'
-alias pymain="py main.py"
-
 alias uvr='uv run'
 alias uvrp='uv run python'
+alias py='uv run $1'
 
 alias uvi='uv init'
 alias uvit='uv init --python $1'
@@ -181,10 +174,7 @@ alias uva='uv add'
 alias uvrm='uv remove'
 alias uvs='uv sync'
 alias uvtr='uv tree'
-alias uvc='uv cache'
-
 alias uvup='uv lock --upgrade-package $1'
-
 alias uvh='uv help'
 
 alias uvt='uv tool'
@@ -207,9 +197,7 @@ alias pipi="uv pip install"
 alias pipU="uv pip uninstall"
 alias pipls="uv pip list"
 alias piptr="uv pip tree"
-alias pipc='uv uv pip compile'
-alias pips='uv uv pip sync'
-alias pipsw="uv pip show"
+alias pipc='uv pip compile'
 alias pipg="uv pip freeze | grep"
 alias pipreq="uv pip freeze > requirements.txt"
 alias pipir="uv pip install -r requirements.txt"
@@ -235,14 +223,11 @@ alias tmat='tmux attach -t'
 alias tmkst='tmux kill-session -t'
 alias tmks='tmux kill-server'
 
-# alias tmlk='tmux list-keys'
-alias atom='tmux new-session -A -s atomic'
+# alias atom='tmux new-session -A -s atomic'
 
 #-----------#
 
 alias bk="cd -"
-alias root='cd /'
-alias cd..='cd ..'
 alias ..="cd .."
 alias .1="cd .."
 alias .2="cd ../.."
@@ -273,6 +258,7 @@ alias iamd='cd /mnt/c/chintan357/vaults/atomic/dailies'
 
 alias exp="Explorer.exe ."
 alias mntc='cd /mnt/c'
+alias mntcu='cd /mnt/c/Users'
 alias vaultsw='cd /mnt/c/chintan357/vaults/'
 
 #-----------#
@@ -338,22 +324,22 @@ alias dkx='docker exec -it'
 
 alias dkbt='docker build -t'
 
-alias dki='docker images'
-alias dkrmi='docker rmi'
-alias dkrmia='docker rmi $(docker images -q)'
-
-alias dkr='docker run'
-alias dkrd='docker run -d'
-alias dkrrm='docker run --rm'
-
-alias dkk='docker kill'
-alias dkka='docker kill $(docker ps -q)'
-alias dksa='docker stop $(docker ps -aq)'
-
-alias dkrm='docker rm'
-alias dkclean='docker system prune -af'
-
-alias dkl='docker logs'
+# alias dki='docker images'
+# alias dkrmi='docker rmi'
+# alias dkrmia='docker rmi $(docker images -q)'
+ 
+# alias dkr='docker run'
+# alias dkrd='docker run -d'
+# alias dkrrm='docker run --rm'
+ 
+# alias dkk='docker kill'
+# alias dkka='docker kill $(docker ps -q)'
+# alias dksa='docker stop $(docker ps -aq)'
+ 
+# alias dkrm='docker rm'
+# alias dkclean='docker system prune -af'
+ 
+# alias dkl='docker logs'
 # alias dklf='docker logs -f'
 
 #-----------#
@@ -384,7 +370,6 @@ alias lchat='llm chat'
 alias lchatf='llm chat -m gemini-2.5-flash'
 
 alias dira='direnv allow'
-alias tfd='terraform-docs'
 alias chat='nvim -c ":CodeCompanionChat" -c ":only"'
 
 #-----------#

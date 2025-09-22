@@ -157,6 +157,9 @@ bind -m vi-command '"\eo": "\C-z\ec\C-z"'
 bind -m vi-insert '"\eo": "\C-z\ec\C-z"'
 # bind -x '"\C-p": "vim $(fzf --height 40% --reverse)"'
 
+source ~/.local/bin/fzf-git.sh
+source ~/.local/bin/forgit.plugin.sh
+source ~/.local/bin/.git-prompt.sh
 # source $HOME/.tenv.completion.bash
 
 export PYENV_ROOT="$HOME/.pyenv"
@@ -165,3 +168,5 @@ eval "$(pyenv init - bash)"
 
 eval "$(pyenv virtualenv-init -)"
 
+
+. "$HOME/.local/share/../bin/env"

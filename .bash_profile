@@ -9,10 +9,6 @@ eval "$(zoxide init bash)"
 eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"
 
-source ~/.local/bin/fzf-git.sh
-source ~/.local/bin/forgit.plugin.sh
-source ~/.local/bin/.git-prompt.sh
-
 # safesource() {
 #     [[ -s $1 ]] && source $1
 # }
@@ -34,3 +30,5 @@ stty -ixon
 #         ssh-add -l | grep -q "$key" || ssh-add "$key" 2>/dev/null
 #     fi
 # done
+
+. "$HOME/.local/share/../bin/env"
