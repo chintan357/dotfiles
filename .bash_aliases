@@ -374,6 +374,37 @@ alias chat='nvim -c ":CodeCompanionChat" -c ":only"'
 
 #-----------#
 
+# Core shorthand
+alias k='kubectl'
+alias ka='kubectl apply -f'
+alias kdel='kubectl delete -f'
+alias krf='kubectl replace --force -f'
+alias kg='kubectl get'
+alias kd='kubectl describe'
+alias klo='kubectl logs'
+alias klof='kubectl logs -f'
+alias kexec='kubectl exec -it'
+alias kctx='kubectl config use-context'
+alias kns='kubectl config set-context --current --namespace'
+alias kcc='kubectl config current-context'
+alias kconf='kubectl config view'
+
+alias kgp='kubectl get pods'
+alias kgd='kubectl get deployments'
+alias kgs='kubectl get svc'
+alias kgn='kubectl get nodes'
+alias kgi='kubectl get ingress'
+alias kgr='kubectl get replicaset'
+alias kgh='kubectl get hpa'
+alias kgns='kubectl get namespaces'
+
+alias kdp='kubectl describe pod'
+alias kdd='kubectl describe deployment'
+alias kds='kubectl describe svc'
+alias kdn='kubectl describe node'
+
+#-----------#
+
 # alias ytdl='youtube-dl'
 # alias rec='asciinema rec'
 # alias play='asciinema play'
@@ -394,7 +425,6 @@ alias chat='nvim -c ":CodeCompanionChat" -c ":only"'
 
 # Run proper IPython regarding current virtualenv (if any)
 # alias ipython='python3 -c "import IPython, sys; sys.exit(IPython.start_ipython())"'
-# alias twitter='xdg-open https://www.twitter.com'
 
 # alias dkcls='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
 # alias dip="sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
@@ -416,38 +446,3 @@ alias chat='nvim -c ":CodeCompanionChat" -c ":only"'
 
 # for c in $(sudo docker ps -a | awk '{print $1}' | sed "1 d") do sudo docker $1 $c done }
 # alias dkclean='docker ps -q -a -f status=exited | xargs -r docker rm && docker images -q -f dangling=true | xargs -r docker rmi'
-
-# alias kc='kubectl'
-
-# alias kcg='kubectl get'
-# alias kcgn='kubectl get --namespace'
-
-# alias kcd='kubectl describe'
-# alias kcdn='kubectl describe --namespace'
-
-# alias kcdl='kubectl delete'
-# alias kcdln='kubectl delete --namespace'
-# alias kcdlp='kubectl-delete-pod'
-
-# alias wkcg='w1 kubectl get'
-# alias kcg='kubectl get'
-# alias kcgn='kubectl get --namespace'
-# alias kcgan='kubectl get pods --all-namespaces'
-
-# alias kcge='kubectl get events --sort-by=".lastTimestamp" --all-namespaces --watch'
-# alias kcr='kubectl create'
-# alias kca='kubectl apply -f'
-# alias kce='kubectl exec -t -i'
-# alias kclf='kubectl logs -f'
-# alias kccon='kubectl config'
-# alias kcxsn='kubectl config set-context $(kubectl config current-context) --namespace'
-# alias kcpf='kubectl port-forward'
-# alias kcdldr='kubectl-delete-default-resources'
-# alias kcii='kubectl-ingress-ip-address'
-# alias kcni='kubectl-nginx-ip-address'
-# alias kcigip='kubectl-istio-gateway-ip-address'
-# alias kcignp='kubectl-istio-gateway-http-nodeport'
-
-# minikube
-# alias mks='minikube start'
-# alias mkt='minikube stop'

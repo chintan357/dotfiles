@@ -44,7 +44,6 @@ return {
     -- },
   },
   -- { "<leader>ic", "<cmd>CodeCompanion<cr>"},
-  -- { "<leader>ia", "<cmd>CodeCompanionActions<cr>"},
   -- { "<leader>id", "<cmd>CodeCompanionCmd<cr>"},
   keys = {
     -- {
@@ -100,9 +99,9 @@ return {
       strategies = {
         chat = {
           adapter = {
-            name = "copilot",
+            name = "openrouter",
             -- model = "gpt-5-mini",
-            model = "gpt-4.1",
+            model = "openai/gpt-5",
             -- model = "gpt-4o",
           },
           roles = {
@@ -164,10 +163,10 @@ return {
           },
         },
         inline = {
-          adapter = "copilot",
+          adapter = "openrouter",
         },
         cmd = {
-          adapter = "copilot",
+          adapter = "openrouter",
         },
       },
       -- opts = {
@@ -217,7 +216,8 @@ return {
               },
               schema = {
                 model = {
-                  default = "anthropic/claude-3.7-sonnet",
+                  -- default = "openai/gpt-5-chat",
+                  default = "anthropic/claude-sonnet-4.5",
                 },
               },
             })
