@@ -374,8 +374,9 @@ alias chat='nvim -c ":CodeCompanionChat" -c ":only"'
 
 #-----------#
 
-# Core shorthand
 alias k='kubectl'
+complete -F __start_kubectl k
+
 alias ka='kubectl apply -f'
 alias kdel='kubectl delete -f'
 alias krf='kubectl replace --force -f'
