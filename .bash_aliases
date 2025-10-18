@@ -253,8 +253,11 @@ alias lab='cd ~/lab'
 alias hlab='cd ~/homelab'
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
+
 alias iam='cd /mnt/c/chintan357/vaults/atomic'
 alias iamd='cd /mnt/c/chintan357/vaults/atomic/dailies'
+alias todo='nvim /mnt/c/chintan357/vaults/atomic/inbox/todo.md'
+alias pad='nvim /mnt/c/chintan357/vaults/atomic/inbox/pad.md'
 
 alias exp="Explorer.exe ."
 alias mntc='cd /mnt/c'

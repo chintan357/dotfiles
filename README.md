@@ -58,6 +58,12 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 
+#kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod u+x kubectl
+mv kubectl ~/.local/bin
+
+
 sudo add-apt-repository ppa:wslutilities/wslu
 sudo apt update
 sudo apt install wslu
