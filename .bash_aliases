@@ -135,16 +135,16 @@ alias sctl='systemctl'
 
 #--------------#
 
-alias erc='$EDITOR ~/.bashrc'
-alias epro='$EDITOR ~/.bash_profile'
-alias ealias='$EDITOR ~/.bash_aliases'
-alias efunc='$EDITOR ~/.bash_functions'
-alias einput='$EDITOR ~/.inputrc'
-alias essh='$EDITOR ~/.ssh/config'
-alias evi='$EDITOR ~/.vimrc'
-alias etmux='$EDITOR ~/.tmux.conf'
-alias eipy='$EDITOR ~/.ipython/profile_default/ipython_config.py'
-alias egit='$EDITOR ~/.gitconfig'
+alias erc='nvim ~/.bashrc'
+alias epro='nvim ~/.bash_profile'
+alias ealias='nvim ~/.bash_aliases'
+alias efunc='nvim ~/.bash_functions'
+alias einput='nvim ~/.inputrc'
+alias essh='nvim ~/.ssh/config'
+alias evi='nvim ~/.vimrc'
+alias etmux='nvim ~/.tmux.conf'
+alias eipy='nvim ~/.ipython/profile_default/ipython_config.py'
+alias egit='nvim ~/.gitconfig'
 
 #-----------#
 
@@ -242,7 +242,7 @@ alias mk="mkdir -pv"
 alias cdssh='cd ~/.ssh'
 alias cdnvim='cd ~/.config/nvim'
 alias cdipy='cd ~/.ipython/profile_default'
-alias config='cd ~/.config'
+alias conf='cd ~/.config'
 alias tmp='cd ~/tmp'
 alias private='cd ~/private'
 alias wre='cd ~/wre'
@@ -250,7 +250,7 @@ alias pre='cd ~/pre'
 alias lre='cd ~/lre'
 alias down='cd ~/down'
 alias lab='cd ~/lab'
-alias hlab='cd ~/homelab'
+alias hlab='cd ~/hlab'
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
 
@@ -263,6 +263,8 @@ alias exp="Explorer.exe ."
 alias mntc='cd /mnt/c'
 alias mntcu='cd /mnt/c/Users'
 alias vaultsw='cd /mnt/c/chintan357/vaults/'
+
+alias cla='claude'
 
 #-----------#
 

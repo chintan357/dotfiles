@@ -1,0 +1,37 @@
+return {
+  -- "milanglacier/minuet-ai.nvim",
+  -- config = function()
+  --   require("minuet").setup({
+  --     provider = "openai_compatible",
+  --     request_timeout = 2.5,
+  --     throttle = 1500, -- Increase to reduce costs and avoid rate limits
+  --     debounce = 600, -- Increase to reduce costs and avoid rate limits
+  --     provider_options = {
+  --       gemini = {
+  --         model = "gemini-2.0-flash",
+  --         stream = true,
+  --         api_key = "GEMINI_API_KEY",
+  --         end_point = "https://generativelanguage.googleapis.com/v1beta/models",
+  --         optional = {},
+  --       },
+  --     },
+  --     virtualtext = {
+  --       auto_trigger_ft = {},
+  --       keymap = {
+  --         -- accept whole completion
+  --         accept = "<A-A>",
+  --         -- accept one line
+  --         accept_line = "<A-a>",
+  --         -- accept n lines (prompts for number)
+  --         -- e.g. "A-z 2 CR" will accept 2 lines
+  --         accept_n_lines = "<A-z>",
+  --         -- Cycle to prev completion item, or manually invoke completion
+  --         prev = "<A-[>",
+  --         -- Cycle to next completion item, or manually invoke completion
+  --         next = "<A-]>",
+  --         dismiss = "<A-e>",
+  --       },
+  --     },
+  --   })
+  -- end,
+}

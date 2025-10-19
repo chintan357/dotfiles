@@ -1,19 +1,18 @@
 ```sh
 sudo apt update && sudo apt -y upgrade
+
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # prefix + I
 
-cd && mkdir -p lab/dotfiles wre pre lre homelab dotfiles private tmp down extras
+cd && mkdir -p lab/dotfiles wre pre lre hlab dotfiles private tmp down
 # mkdir ~/.config
 
-sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu luarocks btop htop python3-pip gtypist cowsay net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils universal-ctags apt-transport-https
-sudo apt install python3.12-venv
+sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu luarocks btop htop python3-pip gtypist cowsay net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils universal-ctags apt-transport-https python3.12-venv
 
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 ln -s $(which fdfind) ~/.local/bin/fd
 
-# sudo apt install pipx
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 tools=(ruff ty llm datasette ipython pudb asciinema aider-chat ranger-fm thefuck jupyterlab jupyter-console)
@@ -25,6 +24,13 @@ done
 llm install llm-gemini
 # llm keys set gemini
 
+# mise
+curl https://mise.run | sh
+mise use -g node@22
+
+npm i -g open-cli @anthropic-ai/claude-code
+
+# TDOO: use mise on next run
 sudo apt remove rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install cargo-binstall
@@ -43,26 +49,20 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.clou
 sudo apt-get update && sudo apt-get install google-cloud-cli
 
 # glow
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
-echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
-sudo apt update && sudo apt install glow
-
-# nvm
-# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-# nvm install --lts
-npm i -g open-cli
+# sudo mkdir -p /etc/apt/keyrings
+# curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+# echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+# sudo apt update && sudo apt install glow
 
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 
-#kubectl
+# kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod u+x kubectl
 mv kubectl ~/.local/bin
-
 
 sudo add-apt-repository ppa:wslutilities/wslu
 sudo apt update
@@ -97,6 +97,10 @@ cd sqlite-autoconf-3500100
 ./configure --prefix=/usr/local
 make
 sudo make install
+
+curl -o ~/.git-prompt.sh \
+    https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+# contrib/completion/git-completion.bash
 
 # tenv
 LATEST_VERSION=$(curl --silent https://api.github.com/repos/tofuutils/tenv/releases/latest | jq -r .tag_name)
@@ -136,9 +140,5 @@ sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
 # https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh
 # https://raw.githubusercontent.com/wfxr/forgit/main/bin/git-forgit
 # https://raw.githubusercontent.com/wfxr/forgit/main/forgit.plugin.zsh
-
-curl -o ~/.git-prompt.sh \
-    https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-# contrib/completion/git-completion.bash
 
 ```

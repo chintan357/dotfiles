@@ -168,5 +168,4 @@ eval "$(pyenv init - bash)"
 
 eval "$(pyenv virtualenv-init -)"
 
-
-. "$HOME/.local/share/../bin/env"
+eval "$(/home/chintan357/.local/bin/mise activate bash)"

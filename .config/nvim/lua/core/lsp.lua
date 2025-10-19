@@ -232,6 +232,22 @@ vim.lsp.config["lua_ls"] = {
 }
 vim.lsp.enable("lua_ls")
 
+vim.lsp.config["copilot"] = {
+  name = "copilot",
+  cmd = {
+    "copilot-language-server",
+    "--stdio",
+  },
+  filetypes = { "*" },
+  root_markers = { ".git" },
+  settings = {
+    telemetry = {
+      enable = false,
+    },
+  },
+}
+-- vim.lsp.enable("copilot")
+
 -- vim.lsp.config.ty = {
 --   name = "ty",
 --   cmd = { "ty", "server" },
