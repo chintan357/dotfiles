@@ -4,7 +4,7 @@ sudo apt update && sudo apt -y upgrade
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # prefix + I
 
-cd && mkdir -p lab/dotfiles wre pre lre hlab dotfiles private tmp down
+cd && mkdir -p lab/dotfiles wre pre lre hlab dotfiles private tmp down learn
 # mkdir ~/.config
 
 sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu luarocks btop htop python3-pip gtypist cowsay net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils universal-ctags apt-transport-https python3.12-venv
@@ -27,12 +27,10 @@ llm install llm-gemini
 # mise
 curl https://mise.run | sh
 mise use -g node@22
+mise use -g rust@1.89.0
 
 npm i -g open-cli @anthropic-ai/claude-code
 
-# TDOO: use mise on next run
-sudo apt remove rustc
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install cargo-binstall
 # cargo binstall tealdeer --no-confirm
 cargo binstall stylua tealdeer tree-sitter-cli eza git-delta hackernews_tui broot halp navi bob-nvim
@@ -47,12 +45,6 @@ curl -sfL https://direnv.net/install.sh | bash
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 sudo apt-get update && sudo apt-get install google-cloud-cli
-
-# glow
-# sudo mkdir -p /etc/apt/keyrings
-# curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
-# echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
-# sudo apt update && sudo apt install glow
 
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
@@ -77,10 +69,11 @@ sudo apt install wslu
 	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
 	&& sudo apt update \
 	&& sudo apt install gh -y
+
 # gh-dash
 # gh auth login
 gh extension install dlvhdr/gh-dash
-gh extension install github/gh-copilot
+# gh extension install github/gh-copilot
 
 # windows utility
 cp /mnt/c/Windows/System32/cmd.exe ~/.local/bin
@@ -109,19 +102,6 @@ sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
 ```
 
 ```sh
-# nvim (package registry)
-# sudo add-apt-repository ppa:neovim-ppa/unstable
-# sudo apt-get update
-# sudo apt-get install neovim
-
-# build nvim from source
-# sudo apt -y install gettext
-# cd neovim
-# git clone --branch nightly --depth 1 https://github.com/neovim/neovim.git
-# make CMAKE_BUILD_TYPE=Release
-# CMAKE_INSTALL_PREFIX=~/.local
-# sudo make install
-
 # git clone https://github.com/facebook/PathPicker.git
 # cd PathPicker/debian
 # ./package.sh

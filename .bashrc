@@ -15,7 +15,7 @@ export VISUAL=vi
 export EDITOR=vi
 
 export GOOGLE_API_KEY="$(head -1 ~/private/gemini-nvim)"
-export TAVILY_API_KEY="$(head -1 ~/private/tavily)"
+# export TAVILY_API_KEY="$(head -1 ~/private/tavily)"
 # export GOOGLE_SEARCH_API_KEY="$(head -1 ~/private/google-search)"
 # export GOOGLE_SEARCH_ENGINE_ID="$(head -1 ~/private/google-search-engine-id)"
 # export OPENAI_API_KEY="$(head -1 ~/private/oanvim)"
@@ -45,8 +45,6 @@ export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap -
 export FZF_ALT_C_OPTS=" --walker-skip .git,node_modules,target --preview 'tree -C {}'"
 export FZF_TMUX_OPTS='-p80%,80%'
 export FZF_COMPLETION_OPTS='--border --info=inline'
-
-. "$HOME/.local/share/bob/env/env.sh"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -162,10 +160,10 @@ source ~/.local/bin/forgit.plugin.sh
 source ~/.local/bin/.git-prompt.sh
 # source $HOME/.tenv.completion.bash
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - bash)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init - bash)"
+#
+# eval "$(pyenv virtualenv-init -)"
 
-eval "$(pyenv virtualenv-init -)"
-
-eval "$(/home/chintan357/.local/bin/mise activate bash)"
+eval "$($HOME/.local/bin/mise activate bash)"

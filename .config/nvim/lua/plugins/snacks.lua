@@ -17,7 +17,8 @@ return {
 ]],
       },
     },
-    explorer = { enabled = true },
+    explorer = {},
+    dim = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
     picker = { enabled = true },
@@ -29,7 +30,7 @@ return {
     zen = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = false },
-    statuscolumn = { enabled = true },
+    statuscolumn = {},
     words = { enabled = true },
     styles = {
       notification = {
@@ -425,6 +426,8 @@ return {
     },
   },
   init = function()
+    vim.g.snacks_animate = false
+
     vim.api.nvim_create_autocmd("User", {
       pattern = "VeryLazy",
       callback = function()

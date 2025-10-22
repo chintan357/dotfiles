@@ -15,7 +15,6 @@ eval "$(uvx --generate-shell-completion bash)"
 
 stty -ixon
 
-
 # eval $(thefuck --alias fq)
 # source $HOME/.config/broot/launcher/bash/br
 
@@ -30,5 +29,3 @@ stty -ixon
 #         ssh-add -l | grep -q "$key" || ssh-add "$key" 2>/dev/null
 #     fi
 # done
-
-. "$HOME/.local/share/../bin/env"
