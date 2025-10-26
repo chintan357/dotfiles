@@ -14,11 +14,11 @@ alias rmrf='rm -rf'
 
 alias bo='broot'
 
-alias la='ls -A --group-directories-first'
-alias ll='ls -Alh --group-directories-first | less -R'
-alias lsd='ls -d */ 2> /dev/null'
-alias lh='ls -d .[^.]* 2> /dev/null'
-alias lt='tree -a -L 2 | less'
+alias la='ls -A --group-directories-first --color=auto'
+alias ll='ls -Alh --group-directories-first --color=always | less -RF'
+alias lsd='ls -d */ --color=auto 2> /dev/null'
+alias lh='ls -d .[^.]* --color=auto 2> /dev/null'
+alias lt='tree -a -L 2 -C | less -RF'
 
 alias es='eza --group-directories-first'
 alias ea='eza -a --git --color=always --icons=always --group-directories-first'
@@ -26,9 +26,6 @@ alias el='eza -Alh --git --color=always --icons=always --group-directories-first
 alias et='eza -a --tree --level=2'
 
 #-----------#
-
-alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git}'
-alias sgrepi='grep -R -n -i -H -C 5 --exclude-dir={.git}'
 
 alias grepi='grep -i'
 alias grepir='grep -ir'
@@ -46,9 +43,6 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 alias freeh='free -h'
 
-alias lsock='lsof -i -P'
-alias ports='netstat -tulanp'
-
 alias p1='ping -c 3 1.1.1.1'
 alias p8='ping -c 3 8.8.8.8'
 clh() { curl localhost:$1; }
@@ -56,9 +50,8 @@ clh() { curl localhost:$1; }
 #-----------#
 
 alias dfh='df -h'
+
 alias osrel='cat /etc/os-release'
-alias cpuinfo='cat /proc/cpuinfo | less'
-alias meminfo='cat /proc/meminfo | less'
 alias release='cat /etc/*-release'
 
 #-----------#
@@ -70,18 +63,12 @@ alias cpy="xclip -selection clipboard"
 alias CC='$(fc -l -n -1) | cpy'
 alias cpwd='pwd|cpy'
 
-alias path='echo -e ${PATH//:/\\n} | fzf' # TODO: bind cd
-
-#-----------#
+# alias path='cd "$(echo -e ${PATH//:/\\n} | fzf)"'
+alias path='cd "$(echo -e ${PATH//:/\\n} | fzf --preview "ls -la {}")"'
 
 # alias genpwd='openssl rand -base64 16 | cpy'
 alias genpwd='< /dev/urandom tr -dc "A-Za-z0-9" | head -c 20 | cpy'
 alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
-
-#-----------#
-
-alias fortune='/usr/games/fortune'
-alias tux='cowsay -f tux '
 
 #-----------#
 
@@ -171,6 +158,7 @@ alias py='uv run $1'
 alias uvi='uv init'
 alias uvit='uv init --python $1'
 alias uva='uv add'
+alias uvad='uv add --dev'
 alias uvrm='uv remove'
 alias uvs='uv sync'
 alias uvtr='uv tree'
@@ -261,6 +249,7 @@ alias iamd='cd /mnt/c/chintan357/vaults/atomic/dailies'
 alias todo='nvim /mnt/c/chintan357/vaults/atomic/inbox/todo.md'
 alias pad='nvim /mnt/c/chintan357/vaults/atomic/inbox/pad.md'
 alias ask='nvim /mnt/c/chintan357/vaults/atomic/inbox/ask.md'
+alias dmp='nvim /mnt/c/chintan357/vaults/atomic/inbox/dump.md'
 
 alias exp="Explorer.exe ."
 alias mntc='cd /mnt/c'
@@ -283,7 +272,7 @@ alias gaa='git add --all'
 alias ga.='git add .'
 
 # alias gd='git diff'
-# alias gdc='git diff --cached'
+alias gdc='git diff --cached'
 
 alias gbr='git branch'
 alias gcl='git clone'
@@ -332,7 +321,7 @@ alias dkx='docker exec -it'
 
 alias dkbt='docker build -t'
 
-# alias dki='docker images'
+alias dki='docker images'
 # alias dkrmi='docker rmi'
 # alias dkrmia='docker rmi $(docker images -q)'
  
@@ -405,13 +394,12 @@ alias kgs='kubectl get svc'
 alias kgn='kubectl get nodes'
 alias kgi='kubectl get ingress'
 alias kgr='kubectl get replicaset'
-alias kgh='kubectl get hpa'
 alias kgns='kubectl get namespaces'
 
-alias kdp='kubectl describe pod'
-alias kdd='kubectl describe deployment'
-alias kds='kubectl describe svc'
-alias kdn='kubectl describe node'
+# alias kdp='kubectl describe pod'
+# alias kdd='kubectl describe deployment'
+# alias kds='kubectl describe svc'
+# alias kdn='kubectl describe node'
 
 #-----------#
 

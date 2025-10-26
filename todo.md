@@ -1,12 +1,7 @@
+https://github.com/coder/claudecode.nvim
+
 #tmux
-bind Escape copy-mode
-copy doesn't work in tmux popup (in remote machine)
-session automation hacks
+tmux copy doesn't work in tmux popup (in remote machine)
 
 #nvim
-rendering issue while searching, screen flickers
 toggle auto completion
-
-#obsidian
-sync keybindings
-integrate with nvim + make it like nvim
