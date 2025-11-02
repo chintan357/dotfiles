@@ -167,3 +167,5 @@ source ~/.local/bin/.git-prompt.sh
 # eval "$(pyenv virtualenv-init -)"
 
 eval "$($HOME/.local/bin/mise activate bash)"
+
+source $HOME/.config/broot/launcher/bash/br

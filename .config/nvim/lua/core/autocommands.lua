@@ -121,18 +121,71 @@ vim.api.nvim_create_autocmd("FileType", {
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.schedule(function()
-      vim.keymap.set("n", "q", function()
+    -- vim.schedule(function()
+    vim.keymap.set("n", "q", function()
+      if vim.fn.winnr("$") > 1 then
         vim.cmd("close")
+      else
+        -- vim.cmd("bdelete") -- closes the buffer but keeps the window
         pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
-      end, {
-        buffer = event.buf,
-        silent = true,
-        desc = "Quit buffer",
-      })
-    end)
+      end
+    end, {
+      buffer = event.buf,
+      silent = true,
+      desc = "Quit buffer",
+    })
+    -- end)
   end,
 })
+
+-- -- close some filetypes with <q>
+-- vim.api.nvim_create_autocmd("FileType", {
+--   group = augroup("close_with_q"),
+--   pattern = {
+--     "PlenaryTestPopup",
+--     "man",
+--     "checkhealth",
+--     "tsplayground",
+--     "dbout",
+--     "gitsigns-blame",
+--     "help",
+--     "lspinfo",
+--     "notify",
+--     "qf",
+--     "startuptime",
+--     -- "grug-far",
+--     -- "spectre_panel",
+--     -- "codecompanion",
+--     -- "query",
+--     -- "neotest-output",
+--     -- "neotest-output-panel",
+--     -- "neotest-summary",
+--   },
+--   callback = function(event)
+--     vim.bo[event.buf].buflisted = false
+--
+--     -- Store the buffer ID
+--     local bufnr = event.buf
+--
+--     vim.schedule(function()
+--       -- Check if buffer is still valid before setting keymap
+--       if vim.api.nvim_buf_is_valid(bufnr) then
+--         vim.keymap.set("n", "q", function()
+--           if vim.fn.winnr("$") > 1 then
+--             vim.cmd("close")
+--           else
+--             vim.cmd("bdelete")
+--           end
+--           pcall(vim.api.nvim_buf_delete, bufnr, { force = true })
+--         end, {
+--           buffer = bufnr,
+--           silent = true,
+--           desc = "Quit buffer",
+--         })
+--       end
+--     end)
+--   end,
+-- })
 
 -- make it easier to close man-files when opened inline
 vim.api.nvim_create_autocmd("FileType", {

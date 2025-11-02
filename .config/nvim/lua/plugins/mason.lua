@@ -11,11 +11,4 @@ return {
       },
     },
   },
-  {
-    "neovim/nvim-lspconfig",
-    init = function()
-      vim.lsp.enable("pyright")
-      vim.lsp.enable("lua_ls")
-    end,
-  },
 }

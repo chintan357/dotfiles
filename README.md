@@ -15,7 +15,7 @@ ln -s $(which fdfind) ~/.local/bin/fd
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-tools=(ruff ty llm datasette ipython pudb asciinema aider-chat ranger-fm thefuck jupyterlab jupyter-console)
+tools=(ruff ty datasette ipython pudb asciinema aider-chat ranger-fm thefuck jupyterlab jupyter-console yt-dlp)
 # urlscan jupyter_client
 for tool in "${tools[@]}"; do
   uv tool install "$tool"

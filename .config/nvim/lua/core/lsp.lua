@@ -1,10 +1,10 @@
--- ~/.config/nvim/lsp
--- ~/.config/nvim/after/lsp
 -- ~/.config/nvim/after/lsp/lua_ls.lua
 
 -- https://github.com/Rishabh672003/Neovim/blob/main/lua/rj/lsp.lua
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
--- https://github.com/josean-dev/dev-environment-files/blob/main/.config/nvim/lua/josean/lsp.lua
+
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("pyright")
 
 local config = {
   signs = {
@@ -82,160 +82,38 @@ vim.lsp.config("*", {
   end,
 })
 
--- Disable the default keybinds {{{
--- for _, bind in ipairs({ "grn", "gra", "gri", "grr" }) do
---   pcall(vim.keymap.del, "n", bind)
--- end
--- }}}
-
--- Create keybindings, commands, inlay hints and autocommands on LSP attach {{{
 vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
-    local bufnr = ev.buf
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if not client then
-      return
-    end
-    --     ---@diagnostic disable-next-line need-check-nil
-    --     if client.server_capabilities.completionProvider then
-    --       vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-    --       -- vim.bo[bufnr].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
-    --     end
-    --     ---@diagnostic disable-next-line need-check-nil
-    --     if client.server_capabilities.definitionProvider then
-    --       vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
-    --     end
-    --
-    --     -- -- nightly has inbuilt completions, this can replace all completion plugins
-    --     -- if client:supports_method("textDocument/completion", bufnr) then
-    --     --   -- Enable auto-completion
-    --     --   vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
-    --     -- end
-    --
-    --     --- Disable semantic tokens
-    --     ---@diagnostic disable-next-line need-check-nil
-    --     client.server_capabilities.semanticTokensProvider = nil
-    --
-    --     -- All the keymaps
-    --     -- stylua: ignore start
     local keymap = vim.keymap.set
-    local lsp = vim.lsp
-    local opts = { silent = true }
-    local function opt(desc, others)
-      return vim.tbl_extend("force", opts, { desc = desc }, others or {})
-    end
-    --     -- keymap("n", "gd", lsp.buf.definition, opt("Go to definition"))
-    --     -- keymap("n", "gD", function()
-    --     --   local ok, diag = pcall(require, "rj.extras.definition")
-    --     --   if ok then
-    --     --     diag.get_def()
-    --     --   end
-    --     -- end, opt("Get the definition in a float"))
-    --     -- keymap("n", "gi", function() lsp.buf.implementation({ border = "single" })  end, opt("Go to implementation"))
-    --     -- keymap("n", "gr", lsp.buf.references, opt("Show References"))
-    --     -- keymap("n", "gl", vim.diagnostic.open_float, opt("Open diagnostic in float"))
-    --     -- keymap("n", "<C-k>", lsp.buf.signature_help, opts)
-    --     -- disable the default binding first before using a custom one
-    --     -- pcall(vim.keymap.del, "n", "K", { buffer = ev.buf })
-    --     -- keymap("n", "K", function() lsp.buf.hover({ border = "single", max_height = 30, max_width = 120 }) end, opt("Toggle hover"))
-    --     -- keymap("n", "<Leader>lF", vim.cmd.FormatToggle, opt("Toggle AutoFormat"))
-    --     -- keymap("n", "<Leader>lI", vim.cmd.Mason, opt("Mason"))
-    --     -- keymap("n", "<Leader>lS", lsp.buf.workspace_symbol, opt("Workspace Symbols"))
-    --     -- keymap("n", "<Leader>la", lsp.buf.code_action, opt("Code Action"))
-    --     -- keymap("n", "<Leader>lh", function() lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled({})) end, opt("Toggle Inlayhints"))
-    --     -- keymap("n", "<Leader>li", vim.cmd.LspInfo, opt("LspInfo"))
-    --     -- keymap("n", "<Leader>ll", lsp.codelens.run, opt("Run CodeLens"))
-    --     -- keymap("n", "<Leader>lr", lsp.buf.rename, opt("Rename"))
-    --     -- keymap("n", "<Leader>ls", lsp.buf.document_symbol, opt("Doument Symbols"))
+    local opts = { buffer = ev.buf, silent = true }
+
+    opts.desc = "Go to declaration"
+    keymap("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+
+    opts.desc = "Show LSP definition"
+    keymap("n", "gd", vim.lsp.buf.definition, opts) -- show lsp definition
+
+    opts.desc = "Show line diagnostics"
+    keymap("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+
+    opts.desc = "Go to previous diagnostic"
+    keymap("n", "[d", function()
+      vim.diagnostic.jump({ count = -1, float = true })
+    end, opts) -- jump to previous diagnostic in buffer
     --
-    --     -- diagnostic mappings
-    --     -- keymap("n", "<Leader>dD", function()
-    --     --   local ok, diag = pcall(require, "rj.extras.workspace-diagnostic")
-    --     --   if ok then
-    --     --     for _, cur_client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-    --     --       diag.populate_workspace_diagnostics(cur_client, 0)
-    --     --     end
-    --     --     vim.notify("INFO: Diagnostic populated")
-    --     --   end
-    --     -- end, opt("Popluate diagnostic for the whole workspace"))
-    --     -- keymap("n", "<Leader>dn", function() vim.diagnostic.jump({ count = 1, float = true }) end, opt("Next Diagnostic"))
-    --     -- keymap("n", "<Leader>dp", function() vim.diagnostic.jump({ count =-1, float = true }) end, opt("Prev Diagnostic"))
-    --     -- keymap("n", "<Leader>dq", vim.diagnostic.setloclist, opt("Set LocList"))
-    --     -- keymap("n", "<Leader>dv", function()
-    --     -- vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines }) end, opt("Toggle diagnostic virtual_lines"))
-    --     -- stylua: ignore end
+    opts.desc = "Go to next diagnostic"
+    keymap("n", "]d", function()
+      vim.diagnostic.jump({ count = 1, float = true })
+    end, opts) -- jump to next diagnostic in buffer
+
+    opts.desc = "Show documentation for what is under cursor"
+    keymap("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+
+    opts.desc = "Restart LSP"
+    keymap("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
   end,
 })
--- }}}
-
--- local group = vim.api.nvim_create_augroup("LspMappings", { clear = true })
--- vim.api.nvim_create_autocmd("LspAttach", {
---   group = group,
---   callback = function(args)
---     local opts = { buffer = args.buf, silent = true }
---
---     set(n, "gd", function()
---       vim.lsp.buf.definition({})
---     end, opts)
---     set(n, "K", vim.lsp.buf.hover, opts)
---     set(n, "<c-s-K>", vim.lsp.buf.signature_help, opts)
---     set(n, "gD", function()
---       vim.lsp.buf.implementation({})
---     end, opts)
---     set(n, "1gD", function()
---       vim.lsp.buf.type_definition({})
---     end, opts)
---     set(n, "gr", function()
---       vim.lsp.buf.references()
---     end, opts)
---
---     set(n, "<c-]>", function()
---       vim.lsp.buf.declaration({})
---     end, opts)
---
---     set(n, "<Leader>re", vim.lsp.buf.rename, opts)
---     set(n, "<Leader>ca", vim.lsp.buf.code_action, opts)
---     set(n, "<Leader>ih", function()
---       -- toggles inlay hints
---       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
---     end, opts)
---
---     -- diagnostics
---     set(n, "<Leader>di", vim.diagnostic.open_float, opts)
---     set(n, "<Leader>k", function()
---       vim.diagnostic.jump({ float = true, count = -1 })
---     end, opts)
---     set(n, "<Leader>j", function()
---       vim.diagnostic.jump({ float = true, count = 1 })
---     end, opts)
---   end,
--- })
-
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "python",
---   callback = function()
---     local ok, venv = pcall(require, "rj.extras.venv")
---     if ok then
---       venv.setup()
---     end
---     local root = vim.fs.root(0, {
---       "pyproject.toml",
---       "setup.py",
---       "setup.cfg",
---       "requirements.txt",
---       "Pipfile",
---       "pyrightconfig.json",
---       ".git",
---       vim.uv.cwd(),
---     })
---     local client =
---       vim.lsp.start(vim.tbl_extend("force", vim.lsp.config.basedpyright, { root_dir = root }), { attach = false })
---     if client then
---       vim.lsp.buf_attach_client(0, client)
---     end
---   end,
--- })
--- }}}
 
 vim.api.nvim_create_user_command("LspStart", function()
   vim.cmd.e()
@@ -307,5 +185,3 @@ vim.api.nvim_create_user_command("LspInfo", function()
 end, {
   desc = "Get all the information about all LSP attached",
 })
-
--- vim: fdm=marker:fdl=0

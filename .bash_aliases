@@ -295,10 +295,6 @@ alias gP='git pull'
 alias gpr='git pull --rebase'
 
 alias gwc='git whatchanged'
-alias glog='git log --oneline --decorate --all --graph'
-alias glogp="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glogl='git log --stat'
-alias gll='git log --stat'
 
 alias glast="git log -1 HEAD"
 
@@ -403,7 +399,6 @@ alias kgns='kubectl get namespaces'
 
 #-----------#
 
-# alias ytdl='youtube-dl'
 # alias rec='asciinema rec'
 # alias play='asciinema play'
 

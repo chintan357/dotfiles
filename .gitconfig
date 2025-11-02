@@ -7,25 +7,20 @@
   defaultBranch = main
   ; templatedir = ~/.git_template
 
-[github]
-  user = chintan357
-
 [core]
   editor = nvim
   autocrlf = input
   pager = delta
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-  ; excludesFile = ~/.gitignore
-  ; ignorecase = false
+  ignorecase = false
+  excludesFile = ~/.gitignore
 
-[rerere]
-  enabled = 1
-  autoupdate = 1
+; [rerere]
+;   enabled = 1
+;   autoupdate = 1
 
 [color]
   ui = auto
-  ; interactive = auto
-  ; grep = auto
 
 [color "branch"]
 	current = yellow bold
@@ -56,7 +51,7 @@
 [merge]
   ff = only
   tool = nvim
-  conflictstyle = diff3
+  conflictstyle = diff3 #zdiff3
 
 [mergetool]
   prompt = false
@@ -87,7 +82,8 @@
   ; syntax-theme = Coldark-Dark
 
 [push]
-  default = simple ; current
+  default = current
+  ; autoSetupRemote = true
 
 [pull]
   ff = only
@@ -100,21 +96,20 @@
   ; ap = add --patch
 
 	b = branch
-	ba = branch -a
   bl = branch -l --sort=committerdate
 	bd = branch -d
-	bdd = branch -D
 	bD = branch -D
 	br = branch -r
 	bc = rev-parse --abbrev-ref HEAD
 	bu = !git rev-parse --abbrev-ref --symbolic-full-name "@{u}"
+	ba = branch -a
   bav = branch -av
   bm = branch --merged
   bn = branch --no-merged
 
 	c = commit
 	ca = commit -a
-  ci = commit -v
+  cv = commit -v
 	cm = commit -m
 	cam = commit -am
 	cem = commit --allow-empty -m
@@ -136,7 +131,7 @@
 	dck = diff --cached --check
 	dp = diff --patience
 	dt = difftool
-	dct = difftool --cached
+	dtc = difftool --cached
 
 	f = fetch
 	fo = fetch origin
@@ -148,11 +143,13 @@
 
 	g = grep -p
 
-	l = log --oneline
-	lg = log --oneline --graph --decorate
+	l = log --oneline --decorate
+  ll = log --stat
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
 
 	ls = ls-files
-	lsf = !git ls-files | grep -i
 	lsg = !git ls-files | grep -i
 
 	m = merge
@@ -167,26 +164,26 @@
 
 	pr = prune -v
 
-  pu = push
-  puf = push --force-with-lease ; push -f
-	puu = push -u
-	put = push --tags
-	puo = push origin
-	puao = push --all origin
-	pufo = push -f origin
-	puuo = push -u origin
-	puoc = !git push origin $(git bc)
-	puuoc = !git push -u origin $(git bc)
-	puaoc = !git push --all origin $(git bc)
-	pufoc = !git push -f origin $(git bc)
+  p = push
+  pf = push --force-with-lease
+	pu = push -u
+	pt = push --tags
+	po = push origin
+	pao = push --all origin
+	pfo = push --force-with-lease origin
+	puo = push -u origin
+	; poc = !git push origin $(git bc)
+	; puoc = !git push -u origin $(git bc)
+	; paoc = !git push --all origin $(git bc)
+	; pfoc = !git push --force-with-lease origin $(git bc)
 
 	Po = pull origin
 	Pu = pull upstream
-	Pro = pull --rebase origin
-	Poc = !git pull origin $(git bc)
-	Proc = !git pull --rebase origin $(git bc)
-	Puc = !git pull upstream $(git bc)
-	Pruc = !git pull --rebase upstream $(git bc)
+	; Pro = pull --rebase origin
+	; Poc = !git pull origin $(git bc)
+	; Proc = !git pull --rebase origin $(git bc)
+	; Puc = !git pull upstream $(git bc)
+	; Pruc = !git pull --rebase upstream $(git bc)
 
 	rb = rebase
 	rba = rebase --abort
@@ -208,12 +205,12 @@
 	rs = remote show
 	rao = remote add origin
 	rau = remote add upstream
-	rrmo = remote remove origin
-	rrmu = remote remove upstream
-	rso = remote show origin
-	rsu = remote show upstream
-	rpo = remote prune origin
-	rpu = remote prune upstream
+	; rrmo = remote remove origin
+	; rrmu = remote remove upstream
+	; rso = remote show origin
+	; rsu = remote show upstream
+	; rpo = remote prune origin
+	; rpu = remote prune upstream
 
 	rmf = rm -f
 	rmrf = rm -r -f
@@ -235,20 +232,20 @@
 	w = show
 	wp = show -p
 
-	subadd = !sh -c 'git submodule add https://github.com/$1 $2/$(basename $1)' -
-	subrm = !sh -c 'git submodule deinit -f -- $1 && rm -rf .git/modules/$1 && git rm -f $1' -
-	subup = submodule update --init --recursive
-
-	assume = update-index --assume-unchanged
-	unassume = update-index --no-assume-unchanged
-	assumed = !git ls -v | grep ^h | cut -c 3-
-
-	release = !sh -c 'git tag v$1 && git put' -
-	unrelease = !sh -c 'git tag -d v$1 && git puo :v$1' -
-	merged = !sh -c 'git checkout main && git pull origin main && git branch -D $1 && git rpo' -
-
-	ours = "!f() { git checkout --ours $@ && git add $@; }; f"
-	theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+	; subadd = !sh -c 'git submodule add https://github.com/$1 $2/$(basename $1)' -
+	; subrm = !sh -c 'git submodule deinit -f -- $1 && rm -rf .git/modules/$1 && git rm -f $1' -
+	; subup = submodule update --init --recursive
+	;
+	; assume = update-index --assume-unchanged
+	; unassume = update-index --no-assume-unchanged
+	; assumed = !git ls -v | grep ^h | cut -c 3-
+	;
+	; release = !sh -c 'git tag v$1 && git put' -
+	; unrelease = !sh -c 'git tag -d v$1 && git puo :v$1' -
+	; merged = !sh -c 'git checkout main && git pull origin main && git branch -D $1 && git rpo' -
+	;
+	; ours = "!f() { git checkout --ours $@ && git add $@; }; f"
+	; theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
 
 [delta "arctic-fox"]
   # author: https://github.com/anthony-halim
@@ -286,17 +283,17 @@
   merge-conflict-theirs-diff-header-style = yellow bold
   merge-conflict-theirs-diff-header-decoration-style = "#5E81AC" box
 
-[credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
+; [credential "https://github.com"]
+; 	helper = !/usr/bin/gh auth git-credential
+;
+; [credential "https://gist.github.com"]
+; 	helper = !/usr/bin/gh auth git-credential
 
-[credential "https://gist.github.com"]
-	helper = !/usr/bin/gh auth git-credential
-
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  required = true
-  process = git-lfs filter-process
+; [filter "lfs"]
+;   clean = git-lfs clean -- %f
+;   smudge = git-lfs smudge -- %f
+;   required = true
+;   process = git-lfs filter-process
 
 ; [instaweb]
 ; 	httpd = apache2 -f
