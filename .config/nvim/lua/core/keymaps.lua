@@ -193,6 +193,10 @@ keymap("n", "<leader>xq", function()
   end
 end, { desc = "Quickfix List" })
 
+keymap('n', 'yoc', function()
+  vim.b.completion = not vim.b.completion
+end, { noremap = true, silent = false, desc = "Toggle completion" })
+
 -- Copy filepath to the clipboard
 -- vim.keymap.set("n", "<leader>fp", function()
 --   local filePath = vim.fn.expand("%:~")                -- Gets the file path relative to the home directory

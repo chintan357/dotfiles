@@ -16,13 +16,9 @@ return {
     },
     options = {
       cursorline = true,
-      lualine_transparency = true,
       transparency = true,
+      -- lualine_transparency = true,
       -- highlight_inactive_windows = false, -- When the window is out of focus, change the normal background?
     },
   },
-  config = function(_, opts)
-    require("onedarkpro").setup(opts)
-    vim.cmd([[colorscheme onedark]])
-  end,
 }

@@ -1,18 +1,10 @@
--- local is_inside_git_repo = function()
--- 	local git_dir = vim.fn.finddir(".git", vim.fn.expand("%:p:h") .. ";")
--- 	return vim.fn.isdirectory(git_dir) ~= 0
--- end
--- lazy = not is_inside_git_repo(),
--- vim.keymap.set({ "n" }, "gy", function() vim.cmd("GBrowse") end)
-
--- TODO: add toggle binding to diffview
-
 return {
   { "tpope/vim-fugitive" },
   { "tpope/vim-rhubarb" },
+
   {
     "lewis6991/gitsigns.nvim",
-    -- event = "VeryLazy",
+    event = "VeryLazy",
     opts = {
       signs = {
         add = { text = "▎" },
@@ -111,19 +103,14 @@ return {
         -- end)
 
         -- map('n', '<leader>hd', gitsigns.diffthis)
+        -- map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
 
-        -- map('n', '<leader>hD', function()
-        --   gitsigns.diffthis('~')
-        -- end)
-
-        map("n", "<leader>hQ", function()
-          gitsigns.setqflist("all")
-        end)
-        map("n", "<leader>hq", gitsigns.setqflist)
+        -- map("n", "<leader>hQ", function() gitsigns.setqflist("all") end)
+        -- map("n", "<leader>hq", gitsigns.setqflist)
 
         -- Toggles
         map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
-        map("n", "<leader>tw", gitsigns.toggle_word_diff)
+        -- map("n", "<leader>tw", gitsigns.toggle_word_diff)
         -- map("n", "<leader>tD", gitsigns.toggle_deleted, { desc = "[T]oggle git show [D]eleted" })
 
         -- Text object
@@ -131,6 +118,7 @@ return {
       end,
     },
   },
+
   {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
@@ -141,18 +129,10 @@ return {
   },
 }
 
--- {
--- 	"mattn/vim-gist",
--- 	dependencies = { "mattn/webapi-vim" },
--- },
+-- { "mattn/vim-gist", dependencies = { "mattn/webapi-vim" }, },
 -- { "junegunn/gv.vim" },
 -- { "akinsho/git-conflict.nvim", version = "*", config = true },
 
--- map(
---   "n",
---   "<leader>ur",
---   "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
---   { desc = "Redraw / Clear hlsearch / Diff Update" }
--- )
+-- map( "n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 
 -- https://www.reddit.com/r/neovim/comments/1j9fy2w/diffviewnvim_is_so_underrated/

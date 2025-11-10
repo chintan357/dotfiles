@@ -37,6 +37,11 @@ cargo binstall stylua tealdeer tree-sitter-cli eza git-delta hackernews_tui broo
 
 bob use stable
 
+# sesh
+wget https://github.com/joshmedeski/sesh/releases/download/v2.18.2/sesh_Linux_x86_64.tar.gz
+tar -xvf sesh_Linux_x86_64.tar.gz
+mv sesh ~/.local/bin
+
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 curl -sfL https://direnv.net/install.sh | bash

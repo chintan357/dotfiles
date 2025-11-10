@@ -96,7 +96,6 @@ return {
       })
     end,
   },
-  -- Uncomment and configure additional modules as needed:
   {
     "echasnovski/mini.statusline",
     config = function()
