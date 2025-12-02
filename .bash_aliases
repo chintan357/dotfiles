@@ -232,7 +232,7 @@ alias cdnvim='cd ~/.config/nvim'
 alias cdipy='cd ~/.ipython/profile_default'
 alias conf='cd ~/.config'
 alias tmp='cd ~/tmp'
-alias private='cd ~/private'
+alias pri='cd ~/private'
 alias wre='cd ~/wre'
 alias pre='cd ~/pre'
 alias lre='cd ~/lre'
@@ -295,6 +295,8 @@ alias gP='git pull'
 alias gpr='git pull --rebase'
 
 alias gwc='git whatchanged'
+
+alias glg='git log --graph --oneline --decorate --all'
 
 alias glast="git log -1 HEAD"
 

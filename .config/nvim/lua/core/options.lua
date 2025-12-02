@@ -2,6 +2,8 @@ local opt = vim.opt
 -- local vb = vim.bo
 -- local vw = vim.wo
 
+vim.b.completion = false
+
 opt.number = true
 opt.relativenumber = true
 

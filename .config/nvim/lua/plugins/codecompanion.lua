@@ -2,6 +2,7 @@
 return {
   "olimorris/codecompanion.nvim",
   cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions", "CodeCompanionCmd" },
+  tag = "v17.32.0",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "ravitemer/codecompanion-history.nvim", -- Save and load conversation history
