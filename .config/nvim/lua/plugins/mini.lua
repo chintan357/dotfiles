@@ -62,12 +62,12 @@ return {
       require("mini.bufremove").setup()
     end,
   },
-  -- {
-  --   "echasnovski/mini.surround",
-  --   config = function()
-  --     require("mini.surround").setup()
-  --   end,
-  -- },
+  {
+    "echasnovski/mini.surround",
+    config = function()
+      require("mini.surround").setup()
+    end,
+  },
   {
     "echasnovski/mini.pairs",
     config = function()
