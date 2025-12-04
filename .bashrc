@@ -95,7 +95,8 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-export PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s"); history -a; history -c; history -r;'
+# export PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s"); history -a; history -c; history -r;'
+export PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s");'
 # export PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s"); history -a; history -n;'
 export PS1='\[\e[36m\]\w\[\e[0m\]\[\e[33m\]${PS1_GIT:+ (${PS1_GIT})}\[\e[0m\] '
 
