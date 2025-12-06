@@ -1,26 +1,41 @@
 return {
   { "tpope/vim-fugitive" },
   { "tpope/vim-rhubarb" },
-
   {
     "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     opts = {
       signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "" },
-        topdelete = { text = "" },
-        changedelete = { text = "▎" },
-        untracked = { text = "▎" },
+        add = { text = "┃" },
+        change = { text = "┃" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+        untracked = { text = "┆" },
       },
       signs_staged = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "" },
-        topdelete = { text = "" },
-        changedelete = { text = "▎" },
+        add = { text = "┃" },
+        change = { text = "┃" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+        untracked = { text = "┆" },
       },
+      -- signs = {
+      --   add = { text = "▎" },
+      --   change = { text = "▎" },
+      --   delete = { text = "" },
+      --   topdelete = { text = "" },
+      --   changedelete = { text = "▎" },
+      --   untracked = { text = "▎" },
+      -- },
+      -- signs_staged = {
+      --   add = { text = "▎" },
+      --   change = { text = "▎" },
+      --   delete = { text = "" },
+      --   topdelete = { text = "" },
+      --   changedelete = { text = "▎" },
+      -- },
       signs_staged_enable = true,
       signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
       numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -78,23 +93,19 @@ return {
           end
         end)
 
-        map("n", "<localleader>gd", gitsigns.diffthis)
-        -- map("n", "<leader>hD", function() gitsigns.diffthis("@") end, { desc = "git [D]iff against last commit" })
-
         -- Actions
         -- map('n', '<leader>hs', gitsigns.stage_hunk)
         -- map('n', '<leader>hr', gitsigns.reset_hunk)
-
         -- map('v', '<leader>hs', function()
         --   gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
         -- end)
-        --
         -- map('v', '<leader>hr', function()
         --   gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
         -- end)
 
         -- map('n', '<leader>hS', gitsigns.stage_buffer)
         -- map('n', '<leader>hR', gitsigns.reset_buffer)
+
         map("n", "<leader>hi", gitsigns.preview_hunk_inline)
         map("n", "<leader>hp", gitsigns.preview_hunk)
 
@@ -102,7 +113,7 @@ return {
         --   gitsigns.blame_line({ full = true })
         -- end)
 
-        -- map('n', '<leader>hd', gitsigns.diffthis)
+        map("n", "<localleader>gd", gitsigns.diffthis)
         -- map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
 
         -- map("n", "<leader>hQ", function() gitsigns.setqflist("all") end)
@@ -111,14 +122,12 @@ return {
         -- Toggles
         map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
         -- map("n", "<leader>tw", gitsigns.toggle_word_diff)
-        -- map("n", "<leader>tD", gitsigns.toggle_deleted, { desc = "[T]oggle git show [D]eleted" })
 
         -- Text object
         map({ "o", "x" }, "ih", gitsigns.select_hunk)
       end,
     },
   },
-
   {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },

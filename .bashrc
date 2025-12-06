@@ -26,14 +26,6 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export BROWSER=wslview
 
 export GIT_PS1_SHOWDIRTYSTATE=1
-export FORGIT_COPY_CMD='xclip -selection clipboard'
-export FORGIT_FZF_DEFAULT_OPTS="
---height 80% --tmux 90%,90%
---exact
---border
---cycle
---reverse
-"
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -95,7 +87,8 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-export PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s"); history -a; history -c; history -r;'
+# export PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s"); history -a; history -c; history -r;'
+export PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s");'
 # export PROMPT_COMMAND='PS1_GIT=$(__git_ps1 "%s"); history -a; history -n;'
 export PS1='\[\e[36m\]\w\[\e[0m\]\[\e[33m\]${PS1_GIT:+ (${PS1_GIT})}\[\e[0m\] '
 
@@ -156,7 +149,6 @@ bind -m vi-insert '"\eo": "\C-z\ec\C-z"'
 # bind -x '"\C-p": "vim $(fzf --height 40% --reverse)"'
 
 source ~/.local/bin/fzf-git.sh
-source ~/.local/bin/forgit.plugin.sh
 source ~/.local/bin/.git-prompt.sh
 # source $HOME/.tenv.completion.bash
 

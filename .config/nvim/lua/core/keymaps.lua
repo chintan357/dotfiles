@@ -192,17 +192,18 @@ keymap("n", "<leader>xq", function()
     vim.notify(err, vim.log.levels.ERROR)
   end
 end, { desc = "Quickfix List" })
-
+vim.g.completion = true
 keymap('n', 'yoc', function()
-  vim.b.completion = not vim.b.completion
+  vim.g.completion = not vim.g.completion
+  print(vim.g.completion)
 end, { noremap = true, silent = false, desc = "Toggle completion" })
 
 -- Copy filepath to the clipboard
--- vim.keymap.set("n", "<leader>fp", function()
---   local filePath = vim.fn.expand("%:~")                -- Gets the file path relative to the home directory
---   vim.fn.setreg("+", filePath)                         -- Copy the file path to the clipboard register
---   print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
--- end, { desc = "Copy file path to clipboard" })
+vim.keymap.set("n", "<leader>fp", function()
+  local filePath = vim.fn.expand("%:~")
+  vim.fn.setreg("+", filePath)
+  print("File path copied to clipboard: " .. filePath)
+end, { desc = "Copy file path to clipboard" })
 
 -- vim.keymap.set("v", "p", '"_dp', opts)
 -- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word cursor is on globally" })

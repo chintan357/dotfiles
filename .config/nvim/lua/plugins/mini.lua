@@ -62,12 +62,12 @@ return {
       require("mini.bufremove").setup()
     end,
   },
-  -- {
-  --   "echasnovski/mini.surround",
-  --   config = function()
-  --     require("mini.surround").setup()
-  --   end,
-  -- },
+  {
+    "echasnovski/mini.surround",
+    config = function()
+      require("mini.surround").setup()
+    end,
+  },
   {
     "echasnovski/mini.pairs",
     config = function()
@@ -86,16 +86,6 @@ return {
   --     require("mini.hipatterns").setup()
   --   end,
   -- },
-  {
-    "echasnovski/mini.diff",
-    config = function()
-      local diff = require("mini.diff")
-      diff.setup({
-        -- Disabled by default
-        source = diff.gen_source.none(),
-      })
-    end,
-  },
   {
     "echasnovski/mini.statusline",
     config = function()

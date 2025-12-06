@@ -6,10 +6,12 @@ return {
   },
   event = "InsertEnter",
   version = "1.*",
-
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
+    -- enabled = function()
+    --   return vim.b.completion ~= false
+    -- end,
     keymap = { preset = "default" },
     appearance = {
       nerd_font_variant = "mono", -- 'normal'

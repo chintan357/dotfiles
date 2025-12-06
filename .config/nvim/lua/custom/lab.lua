@@ -118,3 +118,11 @@ vim.keymap.set("n", ",sc", select_markdown_codeblock, {
   desc = "Select markdown code block content",
   silent = true,
 })
+
+-- local function toggle_blink()
+--   vim.b.completion = not vim.b.completion
+--   require("blink.cmp").hide()
+--   print("blink.cmp: " .. (vim.b.completion and "ON" or "OFF"))
+-- end
+--
+-- vim.keymap.set({ "n" }, "yoc", toggle_blink, { desc = "Toggle completion" })
