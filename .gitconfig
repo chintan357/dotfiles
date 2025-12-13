@@ -79,6 +79,7 @@
   line-numbers = true
   ; side-by-side = true
 	; features = line-numbers decorations
+  syntax-theme = OneHalfDark
   ; syntax-theme = Coldark-Dark
 
 [push]
@@ -283,12 +284,6 @@
   merge-conflict-theirs-diff-header-style = yellow bold
   merge-conflict-theirs-diff-header-decoration-style = "#5E81AC" box
 
-; [credential "https://github.com"]
-; 	helper = !/usr/bin/gh auth git-credential
-;
-; [credential "https://gist.github.com"]
-; 	helper = !/usr/bin/gh auth git-credential
-
 ; [filter "lfs"]
 ;   clean = git-lfs clean -- %f
 ;   smudge = git-lfs smudge -- %f
@@ -364,3 +359,16 @@
   ; snap = !git stash save 'snapshot: $(date)' && git stash apply 'stash@{0}'
   ; unassumeall = !git assumed | xargs git unassume
   ; assumeall = !git status -s | awk {'print $2'} | xargs git assume
+
+; [credential "https://github.com"]
+; 	helper = !/usr/bin/gh auth git-credential
+;
+; [credential "https://gist.github.com"]
+; 	helper = !/usr/bin/gh auth git-credential
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

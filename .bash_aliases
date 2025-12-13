@@ -4,6 +4,8 @@ alias c=clear
 alias al=alias
 alias ual=unalias
 
+alias sudo='sudo '
+
 #-----------#
 
 alias cpr='cp -r'
@@ -21,27 +23,27 @@ alias lh='ls -d .[^.]* --color=auto 2> /dev/null'
 alias lt='tree -a -L 2 -C | less -RF'
 
 alias es='eza --group-directories-first'
+alias esd='eza -D --icons=always --group-directories-first'
 alias ea='eza -a --git --color=always --icons=always --group-directories-first'
-alias el='eza -Alh --git --color=always --icons=always --group-directories-first | less'
-alias et='eza -a --tree --level=2'
+alias el='eza -Alh --git --color=always --icons=always --group-directories-first | less -RF'
+alias et='eza -a --tree --level=2 --git-ignore'
 
 #-----------#
 
-alias grepi='grep -i'
-alias grepir='grep -ir'
+alias grep='grep --color=auto'
+alias rgh='rg --hidden'
 
 #-----------#
 
-alias chownr='chown -R'
-alias chmodr='chmod -R'
+alias chownr='chown -Rc'
 alias chmx='chmod u+x'
 
 #-----------#
 
-alias psx="ps auxf"
+alias psx='ps auxf | less -S -R -F'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
-alias freeh='free -h'
+alias freeh='free -hwt'
 
 alias p1='ping -c 3 1.1.1.1'
 alias p8='ping -c 3 8.8.8.8'
@@ -49,7 +51,7 @@ clh() { curl localhost:$1; }
 
 #-----------#
 
-alias dfh='df -h'
+alias dfh='df -h -x tmpfs -x devtmpfs -x squashfs'
 
 alias osrel='cat /etc/os-release'
 alias release='cat /etc/*-release'
@@ -57,10 +59,13 @@ alias release='cat /etc/*-release'
 #-----------#
 
 alias rp='realpath'
-alias cprp='sh -c '\''realpath "$1" | xclip -selection clipboard'\'' -'
+
+cprp() {
+    realpath "$1" | xclip -selection clipboard
+}
 
 alias cpy="xclip -selection clipboard"
-alias CC='$(fc -l -n -1) | cpy'
+alias CC='$(fc -ln -1) | cpy'
 alias cpwd='pwd|cpy'
 
 # alias path='cd "$(echo -e ${PATH//:/\\n} | fzf)"'
@@ -68,7 +73,9 @@ alias path='cd "$(echo -e ${PATH//:/\\n} | fzf --preview "ls -la {}")"'
 
 # alias genpwd='openssl rand -base64 16 | cpy'
 alias genpwd='< /dev/urandom tr -dc "A-Za-z0-9" | head -c 20 | cpy'
-alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
+
+alias plz='sudo $(history -p !!)'
+# alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
 
 #-----------#
 
@@ -78,7 +85,7 @@ alias lvi='nvim -c "normal '\''0"'
 alias v.='nvim .'
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
 # alias v='NVIM_APPNAME="tvim" nvim'
-alias lvim='NVIM_APPNAME="lvim" nvim'
+# alias lvim='NVIM_APPNAME="lvim" nvim'
 
 #-----------#
 
@@ -124,7 +131,7 @@ alias sctl='systemctl'
 
 alias erc='nvim ~/.bashrc'
 alias epro='nvim ~/.bash_profile'
-alias ealias='nvim ~/.bash_aliases'
+alias eal='nvim ~/.bash_aliases'
 alias efunc='nvim ~/.bash_functions'
 alias einput='nvim ~/.inputrc'
 alias essh='nvim ~/.ssh/config'
@@ -209,7 +216,8 @@ alias tmnew='tmux new -s'
 alias tma='tmux attach'
 alias tmat='tmux attach -t'
 alias tmkst='tmux kill-session -t'
-alias tmks='tmux kill-server'
+# alias tmks='tmux kill-server'
+alias tmpwd='s=$(basename "$PWD" | tr "." "_"); tmux new-session -Ad -s "$s" -c "$PWD" && tmux switch-client -t "$s"'
 
 # alias atom='tmux new-session -A -s atomic'
 
@@ -238,32 +246,47 @@ alias pre='cd ~/pre'
 alias lre='cd ~/lre'
 alias down='cd ~/down'
 alias lab='cd ~/lab'
-alias hlab='cd ~/hlab'
+# alias hlab='cd ~/hlab'
 alias dotfiles='cd ~/lab/dotfiles'
 alias dot='cd ~/dotfiles'
 alias lea='cd ~/learn'
 
-alias iam='cd /mnt/c/chintan357/vaults/atomic'
-alias iamd='cd /mnt/c/chintan357/vaults/atomic/dailies'
+alias iam='cd /mnt/c/atomic'
+alias iamd='cd /mnt/c/atomic/dailies'
 
-alias todo='nvim /mnt/c/chintan357/vaults/atomic/inbox/todo.md'
-alias pad='nvim /mnt/c/chintan357/vaults/atomic/inbox/pad.md'
-alias ask='nvim /mnt/c/chintan357/vaults/atomic/inbox/ask.md'
-alias dmp='nvim /mnt/c/chintan357/vaults/atomic/inbox/dump.md'
+alias pad='nvim /mnt/c/atomic/dailies/$(date +%Y-%m-%d.md)'
+alias todo='nvim /mnt/c/atomic/inbox/todo.md'
+alias todos='nvim /mnt/c/atomic/inbox/todos.md'
+alias ask='nvim /mnt/c/atomic/inbox/ask.md'
+
+alias todoh='nvim todo.md'
+alias padh='nvim pad.md'
 
 alias exp="Explorer.exe ."
 alias mntc='cd /mnt/c'
 alias mntcu='cd /mnt/c/Users'
-alias vaultsw='cd /mnt/c/chintan357/vaults/'
+alias vaultsw='cd /mnt/c/vaults'
 
-alias cla='claude'
+#-----------#
+
+alias oc='opencode'
+alias gem='gemini'
 
 #-----------#
 
 alias g=git
+
+[ -f /usr/share/bash-completion/completions/git ] && . /usr/share/bash-completion/completions/git
+__git_complete g __git_main
+
+# if [ -f "/usr/share/bash-completion/completions/git" ]; then
+#   source /usr/share/bash-completion/completions/git
+#   __git_complete g __git_main
+# fi
+
 alias lg=lazygit
 
-alias gatomic='gP && gaa && gcm -m atomic && gpu'
+alias gatomic='gaa && gcm -m atomic && gpu'
 
 alias ginit='git init'
 alias cg='cd `git rev-parse --show-toplevel`'
@@ -301,6 +324,7 @@ alias glg='git log --graph --oneline --decorate --all'
 alias glast="git log -1 HEAD"
 
 alias hbr='gh browse'
+alias ghal='gh auth login'
 
 # alias gnah="git clean -df && git checkout -- ."
 # alias gclean='git clean -fd'

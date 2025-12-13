@@ -2,14 +2,12 @@
 return {
   "olimorris/codecompanion.nvim",
   cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions", "CodeCompanionCmd" },
-  tag = "v17.32.0",
+  version = "^18.0.0",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "ravitemer/codecompanion-history.nvim", -- Save and load conversation history
-    {
-      "MeanderingProgrammer/render-markdown.nvim",
-      ft = { "markdown", "codecompanion" },
-    },
+    "nvim-treesitter/nvim-treesitter",
+    -- "ravitemer/codecompanion-history.nvim", -- Save and load conversation history
+    "MeanderingProgrammer/render-markdown.nvim",
     -- "ravitemer/mcphub.nvim",
   },
   keys = {
@@ -20,10 +18,21 @@ return {
   opts = {
     adapters = {
       acp = {
-        claude_code = function()
-          return require("codecompanion.adapters").extend("claude_code", {
-            env = {
-              CLAUDE_CODE_OAUTH_TOKEN = "cmd:cat ~/private/claude_code_oauth_token",
+        opts = {
+          show_presets = false,
+        },
+        gemini_cli = function()
+          return require("codecompanion.adapters").extend("gemini_cli", {
+            defaults = {
+              auth_method = "oauth-personal",
+            },
+          })
+        end,
+        opencode = function()
+          return require("codecompanion.adapters").extend("opencode", {
+            commands = {
+              default = { "opencode", "acp" },
+              -- copilot_sonnet_4_5 = { "opencode", "acp", "-m", "github-copilot/claude-sonnet-4.5", },
             },
           })
         end,
@@ -31,16 +40,16 @@ return {
       http = {
         opts = {
           show_model_choices = true,
-          show_defaults = false,
+          show_presets = false,
         },
         gemini = function()
           return require("codecompanion.adapters").extend("gemini", {
             env = {
-              api_key = "cmd:cat ~/private/gemini-nvim",
+              api_key = "cmd:cat ~/private/gemini",
             },
             schema = {
               model = {
-                default = "gemini-2.5-flash",
+                default = "gemini-3-flash-preview",
                 temperature = 0.1,
               },
               reasoning_effort = "none",
@@ -51,12 +60,12 @@ return {
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
               url = "https://openrouter.ai/api",
-              api_key = "cmd:cat ~/private/openrouter",
+              api_key = "cmd:cat ~/private/or",
               chat_url = "/v1/chat/completions",
             },
             schema = {
               model = {
-                default = "openai/gpt-5-chat",
+                default = "openai/gpt-5.2-chat",
               },
             },
           })
@@ -64,20 +73,20 @@ return {
       },
     },
     extensions = {
-      history = {
-        enabled = true,
-        opts = {
-          keymap = "gh",
-          save_chat_keymap = "sc",
-          auto_save = false,
-          auto_generate_title = true,
-          continue_last_chat = false,
-          delete_on_clearing_chat = false,
-          picker = "snacks",
-          enable_logging = false,
-          dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
-        },
-      },
+      -- history = {
+      --   enabled = true,
+      --   opts = {
+      --     keymap = "gh",
+      --     save_chat_keymap = "sc",
+      --     auto_save = false,
+      --     auto_generate_title = true,
+      --     continue_last_chat = false,
+      --     delete_on_clearing_chat = false,
+      --     picker = "snacks",
+      --     enable_logging = false,
+      --     dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
+      --   },
+      -- },
       -- mcphub = {
       --   callback = "mcphub.extensions.codecompanion",
       --   opts = {
@@ -87,11 +96,16 @@ return {
       --   },
       -- },
     },
-    strategies = {
+    interactions = {
       chat = {
+        opts = {
+          system_prompt = "",
+        },
         adapter = {
           name = "openrouter",
-          model = "openai/gpt-5-chat",
+          -- model = "openai/gpt-5.2-chat",
+          model = "anthropic/claude-haiku-4.5",
+          -- model = "moonshotai/kimi-k2-0905",
         },
         roles = {
           llm = function(adapter)
@@ -113,6 +127,12 @@ return {
       },
       cmd = {
         adapter = "openrouter",
+      },
+      background = {
+        -- adapter = {
+        --   name = "",
+        --   model = "",
+        -- },
       },
     },
     -- opts = {

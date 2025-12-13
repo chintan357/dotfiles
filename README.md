@@ -1,39 +1,49 @@
 ```sh
+# sudo timedatectl set-timezone Asia/Kolkata
+
 sudo apt update && sudo apt -y upgrade
 
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# prefix + I
-
-cd && mkdir -p lab/dotfiles wre pre lre hlab dotfiles private tmp down learn
-# mkdir ~/.config
-
-sudo apt install -y stow make cargo zoxide cmake xclip neofetch ripgrep fd-find bat pydf ncdu luarocks btop htop python3-pip gtypist net-tools tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip poppler-utils universal-ctags apt-transport-https python3.12-venv
+sudo apt install -y stow make zoxide cmake xclip ripgrep fd-find bat pydf ncdu btop htop python3-pip gtypist tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip universal-ctags apt-transport-https python3.12-venv wslu vim-gtk3 duf
+# sudo add-apt-repository ppa:wslutilities/wslu
+# sudo apt update
 
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 ln -s $(which fdfind) ~/.local/bin/fd
 
+cd && mkdir -p lab/dotfiles wre pre lre hlab private tmp down learn
+
+mv .bashrc .bashrc.bak
+mv .bash_logout .bash_logout.bak
+git clone https://github.com/chintan357/dotfiles.git && cd dotfiles
+stow .
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# prefix + I
+
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-tools=(ruff ty datasette ipython pudb asciinema aider-chat ranger-fm thefuck jupyterlab jupyter-console yt-dlp)
-# urlscan jupyter_client
+tools=(ruff ty datasette ipython asciinema ranger-fm thefuck jupyterlab jupyter-console yt-dlp)
+# urlscan jupyter_client pudb
 for tool in "${tools[@]}"; do
   uv tool install "$tool"
 done
 
-llm install llm-gemini
+# llm install llm-gemini
 # llm keys set gemini
 
 # mise
 curl https://mise.run | sh
 mise use -g node@22
 mise use -g rust@1.89.0
+mise use -g ruby@3 # libffi-dev libyaml-dev
 
-npm i -g open-cli @anthropic-ai/claude-code
+npm i -g open-cli @google/gemini-cli
 
 cargo install cargo-binstall
 # cargo binstall tealdeer --no-confirm
-cargo binstall stylua tealdeer tree-sitter-cli eza git-delta hackernews_tui broot halp navi bob-nvim
+cargo binstall stylua tealdeer eza git-delta hackernews_tui broot halp navi bob-nvim
+# tree-sitter-cli 
 
 bob use stable
 
@@ -61,9 +71,6 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 chmod u+x kubectl
 mv kubectl ~/.local/bin
 
-sudo add-apt-repository ppa:wslutilities/wslu
-sudo apt update
-sudo apt install wslu
 
 # gh
 (type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
@@ -100,10 +107,14 @@ curl -o ~/.git-prompt.sh \
     https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 # contrib/completion/git-completion.bash
 
-# tenv
-LATEST_VERSION=$(curl --silent https://api.github.com/repos/tofuutils/tenv/releases/latest | jq -r .tag_name)
-curl -O -L "https://github.com/tofuutils/tenv/releases/latest/download/tenv_${LATEST_VERSION}_amd64.deb"
-sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
+# try
+curl -sL https://raw.githubusercontent.com/tobi/try/refs/heads/main/try.rb > ~/.local/try.rb
+chmod +x ~/.local/try.rb
+
+# opencode
+curl -fsSL https://opencode.ai/install | bash
+
+uv tool install ty@latest
 ```
 
 ```sh
@@ -124,4 +135,8 @@ sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
 
 # https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh
 
+# tenv
+# LATEST_VERSION=$(curl --silent https://api.github.com/repos/tofuutils/tenv/releases/latest | jq -r .tag_name)
+# curl -O -L "https://github.com/tofuutils/tenv/releases/latest/download/tenv_${LATEST_VERSION}_amd64.deb"
+# sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
 ```

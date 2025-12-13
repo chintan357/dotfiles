@@ -4,6 +4,7 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 
 vim.lsp.enable("lua_ls")
+-- vim.lsp.enable("ty")
 vim.lsp.enable("pyright")
 
 local config = {
@@ -71,16 +72,6 @@ capabilities.textDocument.foldingRange = {
 
 capabilities.textDocument.semanticTokens.multilineTokenSupport = true
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-vim.lsp.config("*", {
-  capabilities = capabilities,
-  on_attach = function(client, bufnr)
-    local ok, diag = pcall(require, "extras.workspace-diagnostic")
-    if ok then
-      diag.populate_workspace_diagnostics(client, bufnr)
-    end
-  end,
-})
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),

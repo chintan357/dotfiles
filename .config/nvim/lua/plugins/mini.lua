@@ -1,5 +1,5 @@
--- return { -- Collection of various small independent plugins/modules
---   "echasnovski/mini.nvim",
+-- return {
+--   "nvim-mini/mini.nvim",
 --   version = false,
 --   config = function()
 --     require("mini.ai").setup({ n_lines = 500 })
@@ -34,13 +34,9 @@
 -- }
 -- -- Better Around/Inside textobjects
 -- --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
--- -- Add/delete/replace surroundings (brackets, quotes, etc.)
--- -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
--- -- - sd'   - [S]urround [D]elete [']quotes
--- -- - sr)'  - [S]urround [R]eplace [)] [']
---
+
 -- -- {
--- --   "echasnovski/mini.diff",
+-- --   "nvim-mini/mini.diff",
 -- --   config = function()
 -- --     local diff = require("mini.diff")
 -- --     diff.setup({
@@ -51,43 +47,43 @@
 -- -- },
 return {
   {
-    "echasnovski/mini.ai",
+    "nvim-mini/mini.ai",
     config = function()
       require("mini.ai").setup({ n_lines = 500 })
     end,
   },
   {
-    "echasnovski/mini.bufremove",
+    "nvim-mini/mini.bufremove",
     config = function()
       require("mini.bufremove").setup()
     end,
   },
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     config = function()
       require("mini.surround").setup()
     end,
   },
   {
-    "echasnovski/mini.pairs",
+    "nvim-mini/mini.pairs",
     config = function()
       require("mini.pairs").setup()
     end,
   },
   {
-    "echasnovski/mini.tabline",
+    "nvim-mini/mini.tabline",
     config = function()
       require("mini.tabline").setup()
     end,
   },
   -- {
-  --   "echasnovski/mini.hipatterns",
+  --   "nvim-mini/mini.hipatterns",
   --   config = function()
   --     require("mini.hipatterns").setup()
   --   end,
   -- },
   {
-    "echasnovski/mini.statusline",
+    "nvim-mini/mini.statusline",
     config = function()
       local statusline = require("mini.statusline")
       statusline.section_location = function()

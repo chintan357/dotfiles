@@ -1,0 +1,8 @@
+{
+  "snapToObjects": true,
+  "snapToGrid": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "extras/canvas",
+  "defaultWheelBehavior": "zoom",
+  "cardLabelVisibility": "hover"
+}

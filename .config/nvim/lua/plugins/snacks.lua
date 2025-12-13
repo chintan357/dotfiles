@@ -17,6 +17,7 @@ return {
 ]],
       },
     },
+    terminal = {},
     explorer = { enabled = true },
     dim = { enabled = true },
     indent = { enabled = true },

@@ -192,11 +192,12 @@ keymap("n", "<leader>xq", function()
     vim.notify(err, vim.log.levels.ERROR)
   end
 end, { desc = "Quickfix List" })
-vim.g.completion = true
-keymap('n', 'yoc', function()
-  vim.g.completion = not vim.g.completion
-  print(vim.g.completion)
-end, { noremap = true, silent = false, desc = "Toggle completion" })
+
+-- vim.g.completion = true
+-- keymap('n', 'yoc', function()
+--   vim.g.completion = not vim.g.completion
+--   print(vim.g.completion)
+-- end, { noremap = true, silent = false, desc = "Toggle completion" })
 
 -- Copy filepath to the clipboard
 vim.keymap.set("n", "<leader>fp", function()

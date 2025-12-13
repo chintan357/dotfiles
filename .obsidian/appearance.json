@@ -1,0 +1,15 @@
+{
+  "accentColor": "#4ba1d2",
+  "interfaceFontFamily": "Comic Sans MS",
+  "monospaceFontFamily": "Mononoki Nerd Font Mono",
+  "textFontFamily": "Mononoki Nerd Font",
+  "baseFontSizeAction": true,
+  "showViewHeader": true,
+  "nativeMenus": false,
+  "translucency": false,
+  "cssTheme": "Atom",
+  "baseFontSize": 18,
+  "theme": "obsidian",
+  "enabledCssSnippets": [],
+  "showRibbon": false
+}

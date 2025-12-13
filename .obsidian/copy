@@ -1,0 +1,1 @@
+cp app.json appearance.json backlink.json canvas.json core-plugins.json daily-notes.json hotkeys.json switcher.json templates.json zk-prefixer.json .vimrc copy ~/dotfiles/.obsidian/

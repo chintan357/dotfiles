@@ -14,7 +14,7 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 export VISUAL=vi
 export EDITOR=vi
 
-export GOOGLE_API_KEY="$(head -1 ~/private/gemini-nvim)"
+# export GOOGLE_API_KEY="$(head -1 ~/private/gemini)"
 # export TAVILY_API_KEY="$(head -1 ~/private/tavily)"
 # export GOOGLE_SEARCH_API_KEY="$(head -1 ~/private/google-search)"
 # export GOOGLE_SEARCH_ENGINE_ID="$(head -1 ~/private/google-search-engine-id)"
@@ -72,8 +72,6 @@ esac
 #     alias fgrep='fgrep --color=auto'
 #     alias egrep='egrep --color=auto'
 # fi
-
-alias grep='grep --color=auto'
 
 # colored GCC warnings and errors
 # export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -159,5 +157,5 @@ source ~/.local/bin/.git-prompt.sh
 # eval "$(pyenv virtualenv-init -)"
 
 eval "$($HOME/.local/bin/mise activate bash)"
-
 source $HOME/.config/broot/launcher/bash/br
+eval "$(ruby ~/.local/try.rb init ~/tries)"

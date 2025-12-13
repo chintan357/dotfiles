@@ -1,0 +1,31 @@
+{
+  "vimMode": true,
+  "promptDelete": false,
+  "spellcheck": false,
+  "trashOption": "system",
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "current",
+  "showUnsupportedFiles": true,
+  "attachmentFolderPath": "./attachments",
+  "showInlineTitle": false,
+  "readableLineLength": false,
+  "strictLineBreaks": false,
+  "propertiesInDocument": "visible",
+  "foldIndent": true,
+  "foldHeading": true,
+  "showLineNumber": true,
+  "showIndentGuide": true,
+  "focusNewTab": true,
+  "autoConvertHtml": true,
+  "tabSize": 2,
+  "defaultViewMode": "source",
+  "livePreview": true,
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "A4",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  },
+  "rightToLeft": false
+}
