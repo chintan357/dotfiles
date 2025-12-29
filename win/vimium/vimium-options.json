@@ -1,13 +1,13 @@
 {
   "hideHud": true,
-  "keyMappings": "map * visitPreviousTab\nmap m Marks.activateCreateMode swap\nmap ' Marks.activateGotoMode swap\nmap <a-,> moveTabLeft count=99\nmap <a-.> moveTabRight count=99\nmap R reload hard",
+  "keyMappings": "map * visitPreviousTab\n\nmap m Marks.activateCreateMode swap\nmap ' Marks.activateGotoMode swap\n\nmap <a-,> moveTabLeft count=99\nmap <a-.> moveTabRight count=99\n\nmap R reload hard\n\nmap <c-]> passNextKey",
   "newTabUrl": "chrome://newtab",
   "ignoreKeyboardLayout": true,
   "scrollStepSize": 300,
   "smoothScroll": false,
   "grabBackFocus": true,
-  "searchEngines": "w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\nf: https://freedium.cfd/%s medium\ng: https://www.google.com/search?q=%s Google\ny: https://www.youtube.com/results?search_query=%s Youtube\ngm: https://www.google.com/maps?q=%s Google maps\nb: https://www.bing.com/search?q=%s Bing\nd: https://duckduckgo.com/?q=%s DuckDuckGo\nm: https://medium.com/search?q=%s Medium\naz: https://www.amazon.com/s/?field-keywords=%s Amazon\n# qw: https://www.qwant.com/?q=%s Qwant",
-  "settingsVersion": "2.2.1",
+  "searchEngines": "w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\n\nf: https://freedium-mirror.cfd/%s medium\n\ng: https://www.google.com/search?q=%s Google\ngi: https://www.google.com/search?tbm=isch&q=%s Google Images\na: https://www.google.com/search?udm=50&q=%s AI Mode\nt: https://www.google.com/search?nem=143&q=%s AI Mode (Thinking)\ny: https://www.youtube.com/results?search_query=%s Youtube\ngm: https://www.google.com/maps?q=%s Google maps\nrecent: https://www.google.com/search?hl=en&tbo=1&tbs=qdr:y&q=%s Google (last year only)\ntranslate: https://translate.google.com/?source=osdd#auto|auto|%s Google Translator\n\nb: https://www.bing.com/search?q=%s Bing\nd: https://duckduckgo.com/?q=%s DuckDuckGo\n\nm: https://medium.com/search?q=%s Medium\n\ngh: https://github.com/search?q=%s GitHub\n# hn: https://www.hnsearch.com/search#request/submissions&q=%s&start=0 HackerNews\nso: https://stackoverflow.com/search?q=%s StackOverflow\nsu: https://superuser.com/search?q=%s SuperUser\n\naz: https://www.amazon.in/s/?field-keywords=%s Amazon",
+  "settingsVersion": "2.3.1",
   "exclusionRules": [
     {
       "passKeys": "",
@@ -19,19 +19,15 @@
     },
     {
       "passKeys": "",
-      "pattern": "https?://www.speedtyper.dev/*"
-    },
-    {
-      "passKeys": "",
       "pattern": "https?://monkeytype.com/*"
     },
     {
       "passKeys": "",
-      "pattern": "https?://www.typing.com/*"
+      "pattern": "https?://excalidraw.com/*"
     },
     {
       "passKeys": "",
-      "pattern": "https?://excalidraw.com/*"
+      "pattern": "https?://app.diagrams.net/*"
     }
   ]
 }

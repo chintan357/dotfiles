@@ -1,41 +1,41 @@
 return {
   { "tpope/vim-fugitive" },
-  { "tpope/vim-rhubarb" },
   {
     "lewis6991/gitsigns.nvim",
     -- event = "VeryLazy",
     opts = {
-      signs = {
-        add = { text = "┃" },
-        change = { text = "┃" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-        untracked = { text = "┆" },
-      },
-      signs_staged = {
-        add = { text = "┃" },
-        change = { text = "┃" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-        untracked = { text = "┆" },
-      },
       -- signs = {
-      --   add = { text = "▎" },
-      --   change = { text = "▎" },
-      --   delete = { text = "" },
-      --   topdelete = { text = "" },
-      --   changedelete = { text = "▎" },
-      --   untracked = { text = "▎" },
+      --   add = { text = "┃" },
+      --   change = { text = "┃" },
+      --   delete = { text = "_" },
+      --   topdelete = { text = "‾" },
+      --   changedelete = { text = "~" },
+      --   untracked = { text = "┆" },
       -- },
       -- signs_staged = {
-      --   add = { text = "▎" },
-      --   change = { text = "▎" },
-      --   delete = { text = "" },
-      --   topdelete = { text = "" },
-      --   changedelete = { text = "▎" },
+      --   add = { text = "┃" },
+      --   change = { text = "┃" },
+      --   delete = { text = "_" },
+      --   topdelete = { text = "‾" },
+      --   changedelete = { text = "~" },
+      --   untracked = { text = "┆" },
       -- },
+      signs = {
+        add = { text = "▎" },
+        change = { text = "▎" },
+        delete = { text = "" },
+        topdelete = { text = "" },
+        changedelete = { text = "▎" },
+        untracked = { text = "▎" },
+      },
+      signs_staged = {
+        add = { text = "▎" },
+        change = { text = "▎" },
+        delete = { text = "" },
+        topdelete = { text = "" },
+        changedelete = { text = "▎" },
+      },
+
       signs_staged_enable = true,
       signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
       numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -76,7 +76,6 @@ return {
           vim.keymap.set(mode, l, r, opts)
         end
 
-        -- Navigation
         map("n", "]c", function()
           if vim.wo.diff then
             vim.cmd.normal({ "]c", bang = true })
@@ -94,22 +93,22 @@ return {
         end)
 
         -- Actions
-        -- map('n', '<leader>hs', gitsigns.stage_hunk)
-        map("n", "<leader>hr", gitsigns.reset_hunk)
-        -- map('v', '<leader>hs', function()
-        --   gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        -- end)
-        -- map('v', '<leader>hr', function()
-        --   gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        -- end)
+        map("n", "<localleader>sh", gitsigns.stage_hunk)
+        map("n", "<localleader>rs", gitsigns.reset_hunk)
+        map("v", "<localleader>sh", function()
+          gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+        end)
+        map("v", "<leader>rs", function()
+          gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+        end)
 
-        -- map('n', '<leader>hS', gitsigns.stage_buffer)
-        -- map('n', '<leader>hR', gitsigns.reset_buffer)
+        -- map('n', '', gitsigns.stage_buffer)
+        -- map('n', '', gitsigns.reset_buffer)
 
-        map("n", "<leader>hi", gitsigns.preview_hunk_inline)
+        -- map("n", "<leader>hp", gitsigns.preview_hunk_inline)
         map("n", "<leader>hp", gitsigns.preview_hunk)
 
-        -- map('n', '<leader>hb', function()
+        -- map("n", "", function()
         --   gitsigns.blame_line({ full = true })
         -- end)
 
@@ -120,11 +119,10 @@ return {
         -- map("n", "<leader>hq", gitsigns.setqflist)
 
         -- Toggles
-        map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
-        -- map("n", "<leader>tw", gitsigns.toggle_word_diff)
+        map("n", "<leader>bl", gitsigns.toggle_current_line_blame)
+        -- map("n", "", gitsigns.toggle_word_diff)
 
-        -- Text object
-        map({ "o", "x" }, "ih", gitsigns.select_hunk)
+        map({ "o", "x" }, "ih", gitsigns.select_hunk) -- Text object
       end,
     },
   },
@@ -141,6 +139,7 @@ return {
 -- { "mattn/vim-gist", dependencies = { "mattn/webapi-vim" }, },
 -- { "junegunn/gv.vim" },
 -- { "akinsho/git-conflict.nvim", version = "*", config = true },
+-- { "tpope/vim-rhubarb" },
 
 -- map( "n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 

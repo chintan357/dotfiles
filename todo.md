@@ -1,13 +1,10 @@
-#feat
+#doing
 
-opencode agent that does only one thing - reply to  my queries in text and
-nothing more
+tmux - show provided label in the status bar
 
-a mode where i could use codecompanion as a regular llm chat interface without
-coding specific in between a raw req directly to the model selected
 
-a way where i could persist a flag that nvim respect for settings like showing
-statusbar, completion, etc. (imp i want it to persist for next session)
+#queue
+
 
 ---
 
@@ -21,6 +18,22 @@ files
 
 ---
 
+#feat
+
+opencode agent that does only one thing - reply to  my queries in text and
+nothing more
+
+a mode where i could use codecompanion as a regular llm chat interface without
+coding specific in between a raw req directly to the model selected
+
+a way where i could persist a flag that nvim respect for settings like showing
+statusbar, completion, etc. (imp i want it to persist for next session)
+
+i would like to have current selected model visible in codecompanion chat
+
+filter and select llm model from explicit list of models created by user
+(codecompanion)
+
 would it be possible to get the google search ai mode working on linux (outside
 browser), also it could be perplexity (if google doesn't work) raycast has
 something similar, test it out and see if it fits the workflow (would be nice
@@ -28,7 +41,8 @@ to have as add-on but would not replace the earlier one)
 
 ---
 
-> toggle auto completion
+toggle auto completion
+
 how to easily toggle the models inside codecompanion
 
 i guess i lost the modified `lvi` alias 
@@ -46,3 +60,5 @@ tmux copy doesn't work in tmux popup (in remote machine)
 
 nvim being used as git difftool, whne invoked it list the diff on the files one
 by one. how should i close the entire process in between?
+
+auto create the #tmux session you use all the time at startup

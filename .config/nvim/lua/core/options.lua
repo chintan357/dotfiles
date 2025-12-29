@@ -48,7 +48,7 @@ opt.colorcolumn = "80"
 opt.textwidth = 79
 opt.winwidth = 30
 opt.sidescrolloff = 8
-opt.scrolloff = 999
+-- opt.scrolloff = 999
 opt.ruler = false
 
 vim.cmd.syntax("enable")

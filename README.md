@@ -3,7 +3,7 @@
 
 sudo apt update && sudo apt -y upgrade
 
-sudo apt install -y stow make zoxide cmake xclip ripgrep fd-find bat pydf ncdu btop htop python3-pip gtypist tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip universal-ctags apt-transport-https python3.12-venv wslu vim-gtk3 duf
+sudo apt install -y stow make zoxide cmake xclip ripgrep fd-find bat pydf ncdu btop htop python3-pip gtypist tree jq bind9-dnsutils ufw nmap libssl-dev ffmpeg 7zip universal-ctags apt-transport-https python3.12-venv wslu vim-gtk3 duf xdg-utils
 # sudo add-apt-repository ppa:wslutilities/wslu
 # sudo apt update
 
@@ -11,7 +11,7 @@ mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 ln -s $(which fdfind) ~/.local/bin/fd
 
-cd && mkdir -p lab/dotfiles wre pre lre hlab private tmp down learn
+cd && mkdir -p lab wre pre lre/dotfiles hlab private tmp down learn
 
 mv .bashrc .bashrc.bak
 mv .bash_logout .bash_logout.bak
@@ -106,10 +106,6 @@ sudo make install
 curl -o ~/.git-prompt.sh \
     https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 # contrib/completion/git-completion.bash
-
-# try
-curl -sL https://raw.githubusercontent.com/tobi/try/refs/heads/main/try.rb > ~/.local/try.rb
-chmod +x ~/.local/try.rb
 
 # opencode
 curl -fsSL https://opencode.ai/install | bash

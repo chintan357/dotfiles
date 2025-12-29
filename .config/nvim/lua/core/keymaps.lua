@@ -39,11 +39,11 @@ keymap("n", "<leader>|", "<C-W>v")
 keymap("n", "<leader>we", "<C-W>c")
 keymap("n", "<leader>se", "<C-w>=")
 
-keymap("n", "Q", "<cmd>bd<CR>")
+-- keymap("n", "Q", "<cmd>bd<CR>")
 keymap("n", "<leader>Q", ":qa!<CR>")
 keymap("n", "<leader>qq", ":qa<CR>")
 
-keymap("n", "<leader><tab>o", ":tabnew<CR>")
+-- keymap("n", "<leader><tab>o", ":tabnew<CR>")
 -- keymap("n", "", "<cmd>tabclose<cr>")
 
 -- keymap("n", "==", "gg<S-v>G")

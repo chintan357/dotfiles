@@ -2,7 +2,7 @@
 return {
   "olimorris/codecompanion.nvim",
   cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions", "CodeCompanionCmd" },
-  version = "^18.0.0",
+  -- version = "^18.0.0",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
@@ -103,8 +103,8 @@ return {
         },
         adapter = {
           name = "openrouter",
-          -- model = "openai/gpt-5.2-chat",
-          model = "anthropic/claude-haiku-4.5",
+          model = "openai/gpt-5.3-chat",
+          -- model = "anthropic/claude-haiku-4.5",
           -- model = "moonshotai/kimi-k2-0905",
         },
         roles = {

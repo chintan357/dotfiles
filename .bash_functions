@@ -27,15 +27,15 @@ extract() {
 }
 alias extract=extract
 
-urlencode() {
-	local args="$@"
-	jq -nr --arg v "$args" '$v|@uri'
-}
+#urlencode() {
+#	local args="$@"
+#	jq -nr --arg v "$args" '$v|@uri'
+#}
 
-duckduckgo() {
-	lynx "https://lite.duckduckgo.com/lite/?q=$(urlencode "$@")"
-}
-alias ?='duckduckgo'
+#duckduckgo() {
+#	lynx "https://lite.duckduckgo.com/lite/?q=$(urlencode "$@")"
+#}
+#alias ?='duckduckgo'
 
 stack() {
   local query=$(echo "$@" | tr ' ' '+')

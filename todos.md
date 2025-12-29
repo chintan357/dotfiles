@@ -1,3 +1,7 @@
+nvim
+- keymaps & options
+- lsp & formatter & ts
+
 # nvim plugins
 
 https://github.com/milanglacier/minuet-ai.nvim

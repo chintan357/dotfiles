@@ -6,6 +6,8 @@ alias ual=unalias
 
 alias sudo='sudo '
 
+# alias bo='broot'
+
 #-----------#
 
 alias cpr='cp -r'
@@ -13,8 +15,6 @@ alias rmr='rm -r'
 alias rmrf='rm -rf'
 
 #-----------#
-
-alias bo='broot'
 
 alias la='ls -A --group-directories-first --color=auto'
 alias ll='ls -Alh --group-directories-first --color=always | less -RF'
@@ -35,15 +35,19 @@ alias rgh='rg --hidden'
 
 #-----------#
 
-alias chownr='chown -Rc'
+alias chor='chown -Rc'
 alias chmx='chmod u+x'
 
 #-----------#
 
-alias psx='ps auxf | less -S -R -F'
+# alias psx='ps auxf | less -S -R -F'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 alias freeh='free -hwt'
+
+alias dfh='df -h -x tmpfs -x devtmpfs -x squashfs'
+
+#-----------#
 
 alias p1='ping -c 3 1.1.1.1'
 alias p8='ping -c 3 8.8.8.8'
@@ -51,9 +55,6 @@ clh() { curl localhost:$1; }
 
 #-----------#
 
-alias dfh='df -h -x tmpfs -x devtmpfs -x squashfs'
-
-alias osrel='cat /etc/os-release'
 alias release='cat /etc/*-release'
 
 #-----------#
@@ -65,7 +66,7 @@ cprp() {
 }
 
 alias cpy="xclip -selection clipboard"
-alias CC='$(fc -ln -1) | cpy'
+# alias CC='$(fc -ln -1) | cpy'
 alias cpwd='pwd|cpy'
 
 # alias path='cd "$(echo -e ${PATH//:/\\n} | fzf)"'
@@ -84,12 +85,13 @@ alias vim='nvim'
 alias lvi='nvim -c "normal '\''0"'
 alias v.='nvim .'
 alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
+
 # alias v='NVIM_APPNAME="tvim" nvim'
 # alias lvim='NVIM_APPNAME="lvim" nvim'
 
 #-----------#
 
-alias hostinfo='hostname && ip addr show'
+# alias hostinfo='hostname && ip addr show'
 alias myip='curl -s https://checkip.amazonaws.com'
 
 # alias hx='hexdump -C'
@@ -97,12 +99,13 @@ alias w1='watch -n 1'
 
 #-----------#
 
-alias dfm='pydf'
-alias dum="ncdu --color off"
+# alias dfm='pydf'
+# alias dum="ncdu --color off"
 
 alias du1='du -h --max-depth=1'
 alias usage='du -ch | grep total'
 alias most='du -hax --max-depth=1 | sort -rh | head -10'
+
 alias pusage='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs | less'
 alias tusage='df -hl --total | grep total'
 
@@ -116,10 +119,10 @@ ubak() { mv "${1}.bak" "$1"; }
 
 #-----------#
 
-alias update='sudo apt update && sudo apt -y upgrade'
-alias fullup='sudo apt full-upgrade'
+# alias update='sudo apt update && sudo apt -y upgrade'
+# alias fullup='sudo apt full-upgrade'
 alias autorm='sudo apt -y autoremove && sudo apt autoclean'
-alias fupdate='update && fullup && autorm'
+# alias fupdate='update && fullup && autorm'
 
 alias show='apt show $1'
 alias yupp='sudo apt install $1'
@@ -142,15 +145,16 @@ alias egit='nvim ~/.gitconfig'
 
 #-----------#
 
-alias soinput="bind -f ~/.inputrc"
-alias sopro="source ~/.bash_profile"
 alias sorc="source ~/.bashrc"
+alias soal="source ~/.bash_aliases"
+alias sopro="source ~/.bash_profile"
+alias soinput="bind -f ~/.inputrc"
 
 #-----------#
 
-alias jup='jupyter'
-alias jupl='jupyter lab'
-alias jupnb='jupyter notebook'
+# alias jup='jupyter'
+# alias jupl='jupyter lab'
+# alias jupnb='jupyter notebook'
 
 alias cve='uv venv'
 alias cvet='uv venv --python $1'
@@ -159,7 +163,7 @@ alias dact='deactivate'
 alias sopy='cve && act'
 
 alias uvr='uv run'
-alias uvrp='uv run python'
+# alias uvrp='uv run python'
 alias py='uv run $1'
 
 alias uvi='uv init'
@@ -169,22 +173,22 @@ alias uvad='uv add --dev'
 alias uvrm='uv remove'
 alias uvs='uv sync'
 alias uvtr='uv tree'
-alias uvup='uv lock --upgrade-package $1'
+# alias uvup='uv lock --upgrade-package $1'
 alias uvh='uv help'
 
 alias uvt='uv tool'
-alias uvtls='uv tool list'
-alias uvti='uv tool install'
-alias uvtU='uv tool uninstall'
-alias uvtup='uv tool upgrade'
+# alias uvtls='uv tool list'
+# alias uvti='uv tool install'
+# alias uvtU='uv tool uninstall'
+# alias uvtup='uv tool upgrade'
 
 alias uvp='uv python'
 alias pyi='uv python install'
 alias pyll='uv python list'
 alias pyls='uv python list --only-installed'
-alias pyf='uv python find'
+# alias pyf='uv python find'
 alias pyp='uv python pin'
-alias pyU='uv python uninstall'
+# alias pyU='uv python uninstall'
 
 # alias rpy="uvicorn main:app --reload"
 
@@ -247,7 +251,7 @@ alias lre='cd ~/lre'
 alias down='cd ~/down'
 alias lab='cd ~/lab'
 # alias hlab='cd ~/hlab'
-alias dotfiles='cd ~/lab/dotfiles'
+alias dotfiles='cd ~/lre/dotfiles'
 alias dot='cd ~/dotfiles'
 alias lea='cd ~/learn'
 
@@ -258,6 +262,8 @@ alias pad='nvim /mnt/c/atomic/dailies/$(date +%Y-%m-%d.md)'
 alias todo='nvim /mnt/c/atomic/inbox/todo.md'
 alias todos='nvim /mnt/c/atomic/inbox/todos.md'
 alias ask='nvim /mnt/c/atomic/inbox/ask.md'
+alias dmp='nvim /mnt/c/atomic/inbox/dump.md'
+alias week='nvim /mnt/c/atomic/inbox/week.md'
 
 alias todoh='nvim todo.md'
 alias padh='nvim pad.md'
@@ -301,7 +307,7 @@ alias gbr='git branch'
 alias gcl='git clone'
 alias gcld='git clone --depth 1'
 
-# alias gco='git checkout'
+alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gbk='git checkout -'
 
@@ -334,7 +340,7 @@ alias ghal='gh auth login'
 
 #-----------#
 
-alias lzd='lazydocker'
+# alias lzd='lazydocker'
 alias dk='docker'
 
 alias dkps='docker ps'
@@ -365,9 +371,9 @@ alias dki='docker images'
 
 alias gaadl='gcloud auth application-default login'
 alias gal='gcloud auth login'
-alias gapat='gcloud auth print-access-token'
+# alias gapat='gcloud auth print-access-token'
 alias gcs='gcloud config set'
-alias gcsp='gcloud config set project'
+# alias gcsp='gcloud config set project'
 alias gconfls='gcloud config configurations list'
 alias gconfa='gcloud config configurations activate'
 
@@ -384,12 +390,13 @@ alias gtypist='gtypist -c 0,2'
 
 alias power='powershell.exe'
 
-alias l='llm -m gemini-2.5-flash-lite-preview-06-17'
-alias lchat='llm chat'
-alias lchatf='llm chat -m gemini-2.5-flash'
+# alias l='llm -m gemini-2.5-flash-lite-preview-06-17'
+# alias lchat='llm chat'
+# alias lchatf='llm chat -m gemini-2.5-flash'
 
 alias dira='direnv allow'
 alias chat='nvim -c ":CodeCompanionChat" -c ":only"'
+alias chatf='nvim -c ":CodeCompanionChat adapter=openrouter model=openai/gpt-5.4-mini" -c ":only"'
 
 #-----------#
 

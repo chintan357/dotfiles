@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "master",
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     {
@@ -75,15 +76,15 @@ return {
       "lua",
       "luadoc",
       "luap",
-      "rst"
+      "rst",
     },
     incremental_selection = {
       enable = true,
       keymaps = {
         init_selection = "gnn",
         node_incremental = "<C-a>", -- grn
-        node_decremental = "<bs>",  -- grm
-        scope_incremental = false,  -- gn
+        node_decremental = "<bs>", -- grm
+        scope_incremental = false, -- gn
       },
     },
     -- nvim-treesitter-endwise plugin

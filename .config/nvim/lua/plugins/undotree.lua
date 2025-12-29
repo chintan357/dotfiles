@@ -1,11 +1,8 @@
--- keymap("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
--- vim.g.undotree_SetFocusWhenToggle = 0
-
 return {
   {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
-    keys = { { "you", "<cmd>UndotreeToggle<cr>" }, },
+    keys = { { "you", "<cmd>UndotreeToggle<cr>" } },
     init = function()
       local undodir = vim.fn.stdpath("data") .. "/undos"
 
@@ -23,3 +20,6 @@ return {
     end,
   },
 }
+
+-- keymap("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+-- vim.g.undotree_SetFocusWhenToggle = 0

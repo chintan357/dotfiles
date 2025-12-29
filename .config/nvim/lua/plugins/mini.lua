@@ -1,3 +1,52 @@
+return {
+  {
+    "nvim-mini/mini.ai",
+    config = function()
+      require("mini.ai").setup({ n_lines = 500 })
+    end,
+  },
+  {
+    "nvim-mini/mini.bufremove",
+    config = function()
+      require("mini.bufremove").setup()
+    end,
+  },
+  {
+    "nvim-mini/mini.surround",
+    config = function()
+      require("mini.surround").setup()
+    end,
+  },
+  {
+    "nvim-mini/mini.tabline",
+    config = function()
+      require("mini.tabline").setup()
+    end,
+  },
+  {
+    "nvim-mini/mini.statusline",
+    config = function()
+      local statusline = require("mini.statusline")
+      statusline.section_location = function()
+        return "%2l:%-2v"
+      end
+      statusline.setup({ use_icons = vim.g.have_nerd_font })
+    end,
+  },
+  -- {
+  --   "nvim-mini/mini.pairs",
+  --   config = function()
+  --     require("mini.pairs").setup()
+  --   end,
+  -- },
+  -- {
+  --   "nvim-mini/mini.hipatterns",
+  --   config = function()
+  --     require("mini.hipatterns").setup()
+  --   end,
+  -- },
+}
+
 -- return {
 --   "nvim-mini/mini.nvim",
 --   version = false,
@@ -45,51 +94,3 @@
 -- --     })
 -- --   end,
 -- -- },
-return {
-  {
-    "nvim-mini/mini.ai",
-    config = function()
-      require("mini.ai").setup({ n_lines = 500 })
-    end,
-  },
-  {
-    "nvim-mini/mini.bufremove",
-    config = function()
-      require("mini.bufremove").setup()
-    end,
-  },
-  {
-    "nvim-mini/mini.surround",
-    config = function()
-      require("mini.surround").setup()
-    end,
-  },
-  {
-    "nvim-mini/mini.pairs",
-    config = function()
-      require("mini.pairs").setup()
-    end,
-  },
-  {
-    "nvim-mini/mini.tabline",
-    config = function()
-      require("mini.tabline").setup()
-    end,
-  },
-  -- {
-  --   "nvim-mini/mini.hipatterns",
-  --   config = function()
-  --     require("mini.hipatterns").setup()
-  --   end,
-  -- },
-  {
-    "nvim-mini/mini.statusline",
-    config = function()
-      local statusline = require("mini.statusline")
-      statusline.section_location = function()
-        return "%2l:%-2v"
-      end
-      statusline.setup({ use_icons = vim.g.have_nerd_font })
-    end,
-  },
-}
