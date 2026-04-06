@@ -16,25 +16,25 @@ return {
   end,
   opts = {
     notify_on_error = false,
-    format_on_save = {
-      timeout_ms = 500,
-      lsp_format = "fallback",
-    },
+    -- format_on_save = {
+    --   timeout_ms = 500,
+    --   lsp_format = "fallback",
+    -- },
     formatters_by_ft = {
       lua = { "stylua" },
       python = {
         -- "ruff_fix",
-        -- "ruff_format",
+        "ruff_format",
         "ruff_organize_imports",
       },
-      json = { "prettierd" },
-      javascript = { "prettierd" },
       toml = { "taplo" },
       bash = { "beautysh" },
       sh = { "beautysh" },
+      yaml = { "yamlfix" },
+      json = { "prettierd" },
+      javascript = { "prettierd" },
       html = { "prettierd" },
       css = { "prettierd" },
-      yaml = { "yamlfix" },
       -- proto = { "buf" },
     },
     default_format_opts = {

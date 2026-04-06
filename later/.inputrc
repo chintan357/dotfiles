@@ -1,0 +1,69 @@
+$include /etc/inputrc
+
+set enable-bracketed-paste on
+set expand-tilde on
+set bell-style none
+set echo-control-characters off
+
+set mark-symlinked-directories on
+set comment-begin #
+set blink-matching-paren on
+
+set show-all-if-unmodified on
+set show-all-if-ambiguous on
+
+set completion-prefix-display-length 3
+set completion-ignore-case on
+set completion-map-case on
+set completion-display-width 0
+
+set match-hidden-files off
+set page-completions off
+set visible-stats on
+
+set horizontal-scroll-mode off
+
+set meta-flag on
+set input-meta on
+set convert-meta off
+set output-meta on
+
+TAB:menu-complete
+"\e[Z":menu-complete-backward
+
+# Use Alt/Meta + Delete to delete the preceding word
+"\e[3;3~": kill-word
+# "\e[Z": "\e\C-e "
+# Be more intelligent when autocompleting by also looking at the text after
+# the cursor. For example, when the current line is "cd ~/src/mozil", and
+# the cursor is on the "z", pressing Tab will not autocomplete it to "cd
+# ~/src/mozillail", but to "cd ~/src/mozilla". (This is supported by the
+# Readline used by Bash 4.)
+# set skip-completed-text on
+
+set colored-stats on
+set visible-stats on
+set mark-symlinked-directories on
+set colored-completion-prefix on
+set menu-complete-display-prefix on
+
+$if mode=vi
+
+set keymap vi-command
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+j: history-search-forward
+k: history-search-backward
+
+"\C-x\C-r": re-read-init-file
+
+set keymap vi-insert
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+"\C-x\C-r": re-read-init-file
+
+$endif

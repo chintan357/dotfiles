@@ -1,5 +1,12 @@
 #doing
 
+---
+
+copy pasting in vim over selected text
+
+
+---
+
 tmux - show provided label in the status bar
 
 

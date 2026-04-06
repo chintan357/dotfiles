@@ -1,5 +1,11 @@
-.git
-win/
+\.git
+\.gitignore
+\.gitmodules
 
 ^/README.*
 ^/LICENSE.*
+
+win/
+later/
+
+\.obsidian

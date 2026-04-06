@@ -2,21 +2,18 @@ if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"
 fi
 
-eval "$(direnv hook bash)"
-eval "$(fzf --bash)" # FZF_ALT_C_COMMAND= 
+# eval "$(direnv hook bash)"
+eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
-# eval "$(gh copilot alias -- bash)"
 eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"
+eval "$($HOME/.local/bin/mise activate bash)"
 
 # safesource() {
 #     [[ -s $1 ]] && source $1
 # }
 
 stty -ixon
-
-# eval $(thefuck --alias fq)
-# source $HOME/.config/broot/launcher/bash/br
 
 # # Start the SSH agent if it's not running
 # if [ -z "$SSH_AUTH_SOCK" ]; then
@@ -29,3 +26,9 @@ stty -ixon
 #         ssh-add -l | grep -q "$key" || ssh-add "$key" 2>/dev/null
 #     fi
 # done
+
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init - bash)"
+
+# eval "$(pyenv virtualenv-init -)"

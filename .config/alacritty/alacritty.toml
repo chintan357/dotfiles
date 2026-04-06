@@ -1,0 +1,66 @@
+# /mnt/c/Users/cpatel/AppData/Roaming/alacritty
+
+[general]
+live_config_reload = true
+
+[window]
+# decorations = "None"
+padding = { x = 2, y = 2 }
+dynamic_padding = true
+
+[font]
+size = 14
+
+[terminal.shell]
+program = "wsl"
+args = ["--cd", "~"]
+
+[font.normal]
+family = "Mononoki Nerd Font"
+style = "Regular"
+
+[colors.primary]
+background = "#282C34"
+foreground = "#ABB2BF"
+
+[colors.cursor]
+text = "#282C34"
+cursor = "#ABB2BF"
+
+[colors.selection]
+text = "CellForeground"
+background = "#3E4451"
+
+[colors.normal]
+black   = "#282C34"
+red     = "#E06C75"
+green   = "#98C379"
+yellow  = "#E5C07B"
+blue    = "#61AFEF"
+magenta = "#C678DD"
+cyan    = "#56B6C2"
+white   = "#ABB2BF"
+
+[colors.bright]
+black   = "#5C6370"
+red     = "#E06C75"
+green   = "#98C379"
+yellow  = "#E5C07B"
+blue    = "#61AFEF"
+magenta = "#C678DD"
+cyan    = "#56B6C2"
+white   = "#FFFFFF"
+
+[[keyboard.bindings]]
+key = "Space"
+mods = "Control"
+chars = "\u0000"
+
+[[keyboard.bindings]]
+key = "Slash"
+mods = "Control"
+chars = "\u001f"
+
+[[keyboard.bindings]]
+key = "F11"
+action = "ToggleFullscreen"

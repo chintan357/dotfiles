@@ -1,47 +1,19 @@
 return {
-  -- "NickvanDyke/opencode.nvim",
-  -- config = function()
-  --   ---@type opencode.Opts
-  --   -- vim.g.opencode_opts = {
-  --   -- -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition".
-  --   -- provider = {
-  --   --   enabled = "tmux",
-  --   --   tmux = {
-  --   --     -- ...
-  --   --   },
-  --   -- },
-  --   -- }
-  --
-  --   -- Required for `opts.events.reload`.
-  --   vim.o.autoread = true
-  --
-  --   -- Recommended/example keymaps.
-  --   vim.keymap.set({ "n", "x" }, "<C-a>", function()
-  --     require("opencode").ask("@this: ", { submit = true })
-  --   end, { desc = "Ask opencode" })
-  --   vim.keymap.set({ "n", "x" }, "<C-x>", function()
-  --     require("opencode").select()
-  --   end, { desc = "Execute opencode action…" })
-  --   -- vim.keymap.set({ "n", "t" }, "<C-.>", function()
-  --   --   require("opencode").toggle()
-  --   -- end, { desc = "Toggle opencode" })
-  --
-  --   vim.keymap.set({ "n", "x" }, "go", function()
-  --     return require("opencode").operator("@this ")
-  --   end, { expr = true, desc = "Add range to opencode" })
-  --   vim.keymap.set("n", "goo", function()
-  --     return require("opencode").operator("@this ") .. "_"
-  --   end, { expr = true, desc = "Add line to opencode" })
-  --
-  --   vim.keymap.set("n", "<S-C-u>", function()
-  --     require("opencode").command("session.half.page.up")
-  --   end, { desc = "opencode half page up" })
-  --   vim.keymap.set("n", "<S-C-d>", function()
-  --     require("opencode").command("session.half.page.down")
-  --   end, { desc = "opencode half page down" })
-  --
-  --   -- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o".
-  --   -- vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement", noremap = true })
-  --   -- vim.keymap.set("n", "+", "<C-a>", { desc = "Increment", noremap = true })
-  -- end,
+  "nickjvandyke/opencode.nvim",
+  version = "*", -- Latest stable release
+  config = function()
+    ---@type opencode.Opts
+
+    vim.o.autoread = true -- Required for `vim.g.opencode_opts.events.reload`
+
+    -- stylua: ignore: start
+    vim.keymap.set({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ") end, { desc = "Ask OpenCode…" })
+    vim.keymap.set({ "n", "x" }, "<leader>os", function() require("opencode").select() end,       { desc = "Select OpenCode…" })
+
+    vim.keymap.set({ "n", "x" }, "go",  function() return require("opencode").operator("@this ") end,        { desc = "Append range to OpenCode", expr = true })
+    vim.keymap.set("n",          "goo", function() return require("opencode").operator("@this ") .. "_" end, { desc = "Append line to OpenCode", expr = true })
+
+    vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end,   { desc = "Scroll OpenCode up" })
+    vim.keymap.set("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll OpenCode down" })
+  end,
 }

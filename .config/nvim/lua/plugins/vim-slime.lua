@@ -1,5 +1,8 @@
 return {
   "jpalardy/vim-slime",
+  keys = {
+    { "<leader>s", "my<Plug>SlimeRegionSend<cr>`y", mode = { "x", "v" } },
+  },
   init = function()
     vim.g.slime_target = "tmux"
     vim.g.slime_no_mappings = 1
@@ -23,7 +26,7 @@ return {
 
     -- vim.keymap.set({ "x", "v" }, "<leader>", function() end)
 
-    vim.keymap.set({ "x", "v" }, "<leader>s", "my<Plug>SlimeRegionSend<cr>`y", { noremap = true, silent = true })
-    vim.keymap.set({ "x", "v" }, "sl", "my<Plug>SlimeRegionSend<cr>`y", { noremap = true, silent = true })
+    -- vim.keymap.set({ "x", "v" }, "<leader>s", "my<Plug>SlimeRegionSend<cr>`y", { noremap = true, silent = true })
+    -- vim.keymap.set({ "x", "v" }, "sl", "my<Plug>SlimeRegionSend<cr>`y", { noremap = true, silent = true })
   end,
 }

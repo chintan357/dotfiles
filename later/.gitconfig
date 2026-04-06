@@ -1,0 +1,373 @@
+[core]
+  editor = nvim
+  autocrlf = input
+
+[diff]
+  tool = nvim
+
+[difftool "nvim"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+
+[fetch]
+  prune = true
+
+[push]
+  default = current
+[user]
+  username= chintan357
+
+[init]
+  ; templatedir = ~/.git_template
+
+[color]
+  ui = auto
+
+[core]
+  pager = delta
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  ignorecase = false
+  excludesFile = ~/.gitignore
+
+[merge]
+  ff = only
+  tool = nvim
+  conflictstyle = diff3 #zdiff3
+
+[difftool]
+  prompt = false
+
+[mergetool.nvim]
+  ; cmd = "... \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\""
+  ; cmd = nvim -d "$LOCAL" "$REMOTE" "$BASE" -c 'wincmd l' "$MERGED"
+  cmd = nvim -f -c 'Gvdiffsplit!' "$MERGED"
+  trustExitCode = true
+
+[mergetool]
+  prompt = false
+
+[rebase]
+  autosquash = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[push]
+  ; autoSetupRemote = true
+
+[pull]
+  ff = only
+
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  features = arctic-fox
+  true-color = always
+  dark = true
+  line-numbers = true
+  ; side-by-side = true
+	; features = line-numbers decorations
+  syntax-theme = OneHalfDark
+  ; syntax-theme = Coldark-Dark
+
+[color "status"]
+  added = green bold
+  changed = yellow bold
+  untracked = red bold
+
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+
+[alias]
+	a = add
+  ; ap = add --patch
+
+	b = branch
+  bl = branch -l --sort=committerdate
+	bd = branch -d
+	bD = branch -D
+	br = branch -r
+	bc = rev-parse --abbrev-ref HEAD
+	bu = !git rev-parse --abbrev-ref --symbolic-full-name "@{u}"
+	ba = branch -a
+  bav = branch -av
+  bm = branch --merged
+  bn = branch --no-merged
+
+	c = commit
+	ca = commit -a
+  cv = commit -v
+	cm = commit -m
+	cam = commit -am
+	cem = commit --allow-empty -m
+	cu = commit --amend
+	cau = commit -a --amend
+	ceu = commit --allow-empty --amend
+
+	clg = !sh -c 'git clone https://github.com/$1 $(basename $1)' -
+	clgp = !sh -c 'git clone git@github.com:$1 $(basename $1)' -
+	clgu = !sh -c 'git clone git@github.com:$(git config --get user.username)/$1 $1' -
+
+	cp = cherry-pick
+	cpa = cherry-pick --abort
+	cpc = cherry-pick --continue
+
+	d = diff
+	dc = diff --cached
+	dk = diff --check
+	dck = diff --cached --check
+	dp = diff --patience
+	dt = difftool
+	dtc = difftool --cached
+
+	f = fetch
+	fo = fetch origin
+	fu = fetch upstream
+
+  ; fp = format-patch
+
+	fk = fsck
+
+	g = grep -p
+
+	l = log --oneline --decorate
+  ll = log --stat
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+
+	ls = ls-files
+	lsg = !git ls-files | grep -i
+
+	m = merge
+	ma = merge --abort
+	mc = merge --continue
+	ms = merge --skip
+
+	o = checkout
+	om = checkout main
+	ob = checkout -b
+	; opr = !sh -c 'git fo pull/$1/head:pr-$1 && git o pr-$1'
+
+	pr = prune -v
+
+  p = push
+  pf = push --force-with-lease
+	pu = push -u
+	pt = push --tags
+	po = push origin
+	pao = push --all origin
+	pfo = push --force-with-lease origin
+	puo = push -u origin
+	; poc = !git push origin $(git bc)
+	; puoc = !git push -u origin $(git bc)
+	; paoc = !git push --all origin $(git bc)
+	; pfoc = !git push --force-with-lease origin $(git bc)
+
+	Po = pull origin
+	Pu = pull upstream
+	; Pro = pull --rebase origin
+	; Poc = !git pull origin $(git bc)
+	; Proc = !git pull --rebase origin $(git bc)
+	; Puc = !git pull upstream $(git bc)
+	; Pruc = !git pull --rebase upstream $(git bc)
+
+	rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbi = rebase --interactive
+	rbs = rebase --skip
+
+	re = reset
+	reh = reset --hard
+	res = reset --soft
+	rehom = reset --hard origin/main
+
+	r = remote
+	ra = remote add
+	rrm = remote rm
+	rv = remote -v
+	rmv = remote rename
+	rp = remote prune
+	rs = remote show
+	rao = remote add origin
+	rau = remote add upstream
+	; rrmo = remote remove origin
+	; rrmu = remote remove upstream
+	; rso = remote show origin
+	; rsu = remote show upstream
+	; rpo = remote prune origin
+	; rpu = remote prune upstream
+
+	rmf = rm -f
+	rmrf = rm -r -f
+
+  s = stash
+	sa = stash apply
+	sc = stash clear
+	sd = stash drop
+	sl = stash list
+	sp = stash pop
+	ss = stash push
+	ssk = stash push -k
+	sw = stash show
+	st = !git stash list | wc -l 2>/dev/null | grep -oEi '[0-9][0-9]*'
+
+	t = tag
+	td = tag -d
+
+	w = show
+	wp = show -p
+
+	; subadd = !sh -c 'git submodule add https://github.com/$1 $2/$(basename $1)' -
+	; subrm = !sh -c 'git submodule deinit -f -- $1 && rm -rf .git/modules/$1 && git rm -f $1' -
+	; subup = submodule update --init --recursive
+	;
+	; assume = update-index --assume-unchanged
+	; unassume = update-index --no-assume-unchanged
+	; assumed = !git ls -v | grep ^h | cut -c 3-
+	;
+	; release = !sh -c 'git tag v$1 && git put' -
+	; unrelease = !sh -c 'git tag -d v$1 && git puo :v$1' -
+	; merged = !sh -c 'git checkout main && git pull origin main && git branch -D $1 && git rpo' -
+	;
+	; ours = "!f() { git checkout --ours $@ && git add $@; }; f"
+	; theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+; [rerere]
+;   enabled = 1
+;   autoupdate = 1
+
+; [filter "lfs"]
+;   clean = git-lfs clean -- %f
+;   smudge = git-lfs smudge -- %f
+;   required = true
+;   process = git-lfs filter-process
+
+; [instaweb]
+; 	httpd = apache2 -f
+
+; [delta "decorations"]
+; 	minus-style = red bold normal
+; 	plus-style = green bold normal
+; 	minus-emph-style = white bold red
+; 	minus-non-emph-style = red bold normal
+; 	plus-emph-style = white bold green
+; 	plus-non-emph-style = green bold normal
+; 	file-style = yellow bold none
+; 	file-decoration-style = yellow box
+; 	hunk-header-style = magenta bold
+; 	hunk-header-decoration-style = magenta box
+; 	minus-empty-line-marker-style = normal normal
+; 	plus-empty-line-marker-style = normal normal
+; 	line-numbers-right-format = "{np:^4}│ "
+
+; [alias]
+;   ; a = "!git status --short | peco | awk '{print $2}' | xargs git add"
+;   ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+;   pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+;   df = "!git hist | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
+;   type = cat-file -t
+;   dump = cat-file -p
+;   find = "!f() { git log --pretty=format:\"%h %cd [%cn] %s%d\" --date=relative -S'pretty' -S\"$@\" | peco | awk '{print $1}' | xargs -I {} git diff {}^ {}; }; f"
+  ; edit conflicted file on merge
+  ; edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+
+  ; add conflicted file on merge
+  ; add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+  ; Show the current branch name (useful for shell prompts)
+  ; brname = !git branch | grep "^*" | awk '{ print $2 }'
+
+	; ap = apply
+	; aps = apply --stat
+	; apc = apply --check
+
+	; svnr = svn rebase
+	; svnd = svn dcommit
+	; svnl = svn log --oneline --show-commit
+
+	; ama = am --abort
+	; amr = am --resolved
+	; ams = am --skip
+
+	; bs = !git-branch-status
+  ;	puom = push origin main
+  ;	puaom = push --all origin main
+  ;	pufom = push -f origin main
+  ;	puuom = push -u origin main
+  ; pudc = !git push origin :$(git bc)
+  ;	Pom = pull origin main
+  ;	Prom = pull --rebase origin main
+  ;	Pum = pull upstream main
+  ;	Prum = pull --rebase upstream main
+  ; subpull = submodule foreach 'git pull --tags -f origin main || git pull --tags -f origin main || git pull --tags -f origin development'
+  ; bump = !sh -c 'git commit -am \"Version bump v$1\" && git puoc && git release $1' -
+  ; aliases = !git config -l | grep alias | cut -c 7-
+  ; whois = !sh -c 'git log -i -1 --author=\"$1\" --pretty=\"format:%an <%ae>\"' -
+  ; bare = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
+  ; serve = daemon --reuseaddr --verbose --base-path=. --export-all ./.git
+  ; subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 main' -
+  ; human = name-rev --name-only --refs=refs/heads/*
+  ; behind = !git rev-list --left-only --count $(git bu)...HEAD
+  ; ahead = !git rev-list --right-only --count $(git bu)...HEAD
+  ; snap = !git stash save 'snapshot: $(date)' && git stash apply 'stash@{0}'
+  ; unassumeall = !git assumed | xargs git unassume
+  ; assumeall = !git status -s | awk {'print $2'} | xargs git assume
+
+; [credential "https://github.com"]
+; 	helper = !/usr/bin/gh auth git-credential
+;
+; [credential "https://gist.github.com"]
+; 	helper = !/usr/bin/gh auth git-credential
+
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+
+[delta "arctic-fox"]
+  # author: https://github.com/anthony-halim
+  dark = true
+  syntax-theme = Nord
+  file-added-label = [+]
+  file-copied-label = [==]
+  file-modified-label = [*]
+  file-removed-label = [-]
+  file-renamed-label = [->]
+  file-style = omit
+  hunk-header-decoration-style = "#5E81AC" ul
+  hunk-header-file-style = blue ul bold
+  hunk-header-line-number-style = yellow box bold
+  hunk-header-style = file line-number syntax bold italic
+  plus-style = brightgreen
+  plus-emph-style = black green
+  minus-style = brightred
+  minus-emph-style = black red
+  line-numbers = true
+  line-numbers-minus-style = brightred
+  line-numbers-plus-style = brightgreen
+  line-numbers-left-style = "#5E81AC"
+  line-numbers-right-style = "#5E81AC"
+  line-numbers-zero-style = "#4C566A"
+  zero-style = syntax
+  whitespace-error-style = black bold
+  blame-code-style = syntax
+  blame-format = "{author:<18} {commit:<6} {timestamp:<15}"
+  blame-palette = "#2E3440" "#3B4252" "#434C5E"
+  merge-conflict-begin-symbol = ~
+  merge-conflict-end-symbol = ~
+  merge-conflict-ours-diff-header-style = yellow bold
+  merge-conflict-ours-diff-header-decoration-style = "#5E81AC" box
+  merge-conflict-theirs-diff-header-style = yellow bold
+  merge-conflict-theirs-diff-header-decoration-style = "#5E81AC" box
+
+; [ghq]
+;   root = ~/.ghq

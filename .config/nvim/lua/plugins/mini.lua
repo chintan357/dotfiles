@@ -1,22 +1,22 @@
 return {
-  {
-    "nvim-mini/mini.ai",
-    config = function()
-      require("mini.ai").setup({ n_lines = 500 })
-    end,
-  },
-  {
-    "nvim-mini/mini.bufremove",
-    config = function()
-      require("mini.bufremove").setup()
-    end,
-  },
-  {
-    "nvim-mini/mini.surround",
-    config = function()
-      require("mini.surround").setup()
-    end,
-  },
+  -- {
+  --   "nvim-mini/mini.ai",
+  --   config = function()
+  --     require("mini.ai").setup({ n_lines = 500 })
+  --   end,
+  -- },
+  -- {
+  --   "nvim-mini/mini.bufremove",
+  --   config = function()
+  --     require("mini.bufremove").setup()
+  --   end,
+  -- },
+  -- {
+  --   "nvim-mini/mini.surround",
+  --   config = function()
+  --     require("mini.surround").setup()
+  --   end,
+  -- },
   {
     "nvim-mini/mini.tabline",
     config = function()

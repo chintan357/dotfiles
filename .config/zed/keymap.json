@@ -1,0 +1,94 @@
+// https://zed.dev/docs/key-bindings
+// `zed: open default keymap`
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-shift-g": "git_panel::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {}
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      // Git
+      "space g s": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // Window movement bindings
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      "shift-q": "pane::CloseActiveItem",
+      "space b d": "pane::CloseActiveItem",
+      "space b o": "pane::CloseOtherItems"
+    }
+  },
+  // Empty pane, set of keybindings that are available when there is no active editor
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {}
+  },
+  // {
+  //   "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+  //   "bindings": {}
+  // },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+  // File panel (netrw)
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      // Close project panel as project file panel on the right
+
+      // Navigate between panel
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  }
+  // Panel nagivation
+  // {
+  //     "context": "Dock",
+  //     "bindings": {
+  //         "ctrl-w h": "workspace::ActivatePaneLeft",
+  //         "ctrl-w l": "workspace::ActivatePaneRight",
+  //         "ctrl-w k": "workspace::ActivatePaneUp",
+  //         "ctrl-w j": "workspace::ActivatePaneDown"
+  //     }
+  // },
+  // Sneak motion, refer https://github.com/zed-industries/zed/pull/22793/files#diff-90c0cb07588e2f309c31f0bb17096728b8f4e0bad71f3152d4d81ca867321c68
+  // {
+  //     "context": "vim_mode == normal || vim_mode == visual",
+  //     "bindings": {
+  //         "s": ["vim::PushSneak", {}],
+  //         "S": ["vim::PushSneakBackward", {}]
+  //     }
+  // },
+  // File finding
+  // {
+  //     "context": "(VimControl && !menu)",
+  //     "bindings": {
+  //         "space f f": "file_finder::Toggle",
+  //         "space f g": "pane::DeploySearch"
+  //     }
+  // },
+]
