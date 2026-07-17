@@ -10,7 +10,7 @@ export PATH=$HOME/.opencode/bin:$PATH
 export VISUAL=nvim
 export EDITOR=nvim
 
-export BROWSER=wslview # explorer.exe
+export BROWSER=Explorer.exe
 
 export PYTHONBREAKPOINT="ipdb.set_trace"
 
@@ -18,7 +18,7 @@ export PYTHONBREAKPOINT="ipdb.set_trace"
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 
-source ~/.local/bin/.git-prompt.sh
+# source ~/.git-prompt.sh
 export PROMPT_COMMAND='history -a' # history -n
 PS1='\[\e[36m\]\w\[\e[0m\]$(__git_ps1 " \[\e[33m\](%s)\[\e[0m\]") '
 
@@ -66,7 +66,7 @@ fi
 bind -m vi-insert '"\eo": "\C-z\ec\C-z"'
 
 export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi'
-export FZF_ALT_C_OPTS="--preview 'tree -C -L 2 {}'"
+export FZF_ALT_C_OPTS="--preview 'tree -a -C -L 2 {}'"
 
 fzf_to_nvim() {
     local file root
@@ -81,3 +81,5 @@ fzf_to_nvim() {
 bind -m vi-insert -x '"\C-p": fzf_to_nvim'
 
 # source ~/.local/bin/fzf-git.sh
+
+export PATH=$PATH:/mnt/c/Users/ChintanPatel/AppData/Local/Programs/Zed/bin

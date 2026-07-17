@@ -1,4 +1,5 @@
-#  cp /mnt/c/Users/cpatel/AppData/Roaming/alacritty/alacritty.toml .
+# cp /mnt/c/Users/cpatel/AppData/Roaming/alacritty/alacritty.toml .
+# /mnt/c/Users/cpatel/AppData/Roaming/alacritty
 
 [general]
 live_config_reload = true

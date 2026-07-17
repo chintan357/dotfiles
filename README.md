@@ -1,11 +1,12 @@
 ```sh
 sudo apt update && sudo apt -y upgrade
 
-sudo apt install -y stow zoxide ripgrep htop tree bat fd-find gtypist bind9-dnsutils universal-ctags vim-gtk3 make ufw nmap ffmpeg jq build-essential
-# libssl-dev apt-transport-https cmake pydf ncdu btop 7zip duf python3-pip python3.12-venv xdg-utils xclip 
+sudo apt install -y stow zoxide ripgrep htop tree bat fd-find gtypist bind9-dnsutils universal-ctags vim-gtk3 make ufw nmap ffmpeg jq build-essential xclip
+# libssl-dev apt-transport-https cmake pydf ncdu btop 7zip duf python3-pip python3.12-venv xdg-utils
 
 # sudo timedatectl set-timezone Asia/Kolkata
 
+mkdir ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 ln -s $(which fdfind) ~/.local/bin/fd
 
@@ -54,8 +55,8 @@ curl -fsSL https://pi.dev/install.sh | sh
 ```sh
 # windows utility
 cp /mnt/c/Windows/System32/cmd.exe ~/.local/bin
-cp /mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe .local/bin/
-cp /mnt/c/WINDOWS/Explorer.exe /home/chintan357/.local/bin/
+cp /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe ~/.local/bin/
+cp /mnt/c/Windows/Explorer.exe ~/.local/bin/
 
 https://docs.docker.com/engine/install/ubuntu/
 https://cloud.google.com/sdk/docs/install#linux
@@ -71,11 +72,6 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 
-# gcloud
-curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
-echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-sudo apt-get update && sudo apt-get install google-cloud-cli
-
 # gh
 (type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
 	&& sudo mkdir -p -m 755 /etc/apt/keyrings \
@@ -87,24 +83,10 @@ sudo apt-get update && sudo apt-get install google-cloud-cli
 	&& sudo apt install gh -y
 # gh auth login
 # gh extension install dlvhdr/gh-dash
-
-# sqlite
-wget https://www.sqlite.org/2025/sqlite-autoconf-3500100.tar.gz
-tar xvfz sqlite-autoconf-3500100.tar.gz
-cd sqlite-autoconf-3500100
-./configure --prefix=/usr/local
-make
-sudo make install
 ```
 
 
 ```sh
-# git clone https://github.com/facebook/PathPicker.git
-# cd PathPicker/debian
-# ./package.sh
-# ls ../pathpicker_*_all.deb
-# sudo dpkg -i ../pathpicker_*_all.deb
-
 # tmux
 # sudo apt remove tmux
 # wget https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz
@@ -120,4 +102,18 @@ sudo make install
 # LATEST_VERSION=$(curl --silent https://api.github.com/repos/tofuutils/tenv/releases/latest | jq -r .tag_name)
 # curl -O -L "https://github.com/tofuutils/tenv/releases/latest/download/tenv_${LATEST_VERSION}_amd64.deb"
 # sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
+
+# sqlite
+wget https://www.sqlite.org/2025/sqlite-autoconf-3500100.tar.gz
+tar xvfz sqlite-autoconf-3500100.tar.gz
+cd sqlite-autoconf-3500100
+./configure --prefix=/usr/local
+make
+sudo make install
+
+# git clone https://github.com/facebook/PathPicker.git
+# cd PathPicker/debian
+# ./package.sh
+# ls ../pathpicker_*_all.deb
+# sudo dpkg -i ../pathpicker_*_all.deb
 ```

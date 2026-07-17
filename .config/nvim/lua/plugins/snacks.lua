@@ -39,7 +39,7 @@ return {
     { "<leader>E", function() Snacks.explorer() end, desc = "File Explorer", },
 
     {
-      "<leader>o",
+      "<leader>of",
       function()
         Snacks.picker.buffers({
           win = {

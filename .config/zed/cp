@@ -1,2 +1,7 @@
+/mnt/c/Users/cpatel/AppData/Roaming/Zed
 cp /mnt/c/Users/cpatel/AppData/Roaming/Zed/settings.json .
 cp /mnt/c/Users/cpatel/AppData/Roaming/Zed/keymap.json .
+
+/mnt/c/Users/ChintanPatel/AppData/Roaming/Zed
+cp /mnt/c/Users/ChintanPatel/AppData/Roaming/Zed/settings.json .
+cp /mnt/c/Users/ChintanPatel/AppData/Roaming/Zed/keymap.json .
