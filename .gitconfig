@@ -4,3 +4,16 @@
 
 [init]
   defaultBranch = main
+
+[core]
+  autocrlf = input
+  editor = nvim
+
+; [diff]
+  ; tool = nvim
+
+; [difftool "nvim"]
+  ; cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+
+[push]
+  default = current

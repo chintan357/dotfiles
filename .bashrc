@@ -7,8 +7,8 @@ export PATH=$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$HOME/.fzf/bin:$PATH
 export PATH=$HOME/.local/share/bob/nvim-bin:$PATH
 export PATH=$HOME/.opencode/bin:$PATH
 
-export VISUAL=vi
-export EDITOR=vi
+export VISUAL=nvim
+export EDITOR=nvim
 
 export BROWSER=wslview # explorer.exe
 

@@ -258,9 +258,9 @@ alias deep='ssh deep'
 alias dist='ssh dist'
 alias smi='nvidia-smi'
 
-alias chat='nvim -c ":CodeCompanionChat" -c ":only"'
-alias chatf='nvim -c ":CodeCompanionChat adapter=openrouter model=openai/gpt-5.4-mini" -c ":only"'
-alias chatl='nvim -c ":CodeCompanionChat adapter=openrouter model=openai/gpt-5.5" -c ":only"'
+alias chat='nvim -c ":CodeCompanionChat" -c ":only" -c "startinsert"'
+alias chatf='nvim -c ":CodeCompanionChat adapter=openrouter model=openai/gpt-5.4-mini" -c ":only" -c "startinsert"'
+alias chatl='nvim -c ":CodeCompanionChat adapter=openrouter model=openai/gpt-5.5" -c ":only" -c "startinsert"'
 
 #-------#
 

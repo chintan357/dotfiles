@@ -1,12 +1,12 @@
-# /mnt/c/Users/cpatel/AppData/Roaming/alacritty
+#  cp /mnt/c/Users/cpatel/AppData/Roaming/alacritty/alacritty.toml .
 
 [general]
 live_config_reload = true
 
 [window]
 # decorations = "None"
-padding = { x = 2, y = 2 }
-dynamic_padding = true
+# padding = { x = 0, y = 0 }
+# dynamic_padding = true
 
 [font]
 size = 14
@@ -64,3 +64,13 @@ chars = "\u001f"
 [[keyboard.bindings]]
 key = "F11"
 action = "ToggleFullscreen"
+
+[[keyboard.bindings]]
+key = "U"
+mods = "Control|Shift"
+chars = "\u001b[85;6u"
+
+[[keyboard.bindings]]
+key = "D"
+mods = "Control|Shift"
+chars = "\u001b[68;6u"

@@ -1,18 +1,6 @@
-[core]
-  editor = nvim
-  autocrlf = input
-
-[diff]
-  tool = nvim
-
-[difftool "nvim"]
-  cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
-
 [fetch]
   prune = true
 
-[push]
-  default = current
 [user]
   username= chintan357
 
