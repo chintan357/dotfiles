@@ -1,61 +1,15 @@
-# git:
-#   pagers:
-#     - colorArg: always
-#       pager: delta --dark --paging=never
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
 gui:
   theme:
-    # border colours
     activeBorderColor:
-      - "#83a598" # active border (blue)
+      - "#83a598"
       - bold
     inactiveBorderColor:
-      - "#504945" # dark2 from gruvbox
-    # general text / option colors
-    optionsTextColor:
-      - "#d3869b" # purple for options
-    defaultFgColor:
-      - "#ebdbb2" # main fg (text)
-    secondaryTextColor:
-      - "#bdae93" # secondary/muted text
-    dimmedTextColor:
-      - "#928374" # dim / less-important text
-    # selection and focus
-    selectedLineBgColor:
-      - '#3c3836'        # selected line background (surface)
-    selectedRangeColor:
-      - "#504945" # when a range is highlighted
-    searchingActiveBorderColor:
-      - "#fabd2f" # search active border (yellow)
-    # commit / diff colors
-    cherryPickedCommitBgColor:
       - "#504945"
-    cherryPickedCommitFgColor:
+    optionsTextColor:
       - "#d3869b"
-    unstagedChangesColor:
-      - "#fe8019" # orange for unstaged changes
-    stagedChangesColor:
-      - "#b8bb26" # green for staged
-    untrackedFileColor:
-      - "#8ec07c" # aqua for untracked
-    deletedFileColor:
-      - "#fb4934" # red for deletion
-    addedLinesColor:
-      - "#b8bb26"
-    removedLinesColor:
-      - "#fb4934"
-    # headers / metadata
-    headerColor:
-      - "#83a598"
-    commitAuthorColor:
-      - "#d3869b"
-    commitDateColor:
-      - "#928374"
-    commitMessageColor:
-      - "#ebdbb2"
-    # search / status / misc
-    searchingActiveColor:
-      - "#fabd2f"
-    branchAheadColor:
-      - "#fe8019"
-    branchBehindColor:
-      - "#fb4934"
+    selectedLineBgColor:
+      - '#434c5a'

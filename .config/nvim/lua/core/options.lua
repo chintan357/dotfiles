@@ -30,7 +30,8 @@ opt.linebreak = true
 opt.ignorecase = true
 opt.smartcase = true
 
-opt.scrolloff = 8
-
 opt.signcolumn = "auto"
-vim.opt.undofile = true
+opt.undofile = true
+
+opt.laststatus = 3
+-- opt.winbar = "%f"

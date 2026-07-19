@@ -1,42 +1,3 @@
-# alias w1='watch -n 1'
-# alias ual=unalias
-# alias uvrp='uv run python'
-# alias uvtr='uv tree'
-# alias uvup='uv lock --upgrade-package $1'
-# alias du1='du -h --max-depth=1'
-# alias usage='du -ch | grep total'
-# alias most='du -hax --max-depth=1 | sort -rh | head -10'
-
-# alias pusage='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs | less'
-# alias tusage='df -hl --total | grep total'
-
-#-----------#
-
-# alias sctl='systemctl'
-# alias bo='broot'
-
-# alias es='eza --group-directories-first'
-# alias esd='eza -D --icons=always --group-directories-first'
-# alias ea='eza -a --git --color=always --icons=always --group-directories-first'
-# alias el='eza -Alh --git --color=always --icons=always --group-directories-first | less -RF'
-# alias et='eza -a --tree --level=2 --git-ignore'
-
-# alias grep='grep --color=auto'
-# alias rgh='rg --hidden'
-
-# alias chor='chown -Rc'
-
-# alias psx='ps auxf | less -S -R -F'
-# alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
-
-# alias freeh='free -hwt'
-
-# alias dfh='df -h -x tmpfs -x devtmpfs -x squashfs'
-
-# alias p1='ping -c 3 1.1.1.1'
-# alias p8='ping -c 3 8.8.8.8'
-# clh() { curl localhost:$1; }
-
 # alias kgp='kubectl get pods'
 # alias kgd='kubectl get deployments'
 # alias kgs='kubectl get svc'
@@ -52,12 +13,6 @@
 
 #-----------#
 
-# alias rec='asciinema rec'
-# alias play='asciinema play'
-
-# alias ct='column -t'
-# alias sniff='sudo tcpdump -i any -c 1000 -nn'
-# alias rl="readlink -f"
 
 # realpath "$*")" -iname "*"
 # $(history -p !!)'
@@ -93,27 +48,22 @@
 # for c in $(sudo docker ps -a | awk '{print $1}' | sed "1 d") do sudo docker $1 $c done }
 # alias dkclean='docker ps -q -a -f status=exited | xargs -r docker rm && docker images -q -f dangling=true | xargs -r docker rmi'
 
-# alias l='llm -m gemini-2.5-flash-lite-preview-06-17'
-# alias lchat='llm chat'
-# alias lchatf='llm chat -m gemini-2.5-flash'
-#
 # alias CC='$(fc -ln -1) | cpy'
 # alias path='cd "$(echo -e ${PATH//:/\\n} | fzf)"'
 # alias genpwd='openssl rand -base64 16 | cpy'
 # alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
 #
-# alias v='NVIM_APPNAME="tvim" nvim'
-# alias hostinfo='hostname && ip addr show'
 # alias hx='hexdump -C'
-# alias lvim='NVIM_APPNAME="lvim" nvim'
 # alias dfm='pydf'
 # alias dum="ncdu --color off"
 # alias backup='tar -zcvf $(date +%Y%m%d).tar.gz *'
+
 # alias gnah="git clean -df && git checkout -- ."
 # alias gclean='git clean -fd'
 # alias gpristine='git reset --hard && git clean --force -dfx'
 # alias groh='git reset origin/$(git_current_branch) --hard'
 # alias gcan!='git commit --verbose --all --no-edit --amend'
+
 # alias dkrmi='docker rmi'
 # alias dkrmia='docker rmi $(docker images -q)'
 

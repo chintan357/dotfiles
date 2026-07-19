@@ -30,6 +30,7 @@ return {
             schema = {
               model = {
                 default = "openai/gpt-chat-latest",
+                -- default = "openai/gpt-5.6-luna",
               },
             },
           })

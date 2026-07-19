@@ -7,10 +7,12 @@ map({ "n", "v" }, ";", ":")
 
 map("x", "v", "<C-v>")
 
-map("n", "<leader>s-", "<C-w>s")
-map("n", "<leader>s\\", "<C-w>v")
-map("n", "<leader>se", "<C-w>=")
-map("n", "<leader>we", "<C-w>c")
+map("t", "<Esc><Esc>", "<C-\\><C-n>")
+
+map("n", "sh", "<C-w>s")
+map("n", "sv", "<C-w>v")
+map("n", "s=", "<C-w>=")
+map("n", "se", "<C-w>c")
 
 map("n", "Q", "<cmd>bd<CR>")
 
@@ -39,4 +41,23 @@ map("n", "yor", function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end)
 
+
 map("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Lazy" })
+
+-- map("n", "<leader>mx", "<cmd>!chmod u+x %<CR>")
+-- map("n", "<leader>fp", function() vim.fn.setreg("+", vim.fn.expand("%:~")) end)
+-- map("n", "<C-j>", "<cmd>e #<cr>")
+-- map("n", "]t", "gt")
+-- map("n", "[t", "gT")
+-- map("n", "gV", "`[V`]") -- "`[v`]"
+-- map("n", "gl", "`.zz")
+-- map("x", "g/", "<Esc>/\\%V")
+-- map("c", "<C-h>", "<Up>")
+-- map("c", "<C-l>", "<Down>")
+-- map({ "x", "o", "v" }, "H", "^")
+-- map({ "x", "o", "v" }, "L", "g_")
+-- map("n", "<leader>-", ":!")
+-- map("n", "<leader><Enter>", "!!bash<CR>")
+-- map("n", "<leader>fn", "<cmd>enew<cr>")
+-- map("n", "n", "nzz")
+-- map("n", "N", "Nzz")

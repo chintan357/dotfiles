@@ -30,10 +30,10 @@ curl https://mise.run | sh
 mise use -g node@lts rust@latest go@latest
 
 cargo install cargo-binstall
-cargo binstall git-delta bob-nvim
+cargo binstall bob-nvim git-delta
 # cargo binstall --no-confirm
-# eza navi broot halp hackernews_tui stylua 
-# tree-sitter-cli tealdeer
+# broot halp navi tealdeer
+# tree-sitter-cli
 
 bob use stable
 

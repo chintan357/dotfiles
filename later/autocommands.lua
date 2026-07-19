@@ -6,16 +6,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-  group = augroup("checktime"),
-  callback = function()
-    if vim.o.buftype ~= "nofile" then
-      vim.cmd("checktime")
-    end
-  end,
-})
-
 -- make it easier to close man-files when opened inline
 -- vim.api.nvim_create_autocmd("FileType", {
 --   group = augroup("man_unlisted"),

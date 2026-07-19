@@ -1,16 +1,10 @@
 return {
-  -- {
-  --   "nvim-mini/mini.ai",
-  --   config = function()
-  --     require("mini.ai").setup({ n_lines = 500 })
-  --   end,
-  -- },
-  -- {
-  --   "nvim-mini/mini.bufremove",
-  --   config = function()
-  --     require("mini.bufremove").setup()
-  --   end,
-  -- },
+  {
+    "nvim-mini/mini.ai",
+    config = function()
+      require("mini.ai").setup({ n_lines = 500 })
+    end,
+  },
   -- {
   --   "nvim-mini/mini.surround",
   --   config = function()
@@ -33,18 +27,6 @@ return {
       statusline.setup({ use_icons = vim.g.have_nerd_font })
     end,
   },
-  -- {
-  --   "nvim-mini/mini.pairs",
-  --   config = function()
-  --     require("mini.pairs").setup()
-  --   end,
-  -- },
-  -- {
-  --   "nvim-mini/mini.hipatterns",
-  --   config = function()
-  --     require("mini.hipatterns").setup()
-  --   end,
-  -- },
 }
 
 -- return {
@@ -52,12 +34,8 @@ return {
 --   version = false,
 --   config = function()
 --     require("mini.ai").setup({ n_lines = 500 })
---     require("mini.bufremove").setup()
 --     require("mini.surround").setup()
---     require("mini.pairs").setup()
---     require("mini.tabline").setup()
 --     require("mini.hipatterns").setup()
---     -- require("mini.statusline").setup()
 --     -- require("mini.diff").setup()
 --     -- require("mini.jump").setup()
 --     -- require("mini.jump2d").setup()
@@ -81,16 +59,29 @@ return {
 --     -- end
 --   end,
 -- }
+
 -- -- Better Around/Inside textobjects
 -- --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
 
--- -- {
--- --   "nvim-mini/mini.diff",
--- --   config = function()
--- --     local diff = require("mini.diff")
--- --     diff.setup({
--- --       -- Disabled by default
--- --       source = diff.gen_source.none(),
--- --     })
--- --   end,
--- -- },
+-- {
+--   "nvim-mini/mini.diff",
+--   config = function()
+--     local diff = require("mini.diff")
+--     diff.setup({
+--       -- Disabled by default
+--       source = diff.gen_source.none(),
+--     })
+--   end,
+-- },
+-- {
+--   "nvim-mini/mini.bufremove",
+--   config = function()
+--     require("mini.bufremove").setup()
+--   end,
+-- },
+-- {
+--   "nvim-mini/mini.hipatterns",
+--   config = function()
+--     require("mini.hipatterns").setup()
+--   end,
+-- },

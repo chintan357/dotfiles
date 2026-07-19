@@ -3,7 +3,7 @@ alias c=clear
 
 alias al=alias
 
-# alias sudo='sudo '
+alias sudo='sudo '
 
 alias cpr='cp -r'
 alias rmr='rm -r'
@@ -12,6 +12,11 @@ alias rmrf='rm -rf'
 alias ls='ls --color=auto'
 alias la='ls -AF --group-directories-first'
 alias ll='ls -AlhF --group-directories-first --color=always | less -RF'
+
+# alias sctl='systemctl'
+# alias bo='broot'
+# clh() { curl localhost:$1; }
+alias wt='watch' # -n 1
 
 #-------#
 
@@ -53,6 +58,7 @@ alias vim='nvim'
 alias lvi='nvim "+edit #<1"'
 alias v.='nvim .'
 # alias rmnvim='rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim'
+# alias lvim='NVIM_APPNAME="lvim" nvim'
 
 #-------#
 
@@ -211,16 +217,11 @@ alias gdc='git diff --cached'
 alias gcl='git clone'
 alias gcld='git clone --depth 1'
 
-alias gco='git checkout'
-alias gcob='git checkout -b'
 alias gbk='git checkout -'
 
 alias gs='git status -sb'
 alias gst='git status'
 
-alias gcm='git commit'
-alias gcmm='git commit -m'
-# alias gcmam='git commit -am'
 alias gamend='git commit --amend --no-edit'
 
 alias gpu='git push'
@@ -273,3 +274,6 @@ alias kdel='kubectl delete -f'
 alias krf='kubectl replace --force -f'
 alias kns='kubectl config set-context --current --namespace'
 alias kcc='kubectl config current-context'
+
+# alias rec='asciinema rec'
+# alias play='asciinema play'
