@@ -22,66 +22,66 @@
   prune = true
 
 [alias]
-	a = add
+  a = add
 
-	b = branch
+  b = branch
   bl = branch -l --sort=committerdate
-	br = branch -r
-	ba = branch -a
+  br = branch -r
+  ba = branch -a
 
-	c = commit
-	cm = commit -m
-	cu = commit --amend
+  c = commit
+  cm = commit -m
+  cu = commit --amend
 
-	; cp = cherry-pick
+  ; cp = cherry-pick
   
-	f = fetch
-	fo = fetch origin
-	fu = fetch upstream
+  f = fetch
+  fo = fetch origin
+  fu = fetch upstream
 
-	g = grep -p
+  g = grep -p
 
-	l = log --oneline --decorate
+  l = log --oneline --decorate
   ll = log --stat
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
-	o = checkout
-	om = checkout main
-	ob = checkout -b
+  o = checkout
+  om = checkout main
+  ob = checkout -b
 
-	ls = ls-files
-	; lsg = !git ls-files | grep -i
+  ls = ls-files
+  ; lsg = !git ls-files | grep -i
 
   p = push
   pf = push --force-with-lease
-	pt = push --tags
+  pt = push --tags
 
-	Po = pull origin
-	Pu = pull upstream
+  Po = pull origin
+  Pu = pull upstream
 
-	m = merge
-	ma = merge --abort
+  m = merge
+  ma = merge --abort
 
-	r = remote
-	ra = remote add
-	rrm = remote rm
-	rv = remote -v
+  r = remote
+  ra = remote add
+  rrm = remote rm
+  rv = remote -v
 
-	rb = rebase
-	rbi = rebase --interactive
-	rbc = rebase --continue
+  rb = rebase
+  rbi = rebase --interactive
+  rbc = rebase --continue
 
-	re = reset
-	reh = reset --hard
-	res = reset --soft
-	rehom = reset --hard origin/main
+  re = reset
+  reh = reset --hard
+  res = reset --soft
+  rehom = reset --hard origin/main
 
-	; rmf = rm -f
-	; rmrf = rm -r -f
+  ; rmf = rm -f
+  ; rmrf = rm -r -f
 
   s = stash
-	sl = stash list
+  sl = stash list
 
 [interactive]
   diffFilter = delta --color-only
@@ -90,8 +90,8 @@
   navigate = true # use n and N to move between diff sections
   line-numbers = true
   syntax-theme = OneHalfDark
-  true-color = always
-  dark = true
+  ; true-color = always
+  ; dark = true
   side-by-side = true
   features = arctic-fox
 
