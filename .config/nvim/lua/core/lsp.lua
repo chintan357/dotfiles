@@ -15,9 +15,6 @@ local config = {
   severity_sort = true,
   -- virtual_lines = true,
   -- update_in_insert = true,
-  float = {
-    border = "single",
-  },
 }
 vim.diagnostic.config(config)
 -- }}}

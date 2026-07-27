@@ -35,3 +35,5 @@ opt.undofile = true
 
 opt.laststatus = 3
 -- opt.winbar = "%f"
+
+opt.winborder = "rounded"

@@ -114,9 +114,7 @@ alias uvh='uv help'
 
 alias uvp='uv python'
 alias pyp='uv python pin'
-# alias pyU='uv python uninstall'
 
-alias ipython='ipython3'
 alias ipy='ipython3'
 alias ipyt='ipython3 --profile=tmp'
 alias uvipy='uv run ipython3'
@@ -203,7 +201,7 @@ __git_complete g __git_main
 
 alias lg=lazygit
 
-alias gatom='gaa && gcm -m Atomic && gpu'
+alias gatom='git add --all && git commit -m Atomic && git push'
 
 alias ginit='git init'
 alias cg='cd `git rev-parse --show-toplevel`'

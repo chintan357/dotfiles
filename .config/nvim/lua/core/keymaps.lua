@@ -49,7 +49,7 @@ map("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Lazy" })
 -- map("n", "<C-j>", "<cmd>e #<cr>")
 -- map("n", "]t", "gt")
 -- map("n", "[t", "gT")
--- map("n", "gV", "`[V`]") -- "`[v`]"
+map("n", "gV", "`[v`]")
 -- map("n", "gl", "`.zz")
 -- map("x", "g/", "<Esc>/\\%V")
 -- map("c", "<C-h>", "<Up>")

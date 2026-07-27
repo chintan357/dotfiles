@@ -2,11 +2,11 @@ if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"
 fi
 
-# eval "$(direnv hook bash)"
+eval "$(direnv hook bash)"
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(uv generate-shell-completion bash)"
-eval "$(uvx --generate-shell-completion bash)"
+# eval "$(uvx --generate-shell-completion bash)"
 eval "$($HOME/.local/bin/mise activate bash)"
 
 # safesource() {
