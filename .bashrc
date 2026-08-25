@@ -10,7 +10,7 @@ export PATH=$HOME/.opencode/bin:$PATH
 export VISUAL=nvim
 export EDITOR=nvim
 
-export BROWSER=Explorer.exe
+# export BROWSER=Explorer.exe
 
 export PYTHONBREAKPOINT="ipdb.set_trace"
 

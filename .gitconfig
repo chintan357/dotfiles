@@ -1,6 +1,6 @@
 [user]
-  name = chintan357
-  email = chintan357@localhost
+  name = cpatelco
+  email = cpatelco@localhost
 
 [init]
   defaultBranch = main
@@ -9,7 +9,13 @@
   autocrlf = input
   editor = nvim
   pager = delta
-  ; excludesFile = ~/.gitignore
+  excludesFile = ~/.gitignore
+ 
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+    conflictStyle = zdiff3
 
 [push]
   default = current
@@ -83,13 +89,10 @@
   s = stash
   sl = stash list
 
-[interactive]
-  diffFilter = delta --color-only
-
 [delta]
   navigate = true # use n and N to move between diff sections
   line-numbers = true
-  syntax-theme = OneHalfDark
+  syntax-theme = none
   ; true-color = always
   ; dark = true
   side-by-side = true

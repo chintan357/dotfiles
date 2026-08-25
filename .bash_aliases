@@ -258,8 +258,8 @@ alias dist='ssh dist'
 alias smi='nvidia-smi'
 
 alias chat='nvim -c ":CodeCompanionChat" -c ":only" -c "startinsert"'
-alias chatf='nvim -c ":CodeCompanionChat adapter=openrouter model=openai/gpt-5.4-mini" -c ":only" -c "startinsert"'
-alias chatl='nvim -c ":CodeCompanionChat adapter=openrouter model=openai/gpt-5.5" -c ":only" -c "startinsert"'
+alias chatf='nvim -c ":CodeCompanionChat adapter=openrouter model=openai/gpt-5.6-luna" -c ":only" -c "startinsert"'
+# alias chati='nvim -c ":CodeCompanionChat adapter=openrouter model=openai/gpt-5.5" -c ":only" -c "startinsert"'
 
 #-------#
 
@@ -272,6 +272,10 @@ alias kdel='kubectl delete -f'
 alias krf='kubectl replace --force -f'
 alias kns='kubectl config set-context --current --namespace'
 alias kcc='kubectl config current-context'
+
+#-------#
+
+alias tf='terraform'
 
 # alias rec='asciinema rec'
 # alias play='asciinema play'
